@@ -7,6 +7,9 @@ import type { NextConfig } from "next";
  * - Security headers for production
  */
 const nextConfig: NextConfig = {
+  // Enable static export for Cloudflare Pages
+  output: "export",
+
   // Enable experimental features for Next.js 15+
   experimental: {
     // Enable optimized package imports for faster builds
@@ -15,14 +18,14 @@ const nextConfig: NextConfig = {
 
   // Image optimization configuration
   images: {
+    // Disable server-side image optimization for static export
+    unoptimized: true,
     // Enable WebP format for better performance
     formats: ["image/avif", "image/webp"],
     // Device sizes for responsive images
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     // Image sizes for srcset generation
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // Minimize layout shift
-    minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year cache
     // Allow external image domains
     remotePatterns: [
       {
@@ -40,66 +43,6 @@ const nextConfig: NextConfig = {
 
   // Powered by header removal for security
   poweredByHeader: false,
-
-  // Headers for caching and security
-  async headers() {
-    return [
-      {
-        // Apply to all routes
-        source: "/:path*",
-        headers: [
-          {
-            key: "X-DNS-Prefetch-Control",
-            value: "on",
-          },
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-          {
-            key: "X-Frame-Options",
-            value: "SAMEORIGIN",
-          },
-          {
-            key: "Referrer-Policy",
-            value: "origin-when-cross-origin",
-          },
-        ],
-      },
-      {
-        // Cache static assets aggressively
-        source: "/images/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        // Cache fonts aggressively
-        source: "/fonts/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-    ];
-  },
-
-  // Redirects for SEO
-  async redirects() {
-    return [
-      // Add trailing slash redirect for consistency
-      {
-        source: "/:path+/",
-        destination: "/:path+",
-        permanent: true,
-      },
-    ];
-  },
 };
 
 export default nextConfig;

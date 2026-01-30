@@ -1,23 +1,53 @@
 "use client";
 
-import { useActionState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { repairServices } from "@/lib/pvcData";
-import { submitRepairRequest, RepairFormState } from "./actions";
+import { businessConfig } from "@/config/business.config";
 
 /**
  * Repair Request Form Component
- * Full-featured form with Server Actions for PVC repair requests
+ * Updated for Static Export: Uses WhatsApp redirect instead of Server Actions
  */
 export function RepairRequestForm() {
-    const [state, formAction, isPending] = useActionState<RepairFormState | null, FormData>(
-        submitRepairRequest,
-        null
-    );
+    const [isPending, setIsPending] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
-    // Success state
-    if (state?.success) {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsPending(true);
+
+        const formData = new FormData(e.currentTarget);
+        const data = {
+            name: formData.get("name") as string,
+            phone: formData.get("phone") as string,
+            address: formData.get("address") as string,
+            serviceType: formData.get("serviceType") as string,
+            urgency: formData.get("urgency") as string,
+            description: formData.get("description") as string,
+        };
+
+        // Format WhatsApp message
+        const message = `*Yeni Tamir Talebi*%0A%0A` +
+            `*Ad Soyad:* ${data.name}%0A` +
+            `*Telefon:* ${data.phone}%0A` +
+            `*Hizmet:* ${data.serviceType}%0A` +
+            `*Aciliyet:* ${data.urgency}%0A` +
+            `*Adres:* ${data.address}%0A` +
+            `*Açıklama:* ${data.description}`;
+
+        const whatsappUrl = `https://wa.me/${businessConfig.contact.whatsapp.replace(/\+/g, "")}?text=${message}`;
+
+        // Simulate a small delay for better UX
+        setTimeout(() => {
+            window.open(whatsappUrl, "_blank");
+            setIsPending(false);
+            setIsSuccess(true);
+        }, 800);
+    };
+
+    if (isSuccess) {
         return (
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -42,11 +72,13 @@ export function RepairRequestForm() {
                 <h3 className="text-2xl font-bold text-neutral-900 mb-4">
                     Talebiniz Alındı!
                 </h3>
-                <p className="text-neutral-600 mb-6">{state.message}</p>
+                <p className="text-neutral-600 mb-6">
+                    Müşteri danışmanımıza WhatsApp üzerinden yönlendirildiniz. En kısa sürede size dönüş yapılacaktır.
+                </p>
                 <p className="text-sm text-neutral-500">
                     Acil durumlar için:{" "}
-                    <a href="tel:+905419130637" className="text-primary-600 font-bold">
-                        0541 913 0637
+                    <a href={`tel:${businessConfig.contact.mobile.replace(/\s/g, "")}`} className="text-primary-600 font-bold">
+                        {businessConfig.contact.mobile}
                     </a>
                 </p>
             </motion.div>
@@ -54,30 +86,16 @@ export function RepairRequestForm() {
     }
 
     return (
-        <form action={formAction} className="bg-white rounded-2xl shadow-lg border border-neutral-100 p-6 lg:p-8">
+        <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg border border-neutral-100 p-6 lg:p-8">
             {/* Form Header */}
             <div className="mb-8">
                 <h3 className="text-2xl font-bold text-neutral-900 mb-2">
                     🔧 Tamir / Tadilat Talebi
                 </h3>
                 <p className="text-neutral-600">
-                    PVC pencere ve kapı sorunlarınız için hızlı çözüm. Formu doldurun, 24 saat içinde dönüş yapalım.
+                    PVC pencere ve kapı sorunlarınız için hızlı çözüm. Formu doldurun, WhatsApp üzerinden anında iletelim.
                 </p>
             </div>
-
-            {/* Error Message */}
-            <AnimatePresence>
-                {state && !state.success && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700"
-                    >
-                        {state.message}
-                    </motion.div>
-                )}
-            </AnimatePresence>
 
             {/* Service Type Selection */}
             <div className="mb-6">
@@ -93,7 +111,7 @@ export function RepairRequestForm() {
                             <input
                                 type="radio"
                                 name="serviceType"
-                                value={service.id}
+                                value={service.name}
                                 className="peer sr-only"
                                 required
                             />
@@ -110,9 +128,6 @@ export function RepairRequestForm() {
                         </label>
                     ))}
                 </div>
-                {state?.errors?.serviceType && (
-                    <p className="text-red-500 text-sm mt-1">{state.errors.serviceType}</p>
-                )}
             </div>
 
             {/* Personal Info */}
@@ -126,15 +141,9 @@ export function RepairRequestForm() {
                         id="name"
                         name="name"
                         required
-                        className={cn(
-                            "w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-primary-500/20 outline-none transition-all",
-                            state?.errors?.name ? "border-red-500" : "border-neutral-300 focus:border-primary-500"
-                        )}
+                        className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
                         placeholder="Adınız Soyadınız"
                     />
-                    {state?.errors?.name && (
-                        <p className="text-red-500 text-sm mt-1">{state.errors.name}</p>
-                    )}
                 </div>
                 <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-neutral-700 mb-2">
@@ -145,30 +154,10 @@ export function RepairRequestForm() {
                         id="phone"
                         name="phone"
                         required
-                        className={cn(
-                            "w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-primary-500/20 outline-none transition-all",
-                            state?.errors?.phone ? "border-red-500" : "border-neutral-300 focus:border-primary-500"
-                        )}
+                        className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
                         placeholder="05XX XXX XX XX"
                     />
-                    {state?.errors?.phone && (
-                        <p className="text-red-500 text-sm mt-1">{state.errors.phone}</p>
-                    )}
                 </div>
-            </div>
-
-            {/* Email (Optional) */}
-            <div className="mb-6">
-                <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
-                    E-posta <span className="text-neutral-400">(opsiyonel)</span>
-                </label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
-                    placeholder="ornek@mail.com"
-                />
             </div>
 
             {/* Address */}
@@ -181,15 +170,9 @@ export function RepairRequestForm() {
                     id="address"
                     name="address"
                     required
-                    className={cn(
-                        "w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-primary-500/20 outline-none transition-all",
-                        state?.errors?.address ? "border-red-500" : "border-neutral-300 focus:border-primary-500"
-                    )}
+                    className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
                     placeholder="Mahalle, Sokak, Bina No, Daire No - İlçe"
                 />
-                {state?.errors?.address && (
-                    <p className="text-red-500 text-sm mt-1">{state.errors.address}</p>
-                )}
             </div>
 
             {/* Urgency */}
@@ -207,7 +190,7 @@ export function RepairRequestForm() {
                             <input
                                 type="radio"
                                 name="urgency"
-                                value={option.id}
+                                value={option.label}
                                 defaultChecked={option.id === "normal"}
                                 className="peer sr-only"
                             />
@@ -223,19 +206,6 @@ export function RepairRequestForm() {
                 </div>
             </div>
 
-            {/* Preferred Date */}
-            <div className="mb-6">
-                <label htmlFor="preferredDate" className="block text-sm font-medium text-neutral-700 mb-2">
-                    Tercih Edilen Tarih <span className="text-neutral-400">(opsiyonel)</span>
-                </label>
-                <input
-                    type="date"
-                    id="preferredDate"
-                    name="preferredDate"
-                    className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
-                />
-            </div>
-
             {/* Description */}
             <div className="mb-6">
                 <label htmlFor="description" className="block text-sm font-medium text-neutral-700 mb-2">
@@ -246,15 +216,9 @@ export function RepairRequestForm() {
                     name="description"
                     rows={4}
                     required
-                    className={cn(
-                        "w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-primary-500/20 outline-none transition-all resize-none",
-                        state?.errors?.description ? "border-red-500" : "border-neutral-300 focus:border-primary-500"
-                    )}
+                    className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all resize-none"
                     placeholder="Lütfen sorununuzu detaylı açıklayın. Örnek: Salon penceresinin ispanyoleti kırıldı, kapanmıyor..."
                 />
-                {state?.errors?.description && (
-                    <p className="text-red-500 text-sm mt-1">{state.errors.description}</p>
-                )}
             </div>
 
             {/* Consent */}
@@ -294,12 +258,12 @@ export function RepairRequestForm() {
                         Gönderiliyor...
                     </span>
                 ) : (
-                    "Tamir Talebi Gönder"
+                    "WhatsApp ile Tamir Talebi Gönder"
                 )}
             </button>
 
             <p className="mt-4 text-center text-sm text-neutral-500">
-                Acil durumlar için doğrudan arayın: <a href="tel:+905419130637" className="text-primary-600 font-bold">0541 913 0637</a>
+                Acil durumlar için doğrudan arayın: <a href={`tel:${businessConfig.contact.mobile.replace(/\s/g, "")}`} className="text-primary-600 font-bold">{businessConfig.contact.mobile}</a>
             </p>
         </form>
     );

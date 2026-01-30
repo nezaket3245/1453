@@ -1,4 +1,6 @@
 import { MetadataRoute } from "next";
+
+export const dynamic = "force-static";
 import { pvcProductSeries } from "@/lib/pvcData";
 import { blogPosts } from "@/lib/blogData";
 import { products } from "@/lib/data";
@@ -177,12 +179,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
 
     return [
-        ...staticPages, 
-        ...pvcProductPages, 
-        ...productPages, 
-        ...blogPages, 
-        ...glassSystemPages, 
-        ...sineklikMainPage, 
+        ...staticPages,
+        ...pvcProductPages,
+        ...productPages,
+        ...blogPages,
+        ...glassSystemPages,
+        ...sineklikMainPage,
         ...sineklikPages,
         ...aluminumMainPage,
         ...aluminumDetailPages,
