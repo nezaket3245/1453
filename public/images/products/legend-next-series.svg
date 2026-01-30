@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a5f"/>
+      <stop offset="100%" style="stop-color:#0f2540"/>
+    </linearGradient>
+    <linearGradient id="windowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87ceeb"/>
+      <stop offset="100%" style="stop-color:#4a90a4"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  
+  <!-- Window Frame -->
+  <rect x="200" y="100" width="400" height="350" rx="8" fill="#ffffff" stroke="#e0e0e0" stroke-width="3"/>
+  <rect x="220" y="120" width="360" height="310" fill="url(#windowGrad)" rx="4"/>
+  
+  <!-- Cross Frame -->
+  <rect x="200" y="270" width="400" height="15" fill="#ffffff"/>
+  <rect x="395" y="100" width="15" height="350" fill="#ffffff"/>
+  
+  <!-- Triple Glass Indicator -->
+  <g transform="translate(550, 480)">
+    <rect x="0" y="0" width="80" height="10" fill="#87ceeb" opacity="0.5"/>
+    <rect x="5" y="12" width="70" height="8" fill="#87ceeb" opacity="0.7"/>
+    <rect x="10" y="22" width="60" height="8" fill="#87ceeb" opacity="0.9"/>
+  </g>
+  
+  <!-- A++ Badge -->
+  <g transform="translate(620, 130)">
+    <circle cx="40" cy="40" r="40" fill="#22c55e"/>
+    <text x="40" y="35" font-family="Arial Black" font-size="16" fill="white" text-anchor="middle">A++</text>
+    <text x="40" y="55" font-family="Arial" font-size="10" fill="white" text-anchor="middle">ENERGY</text>
+  </g>
+  
+  <!-- Title -->
+  <text x="400" y="510" font-family="Arial Black" font-size="28" fill="#ffffff" text-anchor="middle">LEGEND NEXT</text>
+  <text x="400" y="545" font-family="Arial" font-size="16" fill="#94a3b8" text-anchor="middle">Geleceğin Pencere Teknolojisi | Triple Cam Desteği</text>
+  
+  <!-- Egepen Logo Text -->
+  <text x="60" y="50" font-family="Arial Black" font-size="18" fill="#f97316">Egepen</text>
+  <text x="140" y="50" font-family="Arial" font-size="18" fill="#ffffff">Deceuninck</text>
+</svg>

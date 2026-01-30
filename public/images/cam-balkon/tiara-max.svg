@@ -1,0 +1,13 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#F8FAFC"/>
+  <rect x="100" y="100" width="600" height="400" rx="20" fill="white" stroke="#E2E8F0" stroke-width="2"/>
+  <path d="M100 150H700" stroke="#E2E8F0" stroke-width="2"/>
+  <path d="M250 150V500" stroke="#E2E8F0" stroke-width="2"/>
+  <path d="M400 150V500" stroke="#E2E8F0" stroke-width="2"/>
+  <path d="M550 150V500" stroke="#E2E8F0" stroke-width="2"/>
+  <rect x="260" y="160" width="130" height="330" rx="4" fill="#E0F2FE" fill-opacity="0.5"/>
+  <rect x="410" y="160" width="130" height="330" rx="4" fill="#E0F2FE" fill-opacity="0.5"/>
+  <text x="400" y="80" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="bold" fill="#0F172A">Tiara Max Premium</text>
+  <circle cx="325" cy="325" r="20" fill="#0EA5E9" fill-opacity="0.1"/>
+  <path d="M315 325H335M325 315V335" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round"/>
+</svg>

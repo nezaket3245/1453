@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çevrimdışı - Egepen Akçayapı</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0055a5 0%, #003d7a 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            text-align: center;
+            color: white;
+        }
+
+        .icon {
+            font-size: 64px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        p {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 24px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 12px;
+            transition: transform 0.2s;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-call {
+            background: #f59e0b;
+            color: #1a1a1a;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .retry {
+            display: block;
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .phone-display {
+            margin-top: 24px;
+            font-size: 20px;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .phone-display a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="icon">📡</div>
+        <h1>İnternet Bağlantısı Yok</h1>
+        <p>
+            Görünüşe göre çevrimdışısınız. Lütfen internet bağlantınızı kontrol edin
+            veya doğrudan bizi arayın.
+        </p>
+        <div class="cta-buttons">
+            <a href="tel:+905324124810" class="btn btn-call">
+                📞 Hemen Ara
+            </a>
+            <a href="https://wa.me/905324124810" class="btn btn-whatsapp">
+                💬 WhatsApp ile Yaz
+            </a>
+        </div>
+        <div class="phone-display">
+            <a href="tel:+905324124810">0532 412 48 10</a>
+        </div>
+        <a class="retry" onclick="window.location.reload()">
+            Tekrar Dene
+        </a>
+    </div>
+</body>
+
+</html>
