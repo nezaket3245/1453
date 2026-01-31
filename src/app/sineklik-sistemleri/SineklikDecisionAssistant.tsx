@@ -195,7 +195,7 @@ export default function SineklikDecisionAssistant() {
                                 onClick={() => setStep(step - 1)}
                                 className="mt-6 text-emerald-200 hover:text-white flex items-center mx-auto"
                             >
-                                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                 </svg>
                                 Önceki Soru

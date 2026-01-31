@@ -131,7 +131,7 @@ export default async function SineklikDetailPage({
 
             <Header />
 
-            <main className="min-h-screen bg-white">
+            <main id="main-content" className="min-h-screen bg-white">
                 {/* Breadcrumb */}
                 <div className="bg-gray-50 py-4 border-b">
                     <div className="container mx-auto px-4">
@@ -323,7 +323,7 @@ export default async function SineklikDetailPage({
                                             `${system.name} hakkında bilgi almak istiyorum`
                                         )}`}
                                         target="_blank"
-                                        rel="noopener noreferrer"
+                                        rel="noopener noreferrer nofollow"
                                         className="inline-flex items-center px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl transition-all"
                                     >
                                         <span className="mr-2">📱</span>

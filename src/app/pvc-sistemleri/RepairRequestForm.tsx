@@ -133,28 +133,33 @@ export function RepairRequestForm() {
             {/* Personal Info */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                 <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
+                    <label htmlFor="repair-name" className="block text-sm font-medium text-neutral-700 mb-2">
                         Ad Soyad <span className="text-red-500">*</span>
                     </label>
                     <input
                         type="text"
-                        id="name"
+                        id="repair-name"
                         name="name"
+                        autoComplete="name"
                         required
-                        className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
+                        aria-required="true"
+                        className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all min-h-[48px]"
                         placeholder="Adınız Soyadınız"
                     />
                 </div>
                 <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-neutral-700 mb-2">
+                    <label htmlFor="repair-phone" className="block text-sm font-medium text-neutral-700 mb-2">
                         Telefon <span className="text-red-500">*</span>
                     </label>
                     <input
                         type="tel"
-                        id="phone"
+                        id="repair-phone"
                         name="phone"
+                        autoComplete="tel"
+                        inputMode="tel"
                         required
-                        className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
+                        aria-required="true"
+                        className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all min-h-[48px]"
                         placeholder="05XX XXX XX XX"
                     />
                 </div>
@@ -162,15 +167,17 @@ export function RepairRequestForm() {
 
             {/* Address */}
             <div className="mb-6">
-                <label htmlFor="address" className="block text-sm font-medium text-neutral-700 mb-2">
+                <label htmlFor="repair-address" className="block text-sm font-medium text-neutral-700 mb-2">
                     Adres <span className="text-red-500">*</span>
                 </label>
                 <input
                     type="text"
-                    id="address"
+                    id="repair-address"
                     name="address"
+                    autoComplete="street-address"
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
+                    aria-required="true"
+                    className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all min-h-[48px]"
                     placeholder="Mahalle, Sokak, Bina No, Daire No - İlçe"
                 />
             </div>
@@ -208,14 +215,15 @@ export function RepairRequestForm() {
 
             {/* Description */}
             <div className="mb-6">
-                <label htmlFor="description" className="block text-sm font-medium text-neutral-700 mb-2">
+                <label htmlFor="repair-description" className="block text-sm font-medium text-neutral-700 mb-2">
                     Sorun Açıklaması <span className="text-red-500">*</span>
                 </label>
                 <textarea
-                    id="description"
+                    id="repair-description"
                     name="description"
                     rows={4}
                     required
+                    aria-required="true"
                     className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all resize-none"
                     placeholder="Lütfen sorununuzu detaylı açıklayın. Örnek: Salon penceresinin ispanyoleti kırıldı, kapanmıyor..."
                 />
@@ -226,9 +234,11 @@ export function RepairRequestForm() {
                 <label className="flex items-start gap-3 cursor-pointer">
                     <input
                         type="checkbox"
+                        id="repair-consent"
                         name="consent"
                         required
-                        className="mt-1 w-5 h-5 rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
+                        aria-required="true"
+                        className="mt-1 w-5 h-5 min-w-[20px] min-h-[20px] rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
                     />
                     <span className="text-sm text-neutral-600">
                         <a href="/gizlilik-politikasi" title="KVKK ve Gizlilik Politikası" className="text-primary-600 hover:underline">
@@ -245,13 +255,13 @@ export function RepairRequestForm() {
                 type="submit"
                 disabled={isPending}
                 className={cn(
-                    "w-full btn btn-primary btn-lg",
+                    "w-full btn btn-primary btn-lg min-h-[48px]",
                     isPending && "opacity-50 cursor-wait"
                 )}
             >
                 {isPending ? (
                     <span className="flex items-center justify-center gap-2">
-                        <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+                        <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24" aria-hidden="true">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                         </svg>

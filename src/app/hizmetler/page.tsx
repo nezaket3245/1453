@@ -41,7 +41,7 @@ export default function ServicesPage() {
     return (
         <>
             <Header />
-            <main className="min-h-screen bg-white">
+            <main id="main-content" className="min-h-screen bg-white">
                 {/* Header */}
                 <section className="relative bg-neutral-900 text-white py-24 lg:py-32 text-center overflow-hidden">
                     <div className="absolute inset-0 opacity-30">
@@ -87,7 +87,7 @@ export default function ServicesPage() {
                                         </p>
                                         <Link href={service.href} title={`${service.title} - Detaylı Bilgi`} className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-all shadow-lg hover:shadow-primary-500/25">
                                             Detaylı Bilgi Al
-                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                                             </svg>
                                         </Link>

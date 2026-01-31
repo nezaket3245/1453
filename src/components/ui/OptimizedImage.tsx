@@ -11,10 +11,25 @@ function cn(...inputs: ClassValue[]) {
     return clsx(inputs);
 }
 
+/**
+ * Converts an image path to WebP format if available
+ * Falls back to original if WebP doesn't exist
+ */
+function getWebPPath(src: string | object): string {
+    if (typeof src !== 'string') return '';
+    // Convert jpg, jpeg, png to webp
+    if (/\.(jpg|jpeg|png)$/i.test(src)) {
+        return src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+    }
+    return src;
+}
+
 interface OptimizedImageProps extends Omit<ImageProps, "onError"> {
     fallbackSrc?: string;
     containerClassName?: string;
     showSkeleton?: boolean;
+    /** Prefer WebP format if available (default: true) */
+    preferWebP?: boolean;
 }
 
 /**
@@ -70,12 +85,18 @@ export default function OptimizedImage({
     containerClassName,
     showSkeleton = true,
     priority = false,
+    preferWebP = true,
     width,
     height,
     fill,
     ...props
 }: OptimizedImageProps) {
-    const [imgSrc, setImgSrc] = useState<string | typeof src>(src);
+    // Try WebP first if preferWebP is true
+    const initialSrc = preferWebP && typeof src === 'string' 
+        ? getWebPPath(src) 
+        : src;
+    
+    const [imgSrc, setImgSrc] = useState<string | typeof src>(initialSrc);
     const [errorLevel, setErrorLevel] = useState(0);
     const [isLoading, setIsLoading] = useState(!priority);
     const [isVisible, setIsVisible] = useState(false);
@@ -83,10 +104,13 @@ export default function OptimizedImage({
 
     // Reset state when src prop changes
     useEffect(() => {
-        setImgSrc(src);
+        const newSrc = preferWebP && typeof src === 'string' 
+            ? getWebPPath(src) 
+            : src;
+        setImgSrc(newSrc);
         setErrorLevel(0);
         setIsLoading(!priority);
-    }, [src, priority]);
+    }, [src, priority, preferWebP]);
 
     // Check if image is already loaded (cached)
     useEffect(() => {
@@ -104,33 +128,36 @@ export default function OptimizedImage({
     }, [isLoading]);
 
     /**
-     * Multi-level error handler:
-     * Level 0 -> Try custom fallback or context-aware fallback
-     * Level 1 -> Try general fallback (og-home.jpg)
-     * Level 2 -> Use guaranteed SVG placeholder
+     * Multi-level error handler with WebP fallback:
+     * Level 0 -> If WebP failed, try original format (jpg/png)
+     * Level 1 -> Try custom fallback or context-aware fallback
+     * Level 2 -> Try general fallback (og-home.jpg)
+     * Level 3 -> Use guaranteed SVG placeholder
      */
     const handleError = useCallback(() => {
         const srcString = typeof src === 'string' ? src : '';
+        const currentSrcString = typeof imgSrc === 'string' ? imgSrc : '';
 
-        if (errorLevel === 0) {
-            // First error: try provided fallback or context-aware fallback
-            const nextFallback = fallbackSrc || getContextFallback(srcString);
-            console.warn(`[OptimizedImage] Primary image failed: ${srcString}, trying: ${nextFallback}`);
-            setImgSrc(nextFallback);
+        if (errorLevel === 0 && preferWebP && currentSrcString.endsWith('.webp')) {
+            // WebP failed, try original format
+            setImgSrc(srcString);
             setErrorLevel(1);
-        } else if (errorLevel === 1) {
-            // Second error: try the general fallback
-            console.warn(`[OptimizedImage] Fallback failed, trying general fallback`);
-            setImgSrc(FALLBACK_IMAGES.general);
+        } else if (errorLevel <= 1) {
+            // Try provided fallback or context-aware fallback
+            const nextFallback = fallbackSrc || getContextFallback(srcString);
+            setImgSrc(getWebPPath(nextFallback)); // Try WebP of fallback first
             setErrorLevel(2);
+        } else if (errorLevel === 2) {
+            // Try general fallback
+            setImgSrc(FALLBACK_IMAGES.general);
+            setErrorLevel(3);
         } else {
             // Final fallback: guaranteed SVG placeholder
-            console.warn(`[OptimizedImage] All fallbacks failed, using placeholder`);
             setImgSrc(DEFAULT_PLACEHOLDER);
-            setErrorLevel(3);
+            setErrorLevel(4);
         }
         setIsLoading(false);
-    }, [src, fallbackSrc, errorLevel]);
+    }, [src, imgSrc, fallbackSrc, errorLevel, preferWebP]);
 
     const handleLoad = useCallback(() => {
         setIsLoading(false);

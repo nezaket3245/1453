@@ -112,7 +112,7 @@ export function WhyChooseUsSection() {
                             </div>
 
                             {/* Icon */}
-                            <div className="text-4xl mb-4 mt-2">{advantage.icon}</div>
+                            <div className="text-4xl mb-4 mt-2" aria-hidden="true">{advantage.icon}</div>
 
                             {/* Title */}
                             <h3 className="text-lg font-bold text-neutral-900 mb-3 group-hover:text-primary-600 transition-colors">
@@ -172,13 +172,13 @@ export function WhyChooseUsSection() {
                                         <td className="text-center py-4 px-4">
                                             {row.us ? (
                                                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-500/20 text-green-400">
-                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3} aria-hidden="true">
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                                     </svg>
                                                 </span>
                                             ) : (
                                                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-red-500/20 text-red-400">
-                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3} aria-hidden="true">
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                                     </svg>
                                                 </span>
@@ -187,13 +187,13 @@ export function WhyChooseUsSection() {
                                         <td className="text-center py-4 px-4">
                                             {row.others ? (
                                                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-500/20 text-green-400">
-                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3} aria-hidden="true">
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                                     </svg>
                                                 </span>
                                             ) : (
                                                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-red-500/20 text-red-400">
-                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3} aria-hidden="true">
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                                     </svg>
                                                 </span>
@@ -212,7 +212,7 @@ export function WhyChooseUsSection() {
                             title="Ücretsiz Keşif ve Fiyat Teklifi Formu"
                             className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-bold rounded-full hover:from-primary-600 hover:to-primary-700 transition-all shadow-xl shadow-primary-500/30"
                         >
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             Ücretsiz Keşif İste

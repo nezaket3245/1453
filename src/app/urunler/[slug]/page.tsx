@@ -63,7 +63,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
             />
             <Header />
-            <main className="min-h-screen bg-white">
+            <main id="main-content" className="min-h-screen bg-white">
                 {/* Breadcrumb & Hero */}
                 <section className="bg-neutral-50 border-b border-neutral-100 py-8 lg:py-12">
                     <div className="container-custom">
@@ -120,7 +120,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                                     {product.features.map((feature, index) => (
                                         <div key={index} className="flex gap-4">
                                             <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center mt-1">
-                                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" strokeWidth={3}>
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                                 </svg>
                                             </div>
@@ -146,7 +146,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                             <div className="lg:col-span-1">
                                 <div className="bg-neutral-900 text-white rounded-2xl p-8 sticky top-28 shadow-xl">
                                     <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                                        <svg className="w-6 h-6 text-secondary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="w-6 h-6 text-secondary-400" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                                         </svg>
                                         Teknik Özellikler
@@ -162,7 +162,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                                     <div className="mt-8 pt-8 border-t border-white/10">
                                         <div className="flex items-center gap-3 mb-6">
                                             <div className="w-12 h-12 rounded-full bg-secondary-500/20 flex items-center justify-center">
-                                                <svg className="w-6 h-6 text-secondary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg className="w-6 h-6 text-secondary-400" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                                 </svg>
                                             </div>

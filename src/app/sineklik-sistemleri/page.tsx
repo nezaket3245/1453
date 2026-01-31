@@ -3,6 +3,7 @@
  * SEO-optimized landing page for fly screen and shutter systems
  * Target: Beylikdüzü, İstanbul Avrupa Yakası
  * Enhanced: Material science focus, decision assistant, mesh visibility demo
+ * v2.0: Added seasonal guide, price estimator, installation process, testimonials
  */
 
 import { Metadata } from 'next';
@@ -28,6 +29,10 @@ import PetScreenHighlight from './PetScreenHighlight';
 import QuickQuoteForm from './QuickQuoteForm';
 import SineklikDecisionAssistant from './SineklikDecisionAssistant';
 import MeshVisibilitySlider from './MeshVisibilitySlider';
+import SeasonalGuide from './SeasonalGuide';
+import PriceEstimator from './PriceEstimator';
+import InstallationProcess from './InstallationProcess';
+import SineklikTestimonials from './SineklikTestimonials';
 import AnimatedPliseSineklik from '@/components/ui/AnimatedPliseSineklik';
 import OptimizedImage from "@/components/ui/OptimizedImage";
 import { Header } from '@/components/layout/Header';
@@ -137,7 +142,7 @@ export default function SineklikPage() {
 
             <Header />
 
-            <main className="min-h-screen bg-white">
+            <main id="main-content" className="min-h-screen bg-white">
                 {/* Hero Section */}
                 <section className="relative bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-800 py-20 lg:py-28">
                     <div className="absolute inset-0 opacity-40">
@@ -569,6 +574,67 @@ export default function SineklikPage() {
                 <section className="py-20 bg-white">
                     <div className="container mx-auto px-4">
                         <MaintenanceGuideSection guide={maintenanceGuide} />
+                    </div>
+                </section>
+
+                {/* NEW: Seasonal Guide Section */}
+                <section className="py-20 bg-gradient-to-br from-emerald-50 to-teal-50">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center mb-10">
+                            <span className="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium mb-4">
+                                🗓️ Mevsimlik Rehber
+                            </span>
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                                Hangi Mevsimde Hangi Sineklik?
+                            </h2>
+                            <p className="text-gray-600 max-w-2xl mx-auto">
+                                Yıl boyunca sineklik ihtiyaçlarınız değişir. Mevsime göre önerilerimizi inceleyin.
+                            </p>
+                        </div>
+                        <SeasonalGuide />
+                    </div>
+                </section>
+
+                {/* NEW: Installation Process Section */}
+                <section className="py-20 bg-white">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center mb-10">
+                            <span className="inline-block px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium mb-4">
+                                🔧 Montaj Süreci
+                            </span>
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                                Keşiften Montaja 5 Kolay Adım
+                            </h2>
+                            <p className="text-gray-600 max-w-2xl mx-auto">
+                                Profesyonel ekibimiz her adımda yanınızda. Ortalama montaj süresi sadece 15-30 dakika!
+                            </p>
+                        </div>
+                        <InstallationProcess />
+                    </div>
+                </section>
+
+                {/* NEW: Price Estimator Section */}
+                <section className="py-20 bg-gray-50">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center mb-10">
+                            <span className="inline-block px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-medium mb-4">
+                                💰 Fiyat Hesaplayıcı
+                            </span>
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                                Sineklik Fiyatını Anında Hesaplayın
+                            </h2>
+                            <p className="text-gray-600 max-w-2xl mx-auto">
+                                Ölçülerinizi girin, tahmini fiyat aralığını hemen görün. Kesin fiyat için ücretsiz keşif.
+                            </p>
+                        </div>
+                        <PriceEstimator />
+                    </div>
+                </section>
+
+                {/* NEW: Testimonials Section */}
+                <section className="py-20 bg-white">
+                    <div className="container mx-auto px-4">
+                        <SineklikTestimonials />
                     </div>
                 </section>
 

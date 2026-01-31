@@ -1,56 +1,116 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { HeroSection } from "@/components/sections/HeroSection";
+import { HeroSectionOptimized } from "@/components/sections/HeroSectionOptimized";
 import { ServicesSection } from "@/components/sections/ServicesSection";
-import { FeaturesSection } from "@/components/sections/FeaturesSection";
-import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { CTASection } from "@/components/sections/CTASection";
-import { WhyChooseUsSection } from "@/components/sections/WhyChooseUsSection";
-import { LocalShowroomSection } from "@/components/sections/LocalShowroomSection";
-import { ProjectsGallerySection } from "@/components/sections/ProjectsGallerySection";
-import { HomepageFAQSection } from "@/components/sections/FAQAccordion";
 import { StickyQuoteCTA } from "@/components/ui/StickyQuoteCTA";
-import { BeforeAfterGallery } from "@/components/sections/BeforeAfterGallery";
 import { GoogleReviewsWidget } from "@/components/ui/GoogleReviewsWidget";
-import { InteractiveCatalog } from "@/components/ui/InteractiveCatalog";
-import { ServiceCards } from "@/components/sections/ServiceCards";
-import { EgepenShowroom } from "@/components/sections/EgepenShowroom";
 import { businessConfig } from "@/config/business.config";
+
+/**
+ * Dynamic imports for below-the-fold components
+ * These components are lazy loaded to improve LCP (Largest Contentful Paint)
+ * and reduce initial JavaScript bundle size
+ * 
+ * Note: ssr: true for all dynamic imports to enable server-side rendering
+ * Client-only components (StickyQuoteCTA, GoogleReviewsWidget) are imported normally
+ */
+const FeaturesSection = dynamic(
+  () => import("@/components/sections/FeaturesSection").then(mod => ({ default: mod.FeaturesSection })),
+  { ssr: true }
+);
+
+const TestimonialsSection = dynamic(
+  () => import("@/components/sections/TestimonialsSection").then(mod => ({ default: mod.TestimonialsSection })),
+  { ssr: true }
+);
+
+const WhyChooseUsSection = dynamic(
+  () => import("@/components/sections/WhyChooseUsSection").then(mod => ({ default: mod.WhyChooseUsSection })),
+  { ssr: true }
+);
+
+const LocalShowroomSection = dynamic(
+  () => import("@/components/sections/LocalShowroomSection").then(mod => ({ default: mod.LocalShowroomSection })),
+  { ssr: true }
+);
+
+const ProjectsGallerySection = dynamic(
+  () => import("@/components/sections/ProjectsGallerySection").then(mod => ({ default: mod.ProjectsGallerySection })),
+  { ssr: true }
+);
+
+const HomepageFAQSection = dynamic(
+  () => import("@/components/sections/FAQAccordion").then(mod => ({ default: mod.HomepageFAQSection })),
+  { ssr: true }
+);
+
+const BeforeAfterGallery = dynamic(
+  () => import("@/components/sections/BeforeAfterGallery").then(mod => ({ default: mod.BeforeAfterGallery })),
+  { ssr: true }
+);
+
+const InteractiveCatalog = dynamic(
+  () => import("@/components/ui/InteractiveCatalog").then(mod => ({ default: mod.InteractiveCatalog })),
+  { ssr: true }
+);
+
+const ServiceCards = dynamic(
+  () => import("@/components/sections/ServiceCards").then(mod => ({ default: mod.ServiceCards })),
+  { ssr: true }
+);
+
+const EgepenShowroom = dynamic(
+  () => import("@/components/sections/EgepenShowroom").then(mod => ({ default: mod.EgepenShowroom })),
+  { ssr: true }
+);
 
 
 
 /**
  * Homepage Metadata
  * SEO-optimized with high-value Turkish keywords from businessConfig
- * Targeting: "Beylikdüzü PVC", "Egepen Bayi", "Cam Balkon"
+ * Targeting: "PVC pencere fiyatları", "Cam balkon fiyatları", "Egepen Bayi"
  */
 export const metadata: Metadata = {
-  title: `Egepen Akçayapı | Beylikdüzü PVC Pencere & Cam Balkon`,
+  title: `PVC Pencere Fiyatları 2026 | Egepen Akçayapı Beylikdüzü`,
   description:
-    `Beylikdüzü Egepen yetkili bayisi. PVC pencere, cam balkon, sineklik, panjur. 10 yıl garanti, ücretsiz keşif. ${businessConfig.contact.mobile}`,
+    `✅ PVC pencere fiyatları 2026, cam balkon m2 fiyat, sineklik ve panjur. Egepen Deceuninck yetkili bayisi. 10 yıl garanti, ücretsiz keşif. ☎️ ${businessConfig.contact.mobile}`,
   keywords: [
-    ...businessConfig.seo.mainKeywords,
-    "Beylikdüzü cam balkon",
-    "Gürpınar PVC pencere",
-    "İstanbul Egepen bayi",
-    "ısı yalıtımlı pencere",
+    // En çok aranan kelimeler
+    "pvc pencere fiyatları",
+    "pvc pencere fiyatları 2026",
+    "cam balkon fiyatları",
+    "cam balkon m2 fiyat",
+    "egepen pvc pencere",
+    "egepen cam balkon",
+    "egepen deceuninck",
+    "istanbul pvc pencere",
+    "beylikdüzü pvc pencere",
+    "beylikdüzü cam balkon",
+    "ısıcamlı cam balkon",
+    "sineklik fiyatları",
+    "panjur fiyatları",
+    "pvc pencere montajı",
+    "ücretsiz keşif"
   ],
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: `Egepen Akçayapı | Beylikdüzü PVC & Cam Balkon`,
+    title: `PVC Pencere Fiyatları 2026 | Egepen Akçayapı Beylikdüzü`,
     description:
-      `Beylikdüzü Egepen bayisi. PVC pencere, cam balkon montajı. 10 yıl garanti.`,
+      `PVC pencere, cam balkon, sineklik ve panjur fiyatları. Egepen Deceuninck yetkili bayisi. 10 yıl garanti.`,
     url: "https://akcapen-pvc.pages.dev",
     images: [
       {
         url: "https://akcapen-pvc.pages.dev/images/og-home.jpg",
         width: 1200,
         height: 630,
-        alt: `${businessConfig.name} - Egepen Bayi Beylikdüzü`,
+        alt: `Egepen Akçayapı - PVC Pencere ve Cam Balkon Fiyatları 2026`,
       },
     ],
   },
@@ -58,8 +118,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@egepenakcayapi",
     creator: "@egepenakcayapi",
-    title: `Egepen Akçayapı | Beylikdüzü PVC & Cam Balkon`,
-    description: `Beylikdüzü Egepen bayisi. PVC pencere, cam balkon. 10 yıl garanti.`,
+    title: `PVC Pencere Fiyatları 2026 | Egepen Akçayapı`,
+    description: `PVC pencere, cam balkon fiyatları. Egepen yetkili bayisi. 10 yıl garanti.`,
     images: ["https://akcapen-pvc.pages.dev/images/og-home.jpg"],
   },
   alternates: {
@@ -265,7 +325,8 @@ export default function HomePage() {
         {/* Hero Section - Above the fold, critical for LCP */}
         {/* Contains: Clear headline "Beylikdüzü Yetkili Egepen Bayisi" */}
         {/* Contains: "Ücretsiz Keşif" CTA button prominently */}
-        <HeroSection />
+        {/* OPTIMIZED: Server component without Framer Motion for faster LCP */}
+        <HeroSectionOptimized />
 
         {/* Services Section - Quick overview */}
         <ServicesSection />

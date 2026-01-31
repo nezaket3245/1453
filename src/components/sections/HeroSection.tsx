@@ -30,10 +30,10 @@ export function HeroSection() {
             className="relative min-h-[90svh] flex items-center overflow-hidden bg-neutral-900"
             aria-label="Ana banner - Egepen Akçayapı"
         >
-            {/* Background with Parallax */}
+            {/* Background with Parallax - Using WebP for better LCP */}
             <motion.div style={{ y }} className="absolute inset-0 z-0">
                 <OptimizedImage
-                    src="/images/showroom-main.png"
+                    src="/images/showroom-main.webp"
                     alt={`${businessConfig.name} - ${businessConfig.brand} Beylikdüzü Yetkili Bayi Showroom`}
                     fill
                     priority
@@ -41,6 +41,7 @@ export function HeroSection() {
                     loading="eager"
                     sizes="100vw"
                     className="object-cover"
+                    preferWebP={false}
                 />
                 {/* Lighter overlay to keep image visible while maintaining text readability */}
                 <div className="absolute inset-0 bg-black/40" />

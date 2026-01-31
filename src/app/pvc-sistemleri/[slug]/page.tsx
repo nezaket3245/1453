@@ -139,7 +139,7 @@ export default async function PVCProductDetailPage({ params }: PVCProductPagePro
 
             <Header />
 
-            <main className="min-h-screen bg-white">
+            <main id="main-content" className="min-h-screen bg-white">
                 {/* Hero Section */}
                 <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white py-16 lg:py-24 overflow-hidden">
                     <div className="absolute inset-0 opacity-10">
@@ -313,7 +313,7 @@ export default async function PVCProductDetailPage({ params }: PVCProductPagePro
                                                 className="flex gap-4 p-4 bg-neutral-50 rounded-xl border border-neutral-100"
                                             >
                                                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center">
-                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" strokeWidth={3}>
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                                     </svg>
                                                 </div>

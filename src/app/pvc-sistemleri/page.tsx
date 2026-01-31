@@ -142,7 +142,7 @@ export default function PVCSystemsPage() {
 
             <Header />
 
-            <main className="min-h-screen bg-neutral-50">
+            <main id="main-content" className="min-h-screen bg-neutral-50">
                 {/* ==================== HERO SECTION ==================== */}
                 <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white py-20 lg:py-32 overflow-hidden">
                     <div className="absolute inset-0 opacity-40">
@@ -357,7 +357,7 @@ export default function PVCSystemsPage() {
                                             className="inline-flex items-center gap-2 text-primary-600 font-bold hover:gap-3 transition-all"
                                         >
                                             Detaylı Bilgi
-                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                             </svg>
                                         </Link>

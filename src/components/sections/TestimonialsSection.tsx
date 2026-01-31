@@ -214,6 +214,7 @@ function TestimonialCard({
                             i < testimonial.rating ? "text-yellow-400" : "text-white/20"
                         )}
                         filled={i < testimonial.rating}
+                        aria-hidden="true"
                     />
                 ))}
             </div>
@@ -259,6 +260,7 @@ function StarIcon({
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth={filled ? 0 : 1.5}
+            aria-hidden="true"
         >
             <path
                 strokeLinecap="round"

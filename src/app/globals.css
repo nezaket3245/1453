@@ -46,18 +46,18 @@
   --accent-800: #003d34;
   --accent-900: #001411;
 
-  /* Neutral Colors - Professional Grays (WCAG AA Compliant) */
+  /* Neutral Colors - Professional Grays (WCAG AA Compliant - 4.5:1 ratio minimum) */
   --neutral-50: #fafafa;
   --neutral-100: #f5f5f5;
   --neutral-200: #e5e5e5;
   --neutral-300: #d4d4d4;
-  --neutral-400: #737373; /* Improved contrast: was #a3a3a3 */
-  --neutral-500: #525252; /* Improved contrast: was #737373 */
-  --neutral-600: #404040; /* Improved contrast: was #525252 */
-  --neutral-700: #262626;
-  --neutral-800: #171717;
-  --neutral-900: #0f0f0f;
-  --neutral-950: #0a0a0a;
+  --neutral-400: #595959; /* WCAG AA: 7.0:1 contrast on white */
+  --neutral-500: #4a4a4a; /* WCAG AA: 8.5:1 contrast on white */
+  --neutral-600: #333333; /* WCAG AA: 12.6:1 contrast on white */
+  --neutral-700: #1f1f1f;
+  --neutral-800: #141414;
+  --neutral-900: #0a0a0a;
+  --neutral-950: #050505;
 
   /* Semantic Colors */
   --success: #10b981;
@@ -293,6 +293,84 @@ body {
 ::selection {
   background: var(--primary-200);
   color: var(--primary-900);
+}
+
+/* ===============================================
+   CLS PREVENTION & LAYOUT STABILITY
+   =============================================== */
+
+/* Image containers with aspect-ratio for zero CLS */
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+.aspect-3-2 {
+  aspect-ratio: 3 / 2;
+}
+
+/* Image placeholder backgrounds to prevent CLS */
+img,
+[data-image-container] {
+  background-color: var(--neutral-100);
+}
+
+/* Ensure images don't cause layout shift */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Image container with explicit dimensions prevents CLS */
+.img-container {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--neutral-100);
+}
+
+/* ===============================================
+   MOBILE UX - TOUCH TARGETS (WCAG 2.5.5)
+   =============================================== */
+
+/* Minimum 48x48px touch targets for mobile */
+button,
+[role="button"],
+a[href],
+input[type="submit"],
+input[type="button"],
+select,
+.touch-target {
+  min-height: 44px; /* Minimum for accessibility */
+}
+
+/* Larger touch targets on mobile */
+@media (pointer: coarse) {
+  button,
+  [role="button"],
+  a:not(.inline-link),
+  input[type="submit"],
+  input[type="button"],
+  select {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Checkbox and radio wrapper touch area */
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+  }
 }
 
 /* ===============================================
@@ -594,6 +672,10 @@ body {
 
 .animate-slide-up {
   animation: slideUp var(--transition-slow) ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: slideUp 0.6s ease-out forwards;
 }
 
 .animate-slide-down {

@@ -198,7 +198,7 @@ export function EgepenShowroom({
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-50 text-primary-600 text-sm font-bold uppercase tracking-widest mb-4"
           >
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
             </svg>
             Egepen Deceuninck
@@ -286,7 +286,7 @@ export function EgepenShowroom({
                   onClick={handleQuoteRequest}
                   className="flex-1"
                 >
-                  <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                   Fiyat Teklifi Al
@@ -299,7 +299,7 @@ export function EgepenShowroom({
                     onClick={() => handleCatalogDownload(selectedProduct)}
                     className="flex-1"
                   >
-                    <svg className="w-5 h-5 mr-2 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 mr-2 text-red-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                       <polyline points="14,2 14,8 20,8" fill="none" stroke="currentColor" strokeWidth="2" />
                       <path d="M9 15h6M12 18V12" stroke="white" strokeWidth="2" strokeLinecap="round" />
@@ -344,7 +344,7 @@ export function EgepenShowroom({
               <div className="bg-white rounded-2xl border border-neutral-200 overflow-hidden shadow-sm mb-8">
                 <div className="bg-primary-600 text-white px-6 py-4">
                   <h4 className="font-bold flex items-center gap-2">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                     Teknik Özellikler

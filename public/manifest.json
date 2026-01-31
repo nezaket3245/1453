@@ -3,6 +3,7 @@
     "short_name": "Akçayapı",
     "description": "Beylikdüzü Egepen Deceuninck yetkili bayisi. PVC pencere, cam balkon, sineklik ve duşakabin sistemleri.",
     "start_url": "/",
+    "id": "/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#0055a5",
@@ -12,6 +13,30 @@
             "src": "/favicon.ico",
             "sizes": "48x48",
             "type": "image/x-icon"
+        },
+        {
+            "src": "/images/icon-192x192.svg",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "/images/icon-512x512.svg",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "/images/icon-192x192.svg",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/images/icon-512x512.svg",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "maskable"
         }
     ],
     "categories": [
@@ -23,6 +48,15 @@
     "dir": "ltr",
     "scope": "/",
     "prefer_related_applications": false,
+    "screenshots": [
+        {
+            "src": "/images/og-home.jpg",
+            "sizes": "1200x630",
+            "type": "image/jpeg",
+            "form_factor": "wide",
+            "label": "Ana Sayfa"
+        }
+    ],
     "share_target": {
         "action": "/teklif-al",
         "method": "GET",

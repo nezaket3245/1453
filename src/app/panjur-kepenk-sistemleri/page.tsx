@@ -107,13 +107,13 @@ export default function PanjurKepenkPage() {
 
             <Header />
 
-            <main className="min-h-screen bg-white">
+            <main id="main-content" className="min-h-screen bg-white">
                 {/* Hero Section */}
                 <section className="relative bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-800 py-20 lg:py-28 overflow-hidden">
-                    <div className="absolute inset-0 opacity-20">
+                    <div className="absolute inset-0 opacity-30">
                         <Image
-                            src="/images/cam-balkon/cam-balkon-bahce-manzara.jpg"
-                            alt="Panjur ve Kepenk Sistemleri"
+                            src="/images/panjur/panjur-motorlu-villa.jpg"
+                            alt="Motorlu Panjur ve Kepenk Sistemleri - Egepen Akçayapı"
                             fill
                             className="object-cover"
                             priority
@@ -473,7 +473,7 @@ export default function PanjurKepenkPage() {
                                             className="inline-flex items-center text-indigo-600 font-semibold hover:text-indigo-700"
                                         >
                                             Detaylar ve Fiyat
-                                            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                             </svg>
                                         </Link>

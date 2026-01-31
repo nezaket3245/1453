@@ -26,11 +26,29 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL("https://akcapen-pvc.pages.dev"),
   title: {
-    default: `Egepen Akçayapı | Beylikdüzü PVC Pencere & Cam Balkon`,
-    template: `%s | Egepen Akçayapı`,
+    default: `PVC Pencere Fiyatları 2026 | Egepen Akçayapı Beylikdüzü`,
+    template: `%s | Egepen Akçayapı - PVC Pencere & Cam Balkon`,
   },
-  description: `Beylikdüzü Egepen yetkili bayisi. PVC pencere, cam balkon, sineklik ve panjur. 10 yıl garanti, ücretsiz keşif.`,
-  keywords: businessConfig.seo.mainKeywords,
+  description: `✅ PVC pencere fiyatları 2026, cam balkon m2 fiyat, sineklik ve panjur. Egepen Deceuninck yetkili bayisi Beylikdüzü. 10 yıl garanti, ücretsiz keşif. ☎️ 0212 880 15 07`,
+  keywords: [
+    // En çok aranan kelimeler
+    "pvc pencere fiyatları",
+    "pvc pencere fiyatları 2026",
+    "cam balkon fiyatları",
+    "cam balkon m2 fiyat",
+    "egepen pvc pencere",
+    "egepen cam balkon",
+    "egepen deceuninck bayileri",
+    "istanbul pvc pencere",
+    "beylikdüzü pvc pencere",
+    "beylikdüzü cam balkon",
+    "ısıcamlı cam balkon",
+    "sineklik fiyatları",
+    "panjur fiyatları",
+    "duşakabin fiyatları",
+    "pvc pencere montajı",
+    "cam balkon montajı"
+  ],
   authors: [{ name: businessConfig.name, url: "https://egepenakcayapi.com.tr" }],
   creator: businessConfig.name,
   publisher: businessConfig.name,
@@ -54,15 +72,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "tr_TR",
     url: "https://akcapen-pvc.pages.dev",
-    siteName: businessConfig.name,
-    title: businessConfig.name,
-    description: `${businessConfig.address.district} Egepen Yetkili Bayi - Akçayapı`,
+    siteName: "Egepen Akçayapı - PVC Pencere & Cam Balkon",
+    title: "PVC Pencere Fiyatları 2026 | Egepen Akçayapı Beylikdüzü",
+    description: `PVC pencere, cam balkon, sineklik ve panjur fiyatları. Egepen Deceuninck yetkili bayisi. 10 yıl garanti.`,
     images: [
       {
         url: "https://akcapen-pvc.pages.dev/images/og-home.jpg",
         width: 1200,
         height: 630,
-        alt: businessConfig.name,
+        alt: "Egepen Akçayapı - PVC Pencere ve Cam Balkon Sistemleri",
       },
     ],
   },
@@ -70,8 +88,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@egepenakcayapi",
     creator: "@egepenakcayapi",
-    title: `${businessConfig.name} | Beylikdüzü Egepen Yetkili Bayi`,
-    description: `Beylikdüzü Egepen Yetkili Bayi Akçayapı: PVC pencere, cam balkon, sineklik ve panjurda 10 yıl garanti.`,
+    title: `PVC Pencere Fiyatları 2026 | Egepen Akçayapı`,
+    description: `Beylikdüzü Egepen yetkili bayisi. PVC pencere, cam balkon, sineklik ve panjur. 10 yıl garanti.`,
     images: ["https://akcapen-pvc.pages.dev/images/og-home.jpg"],
   },
   alternates: {
@@ -242,6 +260,8 @@ export default function RootLayout({
 
         {/* Favicon Links */}
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/svg+xml" href="/images/icon-192x192.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icon-192x192.svg" />
         <link rel="manifest" href="/manifest.json" />
 
         {/* DNS Prefetch for Performance */}
@@ -249,12 +269,12 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
-        {/* Preload LCP Image for faster rendering */}
+        {/* Preload LCP Image for faster rendering - WebP format for better performance */}
         <link
           rel="preload"
           as="image"
-          href="/images/showroom-main.png"
-          type="image/png"
+          href="/images/showroom-main.webp"
+          type="image/webp"
           fetchPriority="high"
         />
 
@@ -271,6 +291,29 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+
+        {/* Critical CSS for Above-the-Fold Content - Prevents FOUC and improves FCP/LCP */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              /* Critical CSS - Above the fold styles */
+              *,*::before,*::after{box-sizing:border-box}
+              html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+              body{margin:0;min-height:100vh;background:#fff;color:#0f172a;font-family:var(--font-outfit),var(--font-inter),ui-sans-serif,system-ui,sans-serif;line-height:1.5}
+              img{max-width:100%;height:auto;display:block}
+              .container-custom{width:100%;max-width:1280px;margin:0 auto;padding-left:1rem;padding-right:1rem}
+              @media(min-width:640px){.container-custom{padding-left:1.5rem;padding-right:1.5rem}}
+              /* Skeleton loading state for images */
+              img[loading="lazy"]{background:linear-gradient(90deg,#f5f5f5 25%,#fafafa 50%,#f5f5f5 75%);background-size:200% 100%;animation:skeleton 1.5s ease-in-out infinite}
+              @keyframes skeleton{0%{background-position:200% 0}100%{background-position:-200% 0}}
+              /* Focus visible for accessibility */
+              :focus-visible{outline:2px solid #0055a5;outline-offset:2px}
+              /* Skip link styles */
+              .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+              .skip-link:focus{position:fixed;top:0;left:0;width:auto;height:auto;padding:1rem;background:#0055a5;color:#fff;z-index:9999}
+            `,
+          }}
         />
       </head>
       <body className="antialiased selection:bg-primary-500 selection:text-white">

@@ -9,9 +9,9 @@ import { businessConfig } from "@/config/business.config";
  * Products Page Metadata
  */
 export const metadata: Metadata = {
-    title: `Ürünlerimiz | PVC Pencere, Cam Balkon, Alüminyum | ${businessConfig.name}`,
+    title: `Ürünlerimiz | PVC Pencere, Cam Balkon | ${businessConfig.name}`,
     description:
-        `${businessConfig.brand} yetkili bayisi olarak PVC pencere, cam balkon, alüminyum doğrama, sineklik, panjur ve duşakabin sistemleri sunuyoruz. Tüm ürünlerde ${businessConfig.brand} garantisi.`,
+        `PVC pencere, cam balkon, alüminyum doğrama, sineklik, panjur ve duşakabin sistemleri. Egepen garantili ürünler.`,
     keywords: [
         ...businessConfig.seo.mainKeywords,
         "PVC pencere",
@@ -117,7 +117,7 @@ export default function ProductsPage() {
     return (
         <>
             <Header />
-            <main className="min-h-screen bg-white">
+            <main id="main-content" className="min-h-screen bg-white">
                 {/* Hero Section */}
                 <section className="relative py-20 lg:py-28 bg-gradient-to-br from-primary-600 to-primary-800 overflow-hidden">
                     <div className="absolute inset-0 opacity-10">

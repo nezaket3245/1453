@@ -116,80 +116,98 @@ export function ContactFormValidated() {
                     className="text-center py-8"
                 >
                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
                     </div>
                     <h4 className="text-xl font-bold text-neutral-900 mb-2">Talebiniz Alındı!</h4>
                     <p className="text-neutral-600 mb-4">En kısa sürede sizinle iletişime geçeceğiz.</p>
-                    <button onClick={() => setStatus("idle")} className="text-primary-600 font-medium hover:underline">
+                    <button onClick={() => setStatus("idle")} className="text-primary-600 font-medium hover:underline min-h-[48px] min-w-[48px] px-4">
                         Yeni form gönder
                     </button>
                 </motion.div>
             ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                    {/* Name */}
+                <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+                    {/* Name Field with autocomplete and aria-describedby */}
                     <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-1">Ad Soyad *</label>
+                        <label htmlFor="contact-name" className="block text-sm font-medium text-neutral-700 mb-1">Ad Soyad *</label>
                         <input
                             type="text"
-                            id="name"
+                            id="contact-name"
+                            name="name"
+                            autoComplete="name"
+                            aria-required="true"
+                            aria-invalid={!!errors.name}
+                            aria-describedby={errors.name ? "contact-name-error" : undefined}
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className={`w-full px-4 py-3 rounded-lg border ${errors.name ? "border-red-500" : "border-neutral-300"} focus:ring-2 focus:ring-primary-500 focus:border-transparent`}
+                            className={`w-full px-4 py-3 rounded-lg border ${errors.name ? "border-red-500" : "border-neutral-300"} focus:ring-2 focus:ring-primary-500 focus:border-transparent min-h-[48px]`}
                             placeholder="Adınız Soyadınız"
                         />
-                        {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
+                        {errors.name && <p id="contact-name-error" className="mt-1 text-sm text-red-500" role="alert">{errors.name}</p>}
                     </div>
 
-                    {/* Phone */}
+                    {/* Phone Field with autocomplete and aria-describedby */}
                     <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-neutral-700 mb-1">Telefon *</label>
+                        <label htmlFor="contact-phone" className="block text-sm font-medium text-neutral-700 mb-1">Telefon *</label>
                         <input
                             type="tel"
-                            id="phone"
+                            id="contact-phone"
+                            name="phone"
+                            autoComplete="tel"
+                            inputMode="tel"
+                            aria-required="true"
+                            aria-invalid={!!errors.phone}
+                            aria-describedby={errors.phone ? "contact-phone-error" : undefined}
                             value={formData.phone}
                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                            className={`w-full px-4 py-3 rounded-lg border ${errors.phone ? "border-red-500" : "border-neutral-300"} focus:ring-2 focus:ring-primary-500 focus:border-transparent`}
+                            className={`w-full px-4 py-3 rounded-lg border ${errors.phone ? "border-red-500" : "border-neutral-300"} focus:ring-2 focus:ring-primary-500 focus:border-transparent min-h-[48px]`}
                             placeholder="05XX XXX XX XX"
                         />
-                        {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
+                        {errors.phone && <p id="contact-phone-error" className="mt-1 text-sm text-red-500" role="alert">{errors.phone}</p>}
                     </div>
 
-                    {/* Service */}
+                    {/* Service Field with aria-describedby */}
                     <div>
-                        <label htmlFor="service" className="block text-sm font-medium text-neutral-700 mb-1">Hizmet *</label>
+                        <label htmlFor="contact-service" className="block text-sm font-medium text-neutral-700 mb-1">Hizmet *</label>
                         <select
-                            id="service"
+                            id="contact-service"
+                            name="service"
+                            aria-required="true"
+                            aria-invalid={!!errors.service}
+                            aria-describedby={errors.service ? "contact-service-error" : undefined}
                             value={formData.service}
                             onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                            className={`w-full px-4 py-3 rounded-lg border ${errors.service ? "border-red-500" : "border-neutral-300"} focus:ring-2 focus:ring-primary-500 focus:border-transparent`}
+                            className={`w-full px-4 py-3 rounded-lg border ${errors.service ? "border-red-500" : "border-neutral-300"} focus:ring-2 focus:ring-primary-500 focus:border-transparent min-h-[48px]`}
                         >
                             <option value="">Hizmet Seçin</option>
                             {services.map((s) => <option key={s} value={s}>{s}</option>)}
                         </select>
-                        {errors.service && <p className="mt-1 text-sm text-red-500">{errors.service}</p>}
+                        {errors.service && <p id="contact-service-error" className="mt-1 text-sm text-red-500" role="alert">{errors.service}</p>}
                     </div>
 
-                    {/* Neighborhood */}
+                    {/* Neighborhood Field */}
                     <div>
-                        <label htmlFor="neighborhood" className="block text-sm font-medium text-neutral-700 mb-1">Mahalle</label>
+                        <label htmlFor="contact-neighborhood" className="block text-sm font-medium text-neutral-700 mb-1">Mahalle</label>
                         <select
-                            id="neighborhood"
+                            id="contact-neighborhood"
+                            name="neighborhood"
+                            autoComplete="address-level2"
                             value={formData.neighborhood}
                             onChange={(e) => setFormData({ ...formData, neighborhood: e.target.value })}
-                            className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                            className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent min-h-[48px]"
                         >
                             <option value="">Mahalle Seçin (Opsiyonel)</option>
                             {neighborhoods.map((n) => <option key={n} value={n}>{n}</option>)}
                         </select>
                     </div>
 
-                    {/* Message */}
+                    {/* Message Field */}
                     <div>
-                        <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-1">Mesaj (Opsiyonel)</label>
+                        <label htmlFor="contact-message" className="block text-sm font-medium text-neutral-700 mb-1">Mesaj (Opsiyonel)</label>
                         <textarea
-                            id="message"
+                            id="contact-message"
+                            name="message"
                             rows={3}
                             value={formData.message}
                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -198,11 +216,11 @@ export function ContactFormValidated() {
                         />
                     </div>
 
-                    {/* Submit */}
+                    {/* Submit Button - Min 48x48px touch target */}
                     <button
                         type="submit"
                         disabled={status === "loading"}
-                        className="w-full py-4 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full py-4 min-h-[48px] bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {status === "loading" ? "Gönderiliyor..." : "Ücretsiz Keşif Talep Et"}
                     </button>

@@ -195,7 +195,7 @@ export function HomepageFAQSection() {
                         className="inline-flex items-center gap-2 text-primary-600 font-bold hover:text-primary-700 transition-colors"
                     >
                         Tüm Soruları Görüntüle
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                     </a>

@@ -110,7 +110,7 @@ export default async function PanjurDetailPage({ params }: Props) {
 
             <Header />
 
-            <main className="min-h-screen bg-white">
+            <main id="main-content" className="min-h-screen bg-white">
                 {/* Breadcrumb */}
                 <div className="bg-gray-50 py-4 border-b">
                     <div className="container mx-auto px-4">

@@ -64,7 +64,7 @@ export default function QuickQuoteForm() {
         // Simulate form submission
         await new Promise((resolve) => setTimeout(resolve, 1500));
 
-        console.log('Form submitted:', formData);
+        // Form data is handled by analytics or CRM integration
         setIsSubmitting(false);
         setIsSubmitted(true);
     };
@@ -123,41 +123,50 @@ export default function QuickQuoteForm() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Name */}
                     <div>
-                        <label className="block text-sm font-medium text-emerald-100 mb-2">
+                        <label htmlFor="quick-quote-name" className="block text-sm font-medium text-emerald-100 mb-2">
                             Adınız Soyadınız *
                         </label>
                         <input
                             type="text"
+                            id="quick-quote-name"
+                            name="name"
+                            autoComplete="name"
                             required
+                            aria-required="true"
                             value={formData.name}
                             onChange={(e) =>
                                 setFormData({ ...formData, name: e.target.value })
                             }
-                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-white/50 focus:border-transparent"
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-white/50 focus:border-transparent min-h-[48px]"
                             placeholder="Ahmet Yılmaz"
                         />
                     </div>
 
                     {/* Phone */}
                     <div>
-                        <label className="block text-sm font-medium text-emerald-100 mb-2">
+                        <label htmlFor="quick-quote-phone" className="block text-sm font-medium text-emerald-100 mb-2">
                             Telefon Numaranız *
                         </label>
                         <input
                             type="tel"
+                            id="quick-quote-phone"
+                            name="phone"
+                            autoComplete="tel"
+                            inputMode="tel"
                             required
+                            aria-required="true"
                             value={formData.phone}
                             onChange={(e) =>
                                 setFormData({ ...formData, phone: e.target.value })
                             }
-                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-white/50 focus:border-transparent"
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-white/50 focus:border-transparent min-h-[48px]"
                             placeholder="0532 000 00 00"
                         />
                     </div>
 
                     {/* Window Count */}
                     <div>
-                        <label className="block text-sm font-medium text-emerald-100 mb-2">
+                        <label htmlFor="quick-quote-window-count" className="block text-sm font-medium text-emerald-100 mb-2">
                             Pencere Sayısı
                         </label>
                         <div className="flex items-center">
@@ -169,11 +178,12 @@ export default function QuickQuoteForm() {
                                         windowCount: Math.max(0, formData.windowCount - 1),
                                     })
                                 }
+                                aria-label="Pencere sayısını azalt"
                                 className="w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-l-xl text-xl font-bold"
                             >
                                 -
                             </button>
-                            <div className="flex-1 h-12 bg-white/10 flex items-center justify-center text-white font-bold text-xl">
+                            <div id="quick-quote-window-count" role="spinbutton" aria-valuenow={formData.windowCount} aria-valuemin={0} className="flex-1 h-12 bg-white/10 flex items-center justify-center text-white font-bold text-xl">
                                 {formData.windowCount}
                             </div>
                             <button
@@ -184,6 +194,7 @@ export default function QuickQuoteForm() {
                                         windowCount: formData.windowCount + 1,
                                     })
                                 }
+                                aria-label="Pencere sayısını artır"
                                 className="w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-r-xl text-xl font-bold"
                             >
                                 +
@@ -193,7 +204,7 @@ export default function QuickQuoteForm() {
 
                     {/* Door Count */}
                     <div>
-                        <label className="block text-sm font-medium text-emerald-100 mb-2">
+                        <label htmlFor="quick-quote-door-count" className="block text-sm font-medium text-emerald-100 mb-2">
                             Kapı Sayısı
                         </label>
                         <div className="flex items-center">
@@ -205,11 +216,12 @@ export default function QuickQuoteForm() {
                                         doorCount: Math.max(0, formData.doorCount - 1),
                                     })
                                 }
+                                aria-label="Kapı sayısını azalt"
                                 className="w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-l-xl text-xl font-bold"
                             >
                                 -
                             </button>
-                            <div className="flex-1 h-12 bg-white/10 flex items-center justify-center text-white font-bold text-xl">
+                            <div id="quick-quote-door-count" role="spinbutton" aria-valuenow={formData.doorCount} aria-valuemin={0} className="flex-1 h-12 bg-white/10 flex items-center justify-center text-white font-bold text-xl">
                                 {formData.doorCount}
                             </div>
                             <button
@@ -220,6 +232,7 @@ export default function QuickQuoteForm() {
                                         doorCount: formData.doorCount + 1,
                                     })
                                 }
+                                aria-label="Kapı sayısını artır"
                                 className="w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-r-xl text-xl font-bold"
                             >
                                 +
@@ -229,10 +242,11 @@ export default function QuickQuoteForm() {
 
                     {/* System Type */}
                     <div>
-                        <label className="block text-sm font-medium text-emerald-100 mb-2">
+                        <label htmlFor="quick-quote-system-type" className="block text-sm font-medium text-emerald-100 mb-2">
                             Sistem Tercihi
                         </label>
                         <select
+                            id="quick-quote-system-type"
                             value={formData.systemType}
                             onChange={(e) =>
                                 setFormData({ ...formData, systemType: e.target.value })
@@ -256,10 +270,11 @@ export default function QuickQuoteForm() {
 
                     {/* District */}
                     <div>
-                        <label className="block text-sm font-medium text-emerald-100 mb-2">
+                        <label htmlFor="quick-quote-district" className="block text-sm font-medium text-emerald-100 mb-2">
                             İlçe *
                         </label>
                         <select
+                            id="quick-quote-district"
                             required
                             value={formData.district}
                             onChange={(e) =>
@@ -324,10 +339,11 @@ export default function QuickQuoteForm() {
 
                 {/* Notes */}
                 <div>
-                    <label className="block text-sm font-medium text-emerald-100 mb-2">
+                    <label htmlFor="quick-quote-notes" className="block text-sm font-medium text-emerald-100 mb-2">
                         Ek Notlar (Opsiyonel)
                     </label>
                     <textarea
+                        id="quick-quote-notes"
                         value={formData.notes}
                         onChange={(e) =>
                             setFormData({ ...formData, notes: e.target.value })

@@ -105,7 +105,7 @@ export default function AluminumSystemsPage() {
 
             <Header />
 
-            <main className="min-h-screen bg-white">
+            <main id="main-content" className="min-h-screen bg-white">
                 {/* Hero Section */}
                 <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 py-20 lg:py-28 overflow-hidden">
                     <div className="absolute inset-0 opacity-50">
@@ -392,7 +392,7 @@ export default function AluminumSystemsPage() {
                                                 className="inline-flex items-center px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl transition-all"
                                             >
                                                 Detaylar ve Teknik Döküman
-                                                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                                 </svg>
                                             </Link>
@@ -471,7 +471,7 @@ export default function AluminumSystemsPage() {
                                             className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700"
                                         >
                                             Detaylı Bilgi
-                                            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                             </svg>
                                         </Link>

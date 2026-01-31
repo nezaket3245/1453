@@ -7,14 +7,14 @@ import { businessConfig } from "@/config/business.config";
 
 export const metadata: Metadata = {
     title: `Hakkımızda | ${businessConfig.name}`,
-    description: `40 yıllık tecrübemizle ${businessConfig.address.district}&apos;de ${businessConfig.brand} yetkili bayisi olarak PVC pencere ve cam balkon sistemlerinde öncü çözümler sunuyoruz.`,
+    description: `40 yıllık tecrübe ile PVC pencere ve cam balkon sistemlerinde lider. Egepen yetkili bayisi olarak kaliteli hizmet sunuyoruz.`,
 };
 
 export default function AboutPage() {
     return (
         <>
             <Header />
-            <main className="min-h-screen">
+            <main id="main-content" className="min-h-screen">
                 {/* Hero Section */}
                 <section className="relative py-20 lg:py-32 bg-primary-900 text-white overflow-hidden">
                     <div className="absolute inset-0 opacity-50">

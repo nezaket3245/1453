@@ -1,11 +1,16 @@
-"use client";
-
 import Link from "next/link";
 import OptimizedImage from "@/components/ui/OptimizedImage";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { products } from "@/lib/data";
 
+/**
+ * ServicesSection - Server Component (No "use client")
+ * 
+ * Performance optimized:
+ * - Removed Framer Motion for faster initial render
+ * - Uses CSS animations instead of JS-based animations
+ * - Above-the-fold section, critical for LCP
+ */
 export function ServicesSection() {
     return (
         <section className="section bg-white" id="urunler" aria-labelledby="services-title">
@@ -38,13 +43,10 @@ export function ServicesSection() {
                             }
                         };
                         return (
-                            <motion.div
+                            <div
                                 key={product.id}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                viewport={{ once: true }}
-                                className="group"
+                                className="group animate-fade-in-up"
+                                style={{ animationDelay: `${index * 100}ms` }}
                             >
                                 <Link href={getDirectLink(product.slug)} title={`${product.name} - Detaylı Bilgi ve Fiyatlar`} className="block">
                                     <div className="relative aspect-[4/5] rounded-3xl overflow-hidden mb-6 bg-neutral-100 shadow-sm group-hover:shadow-2xl transition-all duration-500">
@@ -63,7 +65,7 @@ export function ServicesSection() {
                                         </div>
                                     </div>
                                 </Link>
-                            </motion.div>
+                            </div>
                         );
                     })}
                 </div>
@@ -71,21 +73,21 @@ export function ServicesSection() {
                 {/* Local Keywords Cloud for SEO (Hidden visually but available for crawlers if needed, but better to use it in text) */}
                 <div className="mt-20 p-8 rounded-3xl bg-primary-50 border border-primary-100 grid md:grid-cols-3 gap-8">
                     <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-primary-600 shadow-sm">🏆</div>
+                        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-primary-600 shadow-sm" aria-hidden="true">🏆</div>
                         <div>
                             <p className="font-bold text-neutral-900">Legend Serisi</p>
                             <p className="text-xs text-neutral-500">80mm Genişlik & 6 Odacık</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-primary-600 shadow-sm">⚡</div>
+                        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-primary-600 shadow-sm" aria-hidden="true">⚡</div>
                         <div>
                             <p className="font-bold text-neutral-900">Hızlı Montaj</p>
                             <p className="text-xs text-neutral-500">Kendi Profesyonel Ekibimiz</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-primary-600 shadow-sm">📍</div>
+                        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-primary-600 shadow-sm" aria-hidden="true">📍</div>
                         <div>
                             <p className="font-bold text-neutral-900">Yerel Servis</p>
                             <p className="text-xs text-neutral-500">Beylikdüzü & Gürpınar Bölgesi</p>

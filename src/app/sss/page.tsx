@@ -39,7 +39,7 @@ export default function FAQPage() {
 
             <Header />
 
-            <main className="min-h-screen bg-neutral-50">
+            <main id="main-content" className="min-h-screen bg-neutral-50">
                 {/* Hero Section */}
                 <section className="bg-gradient-to-br from-primary-700 to-primary-900 text-white py-16 lg:py-24">
                     <div className="container-custom">

@@ -37,7 +37,7 @@ export default function GlassSystemsPage() {
     return (
         <>
             <Header />
-            <main className="min-h-screen bg-white">
+            <main id="main-content" className="min-h-screen bg-white">
                 {/* Hero Section */}
                 <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-neutral-900 text-white overflow-hidden">
                     <div className="absolute inset-0 opacity-50">
@@ -270,7 +270,7 @@ export default function GlassSystemsPage() {
                                         {system.features.slice(0, 6).map((feature, fIdx) => (
                                             <div key={fIdx} className="flex items-center gap-3">
                                                 <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
-                                                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={4}>
+                                                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" strokeWidth={4}>
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                                     </svg>
                                                 </div>
@@ -330,7 +330,7 @@ export default function GlassSystemsPage() {
                                     {glassTypes.slice(2, 5).map((gt) => (
                                         <div key={gt.id} className="p-6 bg-white/5 rounded-2xl border border-white/10 flex gap-6 items-center">
                                             <div className="w-16 h-16 rounded-xl bg-primary-500/20 flex items-center justify-center flex-shrink-0">
-                                                <svg className="w-8 h-8 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg className="w-8 h-8 text-primary-400" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a2 2 0 00-1.96 1.414l-.7.7a2 2 0 01-2.828 0l-.7-.7a2 2 0 00-1.96-1.414l-2.387.477a2 2 0 00-1.022.547l-3.856 3.856a2 2 0 000 2.828l3.856 3.856a2 2 0 002.828 0l3.856-3.856a2 2 0 00.547-1.022l.477-2.387a2 2 0 00-1.414-1.96l-.7-.7a2 2 0 010-2.828l.7-.7a2 2 0 001.414-1.96l-.477-2.387a2 2 0 00-.547-1.022L11 4" />
                                                 </svg>
                                             </div>

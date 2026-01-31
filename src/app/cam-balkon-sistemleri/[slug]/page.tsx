@@ -80,7 +80,7 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
             />
             <Header />
-            <main className="min-h-screen bg-white">
+            <main id="main-content" className="min-h-screen bg-white">
                 {/* Hero / Header Section */}
                 <section className="bg-neutral-50 border-b border-neutral-100 pt-32 pb-16 lg:pt-40 lg:pb-24">
                     <div className="container-custom">
@@ -88,13 +88,13 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                             <ol className="flex items-center gap-2 text-sm text-neutral-500 font-medium">
                                 <li><Link href="/" title="Ana Sayfa" className="hover:text-primary-600 transition-colors">Ana Sayfa</Link></li>
                                 <li>
-                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                     </svg>
                                 </li>
                                 <li><Link href="/cam-balkon-sistemleri" title="Cam Balkon Sistemleri" className="hover:text-primary-600 transition-colors">Cam Balkon</Link></li>
                                 <li>
-                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                     </svg>
                                 </li>
@@ -200,7 +200,7 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                             <div className="lg:col-span-1">
                                 <div className="bg-neutral-900 rounded-[2rem] p-8 lg:p-10 text-white sticky top-32 shadow-2xl">
                                     <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
-                                        <svg className="w-6 h-6 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="w-6 h-6 text-primary-500" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                                         </svg>
                                         Teknik Veriler
@@ -247,7 +247,7 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                                     {system.benefits.map((benefit, i) => (
                                         <div key={i} className="flex gap-4 items-center p-6 bg-green-50 rounded-2xl border border-green-100">
                                             <div className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center shadow-lg shadow-green-200">
-                                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                                 </svg>
                                             </div>
@@ -338,7 +338,7 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                                         <summary className="flex items-center justify-between p-6 cursor-pointer list-none bg-white hover:bg-neutral-50 font-bold text-neutral-900 group-open:bg-neutral-50 transition-colors">
                                             <span>{item.question}</span>
                                             <span className="flex-shrink-0 ml-4 w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center group-open:rotate-180 transition-transform duration-300">
-                                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                                 </svg>
                                             </span>
@@ -371,7 +371,7 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                                         <p className="text-sm text-neutral-600 line-clamp-2 mb-6">{item.description}</p>
                                         <div className="flex items-center justify-between">
                                             <span className="text-xs font-bold text-primary-600 uppercase tracking-widest">Detaylı İncele</span>
-                                            <svg className="w-5 h-5 text-primary-600 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <svg className="w-5 h-5 text-primary-600 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                                             </svg>
                                         </div>

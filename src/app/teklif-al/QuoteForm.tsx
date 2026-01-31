@@ -174,7 +174,7 @@ export function QuoteForm() {
 
                 <div className="bg-primary-50 rounded-xl p-4 mb-6 max-w-md mx-auto">
                     <div className="flex items-center justify-center gap-2 text-primary-700">
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <span className="font-medium">Tahmini Dönüş Süresi: 2-4 saat</span>
@@ -187,7 +187,7 @@ export function QuoteForm() {
                         title="Egepen Akçayapı'yı Hemen Arayın"
                         className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors"
                     >
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
                         Hemen Ara
@@ -242,84 +242,93 @@ export function QuoteForm() {
                             type="button"
                             onClick={() => handleProductToggle(product.id)}
                             className={cn(
-                                "flex items-center gap-2 p-3 rounded-xl border-2 transition-all duration-200",
+                                "flex items-center gap-2 p-3 rounded-xl border-2 transition-all duration-200 min-h-[48px] min-w-[48px]",
                                 selectedProducts.includes(product.id)
                                     ? "border-primary-500 bg-primary-50 text-primary-700"
                                     : "border-neutral-200 hover:border-neutral-300 text-neutral-600"
                             )}
+                            aria-pressed={selectedProducts.includes(product.id)}
                         >
-                            <span className="text-xl">{product.icon}</span>
+                            <span className="text-xl" aria-hidden="true">{product.icon}</span>
                             <span className="text-sm font-medium">{product.label}</span>
                         </button>
                     ))}
                 </div>
-                {errors.products && <p className="mt-1 text-sm text-red-500">{errors.products}</p>}
+                {errors.products && <p id="products-error" className="mt-1 text-sm text-red-500" role="alert">{errors.products}</p>}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                 <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
+                    <label htmlFor="quote-name" className="block text-sm font-medium text-neutral-700 mb-2">
                         Ad Soyad <span className="text-red-500">*</span>
                     </label>
                     <input
                         type="text"
-                        id="name"
+                        id="quote-name"
                         name="name"
+                        autoComplete="name"
                         required
+                        aria-required="true"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all min-h-[48px]"
                         placeholder="Adınız Soyadınız"
                     />
                 </div>
                 <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-neutral-700 mb-2">
+                    <label htmlFor="quote-phone" className="block text-sm font-medium text-neutral-700 mb-2">
                         Telefon (WhatsApp Hattınız) <span className="text-red-500">*</span>
                     </label>
                     <input
                         type="tel"
-                        id="phone"
+                        id="quote-phone"
                         name="phone"
+                        autoComplete="tel"
+                        inputMode="tel"
                         required
+                        aria-required="true"
+                        aria-invalid={!!errors.phone}
+                        aria-describedby={errors.phone ? "quote-phone-error" : undefined}
                         value={formData.phone}
                         onChange={handlePhoneChange}
                         className={cn(
-                            "w-full px-4 py-3 rounded-xl border outline-none transition-all",
+                            "w-full px-4 py-3 rounded-xl border outline-none transition-all min-h-[48px]",
                             errors.phone
                                 ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                                 : "border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
                         )}
                         placeholder="05XX XXX XX XX"
                     />
-                    {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
+                    {errors.phone && <p id="quote-phone-error" className="mt-1 text-sm text-red-500" role="alert">{errors.phone}</p>}
                 </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                 <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
+                    <label htmlFor="quote-email" className="block text-sm font-medium text-neutral-700 mb-2">
                         E-posta (Opsiyonel)
                     </label>
                     <input
                         type="email"
-                        id="email"
+                        id="quote-email"
                         name="email"
+                        autoComplete="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all min-h-[48px]"
                         placeholder="ornek@mail.com"
                     />
                 </div>
                 <div>
-                    <label htmlFor="propertyType" className="block text-sm font-medium text-neutral-700 mb-2">
+                    <label htmlFor="quote-propertyType" className="block text-sm font-medium text-neutral-700 mb-2">
                         Mülk Tipi
                     </label>
                     <select
-                        id="propertyType"
+                        id="quote-propertyType"
                         name="propertyType"
                         value={formData.propertyType}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all bg-white"
+                        className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all bg-white min-h-[48px]"
                     >
                         <option value="">Seçiniz</option>
                         <option value="Daire">Daire</option>
@@ -332,26 +341,27 @@ export function QuoteForm() {
             </div>
 
             <div className="mb-6">
-                <label htmlFor="address" className="block text-sm font-medium text-neutral-700 mb-2">
+                <label htmlFor="quote-address" className="block text-sm font-medium text-neutral-700 mb-2">
                     İlçe / Mahalle
                 </label>
                 <input
                     type="text"
-                    id="address"
+                    id="quote-address"
                     name="address"
+                    autoComplete="street-address"
                     value={formData.address}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all min-h-[48px]"
                     placeholder="Örn: Beylikdüzü, Gürpınar..."
                 />
             </div>
 
             <div className="mb-6">
-                <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-2">
+                <label htmlFor="quote-message" className="block text-sm font-medium text-neutral-700 mb-2">
                     Tahmini Ölçüler veya Notlar
                 </label>
                 <textarea
-                    id="message"
+                    id="quote-message"
                     name="message"
                     rows={3}
                     value={formData.message}
@@ -365,11 +375,13 @@ export function QuoteForm() {
                 <label className="flex items-start gap-3 cursor-pointer">
                     <input
                         type="checkbox"
+                        id="quote-consent"
                         name="consent"
                         required
+                        aria-required="true"
                         checked={formData.consent}
                         onChange={handleInputChange}
-                        className="mt-1 w-5 h-5 rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
+                        className="mt-1 w-5 h-5 min-w-[20px] min-h-[20px] rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
                     />
                     <span className="text-sm text-neutral-600">
                         <a href="/gizlilik-politikasi" title="KVKK ve Gizlilik Politikası" className="text-primary-600 hover:underline">
@@ -385,13 +397,13 @@ export function QuoteForm() {
                 type="submit"
                 disabled={isPending || selectedProducts.length === 0}
                 className={cn(
-                    "w-full btn btn-primary btn-lg",
+                    "w-full btn btn-primary btn-lg min-h-[48px]",
                     (isPending || selectedProducts.length === 0) && "opacity-50 cursor-not-allowed"
                 )}
             >
                 {isPending ? (
                     <span className="flex items-center justify-center gap-2">
-                        <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+                        <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24" aria-hidden="true">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                         </svg>

@@ -213,7 +213,7 @@ export default function PetScreenHighlight({ system }: PetScreenHighlightProps) 
                         <a
                             href="https://wa.me/905320000000?text=Kedi%20sinekli%C4%9Fi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum"
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel="noopener noreferrer nofollow"
                             className="inline-flex items-center px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl transition-all"
                         >
                             <span className="mr-2">📱</span>

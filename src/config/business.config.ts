@@ -208,23 +208,72 @@ export const businessConfig = {
 
         // Eski format uyumluluğu için (deprecated, regions kullanılmalı)
         mainKeywords: [
-            "Egepen Deceuninck yetkili bayi",
-            "Beylikdüzü PVC pencere",
-            "Gürpınar cam balkon",
-            "İstanbul ısı yalıtımlı profil",
-            "Legend serisi montaj",
-            "Legend Art serisi pencere",
-            "Zen Spirit sürme sistemleri",
-            "Beylikdüzü panjur montajı",
-            "Beylikdüzü duşakabin",
-            "Beylikdüzü sineklik sistemleri",
-            "PVC pencere tamiri İstanbul",
-            "Cam balkon fiyatları 2026",
-            "Isıcamlı cam balkon Beylikdüzü",
-            "Motorlu panjur fiyat",
-            "Egepen bayi İstanbul",
-            "Büyükçekmece PVC pencere",
-            "Büyükçekmece cam balkon"
+            // 🔥 EN ÇOK ARANAN KELİMELER - Yüksek Arama Hacmi
+            "pvc pencere fiyatları",
+            "pvc pencere fiyatları 2026",
+            "cam balkon fiyatları",
+            "cam balkon m2 fiyat 2026",
+            "pvc pencere",
+            "cam balkon",
+            "sineklik fiyatları",
+            "panjur fiyatları",
+            "duşakabin fiyatları",
+            
+            // 🏠 MARKA + ÜRÜN KELİMELERİ
+            "egepen pvc pencere",
+            "egepen cam balkon",
+            "egepen deceuninck",
+            "egepen deceuninck fiyat",
+            "egepen bayileri istanbul",
+            "egepen yetkili bayi",
+            
+            // 📍 YEREL SEO - İSTANBUL
+            "istanbul pvc pencere",
+            "istanbul cam balkon",
+            "beylikdüzü pvc pencere",
+            "beylikdüzü cam balkon",
+            "büyükçekmece pvc pencere",
+            "esenyurt pvc pencere",
+            "avcılar cam balkon",
+            
+            // 🔧 HİZMET KELİMELERİ
+            "pvc pencere montajı",
+            "cam balkon montajı",
+            "pvc pencere tamiri",
+            "pencere değişimi",
+            "ücretsiz keşif",
+            
+            // 🏆 ÖZELLİK KELİMELERİ
+            "ısı yalıtımlı pencere",
+            "ses yalıtımlı pencere",
+            "ısıcamlı cam balkon",
+            "motorlu panjur",
+            "plise sineklik",
+            "kedi sinekliği",
+            
+            // 💰 FİYAT ODAKLI
+            "en ucuz pvc pencere",
+            "uygun fiyatlı cam balkon",
+            "pvc pencere metrekare fiyatı",
+            "cam balkon metrekare fiyatı"
+        ],
+
+        // 🎯 GOOGLE TRENDLERİNDEN EN POPÜLER ARAMALAR 2026
+        trendingKeywords: [
+            "pvc pencere fiyatları 2026",
+            "cam balkon m2 fiyatı 2026",
+            "egepen fiyat listesi 2026",
+            "ısıcamlı cam balkon fiyatları",
+            "motorlu panjur fiyatları",
+            "plise sineklik fiyatları",
+            "duşakabin modelleri ve fiyatları",
+            "pvc pencere modelleri",
+            "cam balkon modelleri",
+            "antrasit pvc pencere",
+            "gri pvc pencere",
+            "sürme cam balkon",
+            "katlanır cam balkon",
+            "temperli cam balkon"
         ]
     }
 };

@@ -110,7 +110,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
             <Header />
 
-            <main className="min-h-screen bg-white">
+            <main id="main-content" className="min-h-screen bg-white">
                 {/* Hero */}
                 <section className="relative bg-gradient-to-br from-neutral-900 to-neutral-800 text-white py-16 lg:py-24">
                     <div className="container-custom">

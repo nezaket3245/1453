@@ -32,7 +32,7 @@ export default function ProjectsPage() {
     return (
         <>
             <Header />
-            <main className="min-h-screen bg-white">
+            <main id="main-content" className="min-h-screen bg-white">
                 {/* Hero Section */}
                 <section className="relative bg-gradient-to-br from-neutral-900 to-neutral-800 text-white py-20 lg:py-28 overflow-hidden">
                     <div className="absolute inset-0 opacity-20">
