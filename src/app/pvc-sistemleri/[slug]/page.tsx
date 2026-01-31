@@ -143,11 +143,11 @@ export default async function PVCProductDetailPage({ params }: PVCProductPagePro
                 {/* Hero Section */}
                 <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white py-16 lg:py-24 overflow-hidden">
                     <div className="absolute inset-0 opacity-10">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
+                        <OptimizedImage
                             src="/images/pvc/pvc-surme-manzara.jpg"
                             alt="Arka Plan"
-                            className="absolute inset-0 w-full h-full object-cover"
+                            fill
+                            className="object-cover"
                         />
                     </div>
                     <div className="container-custom relative z-10">
@@ -213,11 +213,12 @@ export default async function PVCProductDetailPage({ params }: PVCProductPagePro
                                         className="absolute inset-0 w-full h-full object-cover"
                                     />
                                 ) : (
-                                    // eslint-disable-next-line @next/next/no-img-element
-                                    <img
+                                    <OptimizedImage
                                         src={product.image}
                                         alt={product.name}
-                                        className="absolute inset-0 w-full h-full object-cover"
+                                        fill
+                                        priority
+                                        className="object-cover"
                                     />
                                 )}
                                 {product.featured && (
@@ -377,11 +378,11 @@ export default async function PVCProductDetailPage({ params }: PVCProductPagePro
                                         className="group bg-white p-4 rounded-xl border border-neutral-200 hover:shadow-lg transition-all hover:-translate-y-1"
                                     >
                                         <div className="relative aspect-video rounded-lg overflow-hidden mb-4">
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img
+                                            <OptimizedImage
                                                 src={related.image}
                                                 alt={related.name}
-                                                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                fill
+                                                className="object-cover group-hover:scale-110 transition-transform duration-500"
                                             />
                                         </div>
                                         <h3 className="font-bold text-neutral-900 group-hover:text-primary-600 transition-colors mb-2">

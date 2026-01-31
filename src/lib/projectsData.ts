@@ -157,6 +157,27 @@ export const projects: Project[] = [
             "Stor Perde Opsiyonu",
         ],
     },
+    {
+        id: "7",
+        slug: "beylikduzu-sineklik-montaj",
+        title: "Beylikdüzü Daire - Plise Sineklik",
+        description: "12 adet pencere ve 3 adet balkon kapısı için antrasit renkli pileli (plise) sineklik montajı. Uzun ömürlü ve pratik çözüm.",
+        category: "sineklik",
+        location: "Adnan Kahveci, Beylikdüzü",
+        year: "2025",
+        images: [
+            "/images/projeler/sineklik-daire-montaj.png",
+            "/images/sineklik/duble-plise-sineklik.jpg",
+            "/images/sineklik/surme-sineklik.jpg",
+        ],
+        features: [
+            "Plise (Pileli) Sistem",
+            "İthal Tül Kullanımı",
+            "Antrasit Alüminyum Çerçeve",
+            "Kolay Temizlenebilir",
+            "Her Pencereye Uygun",
+        ],
+    },
 ];
 
 export const projectCategories = [
@@ -165,6 +186,7 @@ export const projectCategories = [
     { id: "cam-balkon", name: "Cam Balkon", icon: "🏠" },
     { id: "dusakabin", name: "Duşakabin", icon: "🚿" },
     { id: "panjur", name: "Panjur", icon: "🌤️" },
+    { id: "sineklik", name: "Sineklik", icon: "🦟" },
     { id: "komple", name: "Komple Projeler", icon: "🏢" },
 ];
 

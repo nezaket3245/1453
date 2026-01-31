@@ -17,8 +17,8 @@ export default function AboutPage() {
             <main className="min-h-screen">
                 {/* Hero Section */}
                 <section className="relative py-20 lg:py-32 bg-primary-900 text-white overflow-hidden">
-                    <div className="absolute inset-0 opacity-20">
-                        <Image src="/images/pvc/pvc-surme-manzara.jpg" alt="Background" fill className="object-cover" />
+                    <div className="absolute inset-0 opacity-50">
+                        <Image src="/images/showroom-main.png" alt="Background" fill className="object-cover" />
                     </div>
                     <div className="container-custom relative z-10">
                         <div className="max-w-3xl">

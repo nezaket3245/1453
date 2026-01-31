@@ -14,82 +14,17 @@ import { businessConfig } from "@/config/business.config";
  * SEO: Targets "Beylikdüzü PVC montaj", "cam balkon kurulum örnekleri"
  */
 
-interface Project {
-    id: string;
-    title: string;
-    location: string;
-    category: string;
-    image: string;
-    description: string;
-    year: string;
-}
-
-const completedProjects: Project[] = [
-    {
-        id: "1",
-        title: "Legend Serisi Villa Pencere Projesi",
-        location: "Gürpınar, Beylikdüzü",
-        category: "PVC Pencere",
-        image: "/images/gallery/gurpinar-after.png",
-        description: "350 m² villa için Legend serisi 6 odacıklı PVC pencere montajı. Isı yalıtımında %45 iyileşme sağlandı.",
-        year: "2024"
-    },
-    {
-        id: "2",
-        title: "Tiara Max Isıcamlı Cam Balkon",
-        location: "Yakuplu, Beylikdüzü",
-        category: "Cam Balkon",
-        image: "/images/gallery/kavakli-after.png",
-        description: "28mm çift cam ile kış bahçesine dönüştürülen 25 m² balkon alanı. Argon gazlı Low-E kaplama.",
-        year: "2024"
-    },
-    {
-        id: "3",
-        title: "Legend Art Serisi Apartman Projesi",
-        location: "Kavaklı, Beylikdüzü",
-        category: "PVC Pencere",
-        image: "/images/gallery/yakuplu-after.png",
-        description: "48 daireli site için Legend Art serisi pencere ve balkon kapısı montajı. Toplam 576 adet ürün.",
-        year: "2023"
-    },
-    {
-        id: "4",
-        title: "Katlanır Cam Balkon Sistemi",
-        location: "Büyükçekmece",
-        category: "Cam Balkon",
-        image: "/images/cam-balkon/cam-balkon-kose.jpg",
-        description: "L şekilli balkon için köşe dahil tam katlanır sistem. %100 açılım, panoramik manzara.",
-        year: "2024"
-    },
-    {
-        id: "5",
-        title: "Zen Spirit Sürme Sistem",
-        location: "Esenyurt",
-        category: "PVC Pencere",
-        image: "/images/pvc/pvc-surme-salon.jpg",
-        description: "Minimal çerçeve tasarımlı geniş camlı sürme sistem. Modern villa projesi için özel tasarım.",
-        year: "2023"
-    },
-    {
-        id: "6",
-        title: "Motorlu Panjur ve Sineklik",
-        location: "Avcılar",
-        category: "Panjur & Sineklik",
-        image: "/images/panjur/panjur-motorlu-villa.jpg",
-        description: "Somfy motorlu panjur sistemi ve pileli sineklik montajı. Tek kumanda ile kontrol.",
-        year: "2024"
-    },
-];
-
-const categories = ["Tümü", "PVC Pencere", "Cam Balkon", "Panjur & Sineklik"];
+import { projects, projectCategories } from "@/lib/projectsData";
 
 export function ProjectsGallerySection() {
-    const [activeCategory, setActiveCategory] = useState("Tümü");
-    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    const [activeCategory, setActiveCategory] = useState("all");
+    const [selectedProject, setSelectedProject] = useState<any>(null);
 
-    const filteredProjects = activeCategory === "Tümü"
-        ? completedProjects
-        : completedProjects.filter(p => p.category === activeCategory);
+    const filteredProjects = activeCategory === "all"
+        ? projects
+        : projects.filter(p => p.category === activeCategory);
+
+    const categories = projectCategories;
 
     return (
         <section
@@ -134,14 +69,14 @@ export function ProjectsGallerySection() {
                 <div className="flex flex-wrap justify-center gap-3 mb-12">
                     {categories.map((category) => (
                         <button
-                            key={category}
-                            onClick={() => setActiveCategory(category)}
-                            className={`px-5 py-2.5 rounded-full font-bold text-sm transition-all ${activeCategory === category
+                            key={category.id}
+                            onClick={() => setActiveCategory(category.id)}
+                            className={`px-5 py-2.5 rounded-full font-bold text-sm transition-all ${activeCategory === category.id
                                 ? "bg-primary-600 text-white shadow-lg shadow-primary-500/30"
                                 : "bg-white text-neutral-600 hover:bg-neutral-100 border border-neutral-200"
                                 }`}
                         >
-                            {category}
+                            {category.name}
                         </button>
                     ))}
                 </div>
@@ -166,7 +101,7 @@ export function ProjectsGallerySection() {
                                 {/* Image */}
                                 <div className="relative aspect-[4/3] overflow-hidden">
                                     <OptimizedImage
-                                        src={project.image}
+                                        src={project.images[0]}
                                         alt={`${project.title} - ${project.location}`}
                                         fill
                                         className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -255,7 +190,7 @@ export function ProjectsGallerySection() {
                             {/* Modal Image */}
                             <div className="relative aspect-video">
                                 <OptimizedImage
-                                    src={selectedProject.image}
+                                    src={selectedProject.images[0]}
                                     alt={selectedProject.title}
                                     fill
                                     className="object-cover"

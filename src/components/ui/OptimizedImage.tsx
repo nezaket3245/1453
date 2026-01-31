@@ -1,7 +1,7 @@
 "use client";
 
 import Image, { ImageProps } from "next/image";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { clsx, type ClassValue } from "clsx";
 
 /**
@@ -52,9 +52,13 @@ const FALLBACK_IMAGES = {
 function getContextFallback(src: string): string {
     if (typeof src !== 'string') return FALLBACK_IMAGES.general;
 
-    if (src.includes('/pvc/')) return FALLBACK_IMAGES.pvc;
-    if (src.includes('/cam-balkon/')) return FALLBACK_IMAGES.camBalkon;
-    if (src.includes('/dusakabin/')) return FALLBACK_IMAGES.dusakabin;
+    const lowerSrc = src.toLowerCase();
+    if (lowerSrc.includes('pvc')) return FALLBACK_IMAGES.pvc;
+    if (lowerSrc.includes('cam-balkon') || lowerSrc.includes('cambalkon')) return FALLBACK_IMAGES.camBalkon;
+    if (lowerSrc.includes('dusakabin')) return FALLBACK_IMAGES.dusakabin;
+    if (lowerSrc.includes('panjur')) return FALLBACK_IMAGES.general; // Could add specific panjur fallback
+    if (lowerSrc.includes('sineklik')) return FALLBACK_IMAGES.general;
+
     return FALLBACK_IMAGES.general;
 }
 
@@ -73,15 +77,23 @@ export default function OptimizedImage({
 }: OptimizedImageProps) {
     const [imgSrc, setImgSrc] = useState<string | typeof src>(src);
     const [errorLevel, setErrorLevel] = useState(0);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(!priority);
     const [isVisible, setIsVisible] = useState(false);
+    const imageRef = useRef<HTMLImageElement>(null);
 
     // Reset state when src prop changes
     useEffect(() => {
         setImgSrc(src);
         setErrorLevel(0);
-        setIsLoading(true);
-    }, [src]);
+        setIsLoading(!priority);
+    }, [src, priority]);
+
+    // Check if image is already loaded (cached)
+    useEffect(() => {
+        if (imageRef.current?.complete) {
+            setIsLoading(false);
+        }
+    }, []);
 
     // Fade-in effect after load
     useEffect(() => {
@@ -131,6 +143,7 @@ export default function OptimizedImage({
         <div
             className={cn(
                 "relative overflow-hidden",
+                fill ? "w-full h-full" : "w-full",
                 containerClassName
             )}
             style={{
@@ -140,7 +153,7 @@ export default function OptimizedImage({
             {/* Loading Skeleton */}
             {showSkeleton && isLoading && (
                 <div
-                    className="absolute inset-0 bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200 animate-pulse"
+                    className="absolute inset-0 bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200 animate-pulse z-10"
                     aria-hidden="true"
                 />
             )}
@@ -154,11 +167,11 @@ export default function OptimizedImage({
                 fill={fill}
                 priority={priority}
                 loading={priority ? undefined : "lazy"}
-                unoptimized={true} // Required for static export compatibility
+                unoptimized // Required for static export compatibility
+                ref={imageRef}
                 className={cn(
-                    "transition-opacity duration-500",
+                    "transition-opacity duration-500 ease-in-out",
                     isLoading ? "opacity-0" : "opacity-100",
-                    isVisible ? "opacity-100" : "",
                     className
                 )}
                 onLoad={handleLoad}

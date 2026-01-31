@@ -20,6 +20,7 @@ import {
 import { CTASection } from '@/components/sections/CTASection';
 import DusakabinConfigurator from './DusakabinConfigurator';
 import { businessConfig } from '@/config/business.config';
+import OptimizedImage from "@/components/ui/OptimizedImage";
 
 // SEO Metadata - Optimized for local + product searches
 export const metadata: Metadata = {
@@ -151,18 +152,15 @@ export default function DusakabinPage() {
                 {/* Hero Section */}
                 <section className="relative bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-20 lg:py-28 overflow-hidden">
                     {/* Decorative Elements */}
-                    <div className="absolute inset-0 opacity-20">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src="/images/cam-balkon/cam-balkon-bahce-manzara.jpg"
+                    <div className="absolute inset-0 opacity-50">
+                        <OptimizedImage
+                            src="/images/showroom-main.png"
                             alt="Duşakabin Sistemleri"
-                            className="absolute inset-0 w-full h-full object-cover"
+                            fill
+                            className="object-cover"
                         />
                     </div>
-                    <div className="absolute inset-0 opacity-10">
-                        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full blur-[100px]" />
-                        <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-500 rounded-full blur-[120px]" />
-                    </div>
+
 
                     <div className="container mx-auto px-4 relative z-10">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -222,11 +220,11 @@ export default function DusakabinPage() {
 
                             <div className="relative">
                                 <div className="relative h-[400px] lg:h-[500px]">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img
+                                    <OptimizedImage
                                         src="/images/dusakabin/hero-black-frameless.jpg"
                                         alt="Siyah Çerçeveli Premium Duşakabin"
-                                        className="w-full h-full object-contain drop-shadow-2xl"
+                                        fill
+                                        className="object-contain drop-shadow-2xl"
                                     />
                                 </div>
                             </div>
@@ -322,11 +320,11 @@ export default function DusakabinPage() {
                                         className="group bg-white/5 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/10 hover:border-purple-500/50 transition-all hover:shadow-2xl hover:shadow-purple-500/20"
                                     >
                                         <div className="relative h-56 bg-gradient-to-br from-gray-800 to-gray-900">
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img
+                                            <OptimizedImage
                                                 src={system.image}
                                                 alt={system.name}
-                                                className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                                fill
+                                                className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                                             />
                                             <div className="absolute top-4 right-4">
                                                 <span className="px-3 py-1 bg-black/50 text-white text-xs font-bold rounded-full backdrop-blur-sm">
@@ -387,11 +385,11 @@ export default function DusakabinPage() {
                                         className="group bg-gray-50 rounded-3xl overflow-hidden border border-gray-200 hover:border-blue-500 transition-all hover:shadow-xl"
                                     >
                                         <div className="relative h-56 bg-gradient-to-br from-blue-50 to-cyan-50">
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img
+                                            <OptimizedImage
                                                 src={system.image}
                                                 alt={system.name}
-                                                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                fill
+                                                className="object-cover group-hover:scale-105 transition-transform duration-500"
                                             />
                                         </div>
                                         <div className="p-6">
@@ -488,11 +486,11 @@ export default function DusakabinPage() {
                                         className="group bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl overflow-hidden border border-purple-100 hover:border-purple-400 transition-all hover:shadow-xl"
                                     >
                                         <div className="relative h-60 bg-gradient-to-br from-purple-100 to-pink-100">
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img
+                                            <OptimizedImage
                                                 src={system.image}
                                                 alt={system.name}
-                                                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                fill
+                                                className="object-cover group-hover:scale-105 transition-transform duration-500"
                                             />
                                             {system.id === 'frameless-pivot-luxury' && (
                                                 <div className="absolute top-4 left-4">
@@ -548,11 +546,11 @@ export default function DusakabinPage() {
                                         className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-emerald-500 transition-all hover:shadow-lg"
                                     >
                                         <div className="relative h-48 bg-gradient-to-br from-emerald-50 to-teal-50">
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img
+                                            <OptimizedImage
                                                 src={system.image}
                                                 alt={system.name}
-                                                className="absolute inset-0 w-full h-full object-cover"
+                                                fill
+                                                className="object-cover"
                                             />
                                         </div>
                                         <div className="p-5">

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 import { businessConfig } from "@/config/business.config";
+import { cn } from "@/lib/utils";
 
 /**
  * ServiceCards Component
@@ -173,11 +174,14 @@ export function ServiceCards() {
                         >
                             {/* Image Header */}
                             <div className="relative aspect-[16/10] bg-gradient-to-br from-primary-50 to-accent-50 overflow-hidden">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
+                                <OptimizedImage
                                     src={service.image}
                                     alt={service.title}
-                                    className={`absolute inset-0 w-full h-full object-cover ${service.id === 'panjur' || service.id === 'dusakabin' || service.id === 'aluminyum' ? 'object-contain' : ''} p-0 group-hover:scale-110 transition-transform duration-500`}
+                                    fill
+                                    className={cn(
+                                        "object-cover group-hover:scale-110 transition-transform duration-500",
+                                        (service.id === 'panjur' || service.id === 'dusakabin' || service.id === 'aluminyum') && "object-contain p-2"
+                                    )}
                                 />
                                 {/* Badge */}
                                 {service.badge && (

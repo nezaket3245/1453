@@ -7,14 +7,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import {
-    aluminumSystems,
-    pvcVsAluminumMatrix,
-    thermalBreakTechnology,
-    aluminumFinishes,
-    aluminumSeoKeywords,
-} from '@/lib/aluminumData';
+import { aluminumSeoKeywords, aluminumFinishes, thermalBreakTechnology, pvcVsAluminumMatrix, aluminumSystems } from '@/lib/aluminumData';
 import { CTASection } from '@/components/sections/CTASection';
+import OptimizedImage from "@/components/ui/OptimizedImage";
 
 // SEO Metadata
 export const metadata: Metadata = {
@@ -108,15 +103,15 @@ export default function AluminumSystemsPage() {
             <main className="min-h-screen bg-white">
                 {/* Hero Section */}
                 <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 py-20 lg:py-28 overflow-hidden">
-                    <div className="absolute inset-0 opacity-20">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src="/images/cam-balkon/cam-balkon-sehir-manzara.jpg"
+                    <div className="absolute inset-0 opacity-50">
+                        <OptimizedImage
+                            src="/images/showroom-main.png"
                             alt="Alüminyum Sistemleri"
-                            className="absolute inset-0 w-full h-full object-cover"
+                            fill
+                            className="object-cover"
                         />
                     </div>
-                    <div className="absolute inset-0 bg-grid-white/5" />
+
 
                     <div className="container mx-auto px-4 relative z-10">
                         <div className="max-w-4xl mx-auto text-center">
@@ -399,11 +394,11 @@ export default function AluminumSystemsPage() {
                                         </div>
 
                                         <div className="relative h-64 lg:h-auto min-h-[300px] rounded-xl overflow-hidden bg-gradient-to-br from-orange-600 to-red-700">
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img
+                                            <OptimizedImage
                                                 src={system.image}
                                                 alt={system.name}
-                                                className="absolute inset-0 w-full h-full object-contain p-8"
+                                                fill
+                                                className="object-contain p-8"
                                             />
                                         </div>
                                     </div>
@@ -435,11 +430,11 @@ export default function AluminumSystemsPage() {
                                     className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all group"
                                 >
                                     <div className="relative h-56 bg-gradient-to-br from-blue-600 to-indigo-700">
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img
+                                        <OptimizedImage
                                             src={system.image}
                                             alt={system.name}
-                                            className="absolute inset-0 w-full h-full object-contain p-6 group-hover:scale-105 transition-transform"
+                                            fill
+                                            className="object-contain p-6 group-hover:scale-105 transition-transform"
                                         />
                                         <div className="absolute top-4 right-4">
                                             <span className="px-3 py-1 bg-white/90 text-blue-700 text-xs font-medium rounded-full">
@@ -542,11 +537,11 @@ export default function AluminumSystemsPage() {
                                         </div>
 
                                         <div className="relative h-64 rounded-xl overflow-hidden bg-gradient-to-br from-emerald-600 to-teal-700">
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img
+                                            <OptimizedImage
                                                 src={system.image}
                                                 alt={system.name}
-                                                className="absolute inset-0 w-full h-full object-contain p-6"
+                                                fill
+                                                className="object-contain p-6"
                                             />
                                         </div>
                                     </div>
@@ -578,11 +573,11 @@ export default function AluminumSystemsPage() {
                             >
                                 <div className="grid grid-cols-1 lg:grid-cols-2">
                                     <div className="relative h-80 lg:h-auto bg-gradient-to-br from-purple-600 to-pink-700">
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img
+                                        <OptimizedImage
                                             src={system.image}
                                             alt={system.name}
-                                            className="absolute inset-0 w-full h-full object-contain p-8"
+                                            fill
+                                            className="object-contain p-8"
                                         />
                                         <div className="absolute bottom-4 left-4 right-4">
                                             <div className="bg-white/90 backdrop-blur rounded-xl p-4">

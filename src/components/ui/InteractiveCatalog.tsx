@@ -151,13 +151,6 @@ const categories = [
 export function InteractiveCatalog() {
     const [activeCategory, setActiveCategory] = useState("all");
     const [selectedItem, setSelectedItem] = useState<CatalogItem | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
-
-    // Simulate loading for progressive enhancement
-    useEffect(() => {
-        const timer = setTimeout(() => setIsLoading(false), 300);
-        return () => clearTimeout(timer);
-    }, []);
 
     const filteredItems = activeCategory === "all"
         ? catalogItems
@@ -241,16 +234,12 @@ export function InteractiveCatalog() {
                                     className="relative aspect-[4/3] bg-gradient-to-br from-primary-50 to-accent-50 overflow-hidden cursor-pointer"
                                     onClick={() => setSelectedItem(item)}
                                 >
-                                    {isLoading ? (
-                                        <div className="absolute inset-0 skeleton" />
-                                    ) : (
-                                        <OptimizedImage
-                                            src={item.image}
-                                            alt={item.title}
-                                            fill
-                                            className={`${item.category === 'panjur' ? 'object-contain p-6' : 'object-cover'} group-hover:scale-110 transition-transform duration-500`}
-                                        />
-                                    )}
+                                    <OptimizedImage
+                                        src={item.image}
+                                        alt={item.title}
+                                        fill
+                                        className={`${item.category === 'panjur' ? 'object-contain p-6' : 'object-cover'} group-hover:scale-110 transition-transform duration-500`}
+                                    />
                                     {/* Series Badge */}
                                     <div className="absolute top-3 left-3 px-2.5 py-1 bg-primary-600 text-white text-xs font-bold rounded-full">
                                         {item.series}

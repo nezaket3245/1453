@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/Button";
+import OptimizedImage from "@/components/ui/OptimizedImage";
 import { businessConfig } from "@/config/business.config";
 
 /**
@@ -31,15 +32,15 @@ export function HeroSection() {
         >
             {/* Background with Parallax */}
             <motion.div style={{ y }} className="absolute inset-0 z-0">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    src="/images/hero-showroom-v2.jpg"
+                <OptimizedImage
+                    src="/images/showroom-main.png"
                     alt={`${businessConfig.name} - ${businessConfig.brand} Beylikdüzü Yetkili Bayi Showroom`}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    style={{ opacity: 1 }}
+                    fill
+                    priority
+                    className="object-cover"
                 />
                 {/* Lighter overlay to keep image visible while maintaining text readability */}
-                <div className="absolute inset-0 bg-gradient-to-r from-neutral-900/90 via-neutral-900/60 to-neutral-900/30" />
+                <div className="absolute inset-0 bg-black/40" />
             </motion.div>
 
             <div className="container-custom relative z-10 py-20">

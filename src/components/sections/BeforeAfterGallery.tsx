@@ -122,11 +122,11 @@ export function BeforeAfterGallery() {
                         >
                             {/* After Image (Background) */}
                             <div className="absolute inset-0">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
+                                <OptimizedImage
                                     src={activeItem.after}
                                     alt={`${activeItem.title} - Sonra`}
-                                    className="absolute inset-0 w-full h-full object-cover"
+                                    fill
+                                    className="object-cover"
                                 />
                                 <div className="absolute bottom-4 right-4 px-3 py-1.5 bg-green-500 text-white text-sm font-bold rounded-lg">
                                     SONRA
@@ -138,11 +138,11 @@ export function BeforeAfterGallery() {
                                 className="absolute inset-0 overflow-hidden"
                                 style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
                             >
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
+                                <OptimizedImage
                                     src={activeItem.before}
                                     alt={`${activeItem.title} - Önce`}
-                                    className="absolute inset-0 w-full h-full object-cover"
+                                    fill
+                                    className="object-cover"
                                 />
                                 <div className="absolute bottom-4 left-4 px-3 py-1.5 bg-neutral-700 text-white text-sm font-bold rounded-lg">
                                     ÖNCE
@@ -194,12 +194,12 @@ export function BeforeAfterGallery() {
                                     : "bg-white/5 border border-transparent hover:bg-white/10"
                                     }`}
                             >
-                                <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img
+                                <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 relative">
+                                    <OptimizedImage
                                         src={item.after}
                                         alt={item.title}
-                                        className="object-cover w-full h-full"
+                                        fill
+                                        className="object-cover"
                                     />
                                 </div>
                                 <div className="text-left">

@@ -29,6 +29,7 @@ import QuickQuoteForm from './QuickQuoteForm';
 import SineklikDecisionAssistant from './SineklikDecisionAssistant';
 import MeshVisibilitySlider from './MeshVisibilitySlider';
 import AnimatedPliseSineklik from '@/components/ui/AnimatedPliseSineklik';
+import OptimizedImage from "@/components/ui/OptimizedImage";
 
 // SEO Metadata
 export const metadata: Metadata = {
@@ -135,7 +136,14 @@ export default function SineklikPage() {
             <main className="min-h-screen bg-white">
                 {/* Hero Section */}
                 <section className="relative bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-800 py-20 lg:py-28">
-                    <div className="absolute inset-0 bg-[url('/images/sineklik/duble-plise-sineklik.jpg')] bg-cover bg-center opacity-10" />
+                    <div className="absolute inset-0 opacity-40">
+                        <OptimizedImage
+                            src="/images/showroom-main.png"
+                            alt="Sineklik Sistemleri"
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
                     <div className="container mx-auto px-4 relative z-10">
                         <div className="max-w-4xl mx-auto text-center">
                             <span className="inline-block px-4 py-2 bg-emerald-500/20 text-emerald-300 rounded-full text-sm font-medium mb-6">
@@ -285,11 +293,11 @@ export default function SineklikPage() {
                                     className="bg-gray-50 rounded-2xl overflow-hidden hover:shadow-xl transition-all group"
                                 >
                                     <div className="relative h-64 bg-gradient-to-br from-emerald-600 to-teal-700">
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img
+                                        <OptimizedImage
                                             src={system.image}
                                             alt={system.name}
-                                            className="absolute inset-0 w-full h-full object-contain p-8 group-hover:scale-105 transition-transform"
+                                            fill
+                                            className="object-contain p-8 group-hover:scale-105 transition-transform"
                                         />
                                         <div className="absolute bottom-4 left-4">
                                             <span className="px-3 py-1 bg-white/90 text-emerald-700 text-sm font-medium rounded-full">
@@ -485,11 +493,11 @@ export default function SineklikPage() {
                                 </Link>
                             </div>
                             <div className="relative h-96 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
+                                <OptimizedImage
                                     src={storSystem?.image || '/images/sineklik/yatay-plise-sineklik.png'}
                                     alt={storSystem?.name || 'Stor Sineklik'}
-                                    className="w-full h-full object-contain p-8"
+                                    fill
+                                    className="object-contain p-8"
                                 />
                             </div>
                         </div>
