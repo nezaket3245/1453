@@ -9,6 +9,8 @@ import { businessConfig } from "@/config/business.config";
  * Google Maps integration showing Beylikdüzü showroom.
  * Local SEO optimized with address, directions, and contact info.
  * Includes Schema.org LocalBusiness markup enhancement.
+ * 
+ * Büyükçekmece ve Beylikdüzü'nün tüm mahallelerini içerir.
  */
 
 const workingHours = [
@@ -17,23 +19,47 @@ const workingHours = [
     { day: "Pazar", hours: "Kapalı" },
 ];
 
-const serviceAreas = [
+// Merkez hizmet bölgeleri (ana ilçeler)
+const primaryServiceAreas = [
     "Beylikdüzü",
-    "Gürpınar",
-    "Yakuplu",
-    "Kavaklı",
     "Büyükçekmece",
     "Esenyurt",
     "Avcılar",
     "Küçükçekmece",
     "Başakşehir",
-    "Bahçeşehir",
-    "Hadımköy",
-    "Silivri",
+];
+
+// Beylikdüzü Mahalleleri
+const beylikduzuNeighborhoods = businessConfig.serviceAreas?.beylikduzu?.neighborhoods || [
+    "Adnan Kahveci", "Barış", "Büyükşehir", "Cumhuriyet",
+    "Dereağzı", "Gürpınar", "Kavaklı", "Marmara", "Sahil", "Yakuplu"
+];
+
+// Büyükçekmece Mahalleleri (TÜM MAHALLELER)
+const buyukcekmceNeighborhoods = businessConfig.serviceAreas?.buyukcekmece?.neighborhoods || [
+    // Merkez Mahalleler
+    "Atatürk", "Bahçelievler", "Batıköy", "Beykent", "Celaliye",
+    "Cumhuriyet", "Dizdariye", "Fatih", "Fevzi Çakmak", "Hürriyet",
+    "Kamiloba", "Karaağaç", "Kumburgaz", "Mimarsinan", "Muratbey",
+    // Sahil ve Kuzey Mahalleler
+    "Pınartepe", "Ulus", "Yenimahalle", "19 Mayıs", "Alkent 2000",
+    "Beykent Üniversitesi", "Boğaziçi", "Çakmaklı", "Güzelce",
+    // Diğer Mahalleler
+    "Ahmediye", "Tepecik", "Türkoba", "Yeniköy"
+];
+
+// Yakın ilçeler
+const nearbyDistricts = businessConfig.serviceAreas?.nearbyDistricts || [
+    "Bahçeşehir", "Hadımköy", "Silivri", "Çatalca"
 ];
 
 export function LocalShowroomSection() {
-    const googleMapsEmbedUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.5!2d${businessConfig.address.coordinates.longitude}!3d${businessConfig.address.coordinates.latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z${encodeURIComponent(businessConfig.address.full)}!5e0!3m2!1str!2str!4v1609459200000!5m2!1str!2str`;
+    const { coordinates, full } = businessConfig.address;
+    const mapCenter = `!3d${coordinates.latitude}!4d${coordinates.longitude}`;
+    const placeId = (coordinates as any).cid || "0x0:0x0";
+
+    // Using the official place ID for more accurate marker and business info
+    const googleMapsEmbedUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.5!2d${coordinates.longitude}!3d${coordinates.latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s${placeId}!2z${encodeURIComponent(full)}!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str`;
 
     return (
         <section
@@ -203,31 +229,100 @@ export function LocalShowroomSection() {
                     </motion.div>
                 </div>
 
-                {/* Service Areas */}
+                {/* Service Areas - Genişletilmiş Görünüm */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     className="mt-20"
                 >
-                    <h3 className="text-2xl font-bold text-neutral-900 mb-8 text-center">
+                    <h3 className="text-2xl font-bold text-neutral-900 mb-4 text-center">
                         Hizmet Verdiğimiz Bölgeler
                     </h3>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                        {serviceAreas.map((area, index) => (
-                            <motion.div
-                                key={area}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.05 }}
-                                className="text-center p-4 bg-neutral-50 rounded-xl hover:bg-primary-50 hover:text-primary-700 transition-colors cursor-default border border-neutral-100"
-                                itemProp="areaServed"
-                            >
-                                <span className="text-2xl mb-2 block">📍</span>
-                                <span className="font-medium text-sm">{area}</span>
-                            </motion.div>
-                        ))}
+                    <p className="text-neutral-600 text-center mb-10 max-w-2xl mx-auto">
+                        İstanbul Avrupa Yakası&apos;nda profesyonel PVC pencere, cam balkon ve panjur montaj hizmeti sunuyoruz.
+                    </p>
+
+                    {/* Ana İlçeler */}
+                    <div className="mb-12">
+                        <h4 className="text-lg font-bold text-primary-600 mb-6 text-center">
+                            📍 Ana Hizmet Bölgelerimiz
+                        </h4>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+                            {primaryServiceAreas.map((area: string, index: number) => (
+                                <motion.div
+                                    key={area}
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.05 }}
+                                    className="text-center p-4 bg-primary-50 rounded-xl border-2 border-primary-200 hover:bg-primary-100 transition-colors"
+                                    itemProp="areaServed"
+                                >
+                                    <span className="font-bold text-primary-700">{area}</span>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Beylikdüzü Mahalleleri */}
+                    <div className="mb-10">
+                        <h4 className="text-md font-bold text-neutral-700 mb-4 flex items-center justify-center gap-2">
+                            <span className="w-8 h-0.5 bg-primary-300"></span>
+                            Beylikdüzü Mahalleleri
+                            <span className="w-8 h-0.5 bg-primary-300"></span>
+                        </h4>
+                        <div className="flex flex-wrap justify-center gap-2">
+                            {beylikduzuNeighborhoods.map((area: string) => (
+                                <span
+                                    key={area}
+                                    className="px-3 py-1.5 bg-neutral-100 text-neutral-700 text-sm rounded-full hover:bg-primary-50 transition-colors"
+                                    itemProp="areaServed"
+                                >
+                                    {area}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Büyükçekmece Mahalleleri */}
+                    <div className="mb-10">
+                        <h4 className="text-md font-bold text-neutral-700 mb-4 flex items-center justify-center gap-2">
+                            <span className="w-8 h-0.5 bg-secondary-300"></span>
+                            Büyükçekmece Mahalleleri
+                            <span className="w-8 h-0.5 bg-secondary-300"></span>
+                        </h4>
+                        <div className="flex flex-wrap justify-center gap-2">
+                            {buyukcekmceNeighborhoods.map((area: string) => (
+                                <span
+                                    key={area}
+                                    className="px-3 py-1.5 bg-neutral-100 text-neutral-700 text-sm rounded-full hover:bg-secondary-50 transition-colors"
+                                    itemProp="areaServed"
+                                >
+                                    {area}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Yakın İlçeler */}
+                    <div>
+                        <h4 className="text-md font-bold text-neutral-700 mb-4 flex items-center justify-center gap-2">
+                            <span className="w-8 h-0.5 bg-accent-300"></span>
+                            Yakın İlçeler
+                            <span className="w-8 h-0.5 bg-accent-300"></span>
+                        </h4>
+                        <div className="flex flex-wrap justify-center gap-2">
+                            {nearbyDistricts.map((area: string) => (
+                                <span
+                                    key={area}
+                                    className="px-3 py-1.5 bg-neutral-100 text-neutral-700 text-sm rounded-full hover:bg-accent-50 transition-colors"
+                                    itemProp="areaServed"
+                                >
+                                    {area}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 </motion.div>
             </div>

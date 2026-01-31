@@ -14,6 +14,7 @@ export interface GlassSystem {
     description: string;
     longDescription: string;
     image: string;
+    videoUrl?: string;
     gallery: string[];
     technicalSpecs: { label: string; value: string; icon?: string }[];
     features: string[];
@@ -139,9 +140,9 @@ export const glassSystems: GlassSystem[] = [
 Özellikle Beylikdüzü ve Gürpınar gibi deniz kenarı bölgelerinde, sert kış rüzgarlarına ve nemli havaya karşı mükemmel koruma sağlar. Termal break (ısı köprüsü kesici) profil teknolojisi sayesinde, alüminyum profillerin iç ve dış yüzeyleri arasında ısı geçişi engellenir.
 
 Sistem, Somfy ve Becker motorları ile entegre çalışabilir, akıllı ev sistemlerine bağlanabilir ve uzaktan kumanda ile kontrol edilebilir. Yüksek katlarda yaşayanlar için rüzgar sensörleri opsiyonel olarak eklenebilir.`,
-        image: '/images/cam-balkon/cam-balkon-site-manzara.jpg',
+        image: "/images/cam-balkon/tiara-max-isicamli-yeni.jpg",
         gallery: [
-            '/images/cam-balkon/cam-balkon-site-manzara.jpg',
+            '/images/cam-balkon/tiara-max-isicamli-yeni.jpg',
             '/images/cam-balkon/cam-balkon-gunbatimi.jpg',
             '/images/cam-balkon/cam-balkon-kose.jpg',
         ],
@@ -238,10 +239,10 @@ Sistem, Somfy ve Becker motorları ile entegre çalışabilir, akıllı ev siste
 Standart termal profil yapısı sayesinde, klasik cam balkon sistemlerine göre %50'ye varan enerji tasarrufu sağlar. Beylikdüzü, Esenyurt ve Büyükçekmece gibi İstanbul'un batı yakasında yoğun talep gören bu sistem, kalite ve ekonomiyi bir arada sunar.
 
 Kolay kullanımı ve düşük bakım maliyeti ile uzun yıllar sorunsuz hizmet verir. 8mm temperli camlardan oluşan yapısı güvenliği, çift conta sistemi ise hava sızdırmazlığı garanti eder.`,
-        image: '/images/cam-balkon/cam-balkon-sehir-manzara.jpg',
+        image: "/images/cam-balkon/twin-isicamli-yeni.jpg",
         gallery: [
-            '/images/cam-balkon/cam-balkon-sehir-manzara.jpg',
-            '/images/cam-balkon/cam-balkon-site-manzara.jpg',
+            '/images/cam-balkon/twin-isicamli-yeni.jpg',
+            '/images/cam-balkon/tiara-max-isicamli-yeni.jpg',
         ],
         technicalSpecs: [
             { label: 'Cam Kalınlığı', value: '24mm (4+16+4mm)', icon: 'glass' },
@@ -497,7 +498,8 @@ Gizli drenaj sistemi sayesinde yağmur suyu kontrollü şekilde tahliye edilir. 
 Yüksek katlarda oturanlar için özel olarak tasarlanan rüzgar sensörü, belirli bir rüzgar hızına ulaşıldığında camları otomatik olarak kapatır. Bu özellik özellikle Beylikdüzü'ndeki yüksek rezidanslarda büyük önem taşır.
 
 Akıllı ev sistemleriyle (Google Home, Alexa, Apple HomeKit) entegre çalışabilir. Güneş sensörü opsiyonu ile gün batımında otomatik kapanma programlanabilir. Çocuk güvenlik modu aktifken camlar uzaktan kontrol edilemez.`,
-        image: '/images/cam-balkon/cam-balkon-gunbatimi.jpg',
+        image: "/images/panjur/panjur-motorlu-villa.jpg",
+        videoUrl: 'https://www.youtube.com/embed/Ptzlx_tHdzQ',
         gallery: [
             '/images/cam-balkon/cam-balkon-gunbatimi.jpg',
             '/images/cam-balkon/cam-balkon-site-manzara.jpg',
@@ -594,7 +596,7 @@ Akıllı ev sistemleriyle (Google Home, Alexa, Apple HomeKit) entegre çalışab
 Özellikle bütçe odaklı müşteriler için ideal olan bu sistem, motorlu versiyona göre %40-50 daha uygun fiyatlıdır. Elektrik bağlantısı gerektirmez, bu da montaj maliyetini düşürür ve bakım ihtiyacını minimuma indirir.
 
 Sistemde kullanılan gaz pistonları otomotiv sektöründen (bagaj kapağı amortisörü) adapte edilmiştir ve 50.000+ açma/kapama döngüsü garanti edilir. Yavaş kapanma özelliği ile çarpma ve parmak sıkışma riski yoktur.`,
-        image: '/images/cam-balkon/cam-balkon-sehir-manzara.jpg',
+        image: "/images/panjur/panjur-modern-villa.jpg",
         gallery: [
             '/images/cam-balkon/cam-balkon-sehir-manzara.jpg',
             '/images/cam-balkon/cam-balkon-gunbatimi.jpg',

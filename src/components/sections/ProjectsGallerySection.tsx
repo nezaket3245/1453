@@ -45,11 +45,11 @@ const completedProjects: Project[] = [
     },
     {
         id: "3",
-        title: "Evolution Serisi Apartman Projesi",
+        title: "Legend Art Serisi Apartman Projesi",
         location: "Kavaklı, Beylikdüzü",
         category: "PVC Pencere",
         image: "/images/gallery/yakuplu-after.png",
-        description: "48 daireli site için Evolution serisi pencere ve balkon kapısı montajı. Toplam 576 adet ürün.",
+        description: "48 daireli site için Legend Art serisi pencere ve balkon kapısı montajı. Toplam 576 adet ürün.",
         year: "2023"
     },
     {

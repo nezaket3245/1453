@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { businessConfig } from '@/config/business.config';
 
 /**
  * Technical FAQ Section with Schema.org FAQPage markup
@@ -158,8 +159,8 @@ export function TechnicalFAQSection({
                                 key={cat.id}
                                 onClick={() => setActiveCategory(cat.id)}
                                 className={`px-5 py-2.5 rounded-full font-medium text-sm transition-all ${activeCategory === cat.id
-                                        ? 'bg-primary-600 text-white shadow-lg shadow-primary-500/30'
-                                        : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
+                                    ? 'bg-primary-600 text-white shadow-lg shadow-primary-500/30'
+                                    : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
                                     }`}
                             >
                                 <span className="mr-2">{cat.icon}</span>
@@ -219,7 +220,7 @@ export function TechnicalFAQSection({
                     <div className="mt-12 text-center">
                         <p className="text-neutral-500 mb-4">Aradığınız cevabı bulamadınız mı?</p>
                         <a
-                            href="https://wa.me/905366405311?text=Merhaba%2C%20cam%20balkon%20hakk%C4%B1nda%20bir%20sorum%20var."
+                            href={`https://wa.me/${businessConfig.contact.whatsapp}?text=${encodeURIComponent("Merhaba, cam balkon hakkında bir sorum var.")}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 text-white font-bold rounded-full hover:bg-green-600 transition-colors shadow-lg shadow-green-500/30"

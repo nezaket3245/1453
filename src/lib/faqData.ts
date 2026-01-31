@@ -44,8 +44,8 @@ export const faqs: FAQItem[] = [
     // PVC Pencere Soruları
     {
         id: "4",
-        question: "Legend, Evolution ve Fusion serileri arasındaki fark nedir?",
-        answer: "Legend Serisi (80mm, 6 odacık): En üst segment, maksimum ısı ve ses yalıtımı, Uw ≤ 0.95 değeriyle A+ enerji sınıfı. Evolution Serisi (76mm, 5 odacık): Orta-üst segment, ince estetik tasarım, iyi yalıtım performansı. Fusion Serisi (70mm, 5 odacık): Ekonomik segment, temel yalıtım ihtiyaçları için ideal. Her üç seri de Egepen kalitesiyle üretilmektedir.",
+        question: "Legend, Legend Art ve Zendow serileri arasındaki fark nedir?",
+        answer: "Legend Serisi (80mm, 6 odacık): Maksimum ısı ve ses yalıtımı, Uw ≤ 0.95 değeriyle A+ enerji sınıfı. Legend Art Serisi (70mm, 5-6 odacık): Estetik ve yüksek izolasyon odaklı tasarım. Zendow Serisi (70mm, 5 odacık): Klasik tasarım ve güvenilir yalıtım performansı. Her üç seri de Egepen kalitesiyle üretilmektedir.",
         category: "pvc-pencere",
     },
     {

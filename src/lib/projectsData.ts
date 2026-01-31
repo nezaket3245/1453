@@ -29,8 +29,9 @@ export const projects: Project[] = [
         location: "Beylikdüzü, İstanbul",
         year: "2025",
         images: [
-            "/images/products/legend-series.png",
+            "/images/projeler/pvc-pencere-apartman.png",
             "/images/pvc/pvc-pencere-yemek-odasi.jpg",
+            "/images/products/legend-series.png",
         ],
         features: [
             "Legend Serisi 80mm Profil",
@@ -53,6 +54,7 @@ export const projects: Project[] = [
         location: "Gürpınar, Beylikdüzü",
         year: "2025",
         images: [
+            "/images/projeler/cam-balkon-rezidans.png",
             "/images/cam-balkon/cam-balkon-site-manzara.jpg",
             "/images/cam-balkon/cam-balkon-gunbatimi.jpg",
         ],
@@ -97,6 +99,7 @@ export const projects: Project[] = [
         location: "Büyükçekmece, İstanbul",
         year: "2025",
         images: [
+            "/images/projeler/dusakabin-lux-banyo.png",
             "/images/dusakabin/dusakabin-siyah-kose.jpg",
             "/images/dusakabin/dusakabin-kose-buzlu-cam.jpg",
         ],
@@ -121,6 +124,7 @@ export const projects: Project[] = [
         location: "Avcılar, İstanbul",
         year: "2024",
         images: [
+            "/images/projeler/panjur-villa-montaj.png",
             "/images/panjur/panjur-motorlu-villa.jpg",
             "/images/panjur/panjur-modern-villa.jpg",
         ],
@@ -141,6 +145,7 @@ export const projects: Project[] = [
         location: "Yakuplu, Beylikdüzü",
         year: "2025",
         images: [
+            "/images/projeler/aluminyum-cephe-ofis.png",
             "/images/aluminyum/ofis-bolme-cam.png",
             "/images/aluminyum/curtain-wall-giydirme.png",
         ],

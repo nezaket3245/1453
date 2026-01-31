@@ -9,6 +9,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Enable static export for Cloudflare Pages
   output: "export",
+  trailingSlash: true,
 
   // Enable experimental features for Next.js 15+
   experimental: {

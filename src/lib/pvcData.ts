@@ -32,6 +32,7 @@ export interface PVCProductSeries {
     applications: string[];
     seoKeywords: string[];
     officialUrl?: string; // Egepen resmi sayfa linki
+    heroVideo?: string; // Hero bölümünde gösterilecek video URL'si
 }
 
 export interface RepairService {
@@ -66,7 +67,7 @@ Tasarım süreci, profilin yanı sıra, pencere performansı olarak, yalıtım (
 Legend PVC Pencere ve Kapı Sistemi, pencerenin mekanınıza en iyi ısı yalıtımını sağlaması amacı ile birçok önemli yapı taşını bir araya getirecek şekilde tasarlanmıştır. Sistemin, 80 mm platformunda olması, 6 odacıklı, 3 conta (orta conta) konseptleri bir araya getirilmesi ile daha düşük ısı ve iletkenlik katsayısı (Uf) hedeflenmiştir.
 
 Özellikle sistemin 80 mm genişlik üzerinde yapılandırılması, 52 mm cam kalınlığına sahip düşük Ug değerindeki üçlü cam uygulamalarına olanak sağlamaktadır. Böylelikle pencerenize ait ısı iletkenlik değeri, profil kesiti ve cama ait ısıl değerlerin bir araya gelmesi ile üstün Uw pencere değerini oluşturmaktadır (Uw: 0.78 W/m²K).`,
-        image: "/images/pvc/legend-reklam.jpg",
+        image: "/images/products/legend-series.png",
         category: "pencere",
         featured: true,
         technicalSpecs: {
@@ -116,6 +117,7 @@ Legend PVC Pencere ve Kapı Sistemi, pencerenin mekanınıza en iyi ısı yalıt
             "Beylikdüzü Legend pencere",
         ],
         officialUrl: "https://www.egepen.com.tr/legend-sistemi-42",
+        heroVideo: "/videos/pvc/legend-hero.mp4",
     },
     {
         id: "legend-art",
@@ -130,7 +132,7 @@ Modern ve zarif çizgileri ile mekanların mimarisiyle ve dekorasyonuyla uyum i�
 5 odacıklı tasarımı ve 70 mm genişliği ile mükemmel bir ısı yalıtımına sahip olan LegendArt Sistemi'ne ait ısı iletim katsayısı (Uf), değeri 1,1 - 1,3 W/m²K olarak belirlenmiştir. Zarif ince kulak tasarımı sayesinde kalın cam kullanımına olanak sağlayarak pencere ısı yalıtımında 0,9 W/m²K'nin altında performans sunmaktadır.
 
 LegendArt Sistemi, içerisinde yer alan ürün çeşitliliği ile her detaya uygunluk sağlamaktadır. Rüzgârın fazla olduğu bölgelerde bile, statik ortakayıt ve cephe profilleri ile en uygun çözümlere kolaylıkla ulaşılabilir.`,
-        image: "/images/pvc/pvc-kapi-bahce.jpg",
+        image: "/images/pvc/pvc-pencere-yemek-odasi.jpg",
         category: "pencere",
         featured: true,
         technicalSpecs: {
@@ -256,7 +258,7 @@ Zendow PVC Pencere ve Kapı Sistemi'nin pencere ve kapıları yüksek yalıtım 
 Legend Sürme, Legend serisinin tüm avantajlarını sürme sistemlere taşıyan premium bir çözümdür. Geniş açıklıkları sorunsuzca kapatabilir ve ağır cam panelleri bile tek parmakla hareket ettirebilen patentli rulmanlı taşıyıcı sistemiyle dikkat çeker.
 
 Özellikle balkon, teras ve kış bahçesi uygulamalarında tercih edilen Legend Sürme, modern yaşam alanlarının vazgeçilmez çözümüdür.`,
-        image: "/images/pvc/pvc-villa-surme-gece.jpg",
+        image: "/images/products/zen-spirit-series.png",
         category: "surme",
         featured: true,
         technicalSpecs: {

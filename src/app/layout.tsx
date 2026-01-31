@@ -23,6 +23,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://egepenakcayapi.com.tr"),
   title: {
     default: `${businessConfig.name} | Beylikdüzü Egepen Deceuninck Yetkili Bayi`,
     template: `%s | ${businessConfig.name}`,
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
     description: `${businessConfig.address.district} Egepen Yetkili Bayi - Akçayapı`,
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/images/og-home.jpg",
         width: 1200,
         height: 630,
         alt: businessConfig.name,
@@ -96,7 +97,7 @@ const localBusinessSchema = {
     "streetAddress": businessConfig.address.street,
     "addressLocality": businessConfig.address.district,
     "addressRegion": businessConfig.address.city,
-    "postalCode": "34520",
+    "postalCode": (businessConfig.address as any).zip || "34528",
     "addressCountry": "TR"
   },
   "geo": {
@@ -105,13 +106,31 @@ const localBusinessSchema = {
     "longitude": businessConfig.address.coordinates.longitude
   },
   "areaServed": [
+    // Ana İlçeler
     { "@type": "City", "name": "Beylikdüzü" },
-    { "@type": "City", "name": "Gürpınar" },
     { "@type": "City", "name": "Büyükçekmece" },
     { "@type": "City", "name": "Esenyurt" },
     { "@type": "City", "name": "Avcılar" },
     { "@type": "City", "name": "Küçükçekmece" },
-    { "@type": "City", "name": "Başakşehir" }
+    { "@type": "City", "name": "Başakşehir" },
+    { "@type": "City", "name": "Silivri" },
+    { "@type": "City", "name": "Çatalca" },
+    // Beylikdüzü Mahalleleri
+    { "@type": "Place", "name": "Gürpınar, Beylikdüzü" },
+    { "@type": "Place", "name": "Yakuplu, Beylikdüzü" },
+    { "@type": "Place", "name": "Kavaklı, Beylikdüzü" },
+    { "@type": "Place", "name": "Adnan Kahveci, Beylikdüzü" },
+    // Büyükçekmece Mahalleleri
+    { "@type": "Place", "name": "Beykent, Büyükçekmece" },
+    { "@type": "Place", "name": "Kumburgaz, Büyükçekmece" },
+    { "@type": "Place", "name": "Mimarsinan, Büyükçekmece" },
+    { "@type": "Place", "name": "Bahçelievler, Büyükçekmece" },
+    { "@type": "Place", "name": "Batıköy, Büyükçekmece" },
+    { "@type": "Place", "name": "Güzelce, Büyükçekmece" },
+    { "@type": "Place", "name": "Alkent 2000, Büyükçekmece" },
+    // Diğer Bölgeler
+    { "@type": "Place", "name": "Bahçeşehir, Başakşehir" },
+    { "@type": "Place", "name": "Hadımköy, Arnavutköy" }
   ],
   "hasMap": businessConfig.social.googleMaps,
   "openingHoursSpecification": [
@@ -134,18 +153,29 @@ const localBusinessSchema = {
   ],
   "knowsAbout": [
     "PVC Pencere",
+    "PVC Pencere Montajı",
     "Cam Balkon",
+    "Isıcamlı Cam Balkon",
     "Egepen Deceuninck",
     "Isı Yalıtımı",
     "Sineklik Sistemleri",
     "Panjur Sistemleri",
-    "Duşakabin"
+    "Motorlu Panjur",
+    "Duşakabin",
+    "Alüminyum Doğrama"
   ],
-  "slogan": "Beylikdüzü'nün Yetkili Egepen Bayisi",
+  "slogan": "Beylikdüzü ve Büyükçekmece'nin Yetkili Egepen Bayisi",
   "foundingDate": "1999",
   "numberOfEmployees": {
     "@type": "QuantitativeValue",
     "value": "15-25"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "127",
+    "bestRating": "5",
+    "worstRating": "1"
   }
 };
 
@@ -157,6 +187,13 @@ export default function RootLayout({
   return (
     <html lang="tr" className={`${outfit.variable} ${inter.variable}`}>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta name="theme-color" content="#0055a5" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}

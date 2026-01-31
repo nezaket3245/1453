@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { panjurSystems, getPanjurSystemBySlug, somfyEcosystem } from '@/lib/panjurData';
 import { CTASection } from '@/components/sections/CTASection';
+import { businessConfig } from '@/config/business.config';
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -138,15 +139,15 @@ export default async function PanjurDetailPage({ params }: Props) {
                                 <div className="flex flex-wrap gap-4">
                                     <Link
                                         href="/teklif-al"
-                                        className="inline-flex items-center px-6 py-3 bg-white text-gray-900 font-semibold rounded-xl hover:bg-gray-100 transition-all"
+                                        className="inline-flex items-center px-6 py-3 bg-white text-gray-900 font-semibold rounded-xl hover:bg-gray-100 transition-all shadow-lg"
                                     >
-                                        📐 Teklif Al
+                                        📐 Ücretsiz Teklif Al
                                     </Link>
                                     <a
-                                        href="tel:+905320000000"
+                                        href={`tel:${businessConfig.contact.mobileRaw}`}
                                         className="inline-flex items-center px-6 py-3 bg-white/10 text-white font-semibold rounded-xl hover:bg-white/20 border border-white/20"
                                     >
-                                        📞 Hemen Ara
+                                        📞 {businessConfig.contact.mobile}
                                     </a>
                                 </div>
                             </div>
@@ -198,11 +199,10 @@ export default async function PanjurDetailPage({ params }: Props) {
                                 {system.technicalSpecs.map((spec, idx) => (
                                     <div
                                         key={idx}
-                                        className={`p-4 rounded-xl border ${
-                                            spec.highlight
+                                        className={`p-4 rounded-xl border ${spec.highlight
                                                 ? 'bg-indigo-50 border-indigo-200'
                                                 : 'bg-gray-50 border-gray-200'
-                                        }`}
+                                            }`}
                                     >
                                         <div className="text-sm text-gray-500 mb-1">{spec.label}</div>
                                         <div className={`font-bold ${spec.highlight ? 'text-indigo-700' : 'text-gray-900'}`}>

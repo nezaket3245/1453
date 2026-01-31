@@ -20,6 +20,7 @@ import {
     decisionMatrixCriteria,
 } from '@/lib/sineklikData';
 import { CTASection } from '@/components/sections/CTASection';
+import { businessConfig } from '@/config/business.config';
 import SineklikComparisonTable from './SineklikComparisonTable';
 import MeshComparisonSection from './MeshComparisonSection';
 import MaintenanceGuideSection from './MaintenanceGuideSection';
@@ -66,7 +67,7 @@ const localBusinessSchema = {
             postalCode: '34528',
             addressCountry: 'TR',
         },
-        telephone: '+90-532-000-0000',
+        telephone: businessConfig.contact.mobile,
         priceRange: '₺₺',
     },
     areaServed: {
@@ -159,7 +160,7 @@ export default function SineklikPage() {
                                     Ücretsiz Keşif
                                 </Link>
                                 <a
-                                    href="tel:+905320000000"
+                                    href={`tel:${businessConfig.contact.mobileRaw}`}
                                     className="inline-flex items-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-all border border-white/20"
                                 >
                                     <span className="mr-2">📞</span>
@@ -284,11 +285,11 @@ export default function SineklikPage() {
                                     className="bg-gray-50 rounded-2xl overflow-hidden hover:shadow-xl transition-all group"
                                 >
                                     <div className="relative h-64 bg-gradient-to-br from-emerald-600 to-teal-700">
-                                        <Image
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
                                             src={system.image}
                                             alt={system.name}
-                                            fill
-                                            className="object-contain p-8 group-hover:scale-105 transition-transform"
+                                            className="absolute inset-0 w-full h-full object-contain p-8 group-hover:scale-105 transition-transform"
                                         />
                                         <div className="absolute bottom-4 left-4">
                                             <span className="px-3 py-1 bg-white/90 text-emerald-700 text-sm font-medium rounded-full">
@@ -484,11 +485,11 @@ export default function SineklikPage() {
                                 </Link>
                             </div>
                             <div className="relative h-96 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl">
-                                <Image
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src={storSystem?.image || '/images/sineklik/yatay-plise-sineklik.png'}
                                     alt={storSystem?.name || 'Stor Sineklik'}
-                                    fill
-                                    className="object-contain p-8"
+                                    className="w-full h-full object-contain p-8"
                                 />
                             </div>
                         </div>

@@ -121,7 +121,7 @@ const specialtyContractorSchema = {
     streetAddress: businessConfig.address.street,
     addressLocality: businessConfig.address.district,
     addressRegion: businessConfig.address.city,
-    postalCode: "34520",
+    postalCode: (businessConfig.address as any).zip || "34528",
     addressCountry: "TR",
   },
   geo: {
@@ -142,7 +142,7 @@ const specialtyContractorSchema = {
         itemOffered: {
           "@type": "Service",
           name: "PVC Pencere Montajı",
-          description: "Egepen Deceuninck Legend, Evolution ve Zen Spirit serisi PVC pencere satış ve montajı",
+          description: "Egepen Deceuninck Legend, Legend Art ve Zen Spirit serisi PVC pencere satış ve montajı",
         },
       },
       {
@@ -167,6 +167,14 @@ const specialtyContractorSchema = {
           "@type": "Service",
           name: "Panjur ve Kepenk",
           description: "Motorlu ve manuel panjur sistemleri montajı",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Duşakabin Sistemleri",
+          description: "Premium cam duşakabin, siyah çerçeveli ve çerçevesiz modeller",
         },
       },
     ],

@@ -221,7 +221,7 @@ export const advancedSystemMechanics = {
     inFrameIntegration: {
         name: 'In-Frame Integration (Kasa İçi)',
         description: 'Egepen profili içine entegre sineklik - Mimari bütünlük için görünmez çözüm',
-        compatibleProfiles: ['Legend', 'Evolution', 'Premium'],
+        compatibleProfiles: ['Legend', 'Legend Art', 'Premium'],
     },
 };
 
@@ -294,7 +294,7 @@ export const sineklikSystems: SineklikSystem[] = [
 İthal polyester tül kullanılan sistemimiz, görüşü engellemeden maksimum hava sirkülasyonu sağlar. Özel ip gerginlik sistemi sayesinde rüzgarda bile sabit kalır ve sallanma yapmaz.
 
 Çift taraflı kullanım özelliği ile hem içeriden hem dışarıdan rahatça açılıp kapatılabilir. Özellikle geniş kapılar ve balkon çıkışları için ideal olan bu sistem, Egepen Akçayapı'nın en çok satan sineklik modelidir.`,
-        image: '/images/sineklik/yatay-plise-sineklik.png',
+        image: "/images/projeler/sineklik-daire-montaj.png",
         gallery: [
             '/images/sineklik/yatay-plise-sineklik.png',
             '/images/sineklik/duble-plise-sineklik-2.jpg',
@@ -469,7 +469,7 @@ Bu özel tül, normal sinekliklere göre 7 kat daha dayanıklıdır. Kedi ve kö
 Sistemde ayrıca özel emniyet kilidi bulunur. Bu kilit, evcil hayvanların sinekliği itip açmasını engeller. Kilit mekanizması tek elle açılabilir ancak hayvanlar tarafından açılamayacak şekilde tasarlanmıştır.
 
 Hem menteşeli kapı tipi hem de sürme pencere tipi üretimi yapılmaktadır. Beylikdüzü ve İstanbul genelinde ücretsiz keşif hizmeti sunuyoruz.`,
-        image: '/images/sineklik/kedi-sinekligi.jpg',
+        image: "/images/sineklik/kedi-sinekligi.jpg",
         gallery: [
             '/images/sineklik/kedi-sinekligi.jpg',
             '/images/sineklik/menteseli-sineklik.png',
@@ -577,7 +577,7 @@ Dayanıklı alüminyum çerçeve ve yüksek görünürlük sağlayan fiberglass 
         image: '/images/sineklik/surme-sineklik.jpg',
         gallery: [
             '/images/sineklik/surme-sineklik.jpg',
-            '/images/sineklik/menteseli-sineklik.png',
+            '/images/sineklik/yatay-plise-sineklik.png',
         ],
         technicalSpecs: [
             { label: 'Hareket Tipi', value: 'Yatay Sürme', icon: 'slide' },
@@ -740,7 +740,7 @@ Dayanıklı alüminyum çerçeve ve yüksek görünürlük sağlayan fiberglass 
 Yaylı otomatik geri sarım mekanizması sayesinde bıraktığınızda yavaşça sarılır. Yavaş sarım (soft close) özelliği ani hareketleri ve sesi önler. Alt ray veya manyetik tutma sistemi ile tül çerçeveye sabitlenir.
 
 Özellikle modern mimariler ve minimal tasarım sevenler için ideal olan stor sineklik, hem dikey (pencere) hem yatay (kapı) versiyonlarında üretilir.`,
-        image: '/images/sineklik/yatay-plise-sineklik.png',
+        image: "/images/projeler/sineklik-daire-montaj.png",
         gallery: [
             '/images/sineklik/yatay-plise-sineklik.png',
             '/images/sineklik/duble-plise-sineklik-2.jpg',

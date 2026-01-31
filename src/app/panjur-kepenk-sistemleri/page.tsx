@@ -16,6 +16,7 @@ import {
     panjurSeoKeywords,
 } from '@/lib/panjurData';
 import { CTASection } from '@/components/sections/CTASection';
+import { businessConfig } from '@/config/business.config';
 
 // SEO Metadata
 export const metadata: Metadata = {
@@ -56,6 +57,14 @@ const serviceSchema = {
 // Category cards
 const categories = [
     {
+        id: 'panjur-pvc',
+        title: 'Egepen Storbox',
+        description: 'Monoblok (Pencere Üstü) sistemler',
+        icon: '🍱',
+        color: 'from-indigo-500 to-blue-600',
+        highlight: 'Egepen Kalitesi',
+    },
+    {
         id: 'panjur-aluminyum',
         title: 'Alüminyum Panjur',
         description: 'Somfy motorlu, akıllı ev uyumlu',
@@ -82,6 +91,7 @@ const categories = [
 ];
 
 export default function PanjurKepenkPage() {
+    const pvcPanjur = panjurSystems.filter((s) => s.category === 'panjur-pvc');
     const aluminiumPanjur = panjurSystems.filter((s) => s.category === 'panjur-aluminyum');
     const ticariKepenk = panjurSystems.filter((s) => s.category === 'kepenk-ticari');
     const endustriyelKepenk = panjurSystems.filter((s) => s.category === 'kepenk-endustriyel');
@@ -128,14 +138,14 @@ export default function PanjurKepenkPage() {
                                     className="inline-flex items-center px-8 py-4 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-xl transition-all shadow-lg"
                                 >
                                     <span className="mr-2">📐</span>
-                                    Ücretsiz Keşif
+                                    Ücretsiz Keşif Al
                                 </Link>
                                 <a
-                                    href="tel:+905320000000"
+                                    href={`tel:${businessConfig.contact.mobileRaw}`}
                                     className="inline-flex items-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-all border border-white/20"
                                 >
                                     <span className="mr-2">📞</span>
-                                    Hemen Arayın
+                                    {businessConfig.contact.mobile}
                                 </a>
                             </div>
 
@@ -318,6 +328,69 @@ export default function PanjurKepenkPage() {
                                     ))}
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Egepen Storbox PVC Panjur Section */}
+                <section id="panjur-pvc" className="py-20 bg-white">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center mb-12">
+                            <span className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium mb-4">
+                                🍱 Egepen Deceuninck
+                            </span>
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                                Storbox Monoblok Panjur
+                            </h2>
+                            <p className="text-gray-600 max-w-2xl mx-auto">
+                                Pencere ile bütünleşik, yüksek yalıtımlı ve estetik PVC panjur çözümleri.
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
+                            {pvcPanjur.map((system) => (
+                                <div
+                                    key={system.id}
+                                    className="bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 group"
+                                >
+                                    <div className="grid md:grid-cols-2">
+                                        <div className="relative h-64 md:h-auto bg-gray-100">
+                                            <Image
+                                                src={system.image}
+                                                alt={system.name}
+                                                fill
+                                                className="object-contain p-8 group-hover:scale-105 transition-transform duration-500"
+                                            />
+                                        </div>
+                                        <div className="p-8">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <h3 className="text-2xl font-bold text-gray-900">{system.name}</h3>
+                                                <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">
+                                                    Egepen Resmi Ürün
+                                                </span>
+                                            </div>
+                                            <p className="text-indigo-600 font-medium mb-4">{system.tagline}</p>
+                                            <p className="text-gray-600 mb-6">{system.description}</p>
+
+                                            <div className="grid grid-cols-2 gap-4 mb-6">
+                                                {system.technicalSpecs.slice(0, 4).map((spec, sidx) => (
+                                                    <div key={sidx} className="bg-gray-50 p-3 rounded-lg text-center">
+                                                        <div className="text-xs text-gray-500 uppercase tracking-wider">{spec.label}</div>
+                                                        <div className="font-bold text-gray-900">{spec.value}</div>
+                                                    </div>
+                                                ))}
+                                            </div>
+
+                                            <Link
+                                                href={`/panjur-kepenk-sistemleri/${system.slug}`}
+                                                className="inline-flex items-center justify-center w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-lg"
+                                            >
+                                                Detayları İncele
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>

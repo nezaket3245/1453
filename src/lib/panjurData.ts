@@ -99,6 +99,15 @@ export const lamelLibrary: LamelOption[] = [
         description: 'Ekonomik PVC lamel, kolay temizlik',
     },
     {
+        id: 'egepen-storbox-lamel',
+        name: 'Egepen Storbox PVC Lamel',
+        material: 'pvc',
+        width: 37,
+        thickness: 8,
+        foamFilled: false,
+        description: 'Egepen Storbox sistemine özel yüksek mukavemetli PVC lamel',
+    },
+    {
         id: 'steel-security',
         name: 'Çelik Güvenlik Lameli',
         material: 'steel',
@@ -228,7 +237,7 @@ export const energyEfficiencyData = {
         summerCooling: 55, // 45% reduction
         winterHeating: 65, // 35% reduction
     },
-    description: 'Köpük dolgulu panjur ile yaz aylarında %45, kış aylarında %35\'e varan enerji tasarrufu',
+    description: 'Egepen Storbox ve köpük dolgulu panjur ile yaz aylarında %45, kış aylarında %35\'e varan enerji tasarrufu',
 };
 
 // Main Panjur & Kepenk Systems
@@ -236,6 +245,81 @@ export const panjurSystems: PanjurSystem[] = [
     // =====================================================
     // ALÜMİNYUM PANJUR SİSTEMLERİ
     // =====================================================
+    {
+        id: 'egepen-storbox-monoblok',
+        slug: 'egepen-storbox-monoblok-panjur',
+        name: 'Egepen Storbox Monoblok Panjur',
+        category: 'panjur-pvc',
+        tagline: 'Pencere ile Bütünleşik Estetik ve Yüksek Yalıtım',
+        description: 'Egepen Deceuninck kalitesiyle pencere üzerine takılan monoblok panjur sistemi. Üstün ses ve ısı yalıtımı, kolay montaj.',
+        longDescription: `Egepen Deceuninck Storbox Monoblok Panjur Sistemi, pencerelerinizle tam uyumlu çalışacak şekilde tasarlanmış modern bir çözümdür. "Monoblok" yani pencere ile bütünleşik yapısı sayesinde montaj kolaylığı ve görsel bütünlük sağlar.
+
+Neden Egepen Storbox?
+- Estetik Tasarım: Pencere üzerine monte edilen kutu, dışarıdan bakıldığında temiz bir görünüm sunar.
+- Yüksek Yalıtım: Kutu içi özel yalıtım malzemeleri sayesinde ısı ve ses köprülerini ortadan kaldırır.
+- Çeşitli Renkler: Egepen profil renkleriyle %100 uyumlu lamine renk seçenekleri.
+- Kolay Bakım: Alt taraftan veya içeriden açılabilen kapakları sayesinde bakım ve temizlik çok kolaydır.
+
+Teknik Avantajlar:
+- Farklı lamel seçenekleri (PVC veya Alüminyum)
+- Manuel veya motorlu kullanım
+- Sineklik entegre edilebilir yapı (Opsiyonel)
+- Rüzgar, yağmur ve güneşin olumsuz etkilerine karşı tam koruma.`,
+        image: '/images/panjur/panjur-modern-villa.jpg', // Egepen Storbox Premium Photo
+        gallery: ['/images/panjur/panjur-motorlu-villa.jpg', '/images/panjur/panjur-modern-villa.jpg'],
+        technicalSpecs: [
+            { label: 'Kutu Boyutu', value: '165mm / 200mm / 240mm', highlight: true },
+            { label: 'Yalıtım Değeri', value: 'Uw: 0.82 W/m²K', highlight: true },
+            { label: 'Ses Yalıtımı', value: '42 dB', highlight: false },
+            { label: 'Profil Uyumu', value: 'Legend, Legend Art, Zendow', highlight: true },
+            { label: 'Sistem Tipi', value: 'Monoblok (Pencere Üstü)', highlight: false },
+        ],
+        features: [
+            'Pencere ile bütünleşik tasarım',
+            'İçerden erişilebilir bakım kapağı',
+            'Entegre sineklik opsiyonu',
+            'Farklı ölçüde kutu seçenekleri',
+            'Yüksek hava sızdırmazlığı',
+            'Güçlendirilmiş statik yapı',
+        ],
+        benefits: [
+            'Isı köprülerini engeller',
+            'Ses kirliliğini minimize eder',
+            'Hırsızlığa karşı caydırıcıdır',
+            'Güneş ışığını %100 kontrol emenizi sağlar',
+            'Pencere rengiyle uyumlu tasarım',
+        ],
+        lamelOptions: [
+            lamelLibrary.find((l) => l.id === 'egepen-storbox-lamel')!,
+            lamelLibrary.find((l) => l.id === 'alu-45-foam')!,
+        ],
+        motorOptions: [
+            motorLibrary.find((m) => m.brand === 'somfy')!,
+            motorLibrary.find((m) => m.brand === 'mosel')!,
+        ],
+        securityRating: 'enhanced',
+        warranty: '10 Yıl Sistem + 5 Yıl Motor',
+        certifications: ['CE', 'TS EN 13659', 'ISO 9001'],
+        priceRange: 'orta',
+        seoKeywords: [
+            'Egepen Storbox',
+            'monoblok panjur',
+            'pencere üstü panjur',
+            'Egepen panjur sistemleri',
+            'ısı yalıtımlı kutu panjur',
+            'Beylikdüzü Egepen bayi',
+        ],
+        faq: [
+            {
+                question: 'Storbox panjur mevcut pencereme takılır mı?',
+                answer: 'Monoblok sistemler genellikle yeni pencere montajı sırasında takılır. Mevcut pencereler için dıştan takma alüminyum panjur sistemlerimizi öneriyoruz.',
+            },
+            {
+                question: 'Storbox kutusunun içine sineklik takılabilir mi?',
+                answer: 'Evet, Storbox sistemimiz özel tasarımı sayesinde içerisine entegre sineklik (stor sineklik) takılmasına olanak sağlar.',
+            },
+        ],
+    },
     {
         id: 'aluminium-panjur-motorlu',
         slug: 'motorlu-aluminyum-panjur',

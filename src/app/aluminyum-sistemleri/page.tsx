@@ -109,12 +109,11 @@ export default function AluminumSystemsPage() {
                 {/* Hero Section */}
                 <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 py-20 lg:py-28 overflow-hidden">
                     <div className="absolute inset-0 opacity-20">
-                        <Image
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                             src="/images/cam-balkon/cam-balkon-sehir-manzara.jpg"
                             alt="Alüminyum Sistemleri"
-                            fill
-                            className="object-cover"
-                            priority
+                            className="absolute inset-0 w-full h-full object-cover"
                         />
                     </div>
                     <div className="absolute inset-0 bg-grid-white/5" />
@@ -282,8 +281,8 @@ export default function AluminumSystemsPage() {
                                                 </td>
                                                 <td
                                                     className={`px-6 py-4 text-center text-sm ${item.winner === 'pvc'
-                                                            ? 'text-emerald-700 font-semibold bg-emerald-50'
-                                                            : 'text-gray-600'
+                                                        ? 'text-emerald-700 font-semibold bg-emerald-50'
+                                                        : 'text-gray-600'
                                                         }`}
                                                 >
                                                     {item.pvc.value}
@@ -293,8 +292,8 @@ export default function AluminumSystemsPage() {
                                                 </td>
                                                 <td
                                                     className={`px-6 py-4 text-center text-sm ${item.winner === 'aluminum'
-                                                            ? 'text-blue-700 font-semibold bg-blue-50'
-                                                            : 'text-gray-600'
+                                                        ? 'text-blue-700 font-semibold bg-blue-50'
+                                                        : 'text-gray-600'
                                                         }`}
                                                 >
                                                     {item.aluminum.value}
@@ -373,8 +372,8 @@ export default function AluminumSystemsPage() {
                                                     <div
                                                         key={idx}
                                                         className={`p-3 rounded-lg ${spec.highlight
-                                                                ? 'bg-orange-100 border border-orange-200'
-                                                                : 'bg-white'
+                                                            ? 'bg-orange-100 border border-orange-200'
+                                                            : 'bg-white'
                                                             }`}
                                                     >
                                                         <div className="text-xs text-gray-500">{spec.label}</div>
@@ -400,11 +399,11 @@ export default function AluminumSystemsPage() {
                                         </div>
 
                                         <div className="relative h-64 lg:h-auto min-h-[300px] rounded-xl overflow-hidden bg-gradient-to-br from-orange-600 to-red-700">
-                                            <Image
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
                                                 src={system.image}
                                                 alt={system.name}
-                                                fill
-                                                className="object-contain p-8"
+                                                className="absolute inset-0 w-full h-full object-contain p-8"
                                             />
                                         </div>
                                     </div>
@@ -436,11 +435,11 @@ export default function AluminumSystemsPage() {
                                     className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all group"
                                 >
                                     <div className="relative h-56 bg-gradient-to-br from-blue-600 to-indigo-700">
-                                        <Image
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
                                             src={system.image}
                                             alt={system.name}
-                                            fill
-                                            className="object-contain p-6 group-hover:scale-105 transition-transform"
+                                            className="absolute inset-0 w-full h-full object-contain p-6 group-hover:scale-105 transition-transform"
                                         />
                                         <div className="absolute top-4 right-4">
                                             <span className="px-3 py-1 bg-white/90 text-blue-700 text-xs font-medium rounded-full">
@@ -543,11 +542,11 @@ export default function AluminumSystemsPage() {
                                         </div>
 
                                         <div className="relative h-64 rounded-xl overflow-hidden bg-gradient-to-br from-emerald-600 to-teal-700">
-                                            <Image
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
                                                 src={system.image}
                                                 alt={system.name}
-                                                fill
-                                                className="object-contain p-6"
+                                                className="absolute inset-0 w-full h-full object-contain p-6"
                                             />
                                         </div>
                                     </div>
@@ -579,11 +578,11 @@ export default function AluminumSystemsPage() {
                             >
                                 <div className="grid grid-cols-1 lg:grid-cols-2">
                                     <div className="relative h-80 lg:h-auto bg-gradient-to-br from-purple-600 to-pink-700">
-                                        <Image
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
                                             src={system.image}
                                             alt={system.name}
-                                            fill
-                                            className="object-contain p-8"
+                                            className="absolute inset-0 w-full h-full object-contain p-8"
                                         />
                                         <div className="absolute bottom-4 left-4 right-4">
                                             <div className="bg-white/90 backdrop-blur rounded-xl p-4">
@@ -605,8 +604,8 @@ export default function AluminumSystemsPage() {
                                                 <div
                                                     key={idx}
                                                     className={`p-3 rounded-lg ${spec.highlight
-                                                            ? 'bg-purple-100 border border-purple-200'
-                                                            : 'bg-gray-50'
+                                                        ? 'bg-purple-100 border border-purple-200'
+                                                        : 'bg-gray-50'
                                                         }`}
                                                 >
                                                     <div className="text-xs text-gray-500">{spec.label}</div>

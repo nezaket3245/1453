@@ -105,19 +105,31 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                         <div className="grid lg:grid-cols-2 gap-16 items-start">
                             {/* Product Images */}
                             <div className="space-y-6">
-                                <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl border border-neutral-200 bg-white">
-                                    <Image
-                                        src={system.image}
-                                        alt={system.name}
-                                        fill
-                                        className="object-cover"
-                                        priority
-                                    />
-                                    <div className="absolute top-6 left-6 flex flex-col gap-2">
-                                        <span className="px-4 py-2 bg-neutral-900/80 backdrop-blur-md text-white text-xs font-bold rounded-full uppercase tracking-widest border border-white/10">
-                                            {system.category === 'isicamli' ? 'Isı Yalıtım Teknolojisi' : 'Premium Sistem'}
-                                        </span>
-                                    </div>
+                                <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl border border-neutral-200 bg-black group">
+                                    {system.videoUrl ? (
+                                        <iframe
+                                            src={system.videoUrl}
+                                            title={system.name}
+                                            className="absolute inset-0 w-full h-full"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowFullScreen
+                                        />
+                                    ) : (
+                                        <>
+                                            <Image
+                                                src={system.image}
+                                                alt={system.name}
+                                                fill
+                                                className="object-cover"
+                                                priority
+                                            />
+                                            <div className="absolute top-6 left-6 flex flex-col gap-2">
+                                                <span className="px-4 py-2 bg-neutral-900/80 backdrop-blur-md text-white text-xs font-bold rounded-full uppercase tracking-widest border border-white/10">
+                                                    {system.category === 'isicamli' ? 'Isı Yalıtım Teknolojisi' : 'Premium Sistem'}
+                                                </span>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                                 <div className="grid grid-cols-3 gap-6">
                                     {system.gallery.map((img, idx) => (

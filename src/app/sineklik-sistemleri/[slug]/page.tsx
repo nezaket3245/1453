@@ -13,6 +13,7 @@ import {
     getRelatedSystems,
 } from '@/lib/sineklikData';
 import { CTASection } from '@/components/sections/CTASection';
+import { businessConfig } from '@/config/business.config';
 
 // Generate static params for all systems
 export async function generateStaticParams() {
@@ -164,19 +165,18 @@ export default async function SineklikDetailPage({
                                     {/* Badges */}
                                     <div className="absolute top-4 left-4 flex flex-col gap-2">
                                         <span
-                                            className={`px-3 py-1 rounded-full text-sm font-medium ${
-                                                system.priceRange === 'premium'
+                                            className={`px-3 py-1 rounded-full text-sm font-medium ${system.priceRange === 'premium'
                                                     ? 'bg-amber-500 text-white'
                                                     : system.priceRange === 'orta'
-                                                    ? 'bg-blue-500 text-white'
-                                                    : 'bg-green-500 text-white'
-                                            }`}
+                                                        ? 'bg-blue-500 text-white'
+                                                        : 'bg-green-500 text-white'
+                                                }`}
                                         >
                                             {system.priceRange === 'premium'
                                                 ? 'Premium'
                                                 : system.priceRange === 'orta'
-                                                ? 'Orta Segment'
-                                                : 'Ekonomik'}
+                                                    ? 'Orta Segment'
+                                                    : 'Ekonomik'}
                                         </span>
                                         {system.category === 'kedi' && (
                                             <span className="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-medium">
@@ -218,14 +218,14 @@ export default async function SineklikDetailPage({
                                     {system.category === 'plise'
                                         ? 'Plise Sineklik'
                                         : system.category === 'kedi'
-                                        ? 'Kedi Sinekliği'
-                                        : system.category === 'surme'
-                                        ? 'Sürme Sineklik'
-                                        : system.category === 'menteseli'
-                                        ? 'Menteşeli Sineklik'
-                                        : system.category === 'stor'
-                                        ? 'Stor Sineklik'
-                                        : 'Panjur Sistemi'}
+                                            ? 'Kedi Sinekliği'
+                                            : system.category === 'surme'
+                                                ? 'Sürme Sineklik'
+                                                : system.category === 'menteseli'
+                                                    ? 'Menteşeli Sineklik'
+                                                    : system.category === 'stor'
+                                                        ? 'Stor Sineklik'
+                                                        : 'Panjur Sistemi'}
                                 </span>
 
                                 <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -314,7 +314,7 @@ export default async function SineklikDetailPage({
                                         Fiyat Teklifi Al
                                     </Link>
                                     <a
-                                        href={`https://wa.me/905320000000?text=${encodeURIComponent(
+                                        href={`https://wa.me/${businessConfig.contact.whatsapp}?text=${encodeURIComponent(
                                             `${system.name} hakkında bilgi almak istiyorum`
                                         )}`}
                                         target="_blank"
@@ -325,7 +325,7 @@ export default async function SineklikDetailPage({
                                         WhatsApp
                                     </a>
                                     <a
-                                        href="tel:+905320000000"
+                                        href={`tel:${businessConfig.contact.mobileRaw}`}
                                         className="inline-flex items-center px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl transition-all"
                                     >
                                         <span className="mr-2">📞</span>

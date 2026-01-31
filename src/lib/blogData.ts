@@ -34,7 +34,7 @@ PVC pencere almak, eviniz için yapacağınız en önemli yatırımlardan biridi
 Profil genişliği, pencerenizin ısı yalıtım performansını doğrudan etkiler:
 
 - **60-65mm Profiller**: Ekonomik sınıf, temel yalıtım
-- **70-76mm Profiller**: Orta sınıf, iyi yalıtım (Evolution serisi)
+- **70-76mm Profiller**: Orta sınıf, iyi yalıtım (Legend Art serisi)
 - **80mm+ Profiller**: Premium sınıf, en üstün yalıtım (Legend serisi)
 
 Odacık sayısı da önemlidir. 6 odacıklı profiller, 3-4 odacıklılara göre çok daha iyi ısı yalıtımı sağlar.
@@ -286,7 +286,7 @@ Egepen orijinal yedek parçalar, 5 yıl garanti kapsamındadır.
 *Akçayapı olarak orijinal Egepen ispanyolet değişimi hizmeti sunuyoruz. Aynı gün servis için bizi arayın.*
         `,
         category: "bakim",
-        image: "/images/sineklik/menteseli-sineklik.png",
+        image: "/images/pvc/pvc-servis-egepen.jpg",
         author: "Akçayapı Servis Ekibi",
         date: "2025-12-28",
         readTime: "5 dk",

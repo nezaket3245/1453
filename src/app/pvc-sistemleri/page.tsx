@@ -146,12 +146,11 @@ export default function PVCSystemsPage() {
                 {/* ==================== HERO SECTION ==================== */}
                 <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white py-20 lg:py-32 overflow-hidden">
                     <div className="absolute inset-0 opacity-20">
-                        <OptimizedImage
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                             src="/images/pvc/pvc-surme-manzara.jpg"
                             alt="PVC Sistemleri - Egepen Deceuninck"
-                            fill
-                            className="object-cover"
-                            priority
+                            className="absolute inset-0 w-full h-full object-cover"
                         />
                     </div>
                     <div className="container-custom relative z-10">
@@ -203,11 +202,11 @@ export default function PVCSystemsPage() {
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {/* Large Featured Image */}
                             <div className="md:col-span-2 lg:col-span-2 relative aspect-video rounded-2xl overflow-hidden group">
-                                <OptimizedImage
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src="/images/pvc/pvc-surme-deniz-manzara.jpg"
                                     alt="PVC Sürme Sistem Montajı - Deniz Manzaralı Teras"
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                 <div className="absolute bottom-6 left-6 right-6 text-white">
@@ -219,11 +218,11 @@ export default function PVCSystemsPage() {
 
                             {/* Gallery Item */}
                             <div className="relative aspect-square rounded-2xl overflow-hidden group">
-                                <OptimizedImage
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src="/images/pvc/pvc-kis-bahcesi.jpg"
                                     alt="PVC Pencere Montajı - Kış Bahçesi"
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                 <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -234,11 +233,11 @@ export default function PVCSystemsPage() {
 
                             {/* Gallery Item */}
                             <div className="relative aspect-square rounded-2xl overflow-hidden group">
-                                <OptimizedImage
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src="/images/pvc/pvc-villa-surme-gece.jpg"
                                     alt="PVC Sürme Sistem - Villa Gece"
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                 <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -249,11 +248,11 @@ export default function PVCSystemsPage() {
 
                             {/* Gallery Item */}
                             <div className="relative aspect-square rounded-2xl overflow-hidden group">
-                                <OptimizedImage
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src="/images/pvc/pvc-kapi-bahce.jpg"
                                     alt="PVC Kapı Sistemi - Bahçe Çıkışı"
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                 <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -264,11 +263,11 @@ export default function PVCSystemsPage() {
 
                             {/* Gallery Item with CTA */}
                             <div className="relative aspect-square rounded-2xl overflow-hidden group">
-                                <OptimizedImage
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src="/images/pvc/legend-reklam.jpg"
                                     alt="Egepen Legend - 80mm 6 Odacık"
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-primary-900/90 to-primary-900/40" />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 text-center">
@@ -309,11 +308,11 @@ export default function PVCSystemsPage() {
                                     className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden hover:shadow-xl transition-all duration-300"
                                 >
                                     <div className="relative aspect-video bg-gradient-to-br from-primary-100 to-primary-50 overflow-hidden">
-                                        <OptimizedImage
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
                                             src={product.image}
                                             alt={product.name}
-                                            fill
-                                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                         />
                                         {product.featured && (
                                             <div className="absolute top-4 right-4 bg-secondary-500 text-white px-3 py-1 rounded-full text-xs font-bold">
@@ -403,11 +402,11 @@ export default function PVCSystemsPage() {
                                     className="group bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden hover:border-secondary-500/50 transition-all"
                                 >
                                     <div className="relative aspect-video bg-gradient-to-br from-white/5 to-white/0 overflow-hidden">
-                                        <OptimizedImage
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
                                             src={product.image}
                                             alt={product.name}
-                                            fill
-                                            className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                                            className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                                         />
                                     </div>
                                     <div className="p-6">

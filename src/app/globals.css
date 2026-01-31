@@ -628,3 +628,61 @@ body {
     display: block;
   }
 }
+
+/* ===============================================
+   ACCESSIBILITY - REDUCED MOTION
+   =============================================== */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===============================================
+   IMAGE OPTIMIZATION
+   =============================================== */
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+img[loading="lazy"] {
+  background-color: var(--neutral-100);
+}
+
+/* ===============================================
+   PRINT STYLES
+   =============================================== */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+}
+
+/* ===============================================
+   SCROLLBAR HIDE UTILITY
+   =============================================== */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

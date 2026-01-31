@@ -211,7 +211,7 @@ export const dusakabinSystems: DusakabinSystem[] = [
 8mm veya 10mm temperli cam seçenekleri ile güvenlik ve estetik bir arada sunulur. Siyah profiller, beyaz veya gri tonlu banyolarda dramatik bir kontrast yaratırken, koyu tonlu banyolarda bütünleşik bir görünüm sağlar.
 
 Dorma veya Bohle premium aksesuar seçenekleri ile soft-close kapanış, 180° açılım ve 10 yıla kadar garanti imkanı sunar. Kireç tutmayan Nano-Clear kaplama opsiyonu ile minimum bakım, maksimum hijyen.`,
-        image: '/images/dusakabin/dusakabin-kose-buzlu-cam.jpg',
+        image: "/images/dusakabin/dusakabin-siyah-kose.jpg",
         gallery: ['/images/dusakabin/dusakabin-siyah-kose.jpg', '/images/dusakabin/dusakabin-siyah-profil-genis.jpg'],
         features: [
             'Mat siyah elektrostatik toz boya profil',
@@ -260,7 +260,7 @@ Dorma veya Bohle premium aksesuar seçenekleri ile soft-close kapanış, 180° a
         longDescription: `Köşe girişli sürme sistem, sınırlı banyo alanlarında maksimum kullanım sağlar. Çift taraflı sürme kapılar, geniş giriş alanı açarken kapı açılım alanı gerektirmez.
 
 Paslanmaz çelik rulman sistemi, on binlerce açılış-kapanış döngüsüne dayanıklıdır. Sessiz çalışma için özel tasarlanmış tekerlek sistemi, gece kullanımında bile rahatsızlık vermez.`,
-        image: '/images/dusakabin/dusakabin-siyah-kose.jpg',
+        image: "/images/dusakabin/dusakabin-siyah-kose.jpg",
         gallery: ['/images/dusakabin/dusakabin-kose-banyo.jpg', '/images/dusakabin/dusakabin-siyah-profil-genis.jpg'],
         features: [
             'Çift sürme kapı sistemi',
@@ -298,7 +298,7 @@ Paslanmaz çelik rulman sistemi, on binlerce açılış-kapanış döngüsüne d
         longDescription: `Premium Çift Sürme sistem, büyük banyo alanları için tasarlanmış lüks bir çözümdür. İki cam panel birbirinin üzerinden kayarak merkezi giriş açıklığı oluşturur.
 
 Alman Häfele tekerlek sistemi, sessiz ve akıcı hareket sağlar. Magnetic seal teknolojisi, %100 su sızdırmazlık garantisi verir.`,
-        image: '/images/dusakabin/dusakabin-krom-surme.jpg',
+        image: "/images/dusakabin/dusakabin-krom-surme.jpg",
         gallery: ['/images/dusakabin/dusakabin-krom-surme.jpg', '/images/dusakabin/dusakabin-siyah-profil-genis.jpg'],
         features: [
             'Çift yönlü sürme mekanizma',
@@ -449,7 +449,7 @@ Bu hibrit yaklaşım, yapısal stabilite sağlarken minimalist görünümü koru
 10mm temperli cam panel, duvardan veya tavandan stabilizatör kolu ile desteklenir. Açık tasarım, engelsiz giriş-çıkış sağlar ve banyo temizliğini kolaylaştırır.
 
 Özellikle engelli erişimi veya yaşlı dostu banyolar için idealdir.`,
-        image: '/images/dusakabin/dusakabin-krom-surme.jpg',
+        image: "/images/dusakabin/hero-black-frameless.jpg",
         gallery: ['/images/dusakabin/dusakabin-siyah-profil-genis.jpg', '/images/dusakabin/dusakabin-kose-banyo.jpg'],
         features: [
             '10mm sabit temperli panel',

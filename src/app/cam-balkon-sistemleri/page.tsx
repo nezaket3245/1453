@@ -41,12 +41,11 @@ export default function GlassSystemsPage() {
                 {/* Hero Section */}
                 <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-neutral-900 text-white overflow-hidden">
                     <div className="absolute inset-0 opacity-30">
-                        <OptimizedImage
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                             src="/images/cam-balkon/cam-balkon-site-manzara.jpg"
                             alt="Modern Cam Balkon Tasarımı"
-                            fill
-                            className="object-cover"
-                            priority
+                            className="absolute inset-0 w-full h-full object-cover"
                         />
                     </div>
                     <div className="container-custom relative z-10">
@@ -92,11 +91,11 @@ export default function GlassSystemsPage() {
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {/* Large Featured Image */}
                             <div className="md:col-span-2 lg:col-span-2 relative aspect-video rounded-2xl overflow-hidden group">
-                                <OptimizedImage
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src="/images/cam-balkon/cam-balkon-site-manzara.jpg"
                                     alt="Cam Balkon Montajı - Site Manzaralı"
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                 <div className="absolute bottom-6 left-6 right-6 text-white">
@@ -108,11 +107,11 @@ export default function GlassSystemsPage() {
 
                             {/* Gallery Item */}
                             <div className="relative aspect-square rounded-2xl overflow-hidden group">
-                                <OptimizedImage
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src="/images/cam-balkon/cam-balkon-kose.jpg"
                                     alt="Köşe Cam Balkon Montajı"
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                 <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -123,11 +122,11 @@ export default function GlassSystemsPage() {
 
                             {/* Gallery Item */}
                             <div className="relative aspect-square rounded-2xl overflow-hidden group">
-                                <OptimizedImage
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src="/images/cam-balkon/cam-balkon-sehir-manzara.jpg"
                                     alt="Şehir Manzaralı Cam Balkon"
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                 <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -138,11 +137,11 @@ export default function GlassSystemsPage() {
 
                             {/* Gallery Item */}
                             <div className="relative aspect-square rounded-2xl overflow-hidden group">
-                                <OptimizedImage
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src="/images/cam-balkon/cam-balkon-gunbatimi.jpg"
                                     alt="Gün Batımı Manzaralı Cam Balkon"
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                 <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -153,11 +152,11 @@ export default function GlassSystemsPage() {
 
                             {/* Gallery Item with CTA */}
                             <div className="relative aspect-square rounded-2xl overflow-hidden group">
-                                <OptimizedImage
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src="/images/cam-balkon/cam-balkon-bahce-manzara.jpg"
                                     alt="Bahçe Manzaralı Cam Balkon"
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-primary-900/90 to-primary-900/40" />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 text-center">
@@ -229,14 +228,13 @@ export default function GlassSystemsPage() {
                             <div className={`flex flex-col lg:flex-row gap-16 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                                 {/* Image side */}
                                 <div className="flex-1 w-full relative">
-                                    <div className="aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl bg-neutral-200">
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                                        <OptimizedImage
+                                    <div className="aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl bg-neutral-200 relative">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10" />
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
                                             src={system.image}
                                             alt={`${system.name} - ${system.tagline}`}
-                                            fill
-                                            className="object-cover"
-                                            loading="lazy"
+                                            className="absolute inset-0 w-full h-full object-cover"
                                         />
                                     </div>
                                     {/* Features badge */}
@@ -346,11 +344,11 @@ export default function GlassSystemsPage() {
 
                             <div className="relative">
                                 <div className="relative aspect-[3/4] rounded-[3rem] overflow-hidden border-8 border-white/10 shadow-2xl">
-                                    <OptimizedImage
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
                                         src="/images/cam-balkon/cam-balkon-gunbatimi.jpg"
                                         alt="Renkli Cam Balkon Profilleri"
-                                        fill
-                                        className="object-cover"
+                                        className="absolute inset-0 w-full h-full object-cover"
                                     />
                                 </div>
                                 {/* Technical stats overlay */}

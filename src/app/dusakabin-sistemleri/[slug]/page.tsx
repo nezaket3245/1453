@@ -18,6 +18,7 @@ import {
     GlassType,
 } from '@/lib/dusakabinData';
 import { CTASection } from '@/components/sections/CTASection';
+import { businessConfig } from '@/config/business.config';
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -171,7 +172,7 @@ export default async function DusakabinDetailPage({ params }: Props) {
                                 </h1>
                                 <p className="text-xl text-white/90 font-medium mb-4">{system.tagline}</p>
                                 <p className="text-white/80 mb-6">{system.description}</p>
-                                
+
                                 {/* Price Range */}
                                 <div className="mb-8 p-4 bg-white/10 rounded-xl border border-white/20">
                                     <span className="text-white/70 text-sm">Fiyat Aralığı:</span>
@@ -189,7 +190,7 @@ export default async function DusakabinDetailPage({ params }: Props) {
                                         📐 Teklif Al
                                     </Link>
                                     <a
-                                        href={`https://wa.me/905366405311?text=Merhaba,%20${encodeURIComponent(system.name)}%20hakkında%20bilgi%20almak%20istiyorum.`}
+                                        href={`https://wa.me/${businessConfig.contact.whatsapp}?text=Merhaba,%20${encodeURIComponent(system.name)}%20hakkında%20bilgi%20almak%20istiyorum.`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center px-6 py-3 bg-white/10 text-white font-semibold rounded-xl hover:bg-white/20 border border-white/20"
@@ -224,11 +225,10 @@ export default async function DusakabinDetailPage({ params }: Props) {
                                 {system.technicalSpecs.map((spec: { label: string; value: string; highlight?: boolean }, idx: number) => (
                                     <div
                                         key={idx}
-                                        className={`p-4 rounded-xl border ${
-                                            spec.highlight
+                                        className={`p-4 rounded-xl border ${spec.highlight
                                                 ? 'bg-purple-50 border-purple-200'
                                                 : 'bg-gray-50 border-gray-200'
-                                        }`}
+                                            }`}
                                     >
                                         <div className="text-sm text-gray-500 mb-1">{spec.label}</div>
                                         <div className={`font-bold ${spec.highlight ? 'text-purple-700' : 'text-gray-900'}`}>
@@ -496,7 +496,7 @@ export default async function DusakabinDetailPage({ params }: Props) {
                             Banyonuzun fotoğrafını gönderin, size özel ölçü ve fiyat çalışalım
                         </p>
                         <a
-                            href={`https://wa.me/905366405311?text=Merhaba,%20${encodeURIComponent(system.name)}%20için%20fiyat%20teklifi%20almak%20istiyorum.%20Banyo%20fotoğrafımı%20göndereceğim.`}
+                            href={`https://wa.me/${businessConfig.contact.whatsapp}?text=Merhaba,%20${encodeURIComponent(system.name)}%20için%20fiyat%20teklifi%20almak%20istiyorum.%20Banyo%20fotoğrafımı%20göndereceğim.`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-3 px-8 py-4 bg-white text-green-600 font-bold rounded-2xl hover:bg-green-50 transition-all shadow-xl"

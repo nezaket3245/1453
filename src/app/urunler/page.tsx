@@ -40,7 +40,7 @@ const products = [
         id: "pvc-pencere",
         title: "PVC Pencere & Kapı",
         description:
-            `${businessConfig.brand} kalitesiyle üretilen ısı ve ses yalıtımlı PVC pencere ve kapı sistemleri. Legend ve Evolution serileriyle maksimum konfor.`,
+            `${businessConfig.brand} kalitesiyle üretilen ısı ve ses yalıtımlı PVC pencere ve kapı sistemleri. Legend ve Legend Art serileriyle maksimum konfor.`,
         image: "/images/pvc/pvc-surme-manzara.jpg",
         features: [
             "Isı Yalıtımı",

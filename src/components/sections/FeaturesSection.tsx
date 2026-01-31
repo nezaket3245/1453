@@ -100,7 +100,7 @@ export function FeaturesSection() {
                     className="text-center max-w-3xl mx-auto mb-16"
                 >
                     <span className="inline-block px-4 py-2 mb-4 text-sm font-semibold text-primary-600 bg-primary-50 rounded-full">
-                        Neden Akcapen?
+                        Neden Akçayapı?
                     </span>
                     <h2
                         id="features-heading"

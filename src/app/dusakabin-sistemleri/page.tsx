@@ -19,6 +19,7 @@ import {
 } from '@/lib/dusakabinData';
 import { CTASection } from '@/components/sections/CTASection';
 import DusakabinConfigurator from './DusakabinConfigurator';
+import { businessConfig } from '@/config/business.config';
 
 // SEO Metadata - Optimized for local + product searches
 export const metadata: Metadata = {
@@ -151,12 +152,11 @@ export default function DusakabinPage() {
                 <section className="relative bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-20 lg:py-28 overflow-hidden">
                     {/* Decorative Elements */}
                     <div className="absolute inset-0 opacity-20">
-                        <Image
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                             src="/images/cam-balkon/cam-balkon-bahce-manzara.jpg"
                             alt="Duşakabin Sistemleri"
-                            fill
-                            className="object-cover"
-                            priority
+                            className="absolute inset-0 w-full h-full object-cover"
                         />
                     </div>
                     <div className="absolute inset-0 opacity-10">
@@ -197,7 +197,7 @@ export default function DusakabinPage() {
                                         🛁 Tasarımını Oluştur
                                     </Link>
                                     <a
-                                        href="https://wa.me/905366405311?text=Merhaba,%20duşakabin%20hakkında%20bilgi%20almak%20istiyorum."
+                                        href={`https://wa.me/${businessConfig.contact.whatsapp}?text=${encodeURIComponent("Merhaba, duşakabin hakkında bilgi almak istiyorum.")}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center px-8 py-4 bg-white/10 text-white font-bold rounded-2xl hover:bg-white/20 transition-all border border-white/20"
@@ -222,12 +222,11 @@ export default function DusakabinPage() {
 
                             <div className="relative">
                                 <div className="relative h-[400px] lg:h-[500px]">
-                                    <Image
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
                                         src="/images/dusakabin/hero-black-frameless.jpg"
                                         alt="Siyah Çerçeveli Premium Duşakabin"
-                                        fill
-                                        className="object-contain drop-shadow-2xl"
-                                        priority
+                                        className="w-full h-full object-contain drop-shadow-2xl"
                                     />
                                 </div>
                             </div>
@@ -323,11 +322,11 @@ export default function DusakabinPage() {
                                         className="group bg-white/5 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/10 hover:border-purple-500/50 transition-all hover:shadow-2xl hover:shadow-purple-500/20"
                                     >
                                         <div className="relative h-56 bg-gradient-to-br from-gray-800 to-gray-900">
-                                            <Image
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
                                                 src={system.image}
                                                 alt={system.name}
-                                                fill
-                                                className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                                className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                                             />
                                             <div className="absolute top-4 right-4">
                                                 <span className="px-3 py-1 bg-black/50 text-white text-xs font-bold rounded-full backdrop-blur-sm">
@@ -388,11 +387,11 @@ export default function DusakabinPage() {
                                         className="group bg-gray-50 rounded-3xl overflow-hidden border border-gray-200 hover:border-blue-500 transition-all hover:shadow-xl"
                                     >
                                         <div className="relative h-56 bg-gradient-to-br from-blue-50 to-cyan-50">
-                                            <Image
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
                                                 src={system.image}
                                                 alt={system.name}
-                                                fill
-                                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                             />
                                         </div>
                                         <div className="p-6">
@@ -489,11 +488,11 @@ export default function DusakabinPage() {
                                         className="group bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl overflow-hidden border border-purple-100 hover:border-purple-400 transition-all hover:shadow-xl"
                                     >
                                         <div className="relative h-60 bg-gradient-to-br from-purple-100 to-pink-100">
-                                            <Image
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
                                                 src={system.image}
                                                 alt={system.name}
-                                                fill
-                                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                             />
                                             {system.id === 'frameless-pivot-luxury' && (
                                                 <div className="absolute top-4 left-4">
@@ -549,11 +548,11 @@ export default function DusakabinPage() {
                                         className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-emerald-500 transition-all hover:shadow-lg"
                                     >
                                         <div className="relative h-48 bg-gradient-to-br from-emerald-50 to-teal-50">
-                                            <Image
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
                                                 src={system.image}
                                                 alt={system.name}
-                                                fill
-                                                className="object-cover"
+                                                className="absolute inset-0 w-full h-full object-cover"
                                             />
                                         </div>
                                         <div className="p-5">
@@ -674,7 +673,7 @@ export default function DusakabinPage() {
                             <strong className="text-white">Ücretsiz keşif + özel ölçü üretim.</strong>
                         </p>
                         <a
-                            href="https://wa.me/905366405311?text=Merhaba,%20banyomun%20fotoğrafını%20göndermek%20istiyorum.%20Duşakabin%20fiyat%20teklifi%20alabilir%20miyim?"
+                            href={`https://wa.me/${businessConfig.contact.whatsapp}?text=${encodeURIComponent("Merhaba, banyomun fotoğrafını göndermek istiyorum. Duşakabin fiyat teklifi alabilir miyim?")}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-3 px-10 py-5 bg-white text-green-600 font-bold text-lg rounded-2xl hover:bg-green-50 transition-all shadow-xl"

@@ -23,7 +23,7 @@ interface SearchResult {
 const searchData: SearchResult[] = [
     // PVC Products
     { title: "Legend Serisi PVC Pencere", description: "6 odacık, maksimum ısı yalıtımı", href: "/pvc-sistemleri/legend-pvc-pencere", category: "PVC Sistemleri", icon: "🪟" },
-    { title: "Evolution Serisi PVC Pencere", description: "Orta sınıf, dengeli performans", href: "/pvc-sistemleri/evolution-pvc-pencere", category: "PVC Sistemleri", icon: "🪟" },
+    { title: "Legend Art Serisi PVC Pencere", description: "Estetik tasarım, yüksek yalıtım", href: "/pvc-sistemleri/legend-art-pvc-pencere", category: "PVC Sistemleri", icon: "🪟" },
     { title: "Fusion Serisi PVC Pencere", description: "Ekonomik çözüm", href: "/pvc-sistemleri/fusion-pvc-pencere", category: "PVC Sistemleri", icon: "🪟" },
     { title: "Zen Spirit Sürme Sistem", description: "Minimal çerçeve, maksimum görünürlük", href: "/pvc-sistemleri/zen-spirit-surme-sistem", category: "PVC Sistemleri", icon: "🪟" },
 
@@ -38,8 +38,10 @@ const searchData: SearchResult[] = [
     { title: "Sürgülü Sineklik", description: "Yan açılır sistem", href: "/sineklik-sistemleri/surgulu-sineklik", category: "Sineklik", icon: "↔️" },
 
     // Panjur
-    { title: "Motorlu Panjur", description: "Somfy/Becker motorlu sistem", href: "/panjur-kepenk-sistemleri/motorlu-panjur-premium", category: "Panjur & Kepenk", icon: "⚙️" },
-    { title: "Manuel Panjur", description: "Kayışlı klasik sistem", href: "/panjur-kepenk-sistemleri/manuel-panjur-sistemi", category: "Panjur & Kepenk", icon: "🔧" },
+    { title: "Egepen Storbox Panjur", description: "Pencere üstü monoblok sistem, yüksek yalıtım", href: "/panjur-kepenk-sistemleri/egepen-storbox-monoblok-panjur", category: "Panjur & Kepenk", icon: "🍱" },
+    { title: "Motorlu Alüminyum Panjur", description: "Somfy/Becker motorlu premium sistem", href: "/panjur-kepenk-sistemleri/motorlu-aluminyum-panjur", category: "Panjur & Kepenk", icon: "⚙️" },
+    { title: "Manuel Alüminyum Panjur", description: "Klasik kayışlı veya kranklı sistem", href: "/panjur-kepenk-sistemleri/manuel-aluminyum-panjur", category: "Panjur & Kepenk", icon: "🔧" },
+    { title: "Endüstriyel Seksiyonel Kapı", description: "Fabrika ve depo kapı sistemleri", href: "/panjur-kepenk-sistemleri/izoleli-endustriyel-kepenk", category: "Panjur & Kepenk", icon: "🏭" },
 
     // Pages
     { title: "Ana Sayfa", description: "Egepen Akçayapı - Beylikdüzü", href: "/", category: "Sayfalar", icon: "🏠" },
@@ -193,8 +195,8 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                                                 href={result.href}
                                                 onClick={onClose}
                                                 className={`flex items-center gap-4 px-6 py-3 transition-colors ${index === selectedIndex
-                                                        ? "bg-primary-50"
-                                                        : "hover:bg-neutral-50"
+                                                    ? "bg-primary-50"
+                                                    : "hover:bg-neutral-50"
                                                     }`}
                                             >
                                                 <span className="text-2xl">{result.icon}</span>

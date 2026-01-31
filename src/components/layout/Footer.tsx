@@ -11,9 +11,20 @@ const beylikduzuNeighborhoods = [
     "Gürpınar", "Kavaklı", "Marmara", "Sahil", "Yakuplu"
 ];
 
+/**
+ * Büyükçekmece neighborhoods - TÜM MAHALLELER
+ */
+const buyukcekmceNeighborhoods = [
+    "Atatürk", "Bahçelievler", "Batıköy", "Beykent", "Celaliye",
+    "Cumhuriyet", "Dizdariye", "Fatih", "Fevzi Çakmak", "Hürriyet",
+    "Kamiloba", "Karaağaç", "Kumburgaz", "Mimarsinan", "Muratbey",
+    "Pınartepe", "Ulus", "Yenimahalle", "19 Mayıs", "Alkent 2000",
+    "Boğaziçi", "Çakmaklı", "Güzelce", "Tepecik", "Türkoba"
+];
+
 const nearbyDistricts = [
-    "Büyükçekmece", "Esenyurt", "Avcılar", "Küçükçekmece",
-    "Başakşehir", "Bahçeşehir", "Hadımköy"
+    "Esenyurt", "Avcılar", "Küçükçekmece",
+    "Başakşehir", "Bahçeşehir", "Hadımköy", "Silivri", "Çatalca"
 ];
 
 export function Footer() {
@@ -28,35 +39,56 @@ export function Footer() {
                         🏠 Hizmet Bölgelerimiz
                     </h2>
                     <p className="text-neutral-400 text-center max-w-2xl mx-auto mb-8">
-                        Beylikdüzü ve çevre ilçelerde <strong className="text-white">ücretsiz keşif</strong> ve profesyonel montaj hizmeti sunuyoruz.
+                        Beylikdüzü, Büyükçekmece ve çevre ilçelerde <strong className="text-white">ücretsiz keşif</strong> ve profesyonel montaj hizmeti sunuyoruz.
                     </p>
 
-                    <div className="grid md:grid-cols-2 gap-8">
+                    <div className="grid md:grid-cols-3 gap-8">
                         {/* Beylikdüzü Neighborhoods */}
                         <div>
                             <h3 className="text-lg font-bold text-primary-400 mb-4 flex items-center gap-2">
                                 <span className="w-8 h-8 bg-primary-500/20 rounded-lg flex items-center justify-center">📍</span>
-                                Beylikdüzü Mahalleleri
+                                Beylikdüzü
                             </h3>
-                            <div className="grid grid-cols-2 gap-2">
+                            <div className="grid grid-cols-2 gap-1">
                                 {beylikduzuNeighborhoods.map((neighborhood) => (
                                     <span
                                         key={neighborhood}
                                         className="text-sm text-neutral-400 hover:text-white transition-colors cursor-default"
                                     >
-                                        • {neighborhood} Mah.
+                                        • {neighborhood}
                                     </span>
                                 ))}
                             </div>
                         </div>
 
-                        {/* Nearby Districts */}
+                        {/* Büyükçekmece Neighborhoods */}
                         <div>
                             <h3 className="text-lg font-bold text-secondary-400 mb-4 flex items-center gap-2">
-                                <span className="w-8 h-8 bg-secondary-500/20 rounded-lg flex items-center justify-center">🗺️</span>
+                                <span className="w-8 h-8 bg-secondary-500/20 rounded-lg flex items-center justify-center">📍</span>
+                                Büyükçekmece
+                            </h3>
+                            <div className="grid grid-cols-2 gap-1">
+                                {buyukcekmceNeighborhoods.slice(0, 16).map((neighborhood) => (
+                                    <span
+                                        key={neighborhood}
+                                        className="text-xs text-neutral-400 hover:text-white transition-colors cursor-default"
+                                    >
+                                        • {neighborhood}
+                                    </span>
+                                ))}
+                                <span className="text-xs text-neutral-500 col-span-2">
+                                    +{buyukcekmceNeighborhoods.length - 16} mahalle daha...
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Nearby Districts */}
+                        <div>
+                            <h3 className="text-lg font-bold text-accent-400 mb-4 flex items-center gap-2">
+                                <span className="w-8 h-8 bg-accent-500/20 rounded-lg flex items-center justify-center">🗺️</span>
                                 Yakın İlçeler
                             </h3>
-                            <div className="grid grid-cols-2 gap-2">
+                            <div className="grid grid-cols-2 gap-1">
                                 {nearbyDistricts.map((district) => (
                                     <span
                                         key={district}

@@ -35,27 +35,27 @@ const catalogItems: CatalogItem[] = [
         title: "Legend 6 Serisi",
         series: "Legend",
         category: "pvc",
-        image: "/images/pvc/pvc-surme-manzara.jpg",
+        image: "/images/products/legend-catalog.png",
         pdfUrl: "/catalogs/legend-6.pdf",
-        features: ["6 Odacık", "Uw: 1.0 W/m²K", "70mm Genişlik"],
+        features: ["6 Odacık", "Uw: 1.0 W/m²K", "80mm Genişlik"],
         priceRange: "₺₺₺",
     },
     {
-        id: "evolution-76",
-        title: "Evolution 76 Serisi",
-        series: "Evolution",
+        id: "legend-art",
+        title: "Legend Art 70 Serisi",
+        series: "Legend Art",
         category: "pvc",
-        image: "/images/pvc/pvc-pencere-yemek-odasi.jpg",
-        pdfUrl: "/catalogs/evolution-76.pdf",
-        features: ["7 Odacık", "Uw: 0.9 W/m²K", "76mm Genişlik"],
-        priceRange: "₺₺₺₺",
+        image: "/images/products/legend-art-catalog.png",
+        pdfUrl: "/catalogs/legend-art.pdf",
+        features: ["Estetik Kanat", "Uw: 1.1 W/m²K", "70mm Genişlik"],
+        priceRange: "₺₺₺",
     },
     {
         id: "fusion-85",
         title: "Fusion 85 Serisi",
         series: "Fusion",
         category: "pvc",
-        image: "/images/pvc/pvc-montaj-insaat.jpg",
+        image: "/images/products/fusion-catalog.png",
         pdfUrl: "/catalogs/fusion-85.pdf",
         features: ["Ultra Yalıtım", "Uw: 0.8 W/m²K", "85mm Genişlik"],
         priceRange: "₺₺₺₺₺",
@@ -65,7 +65,7 @@ const catalogItems: CatalogItem[] = [
         title: "Zen Spirit Sürme",
         series: "Zen Spirit",
         category: "pvc",
-        image: "/images/pvc/pvc-surme-salon.jpg",
+        image: "/images/products/zen-spirit-catalog.png",
         pdfUrl: "/catalogs/zen-spirit.pdf",
         features: ["Minimal Tasarım", "Geniş Cam Alanı", "Sessiz Sürme"],
         priceRange: "₺₺₺₺",
@@ -75,7 +75,7 @@ const catalogItems: CatalogItem[] = [
         title: "Tiara Max Isıcamlı",
         series: "Tiara",
         category: "cam-balkon",
-        image: "/images/cam-balkon/cam-balkon-site-manzara.jpg",
+        image: "/images/cam-balkon/tiara-catalog.png",
         pdfUrl: "/catalogs/tiara-max.pdf",
         features: ["8mm Temperli", "Low-E Cam", "%100 Açılım"],
         priceRange: "₺₺₺",
@@ -85,7 +85,7 @@ const catalogItems: CatalogItem[] = [
         title: "Twin Sürme Sistem",
         series: "Twin",
         category: "cam-balkon",
-        image: "/images/cam-balkon/cam-balkon-kose.jpg",
+        image: "/images/cam-balkon/twin-catalog.png",
         pdfUrl: "/catalogs/twin-surme.pdf",
         features: ["Eşiksiz Model", "Kolay Temizlik", "Rüzgar Dayanıklı"],
         priceRange: "₺₺₺",
@@ -95,19 +95,47 @@ const catalogItems: CatalogItem[] = [
         title: "Pileli Sineklik",
         series: "Premium",
         category: "sineklik",
-        image: "/images/sineklik/duble-plise-sineklik.jpg",
+        image: "/images/sineklik/yatay-plise-sineklik.png",
         features: ["UV Dayanıklı", "Kolay Açılım", "Renk Seçenekleri"],
         priceRange: "₺₺",
     },
     {
+        id: "storbox-monoblok",
+        title: "Egepen Storbox Panjur",
+        series: "Storbox",
+        category: "panjur",
+        image: "/images/panjur/panjur-modern-villa.jpg",
+        pdfUrl: "/catalogs/storbox.pdf",
+        features: ["Pencere Üstü", "%45 Tasarruf", "Lamine Renkler"],
+        priceRange: "₺₺₺",
+    },
+    {
         id: "motorlu-panjur",
-        title: "Motorlu Panjur Somfy",
+        title: "Motorlu Alüminyum Panjur",
         series: "Somfy/Becker",
         category: "panjur",
         image: "/images/panjur/panjur-motorlu-villa.jpg",
         pdfUrl: "/catalogs/motorlu-panjur.pdf",
-        features: ["Uzaktan Kumanda", "Zamanlayıcı", "Akıllı Ev Uyumlu"],
+        features: ["Uzaktan Kumanda", "Köpük Dolgulu", "Sessiz Çalışma"],
         priceRange: "₺₺₺",
+    },
+    {
+        id: "black-edition-square",
+        title: "Black Edition Siyah Kare",
+        series: "Premium",
+        category: "dusakabin",
+        image: "/images/dusakabin/dusakabin-siyah-kose.jpg",
+        features: ["10mm Temperli Cam", "Mat Siyah Profil", "Nano Kaplama"],
+        priceRange: "₺₺₺",
+    },
+    {
+        id: "walk-in-panel",
+        title: "Walk-in Panel Duş",
+        series: "Modern",
+        category: "dusakabin",
+        image: "/images/dusakabin/hero-black-frameless.jpg",
+        features: ["Çerçevesiz Tasarım", "Engelsiz Giriş", "Kolay Temizlik"],
+        priceRange: "₺₺",
     },
 ];
 
@@ -117,6 +145,7 @@ const categories = [
     { id: "cam-balkon", label: "Cam Balkon" },
     { id: "sineklik", label: "Sineklik" },
     { id: "panjur", label: "Panjur & Kepenk" },
+    { id: "dusakabin", label: "Duşakabin" },
 ];
 
 export function InteractiveCatalog() {
@@ -167,7 +196,7 @@ export function InteractiveCatalog() {
                         transition={{ delay: 0.2 }}
                         className="text-lg text-neutral-600"
                     >
-                        Legend, Evolution, Fusion ve Zen Spirit serilerini keşfedin.
+                        Legend, Legend Art, Zendow ve Zen Spirit serilerini keşfedin.
                         Detaylı teknik bilgi için PDF katalogları indirin.
                     </motion.p>
                 </div>

@@ -122,12 +122,11 @@ export function BeforeAfterGallery() {
                         >
                             {/* After Image (Background) */}
                             <div className="absolute inset-0">
-                                <OptimizedImage
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src={activeItem.after}
                                     alt={`${activeItem.title} - Sonra`}
-                                    fill
-                                    className="object-cover"
-                                    priority
+                                    className="absolute inset-0 w-full h-full object-cover"
                                 />
                                 <div className="absolute bottom-4 right-4 px-3 py-1.5 bg-green-500 text-white text-sm font-bold rounded-lg">
                                     SONRA
@@ -139,12 +138,11 @@ export function BeforeAfterGallery() {
                                 className="absolute inset-0 overflow-hidden"
                                 style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
                             >
-                                <OptimizedImage
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src={activeItem.before}
                                     alt={`${activeItem.title} - Önce`}
-                                    fill
-                                    className="object-cover"
-                                    priority
+                                    className="absolute inset-0 w-full h-full object-cover"
                                 />
                                 <div className="absolute bottom-4 left-4 px-3 py-1.5 bg-neutral-700 text-white text-sm font-bold rounded-lg">
                                     ÖNCE
@@ -197,11 +195,10 @@ export function BeforeAfterGallery() {
                                     }`}
                             >
                                 <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-                                    <OptimizedImage
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
                                         src={item.after}
                                         alt={item.title}
-                                        width={64}
-                                        height={64}
                                         className="object-cover w-full h-full"
                                     />
                                 </div>

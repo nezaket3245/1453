@@ -143,12 +143,11 @@ export default async function PVCProductDetailPage({ params }: PVCProductPagePro
                 {/* Hero Section */}
                 <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white py-16 lg:py-24 overflow-hidden">
                     <div className="absolute inset-0 opacity-10">
-                        <OptimizedImage
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                             src="/images/pvc/pvc-surme-manzara.jpg"
                             alt="Arka Plan"
-                            fill
-                            className="object-cover"
-                            priority
+                            className="absolute inset-0 w-full h-full object-cover"
                         />
                     </div>
                     <div className="container-custom relative z-10">
@@ -202,17 +201,27 @@ export default async function PVCProductDetailPage({ params }: PVCProductPagePro
                                 </div>
                             </div>
 
-                            {/* Image */}
-                            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-                                <OptimizedImage
-                                    src={product.image}
-                                    alt={product.name}
-                                    fill
-                                    className="object-cover"
-                                    priority
-                                />
+                            {/* Image or Video */}
+                            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-primary-900/50">
+                                {product.heroVideo ? (
+                                    <video
+                                        src={product.heroVideo}
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    // eslint-disable-next-line @next/next/no-img-element
+                                    <img
+                                        src={product.image}
+                                        alt={product.name}
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                    />
+                                )}
                                 {product.featured && (
-                                    <div className="absolute top-4 right-4 bg-secondary-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                                    <div className="absolute top-4 right-4 bg-secondary-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg z-10">
                                         ⭐ Öne Çıkan Seri
                                     </div>
                                 )}
@@ -368,11 +377,11 @@ export default async function PVCProductDetailPage({ params }: PVCProductPagePro
                                         className="group bg-white p-4 rounded-xl border border-neutral-200 hover:shadow-lg transition-all hover:-translate-y-1"
                                     >
                                         <div className="relative aspect-video rounded-lg overflow-hidden mb-4">
-                                            <OptimizedImage
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
                                                 src={related.image}
                                                 alt={related.name}
-                                                fill
-                                                className="object-cover group-hover:scale-110 transition-transform duration-500"
+                                                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                             />
                                         </div>
                                         <h3 className="font-bold text-neutral-900 group-hover:text-primary-600 transition-colors mb-2">

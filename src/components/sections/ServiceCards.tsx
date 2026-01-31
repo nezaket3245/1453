@@ -30,7 +30,7 @@ const services: ServiceCardData[] = [
     {
         id: "pvc",
         title: "PVC Pencere & Kapı",
-        subtitle: "Egepen Legend, Evolution, Fusion Serisi",
+        subtitle: "Egepen Legend, Legend Art, Zendow Serisi",
         image: "/images/pvc/pvc-surme-manzara.jpg",
         href: "/pvc-sistemleri",
         features: [
@@ -77,17 +77,17 @@ const services: ServiceCardData[] = [
     {
         id: "panjur",
         title: "Panjur & Kepenk",
-        subtitle: "Motorlu Somfy/Becker Sistemler",
+        subtitle: "Egepen Storbox & Somfy Akıllı Sistemler",
         image: "/images/panjur/panjur-motorlu-villa.jpg",
         href: "/panjur-kepenk-sistemleri",
         features: [
-            "Uzaktan kumanda",
-            "Güneş sensörü",
-            "Güvenlik kilidi",
-            "Sessiz motor",
+            "Egepen Storbox Monoblok",
+            "Somfy io Akıllı Motor",
+            "TaHoma Akıllı Ev Uyumu",
+            "%45 Isı ve Ses Yalıtımı",
         ],
-        warranty: "3 Yıl Garanti",
-        badge: "Akıllı Ev",
+        warranty: "10 Yıl Sistem Garantisi",
+        badge: "Egepen Kalitesi",
         priceRange: "₺₺",
     },
     {
@@ -173,11 +173,11 @@ export function ServiceCards() {
                         >
                             {/* Image Header */}
                             <div className="relative aspect-[16/10] bg-gradient-to-br from-primary-50 to-accent-50 overflow-hidden">
-                                <OptimizedImage
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src={service.image}
                                     alt={service.title}
-                                    fill
-                                    className={`object-cover ${service.id === 'panjur' || service.id === 'dusakabin' || service.id === 'aluminyum' ? 'object-contain' : ''} p-0 group-hover:scale-110 transition-transform duration-500`}
+                                    className={`absolute inset-0 w-full h-full object-cover ${service.id === 'panjur' || service.id === 'dusakabin' || service.id === 'aluminyum' ? 'object-contain' : ''} p-0 group-hover:scale-110 transition-transform duration-500`}
                                 />
                                 {/* Badge */}
                                 {service.badge && (
