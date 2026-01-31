@@ -46,17 +46,17 @@
   --accent-800: #003d34;
   --accent-900: #001411;
 
-  /* Neutral Colors - Professional Grays */
+  /* Neutral Colors - Professional Grays (WCAG AA Compliant) */
   --neutral-50: #fafafa;
   --neutral-100: #f5f5f5;
   --neutral-200: #e5e5e5;
   --neutral-300: #d4d4d4;
-  --neutral-400: #a3a3a3;
-  --neutral-500: #737373;
-  --neutral-600: #525252;
-  --neutral-700: #404040;
-  --neutral-800: #262626;
-  --neutral-900: #171717;
+  --neutral-400: #737373; /* Improved contrast: was #a3a3a3 */
+  --neutral-500: #525252; /* Improved contrast: was #737373 */
+  --neutral-600: #404040; /* Improved contrast: was #525252 */
+  --neutral-700: #262626;
+  --neutral-800: #171717;
+  --neutral-900: #0f0f0f;
   --neutral-950: #0a0a0a;
 
   /* Semantic Colors */

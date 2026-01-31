@@ -70,9 +70,9 @@ export function QuickContactBar() {
     return (
         <>
             {/* Mobile Bottom Bar - Only visible on mobile */}
-            <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
+            <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden" aria-label="Hızlı iletişim menüsü">
                 <div className="bg-white border-t border-neutral-200 shadow-[0_-4px_20px_rgba(0,0,0,0.1)]">
-                    <div className="grid grid-cols-4 gap-0">
+                    <div className="grid grid-cols-4 gap-0" role="menubar">
                         {contactOptions.map((option) => (
                             <a
                                 key={option.label}
@@ -80,9 +80,11 @@ export function QuickContactBar() {
                                 target={option.target}
                                 rel={option.target ? "noopener noreferrer nofollow" : undefined}
                                 title={option.title}
+                                aria-label={option.title}
+                                role="menuitem"
                                 className="flex flex-col items-center justify-center py-3 text-neutral-600 hover:text-primary-600 hover:bg-neutral-50 transition-colors"
                             >
-                                <span className={`w-10 h-10 rounded-full ${option.color} text-white flex items-center justify-center shadow-lg mb-1`}>
+                                <span className={`w-10 h-10 rounded-full ${option.color} text-white flex items-center justify-center shadow-lg mb-1`} aria-hidden="true">
                                     {option.icon}
                                 </span>
                                 <span className="text-xs font-medium">{option.label}</span>
@@ -90,39 +92,44 @@ export function QuickContactBar() {
                         ))}
                     </div>
                 </div>
-            </div>
+            </nav>
 
             {/* Desktop Floating Bar */}
-            <div className="fixed left-0 top-1/2 -translate-y-1/2 z-40 hidden md:block">
+            <aside className="fixed left-0 top-1/2 -translate-y-1/2 z-40 hidden md:block" aria-label="Masaüstü iletişim paneli">
                 <AnimatePresence>
                     {isExpanded ? (
-                        <motion.div
+                        <motion.nav
                             initial={{ x: -100, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: -100, opacity: 0 }}
                             className="bg-white rounded-r-2xl shadow-xl border border-l-0 border-neutral-200 overflow-hidden"
+                            role="navigation"
+                            aria-label="Hızlı iletişim seçenekleri"
                         >
-                            <div className="p-2 space-y-2">
+                            <div className="p-2 space-y-2" role="menu">
                                 {contactOptions.map((option) => (
                                     <a
                                         key={option.label}
                                         href={option.href}
                                         target={option.target}
                                         rel={option.target ? "noopener noreferrer" : undefined}
+                                        aria-label={option.title}
+                                        role="menuitem"
                                         className={`flex items-center gap-3 px-4 py-3 ${option.color} text-white rounded-xl transition-colors`}
                                     >
-                                        {option.icon}
+                                        <span aria-hidden="true">{option.icon}</span>
                                         <span className="font-medium text-sm whitespace-nowrap">{option.label}</span>
                                     </a>
                                 ))}
                             </div>
                             <button
                                 onClick={() => setIsExpanded(false)}
-                                className="w-full py-2 text-center text-neutral-500 hover:text-neutral-700 text-sm font-medium border-t border-neutral-100"
+                                className="w-full py-2 text-center text-neutral-600 hover:text-neutral-800 text-sm font-medium border-t border-neutral-100"
+                                aria-label="İletişim menüsünü kapat"
                             >
                                 Kapat
                             </button>
-                        </motion.div>
+                        </motion.nav>
                     ) : (
                         <motion.button
                             initial={{ x: -50, opacity: 0 }}
@@ -132,13 +139,13 @@ export function QuickContactBar() {
                             className="bg-primary-600 text-white px-3 py-4 rounded-r-xl shadow-lg hover:bg-primary-700 transition-colors"
                             aria-label="İletişim seçeneklerini aç"
                         >
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                             </svg>
                         </motion.button>
                     )}
                 </AnimatePresence>
-            </div>
+            </aside>
         </>
     );
 }

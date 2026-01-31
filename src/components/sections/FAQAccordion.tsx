@@ -57,16 +57,19 @@ export function FAQAccordion({ faqs, title, subtitle }: FAQAccordionProps) {
                     </div>
                 )}
 
-                <div className="space-y-3">
+                <div className="space-y-3" role="list">
                     {faqs.map((faq, index) => (
                         <div
                             key={index}
                             className="bg-white rounded-xl border border-neutral-200 overflow-hidden shadow-sm"
+                            role="listitem"
                         >
                             <button
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                                 className="w-full flex items-center justify-between p-5 text-left hover:bg-neutral-50 transition-colors"
                                 aria-expanded={openIndex === index}
+                                aria-controls={`faq-answer-${index}`}
+                                id={`faq-question-${index}`}
                             >
                                 <span className="font-semibold text-neutral-900 pr-4">
                                     {faq.question}
@@ -75,6 +78,7 @@ export function FAQAccordion({ faqs, title, subtitle }: FAQAccordionProps) {
                                     animate={{ rotate: openIndex === index ? 180 : 0 }}
                                     transition={{ duration: 0.2 }}
                                     className="flex-shrink-0 w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center"
+                                    aria-hidden="true"
                                 >
                                     <svg
                                         className="w-4 h-4 text-neutral-600"
@@ -82,6 +86,7 @@ export function FAQAccordion({ faqs, title, subtitle }: FAQAccordionProps) {
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
                                         strokeWidth={2}
+                                        aria-hidden="true"
                                     >
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                                     </svg>
@@ -94,6 +99,9 @@ export function FAQAccordion({ faqs, title, subtitle }: FAQAccordionProps) {
                                         animate={{ height: "auto", opacity: 1 }}
                                         exit={{ height: 0, opacity: 0 }}
                                         transition={{ duration: 0.2 }}
+                                        id={`faq-answer-${index}`}
+                                        role="region"
+                                        aria-labelledby={`faq-question-${index}`}
                                     >
                                         <div className="px-5 pb-5 pt-0">
                                             <div className="border-t border-neutral-100 pt-4 text-neutral-600 leading-relaxed">

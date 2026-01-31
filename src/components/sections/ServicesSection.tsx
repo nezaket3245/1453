@@ -8,14 +8,14 @@ import { products } from "@/lib/data";
 
 export function ServicesSection() {
     return (
-        <section className="section bg-white" id="urunler">
+        <section className="section bg-white" id="urunler" aria-labelledby="services-title">
             <div className="container-custom">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
                     <div className="max-w-2xl">
                         <span className="text-primary-600 font-bold uppercase tracking-widest text-sm mb-4 block">
                             Profesyonel Çözümler
                         </span>
-                        <h2 className="text-4xl md:text-5xl font-black text-neutral-900 leading-tight">
+                        <h2 id="services-title" className="text-4xl md:text-5xl font-black text-neutral-900 leading-tight">
                             Beylikdüzü&apos;nün En Güçlü <br />
                             <span className="text-primary-500">PVC & Cam Balkon</span> Filosu
 

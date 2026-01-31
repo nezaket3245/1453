@@ -10,7 +10,7 @@ import { aluminumSystems } from "@/lib/aluminumData";
 import { panjurSystems } from "@/lib/panjurData";
 import { dusakabinSystems } from "@/lib/dusakabinData";
 
-const baseUrl = "https://egepenakcayapi.com.tr";
+const baseUrl = "https://akcapen-pvc.pages.dev";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     // Ana sayfalar

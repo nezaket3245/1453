@@ -115,8 +115,15 @@ export function Header() {
     return (
         <>
             {/* Main Header */}
-            <header className={cn("sticky top-0 z-50 w-full transition-all duration-300", isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg border-b" : "bg-white")}>
-                <nav className="container-custom flex items-center justify-between h-16 lg:h-20">
+            <header
+                className={cn("sticky top-0 z-50 w-full transition-all duration-300", isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg border-b" : "bg-white")}
+                role="banner"
+            >
+                <nav
+                    className="container-custom flex items-center justify-between h-16 lg:h-20"
+                    role="navigation"
+                    aria-label="Ana menü"
+                >
                     <Link href="/" title="Egepen Akçayapı Ana Sayfa" className="flex flex-col items-start leading-tight">
                         <span className="text-xl lg:text-2xl font-black text-primary-600 tracking-tighter uppercase italic">
                             {businessConfig.name.split(' ')[0]} <span className="text-neutral-900">{businessConfig.name.split(' ')[1]}</span>
@@ -127,21 +134,28 @@ export function Header() {
                     </Link>
 
                     {/* Desktop Nav */}
-                    <ul className="hidden lg:flex items-center gap-1">
+                    <ul className="hidden lg:flex items-center gap-1" role="menubar">
                         {navigationItems.map((item) => (
-                            <li key={item.href} className="relative" onMouseEnter={() => item.children && setActiveDropdown(item.href)} onMouseLeave={() => setActiveDropdown(null)}>
-                                <Link href={item.href} title={`${item.label} - Egepen Akçayapı`} className="px-4 py-2 rounded-lg font-bold text-neutral-700 hover:text-primary-600 hover:bg-primary-50 transition-all flex items-center gap-1">
+                            <li key={item.href} className="relative" role="none" onMouseEnter={() => item.children && setActiveDropdown(item.href)} onMouseLeave={() => setActiveDropdown(null)}>
+                                <Link
+                                    href={item.href}
+                                    title={`${item.label} - Egepen Akçayapı`}
+                                    className="px-4 py-2 rounded-lg font-bold text-neutral-700 hover:text-primary-600 hover:bg-primary-50 transition-all flex items-center gap-1"
+                                    role="menuitem"
+                                    aria-haspopup={item.children ? "true" : undefined}
+                                    aria-expanded={item.children && activeDropdown === item.href ? "true" : undefined}
+                                >
                                     {item.label}
-                                    {item.children && <ChevronDownIcon className="w-4 h-4" />}
+                                    {item.children && <ChevronDownIcon className="w-4 h-4" aria-hidden="true" />}
                                 </Link>
                                 {item.children && (
                                     <AnimatePresence>
                                         {activeDropdown === item.href && (
                                             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="absolute top-full left-0 pt-2">
-                                                <ul className="bg-white rounded-xl shadow-xl border p-2 min-w-[240px]">
+                                                <ul className="bg-white rounded-xl shadow-xl border p-2 min-w-[240px]" role="menu" aria-label={`${item.label} alt menüsü`}>
                                                     {item.children.map((child) => (
-                                                        <li key={child.href}>
-                                                            <Link href={child.href} title={child.label} className="block px-4 py-2.5 text-neutral-700 font-medium hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
+                                                        <li key={child.href} role="none">
+                                                            <Link href={child.href} title={child.label} className="block px-4 py-2.5 text-neutral-700 font-medium hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors" role="menuitem">
                                                                 {child.label}
                                                             </Link>
                                                         </li>
@@ -156,7 +170,12 @@ export function Header() {
                     </ul>
 
                     {/* Mobile Toggle */}
-                    <button className="lg:hidden p-2 text-primary-600" onClick={toggleMobileMenu}>
+                    <button
+                        className="lg:hidden p-2 text-primary-600"
+                        onClick={toggleMobileMenu}
+                        aria-label="Mobil menüyü aç"
+                        aria-expanded={isMobileMenuOpen}
+                    >
                         <MenuIcon className="w-8 h-8" />
                     </button>
                 </nav>
@@ -180,6 +199,7 @@ export function Header() {
                             <button
                                 onClick={closeMobileMenu}
                                 className="p-2 -mr-2 text-neutral-400 hover:text-primary-600 transition-colors"
+                                aria-label="Menüyü kapat"
                             >
                                 <CloseIcon className="w-8 h-8" />
                             </button>
@@ -209,8 +229,10 @@ export function Header() {
                                                         "p-2 rounded-lg bg-neutral-50 text-neutral-500 transition-all",
                                                         activeDropdown === item.href && "rotate-180 bg-primary-50 text-primary-600"
                                                     )}
+                                                    aria-label={`${item.label} alt menüsünü aç/kapat`}
+                                                    aria-expanded={activeDropdown === item.href}
                                                 >
-                                                    <ChevronDownIcon className="w-6 h-6" />
+                                                    <ChevronDownIcon className="w-6 h-6" aria-hidden="true" />
                                                 </button>
                                             )}
                                         </div>

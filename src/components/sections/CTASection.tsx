@@ -7,19 +7,19 @@ import { businessConfig } from "@/config/business.config";
 
 export function CTASection() {
     return (
-        <section className="section bg-white overflow-hidden">
+        <section className="section bg-white overflow-hidden" aria-labelledby="cta-heading">
             <div className="container-custom">
                 <div className="relative bg-primary-600 rounded-[3rem] p-12 lg:p-24 overflow-hidden shadow-2xl">
                     {/* Decorative Elements */}
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-primary-500 rounded-full blur-3xl opacity-50 -mr-20 -mt-20" />
-                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-700 rounded-full blur-3xl opacity-50 -ml-20 -mb-20" />
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-primary-500 rounded-full blur-3xl opacity-50 -mr-20 -mt-20" aria-hidden="true" />
+                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-700 rounded-full blur-3xl opacity-50 -ml-20 -mb-20" aria-hidden="true" />
 
                     <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
                         <div>
                             <span className="inline-block px-4 py-1 rounded-full bg-white/10 text-white text-sm font-bold uppercase tracking-widest mb-6">
                                 Ücretsiz Keşif & Ölçüm
                             </span>
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-8">
+                            <h2 id="cta-heading" className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-8">
                                 Evinizi {businessConfig.brand} <br />
                                 Ayrıcalığıyla Yenileyin
                             </h2>
@@ -33,6 +33,7 @@ export function CTASection() {
                                 <a
                                     href={`tel:${businessConfig.contact.mobileRaw}`}
                                     title="Egepen Akçayapı'yı Hemen Arayın"
+                                    aria-label="Telefon ile hemen arayın"
                                     className="inline-flex items-center justify-center px-10 py-4 text-xl font-semibold rounded-lg text-white border-2 border-white/20 hover:bg-white hover:text-primary-600 transition-all duration-200"
                                 >
                                     Arama Yap
@@ -40,7 +41,7 @@ export function CTASection() {
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <address className="grid grid-cols-1 sm:grid-cols-2 gap-6 not-italic">
                             {[
                                 { title: "Telefon", val: businessConfig.contact.landline, icon: "📞" },
                                 { title: "WhatsApp", val: businessConfig.contact.mobile, icon: "💬" },
@@ -48,12 +49,12 @@ export function CTASection() {
                                 { title: "Adres", val: "Beylikdüzü / İst", icon: "📍" }
                             ].map((item, i) => (
                                 <div key={i} className="bg-white/10 backdrop-blur-md border border-white/10 p-6 rounded-2xl">
-                                    <div className="text-3xl mb-4">{item.icon}</div>
+                                    <div className="text-3xl mb-4" aria-hidden="true">{item.icon}</div>
                                     <p className="text-xs uppercase tracking-widest text-white/60 font-bold mb-1">{item.title}</p>
                                     <p className="text-white font-bold">{item.val}</p>
                                 </div>
                             ))}
-                        </div>
+                        </address>
                     </div>
                 </div>
             </div>

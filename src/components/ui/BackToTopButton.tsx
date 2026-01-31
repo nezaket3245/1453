@@ -49,7 +49,7 @@ export function BackToTopButton() {
                     title="Yukarı çık"
                 >
                     {/* Progress Ring */}
-                    <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 48 48">
+                    <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 48 48" aria-hidden="true">
                         <circle
                             cx="24"
                             cy="24"
@@ -79,6 +79,7 @@ export function BackToTopButton() {
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                         strokeWidth={2}
+                        aria-hidden="true"
                     >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
                     </svg>

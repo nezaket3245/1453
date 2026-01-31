@@ -15,6 +15,7 @@ import { BeforeAfterGallery } from "@/components/sections/BeforeAfterGallery";
 import { GoogleReviewsWidget } from "@/components/ui/GoogleReviewsWidget";
 import { InteractiveCatalog } from "@/components/ui/InteractiveCatalog";
 import { ServiceCards } from "@/components/sections/ServiceCards";
+import { EgepenShowroom } from "@/components/sections/EgepenShowroom";
 import { businessConfig } from "@/config/business.config";
 
 
@@ -25,9 +26,9 @@ import { businessConfig } from "@/config/business.config";
  * Targeting: "Beylikdüzü PVC", "Egepen Bayi", "Cam Balkon"
  */
 export const metadata: Metadata = {
-  title: `${businessConfig.name} | Beylikdüzü Egepen Deceuninck Yetkili Bayi | PVC Pencere & Cam Balkon`,
+  title: `Egepen Akçayapı | Beylikdüzü PVC Pencere & Cam Balkon`,
   description:
-    `Beylikdüzü'nün resmi Egepen yetkili bayisi. PVC pencere, cam balkon, sineklik, panjur ve duşakabin sistemleri. 10 yıl garanti, aynı gün montaj. Ücretsiz keşif: ${businessConfig.contact.mobile}`,
+    `Beylikdüzü Egepen yetkili bayisi. PVC pencere, cam balkon, sineklik, panjur. 10 yıl garanti, ücretsiz keşif. ${businessConfig.contact.mobile}`,
   keywords: [
     ...businessConfig.seo.mainKeywords,
     "Beylikdüzü cam balkon",
@@ -40,13 +41,13 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: `${businessConfig.name} | Beylikdüzü Egepen Yetkili Bayi`,
+    title: `Egepen Akçayapı | Beylikdüzü PVC & Cam Balkon`,
     description:
-      `${businessConfig.address.district} Egepen yetkili bayisi. PVC pencere, cam balkon ve profesyonel montaj hizmeti. 10 yıl garanti.`,
-    url: "https://egepenakcayapi.com.tr",
+      `Beylikdüzü Egepen bayisi. PVC pencere, cam balkon montajı. 10 yıl garanti.`,
+    url: "https://akcapen-pvc.pages.dev",
     images: [
       {
-        url: "/images/og-home.jpg",
+        url: "https://akcapen-pvc.pages.dev/images/og-home.jpg",
         width: 1200,
         height: 630,
         alt: `${businessConfig.name} - Egepen Bayi Beylikdüzü`,
@@ -57,12 +58,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@egepenakcayapi",
     creator: "@egepenakcayapi",
-    title: `${businessConfig.name} | Beylikdüzü Egepen Yetkili Bayi`,
-    description: `Beylikdüzü Egepen yetkili bayisi. PVC pencere, cam balkon ve profesyonel montaj hizmeti. 10 yıl garanti.`,
-    images: ["/images/og-home.jpg"],
+    title: `Egepen Akçayapı | Beylikdüzü PVC & Cam Balkon`,
+    description: `Beylikdüzü Egepen bayisi. PVC pencere, cam balkon. 10 yıl garanti.`,
+    images: ["https://akcapen-pvc.pages.dev/images/og-home.jpg"],
   },
   alternates: {
-    canonical: "https://egepenakcayapi.com.tr",
+    canonical: "https://akcapen-pvc.pages.dev",
   },
 };
 
@@ -73,16 +74,16 @@ export const metadata: Metadata = {
 const homePageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "@id": "https://egepenakcayapi.com.tr/#webpage",
-  url: "https://egepenakcayapi.com.tr",
+  "@id": "https://akcapen-pvc.pages.dev/#webpage",
+  url: "https://akcapen-pvc.pages.dev",
   name: `${businessConfig.name} | Beylikdüzü Egepen Deceuninck Yetkili Bayi`,
   description:
     `${businessConfig.address.district} Egepen yetkili bayisi. PVC pencere, kapı, cam balkon ve profesyonel montaj hizmeti.`,
   isPartOf: {
-    "@id": "https://egepenakcayapi.com.tr/#website",
+    "@id": "https://akcapen-pvc.pages.dev/#website",
   },
   about: {
-    "@id": "https://egepenakcayapi.com.tr/#organization",
+    "@id": "https://akcapen-pvc.pages.dev/#organization",
   },
   breadcrumb: {
     "@type": "BreadcrumbList",
@@ -91,7 +92,7 @@ const homePageSchema = {
         "@type": "ListItem",
         position: 1,
         name: "Ana Sayfa",
-        item: "https://egepenakcayapi.com.tr",
+        item: "https://akcapen-pvc.pages.dev",
       },
     ],
   },
@@ -100,16 +101,16 @@ const homePageSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://egepenakcayapi.com.tr/#website",
-  url: "https://egepenakcayapi.com.tr",
+  "@id": "https://akcapen-pvc.pages.dev/#website",
+  url: "https://akcapen-pvc.pages.dev",
   name: businessConfig.name,
   description: `${businessConfig.brand} yetkili bayisi - Beylikdüzü`,
   publisher: {
-    "@id": "https://egepenakcayapi.com.tr/#organization",
+    "@id": "https://akcapen-pvc.pages.dev/#organization",
   },
   potentialAction: {
     "@type": "SearchAction",
-    target: "https://egepenakcayapi.com.tr/ara?q={search_term_string}",
+    target: "https://akcapen-pvc.pages.dev/ara?q={search_term_string}",
     "query-input": "required name=search_term_string",
   },
 };
@@ -121,11 +122,11 @@ const websiteSchema = {
 const specialtyContractorSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
-  "@id": "https://egepenakcayapi.com.tr/#contractor",
+  "@id": "https://akcapen-pvc.pages.dev/#contractor",
   name: businessConfig.name,
   alternateName: "Egepen Akçayapı Beylikdüzü",
   description: "Beylikdüzü ve İstanbul genelinde Egepen Deceuninck yetkili bayisi olarak PVC pencere, cam balkon, sineklik, panjur ve duşakabin montaj hizmeti.",
-  url: "https://egepenakcayapi.com.tr",
+  url: "https://akcapen-pvc.pages.dev",
   telephone: businessConfig.contact.mobile,
   email: businessConfig.contact.email,
   address: {
@@ -268,6 +269,9 @@ export default function HomePage() {
 
         {/* Services Section - Quick overview */}
         <ServicesSection />
+
+        {/* Egepen Product Showroom - Premium product showcase */}
+        <EgepenShowroom />
 
         {/* Service Cards - Detailed with Features, Warranty, Get Price CTA */}
         <ServiceCards />

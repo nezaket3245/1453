@@ -2,10 +2,38 @@
   X-DNS-Prefetch-Control: on
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
-  Referrer-Policy: origin-when-cross-origin
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(self), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://placehold.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob: https://placehold.co; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.facebook.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self';
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Link: </images/showroom-main.png>; rel=preload; as=image; fetchpriority=high
 
 /images/*
   Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept-Encoding
 
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept-Encoding
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept-Encoding
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept-Encoding
+
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept-Encoding
+
+/favicon.ico
+  Cache-Control: public, max-age=604800
+
+/manifest.json
+  Cache-Control: public, max-age=86400
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate

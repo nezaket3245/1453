@@ -3,7 +3,7 @@ import { MetadataRoute } from "next";
 export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
-    const baseUrl = "https://egepenakcayapi.com.tr";
+    const baseUrl = "https://akcapen-pvc.pages.dev";
 
     return {
         rules: [
@@ -14,18 +14,20 @@ export default function robots(): MetadataRoute.Robots {
                     "/api/",
                     "/_next/",
                     "/admin/",
-                    "/*.json$",
+                    "/private/",
                 ],
             },
             {
                 userAgent: "Googlebot",
                 allow: "/",
-                crawlDelay: 1,
             },
             {
                 userAgent: "Bingbot",
                 allow: "/",
-                crawlDelay: 2,
+            },
+            {
+                userAgent: "Yandex",
+                allow: "/",
             },
         ],
         sitemap: `${baseUrl}/sitemap.xml`,

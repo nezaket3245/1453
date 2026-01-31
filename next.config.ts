@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
   // Enable experimental features for Next.js 15+
   experimental: {
     // Enable optimized package imports for faster builds
-    optimizePackageImports: ["framer-motion"],
+    optimizePackageImports: ["framer-motion", "lucide-react"],
   },
 
   // Image optimization configuration
@@ -44,6 +44,29 @@ const nextConfig: NextConfig = {
 
   // Powered by header removal for security
   poweredByHeader: false,
+
+  // Compiler optimizations
+  compiler: {
+    // Remove console.log in production
+    removeConsole: process.env.NODE_ENV === "production",
+  },
+
+  // Bundle analyzer for debugging (disabled by default)
+  // webpack: (config, { isServer }) => {
+  //   if (!isServer) {
+  //     config.optimization.splitChunks.cacheGroups = {
+  //       ...config.optimization.splitChunks.cacheGroups,
+  //       framework: {
+  //         chunks: 'all',
+  //         name: 'framework',
+  //         test: /(?<!node_modules.*)[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
+  //         priority: 40,
+  //         enforce: true,
+  //       },
+  //     };
+  //   }
+  //   return config;
+  // },
 };
 
 export default nextConfig;

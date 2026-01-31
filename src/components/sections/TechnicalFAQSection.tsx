@@ -153,14 +153,16 @@ export function TechnicalFAQSection({
                     </div>
 
                     {/* Category Filters */}
-                    <div className="flex flex-wrap justify-center gap-3 mb-12">
+                    <div className="flex flex-wrap justify-center gap-3 mb-12" role="tablist" aria-label="SSS kategorileri">
                         {categories.map((cat) => (
                             <button
                                 key={cat.id}
                                 onClick={() => setActiveCategory(cat.id)}
+                                aria-pressed={activeCategory === cat.id}
+                                aria-label={`${cat.label} kategorisi`}
                                 className={`px-5 py-2.5 rounded-full font-medium text-sm transition-all ${activeCategory === cat.id
                                     ? 'bg-primary-600 text-white shadow-lg shadow-primary-500/30'
-                                    : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
+                                    : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                                     }`}
                             >
                                 <span className="mr-2">{cat.icon}</span>
