@@ -169,9 +169,9 @@ export default function DusakabinPage() {
                                     <span className="px-3 py-1 bg-purple-500/20 text-purple-300 text-sm font-medium rounded-full border border-purple-500/30">
                                         ⭐ 4.9/5 Müşteri Puanı
                                     </span>
-                                    <span className="px-3 py-1 bg-green-500/20 text-green-300 text-sm font-medium rounded-full border border-green-500/30">
+                                    {/* <span className="px-3 py-1 bg-green-500/20 text-green-300 text-sm font-medium rounded-full border border-green-500/30">
                                         10 Yıla Kadar Garanti
-                                    </span>
+                                    </span> */}
                                 </div>
 
                                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
@@ -326,11 +326,11 @@ export default function DusakabinPage() {
                                                 fill
                                                 className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                                             />
-                                            <div className="absolute top-4 right-4">
+                                            {/* <div className="absolute top-4 right-4">
                                                 <span className="px-3 py-1 bg-black/50 text-white text-xs font-bold rounded-full backdrop-blur-sm">
                                                     {system.warranty}
                                                 </span>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <div className="p-6">
                                             <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">

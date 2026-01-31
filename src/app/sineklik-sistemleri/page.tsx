@@ -299,11 +299,11 @@ export default function SineklikPage() {
                                             fill
                                             className="object-contain p-8 group-hover:scale-105 transition-transform"
                                         />
-                                        <div className="absolute bottom-4 left-4">
+                                        {/* <div className="absolute bottom-4 left-4">
                                             <span className="px-3 py-1 bg-white/90 text-emerald-700 text-sm font-medium rounded-full">
                                                 {system.warranty}
                                             </span>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className="p-6">
                                         <h3 className="text-xl font-bold text-gray-900 mb-2">

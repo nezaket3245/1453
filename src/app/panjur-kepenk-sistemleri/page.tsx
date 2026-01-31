@@ -154,9 +154,9 @@ export default function PanjurKepenkPage() {
                                 <span className="flex items-center gap-2">
                                     <span className="text-green-400">✓</span> Somfy Yetkili Bayi
                                 </span>
-                                <span className="flex items-center gap-2">
+                                {/* <span className="flex items-center gap-2">
                                     <span className="text-green-400">✓</span> 5 Yıl Motor Garantisi
-                                </span>
+                                </span> */}
                                 <span className="flex items-center gap-2">
                                     <span className="text-green-400">✓</span> Alexa/Google Uyumlu
                                 </span>
@@ -420,11 +420,11 @@ export default function PanjurKepenkPage() {
                                             fill
                                             className="object-contain p-6"
                                         />
-                                        <div className="absolute top-4 right-4">
+                                        {/* <div className="absolute top-4 right-4">
                                             <span className="px-3 py-1 bg-white/90 text-indigo-700 text-xs font-medium rounded-full">
                                                 {system.warranty}
                                             </span>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className="p-6">
                                         <h3 className="text-xl font-bold text-gray-900 mb-2">{system.name}</h3>
@@ -499,7 +499,7 @@ export default function PanjurKepenkPage() {
                                         <th className="px-4 py-4 text-left text-sm font-semibold text-gray-700">Marka/Model</th>
                                         <th className="px-4 py-4 text-center text-sm font-semibold text-gray-700">Tork</th>
                                         <th className="px-4 py-4 text-center text-sm font-semibold text-gray-700">Akıllı Ev</th>
-                                        <th className="px-4 py-4 text-center text-sm font-semibold text-gray-700">Garanti</th>
+                                        {/* <th className="px-4 py-4 text-center text-sm font-semibold text-gray-700">Garanti</th> */}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -517,7 +517,7 @@ export default function PanjurKepenkPage() {
                                                     <span className="text-gray-300">—</span>
                                                 )}
                                             </td>
-                                            <td className="px-4 py-4 text-center text-sm">{motor.warranty}</td>
+                                            {/* <td className="px-4 py-4 text-center text-sm">{motor.warranty}</td> */}
                                         </tr>
                                     ))}
                                 </tbody>

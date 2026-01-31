@@ -315,8 +315,7 @@ export default function QuickQuoteForm() {
                                 </p>
                                 <p className="text-sm">
                                     Kedi/köpek tırnaklarına dayanıklı <strong>TuffScreen</strong>{' '}
-                                    tül öneriyoruz. Standart tülden 7x daha dayanıklı ve 5 yıl
-                                    garantili.
+                                    tül öneriyoruz. Standart tülden 7x daha dayanıklı.
                                 </p>
                             </div>
                         </div>
@@ -395,10 +394,10 @@ export default function QuickQuoteForm() {
                         <span className="mr-2">✓</span>
                         Aynı Gün Dönüş
                     </div>
-                    <div className="flex items-center">
+                    {/* <div className="flex items-center">
                         <span className="mr-2">✓</span>
                         Garanti Belgeli
-                    </div>
+                    </div> */}
                     <div className="flex items-center">
                         <span className="mr-2">✓</span>
                         25+ Yıl Tecrübe

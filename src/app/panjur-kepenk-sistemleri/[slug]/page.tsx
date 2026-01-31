@@ -127,9 +127,9 @@ export default async function PanjurDetailPage({ params }: Props) {
                     <div className="container mx-auto px-4">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                             <div className="text-white">
-                                <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-sm font-medium mb-4">
+                                {/* <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-sm font-medium mb-4">
                                     {system.warranty}
-                                </span>
+                                </span> */}
                                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
                                     {system.name}
                                 </h1>
@@ -200,8 +200,8 @@ export default async function PanjurDetailPage({ params }: Props) {
                                     <div
                                         key={idx}
                                         className={`p-4 rounded-xl border ${spec.highlight
-                                                ? 'bg-indigo-50 border-indigo-200'
-                                                : 'bg-gray-50 border-gray-200'
+                                            ? 'bg-indigo-50 border-indigo-200'
+                                            : 'bg-gray-50 border-gray-200'
                                             }`}
                                     >
                                         <div className="text-sm text-gray-500 mb-1">{spec.label}</div>
@@ -253,7 +253,7 @@ export default async function PanjurDetailPage({ params }: Props) {
                                                 ))}
                                             </ul>
 
-                                            <div className="text-sm text-gray-500">Garanti: {motor.warranty}</div>
+                                            {/* <div className="text-sm text-gray-500">Garanti: {motor.warranty}</div> */}
                                         </div>
                                     ))}
                                 </div>

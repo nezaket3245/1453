@@ -10,6 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+    const { coordinates, full } = businessConfig.address;
+    const placeId = (coordinates as any).cid || "0x0:0x0";
+    const googleMapsEmbedUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.5!2d${coordinates.longitude}!3d${coordinates.latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s${placeId}!2z${encodeURIComponent(full)}!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str`;
+
     return (
         <>
             <Header />
@@ -105,7 +109,11 @@ export default function ContactPage() {
                                             </div>
                                             <div>
                                                 <p className="font-bold text-neutral-900 mb-1">Çalışma Saatleri</p>
-                                                <p className="text-neutral-600">Pzt - Cmt: 08:30 - 19:00<br />Paz: Kapalı</p>
+                                                <p className="text-neutral-600">
+                                                    Pzt - Cum: 08:30 - 19:00<br />
+                                                    Cmt: 09:00 - 18:00<br />
+                                                    Paz: Kapalı
+                                                </p>
                                             </div>
                                         </div>
 
@@ -133,7 +141,7 @@ export default function ContactPage() {
                                 <div className="bg-white p-2 rounded-2xl shadow-sm border border-neutral-100 h-full min-h-[600px]">
                                     <div className="w-full h-full bg-neutral-200 rounded-xl flex items-center justify-center text-neutral-500 overflow-hidden">
                                         <iframe
-                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1505.744158913926!2d28.601918388720703!3d40.99264560000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b55f13511eb42b%3A0xc49b7e3f844f24c0!2sAkcayapi%20Egepen%20Deceuninck!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str"
+                                            src={googleMapsEmbedUrl}
                                             width="100%"
                                             height="100%"
                                             style={{ border: 0 }}

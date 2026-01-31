@@ -163,9 +163,9 @@ export default async function DusakabinDetailPage({ params }: Props) {
                                     <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-sm font-medium">
                                         {style.label}
                                     </span>
-                                    <span className="inline-block px-3 py-1 bg-green-500/20 text-green-200 rounded-full text-sm font-medium border border-green-500/30">
+                                    {/* <span className="inline-block px-3 py-1 bg-green-500/20 text-green-200 rounded-full text-sm font-medium border border-green-500/30">
                                         {system.warranty}
-                                    </span>
+                                    </span> */}
                                 </div>
                                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
                                     {system.name}
@@ -226,8 +226,8 @@ export default async function DusakabinDetailPage({ params }: Props) {
                                     <div
                                         key={idx}
                                         className={`p-4 rounded-xl border ${spec.highlight
-                                                ? 'bg-purple-50 border-purple-200'
-                                                : 'bg-gray-50 border-gray-200'
+                                            ? 'bg-purple-50 border-purple-200'
+                                            : 'bg-gray-50 border-gray-200'
                                             }`}
                                     >
                                         <div className="text-sm text-gray-500 mb-1">{spec.label}</div>
@@ -406,11 +406,11 @@ export default async function DusakabinDetailPage({ params }: Props) {
                                     <div className="font-bold text-gray-900 mb-1">Montaj Süresi</div>
                                     <div className="text-purple-600 font-medium">{system.installationTime}</div>
                                 </div>
-                                <div className="bg-white rounded-xl p-6 text-center shadow-sm">
+                                {/* <div className="bg-white rounded-xl p-6 text-center shadow-sm">
                                     <div className="text-3xl mb-3">🛡️</div>
                                     <div className="font-bold text-gray-900 mb-1">Garanti</div>
                                     <div className="text-green-600 font-medium">{system.warranty}</div>
-                                </div>
+                                </div> */}
                                 <div className="bg-white rounded-xl p-6 text-center shadow-sm">
                                     <div className="text-3xl mb-3">📜</div>
                                     <div className="font-bold text-gray-900 mb-1">Sertifikalar</div>
