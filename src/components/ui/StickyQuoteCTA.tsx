@@ -53,7 +53,8 @@ export function StickyQuoteCTA() {
                                 <a
                                     href={whatsappUrl}
                                     target="_blank"
-                                    rel="noopener noreferrer"
+                                    rel="noopener noreferrer nofollow"
+                                    title="WhatsApp ile Hemen İletişime Geçin"
                                     className="flex items-center gap-3 px-5 py-3 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-colors font-bold text-sm"
                                     aria-label="WhatsApp ile iletişime geç"
                                 >
@@ -66,6 +67,7 @@ export function StickyQuoteCTA() {
                                 {/* Direct Call Button */}
                                 <a
                                     href={`tel:${businessConfig.contact.mobileRaw}`}
+                                    title="Egepen Akçayapı'yı Hemen Arayın"
                                     className="flex items-center gap-3 px-5 py-3 bg-primary-600 text-white rounded-full shadow-lg hover:bg-primary-700 transition-colors font-bold text-sm"
                                     aria-label="Hemen ara"
                                 >
@@ -78,6 +80,7 @@ export function StickyQuoteCTA() {
                                 {/* Quote Form Button */}
                                 <a
                                     href="/teklif-al"
+                                    title="Ücretsiz Teklif Formu"
                                     className="flex items-center gap-3 px-5 py-3 bg-secondary-500 text-white rounded-full shadow-lg hover:bg-secondary-600 transition-colors font-bold text-sm"
                                     aria-label="Teklif formu"
                                 >
@@ -95,6 +98,7 @@ export function StickyQuoteCTA() {
                         onClick={() => setIsExpanded(!isExpanded)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+                        title={isExpanded ? "Menüyü Kapat" : "Hızlı Teklif Seçenekleri"}
                         className={`
                             flex items-center gap-3 px-6 py-4 rounded-full shadow-2xl font-bold text-base
                             transition-all duration-300

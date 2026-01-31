@@ -275,7 +275,7 @@ export default function PVCSystemsPage() {
                                     <span className="text-4xl mb-3">🏆</span>
                                     <h3 className="text-xl font-bold mb-2">Legend Serisi</h3>
                                     <p className="text-white/80 text-sm mb-4">80mm genişlik, 6 odacık, 3 conta ile yalıtımda son nokta</p>
-                                    <Link href="/pvc-sistemleri/legend-pvc-pencere" className="px-4 py-2 bg-secondary-500 text-white font-bold rounded-lg hover:bg-secondary-600 transition-colors">
+                                    <Link href="/pvc-sistemleri/legend-pvc-pencere" title="Legend PVC Pencere Serisi - Detaylı Bilgi" className="px-4 py-2 bg-secondary-500 text-white font-bold rounded-lg hover:bg-secondary-600 transition-colors">
                                         Detaylı Bilgi →
                                     </Link>
                                 </div>

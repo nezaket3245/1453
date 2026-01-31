@@ -24,6 +24,8 @@ interface ButtonBaseProps {
     children: React.ReactNode;
     className?: string;
     onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+    title?: string;
+    "aria-label"?: string;
 }
 
 interface ButtonAsButtonProps extends ButtonBaseProps {
@@ -123,6 +125,8 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
             children,
             className,
             onClick,
+            title,
+            "aria-label": ariaLabel,
         } = props;
 
         const baseStyles = cn(
@@ -171,6 +175,8 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
                         rel="noopener noreferrer"
                         className={baseStyles}
                         onClick={onClick}
+                        title={title}
+                        aria-label={ariaLabel}
                         {...motionProps}
                     >
                         {content}
@@ -184,6 +190,8 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
                         ref={ref as React.ForwardedRef<HTMLAnchorElement>}
                         className={baseStyles}
                         onClick={onClick}
+                        title={title}
+                        aria-label={ariaLabel}
                         {...motionProps}
                     >
                         {content}
@@ -202,6 +210,8 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
                 onClick={onClick}
                 className={baseStyles}
                 aria-disabled={buttonProps.disabled || isLoading}
+                title={title}
+                aria-label={ariaLabel}
                 {...motionProps}
             >
                 {content}

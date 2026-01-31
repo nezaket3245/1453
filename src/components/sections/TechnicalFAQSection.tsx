@@ -222,7 +222,8 @@ export function TechnicalFAQSection({
                         <a
                             href={`https://wa.me/${businessConfig.contact.whatsapp}?text=${encodeURIComponent("Merhaba, cam balkon hakkında bir sorum var.")}`}
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel="noopener noreferrer nofollow"
+                            title="WhatsApp ile Soru Sorun"
                             className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 text-white font-bold rounded-full hover:bg-green-600 transition-colors shadow-lg shadow-green-500/30"
                         >
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

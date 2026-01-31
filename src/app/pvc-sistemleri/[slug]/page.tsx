@@ -155,13 +155,13 @@ export default async function PVCProductDetailPage({ params }: PVCProductPagePro
                         <nav aria-label="Breadcrumb" className="mb-8">
                             <ol className="flex items-center gap-2 text-sm text-white/60">
                                 <li>
-                                    <Link href="/" className="hover:text-white transition-colors">
+                                    <Link href="/" title="Ana Sayfa" className="hover:text-white transition-colors">
                                         Ana Sayfa
                                     </Link>
                                 </li>
                                 <li>/</li>
                                 <li>
-                                    <Link href="/pvc-sistemleri" className="hover:text-white transition-colors">
+                                    <Link href="/pvc-sistemleri" title="PVC Pencere Sistemleri" className="hover:text-white transition-colors">
                                         PVC Sistemleri
                                     </Link>
                                 </li>

@@ -132,7 +132,7 @@ export function Footer() {
             <div className="container-custom grid lg:grid-cols-4 gap-12 mb-16">
                 {/* Branding & Bio */}
                 <div className="lg:col-span-1">
-                    <Link href="/" className="text-2xl font-black text-white italic uppercase tracking-tighter mb-6 block">
+                    <Link href="/" title="Egepen Akçayapı Ana Sayfa" className="text-2xl font-black text-white italic uppercase tracking-tighter mb-6 block">
                         {businessConfig.name}
                     </Link>
                     <p className="text-neutral-400 text-sm leading-relaxed mb-6">

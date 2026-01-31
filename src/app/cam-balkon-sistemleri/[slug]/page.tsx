@@ -86,13 +86,13 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                     <div className="container-custom">
                         <nav aria-label="Breadcrumb" className="mb-10 animate-fade-in">
                             <ol className="flex items-center gap-2 text-sm text-neutral-500 font-medium">
-                                <li><Link href="/" className="hover:text-primary-600 transition-colors">Ana Sayfa</Link></li>
+                                <li><Link href="/" title="Ana Sayfa" className="hover:text-primary-600 transition-colors">Ana Sayfa</Link></li>
                                 <li>
                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                     </svg>
                                 </li>
-                                <li><Link href="/cam-balkon-sistemleri" className="hover:text-primary-600 transition-colors">Cam Balkon</Link></li>
+                                <li><Link href="/cam-balkon-sistemleri" title="Cam Balkon Sistemleri" className="hover:text-primary-600 transition-colors">Cam Balkon</Link></li>
                                 <li>
                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

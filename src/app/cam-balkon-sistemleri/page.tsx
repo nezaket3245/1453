@@ -62,10 +62,10 @@ export default function GlassSystemsPage() {
                                 Tiara Max ve Twin teknolojileriyle %60&apos;a varan enerji tasarrufu sağlayın.
                             </p>
                             <div className="flex flex-wrap gap-4">
-                                <Link href="/teklif-al" className="btn btn-primary btn-lg">
+                                <Link href="/teklif-al" title="Ücretsiz Cam Balkon Keşif ve Teklif" className="btn btn-primary btn-lg">
                                     Ücretsiz Keşif İste
                                 </Link>
-                                <a href={`tel:${businessConfig.contact.mobileRaw}`} className="btn btn-outline btn-lg border-white text-white hover:bg-white hover:text-black">
+                                <a href={`tel:${businessConfig.contact.mobileRaw}`} title="Egepen Akçayapı Cam Balkon Uzmanını Arayın" className="btn btn-outline btn-lg border-white text-white hover:bg-white hover:text-black">
                                     Hemen Ara: {businessConfig.contact.mobile}
                                 </a>
                             </div>
@@ -391,10 +391,10 @@ export default function GlassSystemsPage() {
                             Ücretsiz keşif ve projelendirme için bir telefon uzağınızdayız.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                            <Link href="/teklif-al" className="btn btn-secondary btn-lg px-12">
+                            <Link href="/teklif-al" title="Ücretsiz Cam Balkon Teklifi Alın" className="btn btn-secondary btn-lg px-12">
                                 Ücretsiz Teklif Al
                             </Link>
-                            <a href={`tel:${businessConfig.contact.mobileRaw}`} className="btn btn-outline btn-lg border-white text-white hover:bg-white hover:text-primary-600 px-12">
+                            <a href={`tel:${businessConfig.contact.mobileRaw}`} title="Egepen Akçayapı'yı Hemen Arayın" className="btn btn-outline btn-lg border-white text-white hover:bg-white hover:text-primary-600 px-12">
                                 {businessConfig.contact.mobile}
                             </a>
                         </div>

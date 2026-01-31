@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Image from "next/image";
+import OptimizedImage from "@/components/ui/OptimizedImage";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
@@ -18,7 +18,7 @@ export default function AboutPage() {
                 {/* Hero Section */}
                 <section className="relative py-20 lg:py-32 bg-primary-900 text-white overflow-hidden">
                     <div className="absolute inset-0 opacity-50">
-                        <Image src="/images/showroom-main.png" alt="Background" fill className="object-cover" />
+                        <OptimizedImage src="/images/showroom-main.png" alt="Background" fill className="object-cover" />
                     </div>
                     <div className="container-custom relative z-10">
                         <div className="max-w-3xl">
@@ -38,7 +38,7 @@ export default function AboutPage() {
                     <div className="container-custom">
                         <div className="grid lg:grid-cols-2 gap-16 items-center">
                             <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl">
-                                <Image src="/images/pvc/pvc-montaj-insaat.jpg" alt="Fabrikamız" fill className="object-cover" />
+                                <OptimizedImage src="/images/pvc/pvc-montaj-insaat.jpg" alt="Fabrikamız" fill className="object-cover" />
                             </div>
                             <div>
                                 <h2 className="text-3xl font-bold text-neutral-900 mb-6">Biz Kimiz?</h2>

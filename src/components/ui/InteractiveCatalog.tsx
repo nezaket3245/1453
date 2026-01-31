@@ -280,6 +280,7 @@ export function InteractiveCatalog() {
                                             <a
                                                 href={item.pdfUrl}
                                                 download
+                                                title={`${item.title} PDF Katalog İndir`}
                                                 className="flex-1 text-center py-2 text-sm font-bold text-primary-600 border border-primary-200 rounded-lg hover:bg-primary-50 transition-colors"
                                             >
                                                 📄 PDF İndir
@@ -288,7 +289,8 @@ export function InteractiveCatalog() {
                                         <a
                                             href={`${whatsappBase}?text=${encodeURIComponent(`Merhaba, ${item.title} hakkında fiyat bilgisi almak istiyorum.`)}`}
                                             target="_blank"
-                                            rel="noopener noreferrer"
+                                            rel="noopener noreferrer nofollow"
+                                            title={`${item.title} için WhatsApp'tan fiyat alın`}
                                             className="flex-1 text-center py-2 text-sm font-bold text-white bg-green-500 rounded-lg hover:bg-green-600 transition-colors"
                                         >
                                             Fiyat Al
@@ -309,6 +311,7 @@ export function InteractiveCatalog() {
                 >
                     <a
                         href="/urunler"
+                        title="Tüm Egepen Ürünlerini Görüntüle"
                         className="inline-flex items-center gap-2 px-8 py-4 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-500/30"
                     >
                         <span>Tüm Ürünleri Keşfet</span>
@@ -390,6 +393,7 @@ export function InteractiveCatalog() {
                                         <a
                                             href={selectedItem.pdfUrl}
                                             download
+                                            title={`${selectedItem.title} Teknik PDF Katalog İndir`}
                                             className="flex-1 text-center py-3 text-sm font-bold text-primary-600 border-2 border-primary-500 rounded-xl hover:bg-primary-50 transition-colors"
                                         >
                                             📄 Teknik PDF İndir
@@ -398,7 +402,8 @@ export function InteractiveCatalog() {
                                     <a
                                         href={`${whatsappBase}?text=${encodeURIComponent(`Merhaba, ${selectedItem.title} hakkında detaylı fiyat ve montaj bilgisi almak istiyorum.`)}`}
                                         target="_blank"
-                                        rel="noopener noreferrer"
+                                        rel="noopener noreferrer nofollow"
+                                        title={`${selectedItem.title} için WhatsApp'tan teklif alın`}
                                         className="flex-1 text-center py-3 text-sm font-bold text-white bg-green-500 rounded-xl hover:bg-green-600 transition-colors"
                                     >
                                         💬 WhatsApp ile Teklif Al

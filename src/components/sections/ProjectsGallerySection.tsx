@@ -160,6 +160,7 @@ export function ProjectsGallerySection() {
                 >
                     <a
                         href="/projeler"
+                        title="Tamamlanan Tüm Projeleri Görüntüle"
                         className="inline-flex items-center gap-2 px-8 py-4 bg-neutral-900 text-white font-bold rounded-xl hover:bg-neutral-800 transition-colors"
                     >
                         Tüm Projelerimizi Görün
@@ -230,6 +231,7 @@ export function ProjectsGallerySection() {
                                 <div className="flex flex-col sm:flex-row gap-4">
                                     <a
                                         href="/teklif-al"
+                                        title="Benzer Proje İçin Ücretsiz Teklif Alın"
                                         className="flex-1 text-center px-6 py-3 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors"
                                     >
                                         Benzer Proje İçin Teklif Al
@@ -237,7 +239,8 @@ export function ProjectsGallerySection() {
                                     <a
                                         href={`https://wa.me/${businessConfig.contact.whatsapp}?text=${encodeURIComponent(`Merhaba, "${selectedProject.title}" projeniz hakkında bilgi almak istiyorum.`)}`}
                                         target="_blank"
-                                        rel="noopener noreferrer"
+                                        rel="noopener noreferrer nofollow"
+                                        title="Bu Proje Hakkında WhatsApp'tan Sorun"
                                         className="flex-1 text-center px-6 py-3 bg-green-500 text-white font-bold rounded-xl hover:bg-green-600 transition-colors"
                                     >
                                         WhatsApp ile Sor

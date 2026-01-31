@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { businessConfig } from "@/config/business.config";
 import { projects, projectCategories } from "@/lib/projectsData";
+import { ProjectListing } from "@/components/sections/ProjectListing";
 
 export const metadata: Metadata = {
     title: `Projelerimiz | Referans Çalışmalar | ${businessConfig.name}`,
@@ -47,7 +48,7 @@ export default function ProjectsPage() {
                         <nav aria-label="Breadcrumb" className="mb-8">
                             <ol className="flex items-center gap-2 text-sm text-white/60">
                                 <li>
-                                    <Link href="/" className="hover:text-white transition-colors">
+                                    <Link href="/" title="Ana Sayfa" className="hover:text-white transition-colors">
                                         Ana Sayfa
                                     </Link>
                                 </li>
@@ -63,9 +64,9 @@ export default function ProjectsPage() {
                                 Tamamlanan <span className="text-secondary-400">Projeler</span>
                             </h1>
                             <p className="text-xl text-white/70 leading-relaxed">
-                                25 yılda 10.000&apos;den fazla başarılı proje. İstanbul genelinde
-                                villalardan toplu konutlara, ofislerden ticari alanlara kadar
-                                geniş bir proje portföyü.
+                                40 yılı aşkın süredir Beylikdüzü ve İstanbul genelinde binlerce başarılı proje.
+                                Villalardan toplu konutlara, şık cam balkonlardan modern duşakabinlere kadar
+                                geniş referans portföyümüzü inceleyin.
                             </p>
                         </div>
 
@@ -73,126 +74,35 @@ export default function ProjectsPage() {
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
                             {[
                                 { value: "10.000+", label: "Tamamlanan Proje" },
-                                { value: "25+", label: "Yıllık Deneyim" },
+                                { value: "40+", label: "Yıllık Deneyim" },
                                 { value: "98%", label: "Müşteri Memnuniyeti" },
-                                { value: "50+", label: "Aktif Site" },
+                                { value: "Beylikdüzü", label: "Merkez Bölge" },
                             ].map((stat, i) => (
                                 <div key={i} className="text-center">
                                     <div className="text-3xl md:text-4xl font-black text-secondary-400 mb-2">
                                         {stat.value}
                                     </div>
-                                    <div className="text-sm text-white/60">{stat.label}</div>
+                                    <div className="text-sm text-white/60 font-bold uppercase tracking-wider">{stat.label}</div>
                                 </div>
                             ))}
                         </div>
                     </div>
                 </section>
 
-                {/* Categories Filter */}
-                <section className="py-8 bg-neutral-50 border-b border-neutral-100 sticky top-[72px] z-30">
-                    <div className="container-custom">
-                        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
-                            {projectCategories.map((category) => (
-                                <button
-                                    key={category.id}
-                                    className="flex-shrink-0 px-5 py-2.5 rounded-full bg-white hover:bg-primary-100 hover:text-primary-700 font-medium text-sm transition-colors flex items-center gap-2 border border-neutral-200"
-                                >
-                                    <span>{category.icon}</span>
-                                    {category.name}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Projects Grid */}
-                <section className="section">
-                    <div className="container-custom">
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {projects.map((project) => (
-                                <article
-                                    key={project.id}
-                                    className="group bg-white rounded-2xl overflow-hidden border border-neutral-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-                                >
-                                    {/* Image */}
-                                    <div className="relative aspect-[4/3] overflow-hidden">
-                                        <OptimizedImage
-                                            src={project.images[0]}
-                                            alt={project.title}
-                                            fill
-                                            className="object-cover group-hover:scale-110 transition-transform duration-500"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                                        <div className="absolute top-4 left-4">
-                                            <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-neutral-700 rounded-full text-xs font-medium">
-                                                {projectCategories.find((c) => c.id === project.category)?.name}
-                                            </span>
-                                        </div>
-                                        <div className="absolute bottom-4 left-4 right-4">
-                                            <h3 className="text-xl font-bold text-white line-clamp-2">
-                                                {project.title}
-                                            </h3>
-                                        </div>
-                                    </div>
-
-                                    {/* Content */}
-                                    <div className="p-6">
-                                        <div className="flex items-center gap-4 text-sm text-neutral-500 mb-4">
-                                            <span className="flex items-center gap-1">
-                                                📍 {project.location}
-                                            </span>
-                                            <span className="flex items-center gap-1">
-                                                📅 {project.year}
-                                            </span>
-                                        </div>
-                                        <p className="text-neutral-600 mb-4 line-clamp-2">
-                                            {project.description}
-                                        </p>
-
-                                        {/* Features */}
-                                        <div className="flex flex-wrap gap-2 mb-4">
-                                            {project.features.slice(0, 3).map((feature) => (
-                                                <span
-                                                    key={feature}
-                                                    className="px-2 py-1 bg-neutral-100 text-neutral-600 rounded text-xs"
-                                                >
-                                                    {feature}
-                                                </span>
-                                            ))}
-                                            {project.features.length > 3 && (
-                                                <span className="px-2 py-1 bg-primary-50 text-primary-600 rounded text-xs">
-                                                    +{project.features.length - 3} özellik
-                                                </span>
-                                            )}
-                                        </div>
-
-                                        {/* Testimonial Preview */}
-                                        {project.testimonial && (
-                                            <div className="pt-4 border-t border-neutral-100">
-                                                <p className="text-sm text-neutral-500 italic line-clamp-2">
-                                                    &ldquo;{project.testimonial.text}&rdquo;
-                                                </p>
-                                                <p className="text-xs text-neutral-400 mt-1">
-                                                    — {project.testimonial.author}
-                                                </p>
-                                            </div>
-                                        )}
-                                    </div>
-                                </article>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                {/* Interactive Project Listing */}
+                <ProjectListing projects={projects} categories={projectCategories} />
 
                 {/* Testimonials Section */}
-                <section className="section bg-neutral-50">
-                    <div className="container-custom">
+                <section className="section bg-neutral-900 text-white overflow-hidden relative">
+                    <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-primary-600/10 rounded-full blur-[120px]" />
+
+                    <div className="container-custom relative z-10">
                         <div className="text-center max-w-2xl mx-auto mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                                 Müşteri Yorumları
                             </h2>
-                            <p className="text-neutral-600">
-                                Projelerimizi tamamladığımız müşterilerimizden gelen geri bildirimler
+                            <p className="text-neutral-400">
+                                Projelerimizi tamamladığımız müşterilerimizden gelen gerçek geri bildirimler
                             </p>
                         </div>
 
@@ -200,29 +110,29 @@ export default function ProjectsPage() {
                             {projects
                                 .filter((p) => p.testimonial)
                                 .slice(0, 3)
-                                .map((project) => (
+                                .map((project, idx) => (
                                     <div
                                         key={project.id}
-                                        className="bg-white p-8 rounded-2xl shadow-sm border border-neutral-100"
+                                        className="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 hover:border-primary-500/30 transition-all group"
                                     >
-                                        <div className="flex gap-1 mb-4">
+                                        <div className="flex gap-1 mb-6">
                                             {[...Array(5)].map((_, i) => (
-                                                <span key={i} className="text-yellow-400">★</span>
+                                                <span key={i} className="text-primary-400">★</span>
                                             ))}
                                         </div>
-                                        <p className="text-neutral-600 mb-6 italic">
+                                        <p className="text-neutral-300 mb-6 italic leading-relaxed">
                                             &ldquo;{project.testimonial?.text}&rdquo;
                                         </p>
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-bold">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:scale-110 transition-transform">
                                                 {project.testimonial?.author.charAt(0)}
                                             </div>
                                             <div>
-                                                <p className="font-medium text-neutral-900">
+                                                <p className="font-bold text-white">
                                                     {project.testimonial?.author}
                                                 </p>
-                                                <p className="text-xs text-neutral-400">
-                                                    {project.location}
+                                                <p className="text-xs text-neutral-500 font-medium uppercase tracking-widest">
+                                                    {project.location.split(",")[0]}
                                                 </p>
                                             </div>
                                         </div>
@@ -240,7 +150,7 @@ export default function ProjectsPage() {
                                 Hizmet Bölgelerimiz
                             </h2>
                             <p className="text-neutral-600">
-                                İstanbul&apos;un Avrupa yakasında aktif olarak hizmet verdiğimiz bölgeler
+                                Beylikdüzü ve İstanbul&apos;un tüm Avrupa yakasında profesyonel montaj ve servis desteği sağlıyoruz.
                             </p>
                         </div>
 
@@ -261,10 +171,10 @@ export default function ProjectsPage() {
                             ].map((area) => (
                                 <div
                                     key={area}
-                                    className="text-center p-4 bg-neutral-50 rounded-xl hover:bg-primary-50 hover:text-primary-700 transition-colors cursor-default"
+                                    className="text-center p-6 bg-neutral-50 rounded-2xl hover:bg-primary-600 hover:text-white transition-all duration-300 group shadow-sm hover:shadow-xl hover:-translate-y-1"
                                 >
-                                    <span className="text-2xl mb-2 block">📍</span>
-                                    <span className="font-medium text-sm">{area}</span>
+                                    <span className="text-3xl mb-3 block group-hover:scale-125 transition-transform">📍</span>
+                                    <span className="font-bold text-sm tracking-tight">{area}</span>
                                 </div>
                             ))}
                         </div>
@@ -272,27 +182,27 @@ export default function ProjectsPage() {
                 </section>
 
                 {/* CTA Section */}
-                <section className="py-20 bg-primary-600 text-white text-center">
-                    <div className="container-custom">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                            Sizin Projeniz de Burada Olabilir
+                <section className="py-24 bg-primary-600 text-white text-center relative overflow-hidden">
+                    <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] opacity-20" />
+                    <div className="container-custom relative z-10">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-8 leading-tight">
+                            Sizin Projeniz de <span className="text-secondary-400">Gurur Tablomuz</span> Olsun
                         </h2>
-                        <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+                        <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
                             Ev veya iş yeriniz için ücretsiz keşif ve fiyat teklifi alın.
-                            Uzman ekibimiz ihtiyaçlarınıza en uygun çözümü sunacaktır.
+                            Uzman ekibimizle en kaliteli çözümleri bütçenize uygun sunalım.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Button variant="secondary" size="xl" href="/teklif-al">
+                        <div className="flex flex-col sm:flex-row gap-5 justify-center">
+                            <Button variant="secondary" size="xl" href="/teklif-al" className="px-10 h-16 shadow-2xl">
                                 Ücretsiz Keşif Talep Et
                             </Button>
                             <Button
                                 variant="outline"
                                 size="xl"
-                                href={`https://wa.me/${businessConfig.contact.whatsapp}?text=Merhaba, proje için görüşmek istiyorum.`}
-                                external
-                                className="text-white border-white/30 hover:bg-white hover:text-primary-600"
+                                href={`https://wa.me/${businessConfig.contact.whatsapp}`}
+                                className="px-10 h-16 text-white border-white/40 hover:bg-white hover:text-primary-600 transition-all backdrop-blur-sm"
                             >
-                                WhatsApp ile Ulaşın
+                                WhatsApp İletişimi
                             </Button>
                         </div>
                     </div>

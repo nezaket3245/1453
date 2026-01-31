@@ -30,9 +30,13 @@ export function CTASection() {
                                 <Button variant="secondary" size="xl" href="/teklif-al" className="px-10">
                                     Hemen Teklif Al
                                 </Button>
-                                <Button variant="outline" size="xl" href={`tel:${businessConfig.contact.mobileRaw}`} className="text-white border-white/20 hover:bg-white hover:text-primary-600 px-10">
+                                <a
+                                    href={`tel:${businessConfig.contact.mobileRaw}`}
+                                    title="Egepen Akçayapı'yı Hemen Arayın"
+                                    className="inline-flex items-center justify-center px-10 py-4 text-xl font-semibold rounded-lg text-white border-2 border-white/20 hover:bg-white hover:text-primary-600 transition-all duration-200"
+                                >
                                     Arama Yap
-                                </Button>
+                                </a>
                             </div>
                         </div>
 

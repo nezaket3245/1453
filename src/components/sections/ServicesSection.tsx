@@ -21,7 +21,7 @@ export function ServicesSection() {
 
                         </h2>
                     </div>
-                    <Button variant="primary" size="lg" href="/urunler">
+                    <Button variant="primary" size="lg" href="/urunler" title="Tüm Ürün Kataloğumuzu İnceleyin">
                         Tüm Kataloğu Gör
                     </Button>
                 </div>
@@ -46,7 +46,7 @@ export function ServicesSection() {
                                 viewport={{ once: true }}
                                 className="group"
                             >
-                                <Link href={getDirectLink(product.slug)} className="block">
+                                <Link href={getDirectLink(product.slug)} title={`${product.name} - Detaylı Bilgi ve Fiyatlar`} className="block">
                                     <div className="relative aspect-[4/5] rounded-3xl overflow-hidden mb-6 bg-neutral-100 shadow-sm group-hover:shadow-2xl transition-all duration-500">
                                         <OptimizedImage
                                             src={product.image}

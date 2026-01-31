@@ -60,7 +60,7 @@ export function CookieConsent() {
                                 <p className="text-sm text-neutral-600 leading-relaxed">
                                     Web sitemizde deneyiminizi iyileştirmek için çerezler kullanıyoruz.
                                     Sitemizi kullanarak{" "}
-                                    <Link href="/gizlilik-politikasi" className="text-primary-600 hover:underline">
+                                    <Link href="/gizlilik-politikasi" title="KVKK ve Gizlilik Politikası" className="text-primary-600 hover:underline">
                                         Gizlilik Politikamızı
                                     </Link>
                                     {" "}kabul etmiş olursunuz.

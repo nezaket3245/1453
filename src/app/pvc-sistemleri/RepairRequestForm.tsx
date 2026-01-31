@@ -77,7 +77,7 @@ export function RepairRequestForm() {
                 </p>
                 <p className="text-sm text-neutral-500">
                     Acil durumlar için:{" "}
-                    <a href={`tel:${businessConfig.contact.mobile.replace(/\s/g, "")}`} className="text-primary-600 font-bold">
+                    <a href={`tel:${businessConfig.contact.mobile.replace(/\s/g, "")}`} title="Egepen Akçayapı Acil Servis Hattı" className="text-primary-600 font-bold">
                         {businessConfig.contact.mobile}
                     </a>
                 </p>
@@ -231,7 +231,7 @@ export function RepairRequestForm() {
                         className="mt-1 w-5 h-5 rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
                     />
                     <span className="text-sm text-neutral-600">
-                        <a href="/gizlilik-politikasi" className="text-primary-600 hover:underline">
+                        <a href="/gizlilik-politikasi" title="KVKK ve Gizlilik Politikası" className="text-primary-600 hover:underline">
                             Gizlilik Politikası
                         </a>
                         &apos;nı okudum ve kişisel verilerimin işlenmesine onay veriyorum.{" "}
@@ -263,7 +263,7 @@ export function RepairRequestForm() {
             </button>
 
             <p className="mt-4 text-center text-sm text-neutral-500">
-                Acil durumlar için doğrudan arayın: <a href={`tel:${businessConfig.contact.mobile.replace(/\s/g, "")}`} className="text-primary-600 font-bold">{businessConfig.contact.mobile}</a>
+                Acil durumlar için doğrudan arayın: <a href={`tel:${businessConfig.contact.mobile.replace(/\s/g, "")}`} title="Egepen Akçayapı'yı Hemen Arayın" className="text-primary-600 font-bold">{businessConfig.contact.mobile}</a>
             </p>
         </form>
     );

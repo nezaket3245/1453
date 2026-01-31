@@ -231,6 +231,7 @@ export function ServiceCards() {
                                 <div className="flex gap-3">
                                     <Link
                                         href={service.href}
+                                        title={`${service.title} detaylarını görüntüle`}
                                         className="flex-1 text-center py-2.5 text-sm font-bold text-primary-600 border border-primary-200 rounded-lg hover:bg-primary-50 transition-colors"
                                     >
                                         Detaylar
@@ -238,7 +239,8 @@ export function ServiceCards() {
                                     <a
                                         href={`${whatsappBase}?text=${encodeURIComponent(`Merhaba, ${service.title} hakkında fiyat bilgisi almak istiyorum.`)}`}
                                         target="_blank"
-                                        rel="noopener noreferrer"
+                                        rel="noopener noreferrer nofollow"
+                                        title={`${service.title} için WhatsApp'tan fiyat alın`}
                                         className="flex-1 text-center py-2.5 text-sm font-bold text-white bg-green-500 rounded-lg hover:bg-green-600 transition-colors"
                                     >
                                         Fiyat Al

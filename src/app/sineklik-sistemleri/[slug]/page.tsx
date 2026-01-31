@@ -135,13 +135,14 @@ export default async function SineklikDetailPage({
                 {/* Breadcrumb */}
                 <div className="bg-gray-50 py-4 border-b">
                     <div className="container mx-auto px-4">
-                        <nav className="flex items-center text-sm text-gray-500">
-                            <Link href="/" className="hover:text-emerald-600">
+                        <nav className="flex items-center text-sm text-gray-500" aria-label="Breadcrumb">
+                            <Link href="/" title="Ana Sayfa" className="hover:text-emerald-600">
                                 Ana Sayfa
                             </Link>
                             <span className="mx-2">/</span>
                             <Link
                                 href="/sineklik-sistemleri"
+                                title="Sineklik Sistemleri"
                                 className="hover:text-emerald-600"
                             >
                                 Sineklik Sistemleri

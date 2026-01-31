@@ -165,21 +165,120 @@ export function Header() {
             {/* Mobile Menu */}
             <AnimatePresence>
                 {isMobileMenuOpen && (
-                    <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ type: "spring", damping: 25 }} className="fixed inset-0 bg-white z-[60] lg:hidden flex flex-col p-6">
-                        <div className="flex justify-between items-center mb-12">
-                            <span className="text-2xl font-black text-primary-600 italic uppercase">
-                                {businessConfig.name}
+                    <motion.div
+                        initial={{ x: "100%" }}
+                        animate={{ x: 0 }}
+                        exit={{ x: "100%" }}
+                        transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                        className="fixed inset-0 bg-white z-[60] lg:hidden flex flex-col"
+                    >
+                        {/* Mobile Header */}
+                        <div className="flex justify-between items-center p-6 border-b border-neutral-100 bg-white">
+                            <span className="text-2xl font-black text-primary-600 italic uppercase tracking-tighter">
+                                {businessConfig.brand} <span className="text-neutral-800">Akçayapı</span>
                             </span>
-                            <button onClick={closeMobileMenu} className="p-2"><CloseIcon className="w-8 h-8" /></button>
+                            <button
+                                onClick={closeMobileMenu}
+                                className="p-2 -mr-2 text-neutral-400 hover:text-primary-600 transition-colors"
+                            >
+                                <CloseIcon className="w-8 h-8" />
+                            </button>
                         </div>
-                        <ul className="space-y-6 text-2xl font-bold text-neutral-900">
-                            {navigationItems.map(item => (
-                                <li key={item.href}><Link href={item.href} onClick={closeMobileMenu}>{item.label}</Link></li>
-                            ))}
-                        </ul>
-                        <div className="mt-auto space-y-4">
-                            <Button variant="primary" fullWidth size="lg" href={`tel:${businessConfig.contact.mobileRaw}`}>Tıkla Ara</Button>
-                            <Button variant="outline" fullWidth size="lg" href={`https://wa.me/${businessConfig.contact.whatsapp}`}>WhatsApp Mesaj</Button>
+
+                        {/* Mobile Navigation List */}
+                        <div className="flex-1 overflow-y-auto p-6">
+                            <ul className="space-y-4">
+                                {navigationItems.map((item) => (
+                                    <li key={item.href} className="border-b border-neutral-50 pb-4 last:border-0">
+                                        <div className="flex items-center justify-between gap-4 font-bold text-xl text-neutral-900 group">
+                                            <Link
+                                                href={item.href}
+                                                title={`${item.label} Sayfası`}
+                                                onClick={closeMobileMenu}
+                                                className="hover:text-primary-600 transition-colors flex-1"
+                                            >
+                                                {item.label}
+                                            </Link>
+                                            {item.children && (
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        setActiveDropdown(activeDropdown === item.href ? null : item.href);
+                                                    }}
+                                                    className={cn(
+                                                        "p-2 rounded-lg bg-neutral-50 text-neutral-500 transition-all",
+                                                        activeDropdown === item.href && "rotate-180 bg-primary-50 text-primary-600"
+                                                    )}
+                                                >
+                                                    <ChevronDownIcon className="w-6 h-6" />
+                                                </button>
+                                            )}
+                                        </div>
+
+                                        {/* Mobile Sub-items */}
+                                        <AnimatePresence>
+                                            {item.children && activeDropdown === item.href && (
+                                                <motion.ul
+                                                    initial={{ height: 0, opacity: 0 }}
+                                                    animate={{ height: "auto", opacity: 1 }}
+                                                    exit={{ height: 0, opacity: 0 }}
+                                                    className="pl-4 mt-4 space-y-3 overflow-hidden"
+                                                >
+                                                    {item.children.map((child) => (
+                                                        <li key={child.href}>
+                                                            <Link
+                                                                href={child.href}
+                                                                title={child.label}
+                                                                onClick={closeMobileMenu}
+                                                                className="block py-2 text-lg text-neutral-600 hover:text-primary-600 transition-colors"
+                                                            >
+                                                                {child.label}
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                                </motion.ul>
+                                            )}
+                                        </AnimatePresence>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Mobile Footer Actions */}
+                        <div className="p-6 bg-neutral-50 space-y-4 border-t border-neutral-100">
+                            <div className="grid grid-cols-2 gap-4">
+                                <Button
+                                    variant="primary"
+                                    fullWidth
+                                    size="lg"
+                                    href={`tel:${businessConfig.contact.mobileRaw}`}
+                                    title="Egepen Akçayapı'yı Hemen Arayın"
+                                    className="gap-2"
+                                >
+                                    <PhoneIcon className="w-5 h-5 text-white" />
+                                    Tıkla Ara
+                                </Button>
+                                <Button
+                                    variant="outline"
+                                    fullWidth
+                                    size="lg"
+                                    href={`https://wa.me/${businessConfig.contact.whatsapp}`}
+                                    title="WhatsApp ile Mesaj Gönderin"
+                                    className="gap-2 border-green-500 text-green-600 hover:bg-green-50"
+                                >
+                                    <WhatsAppIcon className="w-5 h-5 text-green-600" />
+                                    WhatsApp
+                                </Button>
+                            </div>
+                            <Button
+                                variant="outline"
+                                fullWidth
+                                href="/teklif-al"
+                                onClick={closeMobileMenu}
+                                className="border-neutral-200 text-neutral-600"
+                            >
+                                Ücretsiz Keşif Formu
+                            </Button>
                         </div>
                     </motion.div>
                 )}

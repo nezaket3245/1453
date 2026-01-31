@@ -209,6 +209,7 @@ export function WhyChooseUsSection() {
                     <div className="mt-10 text-center">
                         <a
                             href="/teklif-al"
+                            title="Ücretsiz Keşif ve Fiyat Teklifi Formu"
                             className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-bold rounded-full hover:from-primary-600 hover:to-primary-700 transition-all shadow-xl shadow-primary-500/30"
                         >
                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

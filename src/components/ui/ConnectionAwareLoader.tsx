@@ -63,8 +63,8 @@ export function ConnectionProvider({ children }: { children: React.ReactNode }) 
     );
 }
 
-export function PriorityCTA({ href, children, variant = "primary", className = "" }: {
-    href: string; children: React.ReactNode; variant?: "primary" | "whatsapp" | "call"; className?: string;
+export function PriorityCTA({ href, children, variant = "primary", className = "", title }: {
+    href: string; children: React.ReactNode; variant?: "primary" | "whatsapp" | "call"; className?: string; title?: string;
 }) {
     const variantStyles = {
         primary: "bg-primary-600 text-white hover:bg-primary-700",
@@ -72,7 +72,7 @@ export function PriorityCTA({ href, children, variant = "primary", className = "
         call: "bg-secondary-500 text-neutral-900 hover:bg-secondary-400",
     };
     return (
-        <a href={href} className={`inline-flex items-center justify-center gap-2 font-bold rounded-xl transition-all shadow-lg ${variantStyles[variant]} ${className}`}>
+        <a href={href} title={title} className={`inline-flex items-center justify-center gap-2 font-bold rounded-xl transition-all shadow-lg ${variantStyles[variant]} ${className}`}>
             {children}
         </a>
     );

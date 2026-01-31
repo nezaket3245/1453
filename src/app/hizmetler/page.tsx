@@ -85,7 +85,7 @@ export default function ServicesPage() {
                                         <p className="text-lg text-neutral-600 mb-8 leading-relaxed">
                                             {service.description}
                                         </p>
-                                        <Link href={service.href} className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-all shadow-lg hover:shadow-primary-500/25">
+                                        <Link href={service.href} title={`${service.title} - Detaylı Bilgi`} className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-all shadow-lg hover:shadow-primary-500/25">
                                             Detaylı Bilgi Al
                                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -106,8 +106,8 @@ export default function ServicesPage() {
                             Hizmetlerimizle ilgili her türlü soru için destek ekibimiz yardıma hazır.
                         </p>
                         <div className="flex justify-center gap-6">
-                            <Link href={`tel:${businessConfig.contact.mobileRaw}`} className="btn btn-primary">Bizi Arayın</Link>
-                            <Link href={`https://wa.me/${businessConfig.contact.whatsapp}`} className="btn btn-outline border-neutral-300">WhatsApp Destek</Link>
+                            <Link href={`tel:${businessConfig.contact.mobileRaw}`} title="Egepen Akçayapı'yı Hemen Arayın" className="btn btn-primary">Bizi Arayın</Link>
+                            <Link href={`https://wa.me/${businessConfig.contact.whatsapp}`} title="WhatsApp Destek Hattı" className="btn btn-outline border-neutral-300">WhatsApp Destek</Link>
                         </div>
                     </div>
                 </section>

@@ -129,7 +129,8 @@ export function LocalShowroomSection() {
                         <a
                             href={businessConfig.social.googleMaps}
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel="noopener noreferrer nofollow"
+                            title="Google Maps'te Egepen Akçayapı Showroom'una Yol Tarifi Al"
                             className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 px-6 py-3 bg-primary-600 text-white font-bold rounded-full shadow-xl hover:bg-primary-700 transition-colors"
                         >
                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -166,7 +167,8 @@ export function LocalShowroomSection() {
                             <a
                                 href={businessConfig.social.googleMaps}
                                 target="_blank"
-                                rel="noopener noreferrer"
+                                rel="noopener noreferrer nofollow"
+                                title="Egepen Akçayapı Showroom Konumunu Google Maps'te Görüntüle"
                                 className="text-primary-600 font-bold text-sm hover:underline"
                             >
                                 Google Maps'te Aç →
@@ -182,6 +184,7 @@ export function LocalShowroomSection() {
                             <div className="space-y-3">
                                 <a
                                     href={`tel:${businessConfig.contact.mobileRaw}`}
+                                    title="Egepen Akçayapı Cep Telefonunu Ara"
                                     className="flex items-center gap-3 text-neutral-700 hover:text-primary-600 transition-colors font-medium"
                                     itemProp="telephone"
                                 >
@@ -190,6 +193,7 @@ export function LocalShowroomSection() {
                                 </a>
                                 <a
                                     href={`tel:${businessConfig.contact.landlineRaw}`}
+                                    title="Egepen Akçayapı Sabit Hattını Ara"
                                     className="flex items-center gap-3 text-neutral-700 hover:text-primary-600 transition-colors font-medium"
                                 >
                                     <span className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm">☎️</span>
@@ -197,6 +201,7 @@ export function LocalShowroomSection() {
                                 </a>
                                 <a
                                     href={`mailto:${businessConfig.contact.email}`}
+                                    title="Egepen Akçayapı'ya E-posta Gönder"
                                     className="flex items-center gap-3 text-neutral-700 hover:text-primary-600 transition-colors font-medium"
                                     itemProp="email"
                                 >

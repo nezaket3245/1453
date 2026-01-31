@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+import OptimizedImage from "@/components/ui/OptimizedImage";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { businessConfig } from "@/config/business.config";
@@ -48,7 +48,7 @@ const products = [
             "UV Koruma",
             "Kolay Temizlik",
         ],
-        href: "/urunler/pvc-pencere",
+        href: "/pvc-sistemleri",
         color: "from-blue-500 to-blue-600",
     },
     {
@@ -58,7 +58,7 @@ const products = [
             "Panoramik, katlanır ve sürme cam balkon sistemleri. Balkonlarınızı dört mevsim kullanılabilir hale getirin.",
         image: "/images/cam-balkon/cam-balkon-site-manzara.jpg",
         features: ["Katlanır Sistem", "Sürme Sistem", "Isı Camlı", "Geniş Açılım"],
-        href: "/urunler/cam-balkon",
+        href: "/cam-balkon-sistemleri",
         color: "from-cyan-500 to-cyan-600",
     },
     {
@@ -73,7 +73,7 @@ const products = [
             "Geniş Renk Seçeneği",
             "Uzun Ömür",
         ],
-        href: "/urunler/aluminyum",
+        href: "/aluminyum-sistemleri",
         color: "from-slate-500 to-slate-600",
     },
     {
@@ -83,7 +83,7 @@ const products = [
             "Menteşeli, sürme ve pileli sineklik sistemleri. Evinizi böceklerden korurken temiz hava alın.",
         image: "/images/sineklik/duble-plise-sineklik.jpg",
         features: ["Pileli Sistem", "Sürme Sistem", "Menteşeli", "Kolay Montaj"],
-        href: "/urunler/sineklik",
+        href: "/sineklik-sistemleri",
         color: "from-green-500 to-green-600",
     },
     {
@@ -93,7 +93,7 @@ const products = [
             "Alüminyum ve plastik panjur sistemleri. Güneş kontrolü, mahremiyet ve enerji tasarrufu tek üründe.",
         image: "/images/panjur/panjur-modern-villa.jpg",
         features: ["Motorlu", "Manuel", "Güneş Kontrolü", "Enerji Tasarrufu"],
-        href: "/urunler/panjur",
+        href: "/panjur-kepenk-sistemleri",
         color: "from-amber-500 to-amber-600",
     },
     {
@@ -108,7 +108,7 @@ const products = [
             "Modern Tasarım",
             "Özel Ölçü",
         ],
-        href: "/urunler/dusakabin",
+        href: "/dusakabin-sistemleri",
         color: "from-indigo-500 to-indigo-600",
     },
 ];
@@ -132,7 +132,7 @@ export default function ProductsPage() {
                         <nav aria-label="Breadcrumb" className="mb-8">
                             <ol className="flex items-center gap-2 text-sm text-white/60">
                                 <li>
-                                    <Link href="/" className="hover:text-white transition-colors">
+                                    <Link href="/" title="Ana Sayfa" className="hover:text-white transition-colors">
                                         Ana Sayfa
                                     </Link>
                                 </li>
@@ -166,7 +166,7 @@ export default function ProductsPage() {
                                     <article className="h-full bg-white rounded-2xl overflow-hidden shadow-lg border border-neutral-100 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
                                         {/* Image */}
                                         <div className="relative h-56 overflow-hidden">
-                                            <Image
+                                            <OptimizedImage
                                                 src={product.image}
                                                 alt={product.title}
                                                 fill

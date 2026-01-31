@@ -114,10 +114,10 @@ export default async function PanjurDetailPage({ params }: Props) {
                 {/* Breadcrumb */}
                 <div className="bg-gray-50 py-4 border-b">
                     <div className="container mx-auto px-4">
-                        <nav className="flex items-center text-sm text-gray-500">
-                            <Link href="/" className="hover:text-indigo-600">Ana Sayfa</Link>
+                        <nav className="flex items-center text-sm text-gray-500" aria-label="Breadcrumb">
+                            <Link href="/" title="Ana Sayfa" className="hover:text-indigo-600">Ana Sayfa</Link>
                             <span className="mx-2">/</span>
-                            <Link href="/panjur-kepenk-sistemleri" className="hover:text-indigo-600">
+                            <Link href="/panjur-kepenk-sistemleri" title="Panjur ve Kepenk Sistemleri" className="hover:text-indigo-600">
                                 Panjur & Kepenk
                             </Link>
                             <span className="mx-2">/</span>

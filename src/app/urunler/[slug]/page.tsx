@@ -69,9 +69,9 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                     <div className="container-custom">
                         <nav aria-label="Breadcrumb" className="mb-6">
                             <ol className="flex items-center gap-2 text-sm text-neutral-500">
-                                <li><Link href="/" className="hover:text-primary-600">Ana Sayfa</Link></li>
+                                <li><Link href="/" title="Ana Sayfa" className="hover:text-primary-600">Ana Sayfa</Link></li>
                                 <li>/</li>
-                                <li><Link href="/urunler" className="hover:text-primary-600">Ürünler</Link></li>
+                                <li><Link href="/urunler" title="Tüm Ürünler" className="hover:text-primary-600">Ürünler</Link></li>
                                 <li>/</li>
                                 <li className="text-neutral-900 font-medium">{product.name}</li>
                             </ol>

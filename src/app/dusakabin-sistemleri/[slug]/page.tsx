@@ -145,10 +145,10 @@ export default async function DusakabinDetailPage({ params }: Props) {
                 {/* Breadcrumb */}
                 <div className="bg-gray-50 py-4 border-b">
                     <div className="container mx-auto px-4">
-                        <nav className="flex items-center text-sm text-gray-500">
-                            <Link href="/" className="hover:text-purple-600">Ana Sayfa</Link>
+                        <nav className="flex items-center text-sm text-gray-500" aria-label="Breadcrumb">
+                            <Link href="/" title="Ana Sayfa" className="hover:text-purple-600">Ana Sayfa</Link>
                             <span className="mx-2">/</span>
-                            <Link href="/dusakabin-sistemleri" className="hover:text-purple-600">
+                            <Link href="/dusakabin-sistemleri" title="Duşakabin Sistemleri" className="hover:text-purple-600">
                                 Duşakabin
                             </Link>
                             <span className="mx-2">/</span>

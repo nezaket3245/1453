@@ -183,6 +183,7 @@ export function HomepageFAQSection() {
                 >
                     <a
                         href="/sss"
+                        title="Tüm Sıkça Sorulan Soruları Görüntüle"
                         className="inline-flex items-center gap-2 text-primary-600 font-bold hover:text-primary-700 transition-colors"
                     >
                         Tüm Soruları Görüntüle
