@@ -10,6 +10,9 @@ import Image from 'next/image';
 import { aluminumSeoKeywords, aluminumFinishes, thermalBreakTechnology, pvcVsAluminumMatrix, aluminumSystems } from '@/lib/aluminumData';
 import { CTASection } from '@/components/sections/CTASection';
 import OptimizedImage from "@/components/ui/OptimizedImage";
+import { businessConfig } from '@/config/business.config';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 
 // SEO Metadata
 export const metadata: Metadata = {
@@ -45,7 +48,7 @@ const serviceSchema = {
             addressRegion: 'İstanbul',
             addressCountry: 'TR',
         },
-        telephone: '+90-532-000-0000',
+        telephone: businessConfig.contact.mobile,
     },
     areaServed: { '@type': 'City', name: 'İstanbul' },
     serviceType: ['Alüminyum Doğrama Montajı', 'Cephe Giydirme', 'Ofis Bölme Sistemleri'],
@@ -100,6 +103,8 @@ export default function AluminumSystemsPage() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
             />
 
+            <Header />
+
             <main className="min-h-screen bg-white">
                 {/* Hero Section */}
                 <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 py-20 lg:py-28 overflow-hidden">
@@ -138,7 +143,7 @@ export default function AluminumSystemsPage() {
                                     Ücretsiz Proje Teklifi
                                 </Link>
                                 <a
-                                    href="tel:+905320000000"
+                                    href={`tel:${businessConfig.contact.mobileRaw}`}
                                     className="inline-flex items-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-all border border-white/20"
                                 >
                                     <span className="mr-2">📞</span>
@@ -711,6 +716,8 @@ export default function AluminumSystemsPage() {
                     </div>
                 </section>
             </main>
+
+            <Footer />
         </>
     );
 }

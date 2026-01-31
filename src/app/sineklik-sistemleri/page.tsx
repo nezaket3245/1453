@@ -30,11 +30,13 @@ import SineklikDecisionAssistant from './SineklikDecisionAssistant';
 import MeshVisibilitySlider from './MeshVisibilitySlider';
 import AnimatedPliseSineklik from '@/components/ui/AnimatedPliseSineklik';
 import OptimizedImage from "@/components/ui/OptimizedImage";
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 
 // SEO Metadata
 export const metadata: Metadata = {
-    title: 'Sineklik Sistemleri | Kedi Sinekliği | Plise Sineklik | Beylikdüzü',
-    description: 'Beylikdüzü sineklik montajı, kedi sinekliği, plise sineklik, sürme sineklik. Yırtılmaz tül, TuffScreen pet screen. İstanbul Avrupa Yakası ücretsiz keşif.',
+    title: 'Sineklik Çözümleri & Kedi Sinekliği | Beylikdüzü Akçayapı',
+    description: 'Beylikdüzü kedi sinekliği, plise ve sürme sineklik sistemleri. Yırtılmaz tül teknolojisi ve ücretsiz keşif için Akçayapı ile iletişime geçin.',
     keywords: [
         ...sineklikSeoKeywords.core,
         ...sineklikSeoKeywords.pet,
@@ -133,6 +135,8 @@ export default function SineklikPage() {
                 }}
             />
 
+            <Header />
+
             <main className="min-h-screen bg-white">
                 {/* Hero Section */}
                 <section className="relative bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-800 py-20 lg:py-28">
@@ -147,7 +151,7 @@ export default function SineklikPage() {
                     <div className="container mx-auto px-4 relative z-10">
                         <div className="max-w-4xl mx-auto text-center">
                             <span className="inline-block px-4 py-2 bg-emerald-500/20 text-emerald-300 rounded-full text-sm font-medium mb-6">
-                                🏆 Beylikdüzü&apos;nde 25+ Yıl Tecrübe
+                                🏆 Beylikdüzü&apos;nde 40 Yıl Tecrübe
                             </span>
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                                 Sineklik
@@ -578,6 +582,8 @@ export default function SineklikPage() {
                 {/* CTA Section */}
                 <CTASection />
             </main>
+
+            <Footer />
         </>
     );
 }

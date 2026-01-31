@@ -117,7 +117,7 @@ export function Header() {
             {/* Main Header */}
             <header className={cn("sticky top-0 z-50 w-full transition-all duration-300", isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg border-b" : "bg-white")}>
                 <nav className="container-custom flex items-center justify-between h-16 lg:h-20">
-                    <Link href="/" className="flex flex-col items-start leading-tight">
+                    <Link href="/" title="Egepen Akçayapı Ana Sayfa" className="flex flex-col items-start leading-tight">
                         <span className="text-xl lg:text-2xl font-black text-primary-600 tracking-tighter uppercase italic">
                             {businessConfig.name.split(' ')[0]} <span className="text-neutral-900">{businessConfig.name.split(' ')[1]}</span>
                         </span>
@@ -130,7 +130,7 @@ export function Header() {
                     <ul className="hidden lg:flex items-center gap-1">
                         {navigationItems.map((item) => (
                             <li key={item.href} className="relative" onMouseEnter={() => item.children && setActiveDropdown(item.href)} onMouseLeave={() => setActiveDropdown(null)}>
-                                <Link href={item.href} className="px-4 py-2 rounded-lg font-bold text-neutral-700 hover:text-primary-600 hover:bg-primary-50 transition-all flex items-center gap-1">
+                                <Link href={item.href} title={`${item.label} - Egepen Akçayapı`} className="px-4 py-2 rounded-lg font-bold text-neutral-700 hover:text-primary-600 hover:bg-primary-50 transition-all flex items-center gap-1">
                                     {item.label}
                                     {item.children && <ChevronDownIcon className="w-4 h-4" />}
                                 </Link>
@@ -141,7 +141,7 @@ export function Header() {
                                                 <ul className="bg-white rounded-xl shadow-xl border p-2 min-w-[240px]">
                                                     {item.children.map((child) => (
                                                         <li key={child.href}>
-                                                            <Link href={child.href} className="block px-4 py-2.5 text-neutral-700 font-medium hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
+                                                            <Link href={child.href} title={child.label} className="block px-4 py-2.5 text-neutral-700 font-medium hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
                                                                 {child.label}
                                                             </Link>
                                                         </li>

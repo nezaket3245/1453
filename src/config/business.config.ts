@@ -11,7 +11,7 @@ export const businessConfig = {
     brand: "Egepen Deceuninck",
     legalName: "Akçayapı PVC ve Cam Balkon Sistemleri",
     slogan: "Beylikdüzü'nün Yetkili Egepen Bayisi",
-    foundingYear: 1999,
+    foundingYear: 1986,
 
     address: {
         street: "Gürpınar Mah. Gürpınar Cad. No: 26A",
@@ -38,6 +38,9 @@ export const businessConfig = {
     social: {
         facebook: "https://facebook.com/egepenakcayapi",
         instagram: "https://instagram.com/egepenakcayapi",
+        youtube: "https://youtube.com/@egepenakcayapi",
+        linkedin: "https://linkedin.com/company/egepenakcayapi",
+        twitter: "https://twitter.com/egepenakcayapi",
         googleMaps: "https://www.google.com/maps/place/Egepen,+Ak%C3%A7ayap%C4%B1,Sineklik,Cam+balkon,Giyotin,panjur+sistemleri/@40.9942165,28.6054045,17z/data=!3m1!4b1!4m6!3m5!1s0x14b55f98edadb64f:0x2f92fd58ab8cca21!8m2!3d40.9942125!4d28.6079794!16s%2Fg%2F11svqx1d4t?hl=tr&entry=ttu"
     },
 

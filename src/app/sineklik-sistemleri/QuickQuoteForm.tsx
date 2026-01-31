@@ -400,7 +400,7 @@ export default function QuickQuoteForm() {
                     </div> */}
                     <div className="flex items-center">
                         <span className="mr-2">✓</span>
-                        25+ Yıl Tecrübe
+                        40 Yıl Tecrübe
                     </div>
                 </div>
             </form>

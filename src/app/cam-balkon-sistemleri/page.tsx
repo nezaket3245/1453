@@ -15,8 +15,8 @@ import { WhatsAppCTA } from '@/components/ui/WhatsAppCTA';
  * SEO: target "Beylikdüzü cam balkon", "ısıcamlı cam balkon", etc.
  */
 export const metadata: Metadata = {
-    title: `Cam Balkon & Sürme Sistemleri | Beylikdüzü İstanbul | ${businessConfig.name}`,
-    description: `Isıcamlı Tiara Max, eşiksiz sürme ve motorlu giyotin sistemleri. Beylikdüzü ve İstanbul geneli profesyonel montaj. 8mm-10mm temperli ve lamine cam seçenekleri. Ücretsiz keşif: ${businessConfig.contact.mobile}`,
+    title: `Cam Balkon & Sürme Sistemleri | Beylikdüzü | Akçayapı`,
+    description: `Beylikdüzü Akçayapı cam balkon sistemleri: Isıcamlı Tiara Max, sürme ve giyotin cam çözümleri. Profesyonel montaj ve şık tasarımlar.`,
     keywords: [
         ...seoKeywordClusters.local,
         ...seoKeywordClusters.transactional,
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     ],
     openGraph: {
         title: `Cam Balkon & Sürme Sistemleri | ${businessConfig.name}`,
-        description: `Balkonunuzu kış bahçesine dönüştürün. Isı yalıtımlı cam balkon ve sürme sistemlerinde 25 yıllık uzman çözüm ortağınız.`,
+        description: `Balkonunuzu kış bahçesine dönüştürün. Isı yalıtımlı cam balkon ve sürme sistemlerinde 40 yıllık uzman çözüm ortağınız.`,
         url: 'https://egepenakcayapi.com.tr/cam-balkon-sistemleri',
         images: [{ url: '/images/cam-balkon/hero-bg.png', width: 1200, height: 630 }],
     },

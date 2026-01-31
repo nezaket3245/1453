@@ -17,6 +17,8 @@ import {
 } from '@/lib/panjurData';
 import { CTASection } from '@/components/sections/CTASection';
 import { businessConfig } from '@/config/business.config';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 
 // SEO Metadata
 export const metadata: Metadata = {
@@ -102,6 +104,8 @@ export default function PanjurKepenkPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
             />
+
+            <Header />
 
             <main className="min-h-screen bg-white">
                 {/* Hero Section */}
@@ -698,6 +702,8 @@ export default function PanjurKepenkPage() {
                     </div>
                 </section>
             </main>
+
+            <Footer />
         </>
     );
 }

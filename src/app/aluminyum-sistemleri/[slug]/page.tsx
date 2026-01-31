@@ -10,6 +10,9 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { aluminumSystems, getAluminumSystemBySlug, thermalBreakTechnology } from '@/lib/aluminumData';
 import { CTASection } from '@/components/sections/CTASection';
+import { businessConfig } from '@/config/business.config';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -131,6 +134,8 @@ export default async function AluminumSystemDetailPage({ params }: Props) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
             />
 
+            <Header />
+
             <main className="min-h-screen bg-white">
                 {/* Breadcrumb */}
                 <div className="bg-gray-50 py-4 border-b">
@@ -173,7 +178,7 @@ export default async function AluminumSystemDetailPage({ params }: Props) {
                                         Teklif Al
                                     </Link>
                                     <a
-                                        href="tel:+905320000000"
+                                        href={`tel:${businessConfig.contact.mobileRaw}`}
                                         className="inline-flex items-center px-6 py-3 bg-white/10 text-white font-semibold rounded-xl hover:bg-white/20 transition-all border border-white/20"
                                     >
                                         <span className="mr-2">📞</span>
@@ -207,17 +212,15 @@ export default async function AluminumSystemDetailPage({ params }: Props) {
                                 {system.technicalSpecs.map((spec, idx) => (
                                     <div
                                         key={idx}
-                                        className={`p-4 rounded-xl border ${
-                                            spec.highlight
-                                                ? `bg-${colors.light}-50 border-${colors.light}-200`
-                                                : 'bg-gray-50 border-gray-200'
-                                        }`}
+                                        className={`p-4 rounded-xl border ${spec.highlight
+                                            ? `bg-${colors.light}-50 border-${colors.light}-200`
+                                            : 'bg-gray-50 border-gray-200'
+                                            }`}
                                     >
                                         <div className="text-sm text-gray-500 mb-1">{spec.label}</div>
                                         <div
-                                            className={`font-bold ${
-                                                spec.highlight ? `text-${colors.light}-700` : 'text-gray-900'
-                                            }`}
+                                            className={`font-bold ${spec.highlight ? `text-${colors.light}-700` : 'text-gray-900'
+                                                }`}
                                         >
                                             {spec.value}
                                         </div>
@@ -437,6 +440,8 @@ export default async function AluminumSystemDetailPage({ params }: Props) {
                 {/* CTA */}
                 <CTASection />
             </main>
+
+            <Footer />
         </>
     );
 }

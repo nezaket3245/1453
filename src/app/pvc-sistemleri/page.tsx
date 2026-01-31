@@ -19,8 +19,8 @@ import { RepairRequestForm } from "./RepairRequestForm";
  * Optimized for local SEO with primary and LSI keywords
  */
 export const metadata: Metadata = {
-    title: `Egepen Deceuninck PVC Sistemleri | Legend, Legend Art, Zendow | ${businessConfig.name}`,
-    description: `İstanbul Beylikdüzü Egepen Deceuninck yetkili bayisi. Legend, Legend Art, Zendow PVC pencere serileri ve Legend Sürme, HS76, Slimslide sürme sistemleri. Profesyonel PVC tamir ve tadilat hizmeti. ${businessConfig.contact.mobile}`,
+    title: `Egepen PVC Pencere Serileri | Akçayapı Beylikdüzü Bayi`,
+    description: `Beylikdüzü Egepen Akçayapı: Legend, Legend Art ve Zendow PVC pencere sistemleri. Profesyonel montaj ve tamir hizmetleri için teklif alın.`,
     keywords: [
         ...lsiKeywords.primary,
         ...lsiKeywords.secondary,
@@ -503,7 +503,7 @@ export default function PVCSystemsPage() {
                                         {[
                                             "Orijinal Egepen yedek parça garantisi",
                                             "Aynı gün servis imkanı",
-                                            "25 yıllık tecrübeli ekip",
+                                            "40 yıllık tecrübeli ekip",
                                             "Şeffaf fiyatlandırma, sürpriz yok",
                                             "İşçilik garantisi",
                                         ].map((item, i) => (
@@ -584,7 +584,7 @@ export default function PVCSystemsPage() {
                             </p>
                             <p>
                                 Isı yalıtımlı PVC pencere ve kapı sistemleri, cam balkon, sineklik, panjur ve duşakabin
-                                ürünlerimizle yaşam alanlarınızı dönüştürüyoruz. 25 yılı aşkın sektör deneyimimiz ve
+                                ürünlerimizle yaşam alanlarınızı dönüştürüyoruz. 40 yılı aşkın sektör deneyimimiz ve
                                 profesyonel montaj ekibimizle, müşteri memnuniyetini en üst seviyede tutuyoruz.
                             </p>
                             <p>

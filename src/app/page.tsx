@@ -35,6 +35,10 @@ export const metadata: Metadata = {
     "İstanbul Egepen bayi",
     "ısı yalıtımlı pencere",
   ],
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title: `${businessConfig.name} | Beylikdüzü Egepen Yetkili Bayi`,
     description:
@@ -48,6 +52,14 @@ export const metadata: Metadata = {
         alt: `${businessConfig.name} - Egepen Bayi Beylikdüzü`,
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@egepenakcayapi",
+    creator: "@egepenakcayapi",
+    title: `${businessConfig.name} | Beylikdüzü Egepen Yetkili Bayi`,
+    description: `Beylikdüzü Egepen yetkili bayisi. PVC pencere, cam balkon ve profesyonel montaj hizmeti. 10 yıl garanti.`,
+    images: ["/images/og-home.jpg"],
   },
   alternates: {
     canonical: "https://egepenakcayapi.com.tr",
@@ -194,7 +206,13 @@ const specialtyContractorSchema = {
       closes: "18:00",
     },
   ],
-  sameAs: [businessConfig.social.facebook, businessConfig.social.instagram],
+  sameAs: [
+    businessConfig.social.facebook,
+    businessConfig.social.instagram,
+    businessConfig.social.youtube,
+    businessConfig.social.linkedin,
+    businessConfig.social.twitter
+  ],
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.9",

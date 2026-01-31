@@ -25,7 +25,7 @@ const advantages = [
     {
         icon: "⚡",
         title: "Profesyonel Montaj Ekibi",
-        description: "25 yıllık deneyimli ustalarımız, aynı gün montaj ve mükemmel işçilik garantisi veriyor. Tüm montajlar TSE standartlarına uygun yapılır.",
+        description: "40 yıllık deneyimli ustalarımız, aynı gün montaj ve mükemmel işçilik garantisi veriyor. Tüm montajlar TSE standartlarına uygun yapılır.",
         highlight: "AYNI GÜN MONTAJ",
         color: "from-blue-500 to-cyan-500"
     },
@@ -90,7 +90,7 @@ export function WhyChooseUsSection() {
                         transition={{ delay: 0.2 }}
                         className="text-lg text-neutral-600 leading-relaxed"
                     >
-                        25 yıldır Beylikdüzü, Gürpınar ve çevresinde binlerce aileye hizmet verdik.
+                        40 yıldır Beylikdüzü, Gürpınar ve çevresinde binlerce aileye hizmet verdik.
                         Rakiplerimizden farkımız, sadece ürün satmak değil, kalıcı çözümler sunmaktır.
                     </motion.p>
                 </div>

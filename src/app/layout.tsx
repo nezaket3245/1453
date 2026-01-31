@@ -25,14 +25,25 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL("https://egepenakcayapi.com.tr"),
   title: {
-    default: `${businessConfig.name} | Beylikdüzü Egepen Deceuninck Yetkili Bayi`,
+    default: `Egepen Beylikdüzü Yetkili Bayi | Akçayapı PVC & Cam Balkon`,
     template: `%s | ${businessConfig.name}`,
   },
-  description: `${businessConfig.address.district} ve çevresinde ${businessConfig.brand} kalitesiyle PVC pencere, cam balkon ve panjur sistemleri. Ücretsiz keşif için: ${businessConfig.contact.mobile}`,
+  description: `Beylikdüzü Egepen Yetkili Bayi Akçayapı: PVC pencere, cam balkon, sineklik ve panjurda uzman montaj ve 10 yıl garanti. Ücretsiz keşif için hemen arayın.`,
   keywords: businessConfig.seo.mainKeywords,
-  authors: [{ name: businessConfig.name }],
+  authors: [{ name: businessConfig.name, url: "https://egepenakcayapi.com.tr" }],
   creator: businessConfig.name,
   publisher: businessConfig.name,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   formatDetection: {
     email: false,
     address: true,
@@ -54,6 +65,20 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    site: "@egepenakcayapi",
+    creator: "@egepenakcayapi",
+    title: `${businessConfig.name} | Beylikdüzü Egepen Yetkili Bayi`,
+    description: `Beylikdüzü Egepen Yetkili Bayi Akçayapı: PVC pencere, cam balkon, sineklik ve panjurda 10 yıl garanti.`,
+    images: ["/images/og-home.jpg"],
+  },
+  alternates: {
+    canonical: "https://egepenakcayapi.com.tr",
+  },
+  verification: {
+    google: "google-site-verification-code",
+  },
 };
 
 /**
@@ -67,7 +92,7 @@ const localBusinessSchema = {
   "name": businessConfig.name,
   "legalName": businessConfig.legalName,
   "alternateName": ["Egepen Akçayapı", "Akçayapı PVC", "Egepen Beylikdüzü"],
-  "description": "Beylikdüzü ve İstanbul Avrupa yakasında Egepen Deceuninck yetkili bayisi. PVC pencere, cam balkon, sineklik, panjur ve duşakabin sistemleri satış ve montaj hizmeti. 25 yıllık tecrübe, 10 yıl garanti.",
+  "description": "Beylikdüzü ve İstanbul Avrupa yakasında Egepen Deceuninck yetkili bayisi. PVC pencere, cam balkon, sineklik, panjur ve duşakabin sistemleri satış ve montaj hizmeti. 40 yıllık tecrübe, 10 yıl garanti.",
   "image": "https://egepenakcayapi.com.tr/images/hero-bg.jpg",
   "logo": "https://egepenakcayapi.com.tr/images/logo.svg",
   "url": "https://egepenakcayapi.com.tr",
@@ -149,7 +174,10 @@ const localBusinessSchema = {
   ],
   "sameAs": [
     businessConfig.social.facebook,
-    businessConfig.social.instagram
+    businessConfig.social.instagram,
+    businessConfig.social.youtube,
+    businessConfig.social.linkedin,
+    businessConfig.social.twitter
   ],
   "knowsAbout": [
     "PVC Pencere",
@@ -165,7 +193,7 @@ const localBusinessSchema = {
     "Alüminyum Doğrama"
   ],
   "slogan": "Beylikdüzü ve Büyükçekmece'nin Yetkili Egepen Bayisi",
-  "foundingDate": "1999",
+  "foundingDate": "1986",
   "numberOfEmployees": {
     "@type": "QuantitativeValue",
     "value": "15-25"
@@ -185,15 +213,37 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="tr" className={`${outfit.variable} ${inter.variable}`}>
+    <html lang="tr" dir="ltr" className={`${outfit.variable} ${inter.variable}`}>
       <head>
+        <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta name="theme-color" content="#0055a5" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="author" content="Egepen Akçayapı" />
+        <meta name="copyright" content="Egepen Akçayapı - Akçayapı PVC ve Cam Balkon Sistemleri" />
+        <meta name="geo.region" content="TR-34" />
+        <meta name="geo.placename" content="Beylikdüzü, İstanbul" />
+        <meta name="geo.position" content="40.9942125;28.6079794" />
+        <meta name="ICBM" content="40.9942125, 28.6079794" />
+        <meta name="rating" content="general" />
+        <meta name="revisit-after" content="7 days" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+        {/* Google Analytics - SEOptimer Recommendation */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX');
+            `,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}

@@ -41,6 +41,7 @@ export default function NotFound() {
                         <div className="flex flex-wrap justify-center gap-4 mb-12">
                             <Link
                                 href="/"
+                                title="Egepen Akçayapı Ana Sayfa"
                                 className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors"
                             >
                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -50,12 +51,14 @@ export default function NotFound() {
                             </Link>
                             <Link
                                 href="/urunler"
+                                title="Tüm Ürünleri Görüntüle"
                                 className="inline-flex items-center gap-2 px-6 py-3 bg-white text-neutral-700 font-bold rounded-xl border border-neutral-200 hover:border-primary-500 hover:text-primary-600 transition-colors"
                             >
                                 Ürünler
                             </Link>
                             <Link
                                 href="/teklif-al"
+                                title="Ücretsiz Teklif Al"
                                 className="inline-flex items-center gap-2 px-6 py-3 bg-white text-neutral-700 font-bold rounded-xl border border-neutral-200 hover:border-primary-500 hover:text-primary-600 transition-colors"
                             >
                                 Teklif Al
@@ -69,18 +72,19 @@ export default function NotFound() {
                             </h2>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 {[
-                                    { label: "PVC Pencere", href: "/pvc-sistemleri" },
-                                    { label: "Cam Balkon", href: "/cam-balkon-sistemleri" },
-                                    { label: "Sineklik", href: "/sineklik-sistemleri" },
-                                    { label: "Panjur", href: "/panjur-kepenk-sistemleri" },
-                                    { label: "Duşakabin", href: "/dusakabin-sistemleri" },
-                                    { label: "Projeler", href: "/projeler" },
-                                    { label: "Blog", href: "/blog" },
-                                    { label: "İletişim", href: "/iletisim" },
+                                    { label: "PVC Pencere", href: "/pvc-sistemleri", title: "Egepen PVC Pencere Sistemleri" },
+                                    { label: "Cam Balkon", href: "/cam-balkon-sistemleri", title: "Isıcamlı Cam Balkon Sistemleri" },
+                                    { label: "Sineklik", href: "/sineklik-sistemleri", title: "Sineklik Sistemleri" },
+                                    { label: "Panjur", href: "/panjur-kepenk-sistemleri", title: "Panjur ve Kepenk Sistemleri" },
+                                    { label: "Duşakabin", href: "/dusakabin-sistemleri", title: "Premium Cam Duşakabin" },
+                                    { label: "Projeler", href: "/projeler", title: "Tamamlanan Projeler" },
+                                    { label: "Blog", href: "/blog", title: "Blog Yazıları" },
+                                    { label: "İletişim", href: "/iletisim", title: "Bize Ulaşın" },
                                 ].map((link) => (
                                     <Link
                                         key={link.href}
                                         href={link.href}
+                                        title={link.title}
                                         className="text-neutral-600 hover:text-primary-600 transition-colors text-sm font-medium"
                                     >
                                         {link.label}
@@ -94,6 +98,7 @@ export default function NotFound() {
                             <p className="text-neutral-500 mb-2">Yardıma mı ihtiyacınız var?</p>
                             <a
                                 href={`tel:${businessConfig.contact.mobileRaw}`}
+                                title="Egepen Akçayapı'yı Hemen Arayın"
                                 className="inline-flex items-center gap-2 text-primary-600 font-bold hover:text-primary-700 transition-colors"
                             >
                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

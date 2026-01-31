@@ -7,7 +7,7 @@ import { businessConfig } from "@/config/business.config";
 
 export const metadata: Metadata = {
     title: `Hakkımızda | ${businessConfig.name}`,
-    description: `25 yıllık tecrübemizle ${businessConfig.address.district}&apos;de ${businessConfig.brand} yetkili bayisi olarak PVC pencere ve cam balkon sistemlerinde öncü çözümler sunuyoruz.`,
+    description: `40 yıllık tecrübemizle ${businessConfig.address.district}&apos;de ${businessConfig.brand} yetkili bayisi olarak PVC pencere ve cam balkon sistemlerinde öncü çözümler sunuyoruz.`,
 };
 
 export default function AboutPage() {
@@ -23,7 +23,7 @@ export default function AboutPage() {
                     <div className="container-custom relative z-10">
                         <div className="max-w-3xl">
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                                25 Yıllık <span className="text-secondary-400">Tecrübe</span> ve Güven
+                                40 Yıllık <span className="text-secondary-400">Tecrübe</span> ve Güven
                             </h1>
                             <p className="text-xl text-white/80 leading-relaxed">
                                 {businessConfig.address.district}&apos;de evlerinize sıcaklık, sessizlik ve estetik katmak için yola çıktık.
@@ -44,7 +44,7 @@ export default function AboutPage() {
                                 <h2 className="text-3xl font-bold text-neutral-900 mb-6">Biz Kimiz?</h2>
                                 <div className="space-y-6 text-neutral-600 leading-relaxed">
                                     <p>
-                                        25 yılı aşkın süredir sektörde hizmet veren {businessConfig.name}, bugün {businessConfig.address.district} bölgesinin en büyük {businessConfig.brand} yetkili bayilerinden biri olarak hizmet vermektedir. Kurulduğumuz günden bu yana tek bir amacımız var: Kaliteden ödün vermeden, en modern teknolojileri kullanarak müşteri memnuniyetini en üst seviyede tutmak.
+                                        40 yılı aşkın süredir sektörde hizmet veren {businessConfig.name}, bugün {businessConfig.address.district} bölgesinin en büyük {businessConfig.brand} yetkili bayilerinden biri olarak hizmet vermektedir. Kurulduğumuz günden bu yana tek bir amacımız var: Kaliteden ödün vermeden, en modern teknolojileri kullanarak müşteri memnuniyetini en üst seviyede tutmak.
                                     </p>
                                     <p>
                                         Uzman kadromuz, geniş üretim kapasitemiz ve profesyonel montaj ekibimizle sadece PVC pencere değil, yaşam alanlarınıza değer katan komple çözümler sunuyoruz.
@@ -55,7 +55,7 @@ export default function AboutPage() {
                                             <p className="text-sm font-medium uppercase tracking-wider text-neutral-500">Tamamlanan Proje</p>
                                         </div>
                                         <div>
-                                            <h4 className="text-3xl font-bold text-primary-600 mb-1">25+</h4>
+                                            <h4 className="text-3xl font-bold text-primary-600 mb-1">40+</h4>
                                             <p className="text-sm font-medium uppercase tracking-wider text-neutral-500">Yıllık Deneyim</p>
                                         </div>
                                     </div>

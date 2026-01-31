@@ -21,6 +21,8 @@ import { CTASection } from '@/components/sections/CTASection';
 import DusakabinConfigurator from './DusakabinConfigurator';
 import { businessConfig } from '@/config/business.config';
 import OptimizedImage from "@/components/ui/OptimizedImage";
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 
 // SEO Metadata - Optimized for local + product searches
 export const metadata: Metadata = {
@@ -147,6 +149,8 @@ export default function DusakabinPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
             />
+
+            <Header />
 
             <main className="min-h-screen bg-white">
                 {/* Hero Section */}
@@ -706,6 +710,8 @@ export default function DusakabinPage() {
                     </div>
                 </section>
             </main>
+
+            <Footer />
         </>
     );
 }

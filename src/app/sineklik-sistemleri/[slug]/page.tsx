@@ -14,6 +14,8 @@ import {
 } from '@/lib/sineklikData';
 import { CTASection } from '@/components/sections/CTASection';
 import { businessConfig } from '@/config/business.config';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 
 // Generate static params for all systems
 export async function generateStaticParams() {
@@ -127,6 +129,8 @@ export default async function SineklikDetailPage({
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
             />
 
+            <Header />
+
             <main className="min-h-screen bg-white">
                 {/* Breadcrumb */}
                 <div className="bg-gray-50 py-4 border-b">
@@ -166,10 +170,10 @@ export default async function SineklikDetailPage({
                                     <div className="absolute top-4 left-4 flex flex-col gap-2">
                                         <span
                                             className={`px-3 py-1 rounded-full text-sm font-medium ${system.priceRange === 'premium'
-                                                    ? 'bg-amber-500 text-white'
-                                                    : system.priceRange === 'orta'
-                                                        ? 'bg-blue-500 text-white'
-                                                        : 'bg-green-500 text-white'
+                                                ? 'bg-amber-500 text-white'
+                                                : system.priceRange === 'orta'
+                                                    ? 'bg-blue-500 text-white'
+                                                    : 'bg-green-500 text-white'
                                                 }`}
                                         >
                                             {system.priceRange === 'premium'
@@ -504,6 +508,8 @@ export default async function SineklikDetailPage({
                 {/* CTA Section */}
                 <CTASection />
             </main>
+
+            <Footer />
         </>
     );
 }

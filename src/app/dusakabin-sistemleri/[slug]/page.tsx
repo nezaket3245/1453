@@ -19,6 +19,8 @@ import {
 } from '@/lib/dusakabinData';
 import { CTASection } from '@/components/sections/CTASection';
 import { businessConfig } from '@/config/business.config';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -138,6 +140,7 @@ export default async function DusakabinDetailPage({ params }: Props) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
             />
 
+            <Header />
             <main className="min-h-screen bg-white">
                 {/* Breadcrumb */}
                 <div className="bg-gray-50 py-4 border-b">
@@ -512,6 +515,7 @@ export default async function DusakabinDetailPage({ params }: Props) {
                 {/* CTA */}
                 <CTASection />
             </main>
+            <Footer />
         </>
     );
 }
