@@ -7,7 +7,7 @@ export interface FAQItem {
     id: string;
     question: string;
     answer: string;
-    category: "genel" | "pvc-pencere" | "cam-balkon" | "fiyat" | "montaj" | "garanti";
+    category: "genel" | "pvc-pencere" | "cam-balkon" | "fiyat" | "montaj" | "servis";
 }
 
 export const faqCategories = [
@@ -17,7 +17,7 @@ export const faqCategories = [
     { id: "cam-balkon", name: "Cam Balkon", icon: "🏠" },
     { id: "fiyat", name: "Fiyat & Ödeme", icon: "💰" },
     { id: "montaj", name: "Montaj & Teslimat", icon: "🔧" },
-    { id: "garanti", name: "Garanti & Servis", icon: "✅" },
+    { id: "servis", name: "Servis & Bakım", icon: "✅" },
 ];
 
 export const faqs: FAQItem[] = [
@@ -133,24 +133,18 @@ export const faqs: FAQItem[] = [
         category: "montaj",
     },
 
-    // Garanti & Servis
+    // Servis & Bakım
     {
         id: "18",
-        question: "Garanti kapsamı nedir?",
-        answer: "Egepen profiller 10 yıl, cam 2 yıl, aksesuar ve fitiller 2 yıl garanti kapsamındadır. İşçilik garantisi 2 yıldır. Garanti, kullanım hatası ve dış etkenlerden kaynaklanan hasarları kapsamaz. Garanti süresi boyunca ücretsiz servis hizmeti sunuyoruz.",
-        category: "garanti",
+        question: "Satış sonrası servis hizmeti var mı?",
+        answer: "Evet, ürünlerimize ömür boyu servis hizmeti sunuyoruz. Fitil değişimi, cam değişimi, ispanyolet tamiri, kol değişimi gibi bakım ve onarım işlemleri için iletişim sayfamız üzerinden bize ulaşabilirsiniz. Orijinal yedek parça kullanıyoruz.",
+        category: "servis",
     },
     {
         id: "19",
-        question: "Garanti sonrası servis hizmeti var mı?",
-        answer: "Evet, ürünlerimize ömür boyu servis hizmeti sunuyoruz. Fitil değişimi, cam değişimi, ispanyolet tamiri, kol değişimi gibi bakım ve onarım işlemleri için 7/24 servis hattımızı arayabilirsiniz. Orijinal yedek parça garantisi veriyoruz.",
-        category: "garanti",
-    },
-    {
-        id: "20",
         question: "Başka firmadan aldığım PVC pencereleri tamir edebilir misiniz?",
-        answer: "Evet, tüm marka PVC pencere ve kapılara tamir ve bakım hizmeti veriyoruz. Fitil değişimi, ispanyolet tamiri, cam değişimi, kol değişimi gibi işlemler yapılmaktadır. Ancak orijinal olmayan parçalar garanti kapsamına alınamaz.",
-        category: "garanti",
+        answer: "Evet, tüm marka PVC pencere ve kapılara tamir ve bakım hizmeti veriyoruz. Fitil değişimi, ispanyolet tamiri, cam değişimi, kol değişimi gibi işlemler yapılmaktadır.",
+        category: "servis",
     },
 ];
 

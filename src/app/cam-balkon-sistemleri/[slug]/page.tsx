@@ -1,19 +1,19 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import Link from 'next/link';
-import { Header } from '@/components/layout/Header';
+import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
 import { Footer } from '@/components/layout/Footer';
 import { businessConfig } from '@/config/business.config';
 import { getSystemBySlug, glassSystems, getRelatedSystems } from '@/lib/camBalkonData';
-import { WhatsAppCTA } from '@/components/ui/WhatsAppCTA';
 
 interface PageProps {
     params: Promise<{ slug: string }>;
 }
 
 /**
- * Generate Dynamic Metadata for each Glass System
+ * Generate SEO-optimized Metadata for each Glass System sub-page
+ * Title max 60 chars, description max 155 chars with target keywords
  */
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { slug } = await params;
@@ -21,18 +21,29 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     if (!system) return { title: 'Sistem Bulunamadı' };
 
+    const categoryLabel = system.category === 'isicamli' ? 'Isıcamlı' : system.category === 'surme' ? 'Sürme' : system.category === 'giyotin' ? 'Giyotin' : 'Katlanır';
+    const title = `${system.name} | Cam Balkon Fiyatları`;
+    const desc = `${system.name}: ${categoryLabel} cam balkon sistemi. Isı yalıtımı, şık tasarım ve Beylikdüzü ücretsiz keşif. Cam balkon fiyatları için arayın.`;
+
     return {
-        title: `${system.name} | Cam Balkon Çözümleri | ${businessConfig.name}`,
-        description: system.description,
-        keywords: system.seoKeywords,
+        title,
+        description: desc.slice(0, 155),
+        keywords: [
+            ...system.seoKeywords,
+            'cam balkon fiyatları 2026',
+            'ısıcamlı cam balkon sistemleri',
+            'sürme cam balkon',
+            'giyotin cam sistemleri',
+            'katlanır cam balkon metrekare fiyatı',
+        ],
         openGraph: {
-            title: system.name,
+            title: `${system.name} | Cam Balkon Fiyatları`,
             description: system.description,
-            images: [{ url: system.image }],
-            url: `https://egepenakcayapi.com.tr/cam-balkon-sistemleri/${system.slug}`,
+            images: [{ url: system.image, width: 1200, height: 630, alt: `${system.name} - ${categoryLabel} Sistem - Cam Balkon Uygulaması` }],
+            url: `https://egepenakcayapi.com/cam-balkon-sistemleri/${system.slug}`,
         },
         alternates: {
-            canonical: `https://egepenakcayapi.com.tr/cam-balkon-sistemleri/${system.slug}`,
+            canonical: `https://egepenakcayapi.com/cam-balkon-sistemleri/${system.slug}`,
         },
     };
 }
@@ -52,13 +63,15 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
 
     const related = getRelatedSystems(system.id);
 
-    // Schema.org implementation
+    // Schema.org Product + BreadcrumbList implementation
     const productSchema = {
         '@context': 'https://schema.org/',
         '@type': 'Product',
         'name': system.name,
-        'image': `https://egepenakcayapi.com.tr${system.image}`,
+        'image': `https://egepenakcayapi.com${system.image}`,
+        'url': `https://egepenakcayapi.com/cam-balkon-sistemleri/${system.slug}`,
         'description': system.description,
+        'category': system.category === 'isicamli' ? 'Isıcamlı Cam Balkon' : system.category === 'surme' ? 'Sürme Cam Balkon' : system.category === 'giyotin' ? 'Giyotin Cam Sistemi' : 'Katlanır Cam Balkon',
         'brand': {
             '@type': 'Brand',
             'name': system.category === 'isicamli' ? 'Tiara / Twin' : 'Akçayapı'
@@ -73,13 +86,23 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
         }
     };
 
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: 'https://egepenakcayapi.com' },
+            { '@type': 'ListItem', position: 2, name: 'Cam Balkon Sistemleri', item: 'https://egepenakcayapi.com/cam-balkon-sistemleri' },
+            { '@type': 'ListItem', position: 3, name: system.name, item: `https://egepenakcayapi.com/cam-balkon-sistemleri/${system.slug}` },
+        ],
+    };
+
     return (
         <>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify([productSchema, breadcrumbSchema]) }}
             />
-            <Header />
+            <HeaderOptimized />
             <main id="main-content" className="min-h-screen bg-white">
                 {/* Hero / Header Section */}
                 <section className="bg-neutral-50 border-b border-neutral-100 pt-32 pb-16 lg:pt-40 lg:pb-24">
@@ -116,9 +139,9 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                                         />
                                     ) : (
                                         <>
-                                            <Image
+                                            <OptimizedImage
                                                 src={system.image}
-                                                alt={system.name}
+                                                alt={`${system.name} - ${system.category === 'isicamli' ? 'Isıcamlı Sistem' : system.category === 'surme' ? 'Sürme Sistem' : system.category === 'giyotin' ? 'Giyotin Sistem' : 'Katlanır Sistem'} - Cam Balkon Uygulaması`}
                                                 fill
                                                 className="object-cover"
                                                 priority
@@ -134,7 +157,7 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                                 <div className="grid grid-cols-3 gap-6">
                                     {system.gallery.map((img, idx) => (
                                         <div key={idx} className="relative aspect-square rounded-2xl overflow-hidden border border-neutral-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-                                            <Image src={img} alt={`${system.name} detay ${idx + 1}`} fill className="object-cover" />
+                                            <OptimizedImage src={img} alt={`${system.name} detay görünüm ${idx + 1} - Cam Balkon Uygulaması`} fill className="object-cover" />
                                         </div>
                                     ))}
                                 </div>
@@ -160,32 +183,24 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                                     {system.tagline}
                                 </p>
                                 <p className="text-lg text-neutral-600 mb-10 leading-relaxed">
-                                    {system.longDescription}
+                                    {system.longDescription} <strong>Cam balkon fiyatları</strong> ve ücretsiz keşif için bize ulaşın.
                                 </p>
 
                                 <div className="grid grid-cols-2 gap-4 mb-12">
                                     <div className="p-6 rounded-2xl bg-white border border-neutral-200 shadow-sm">
-                                        <p className="text-xs font-bold text-neutral-400 uppercase mb-2">Garanti</p>
+                                        <p className="text-xs font-bold text-neutral-500 uppercase mb-2">Süre</p>
                                         <p className="text-lg font-bold text-neutral-900">{system.warranty}</p>
                                     </div>
                                     <div className="p-6 rounded-2xl bg-white border border-neutral-200 shadow-sm">
-                                        <p className="text-xs font-bold text-neutral-400 uppercase mb-2">Fiyat Segmenti</p>
-                                        <p className="text-lg font-bold text-neutral-900 capitalize">{system.priceRange}</p>
+                                        <p className="text-xs font-bold text-neutral-500 uppercase mb-2">Fiyat Bilgisi</p>
+                                        <p className="text-lg font-bold text-neutral-900">Fiyat İçin Arayın</p>
                                     </div>
                                 </div>
 
                                 <div className="flex flex-col sm:flex-row gap-4">
-                                    <Link href="/teklif-al" className="btn btn-primary btn-lg flex-1">
-                                        Ücretsiz Ölçüm Randevusu
+                                    <Link href="/iletisim" className="btn btn-primary btn-lg flex-1 focus:ring-2 focus:ring-primary-500 focus:outline-none" aria-label={`${system.name} hakkında detaylı bilgi alın`}>
+                                        Detaylı Bilgi
                                     </Link>
-                                    <a
-                                        href={`https://wa.me/${businessConfig.contact.whatsapp}?text=${encodeURIComponent(`Merhaba, ${system.name} için fiyat teklifi almak istiyorum.`)}`}
-                                        className="btn btn-outline btn-lg flex-1"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        WhatsApp’tan Sor
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -208,7 +223,7 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                                     <div className="space-y-6">
                                         {system.technicalSpecs.map((spec, i) => (
                                             <div key={i} className="flex justify-between items-center py-4 border-b border-white/10 last:border-0">
-                                                <span className="text-neutral-400 font-medium">{spec.label}</span>
+                                                <span className="text-neutral-500 font-medium">{spec.label}</span>
                                                 <span className="font-bold text-white">{spec.value}</span>
                                             </div>
                                         ))}
@@ -218,7 +233,7 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                                             <div className="text-3xl">🛡️</div>
                                             <div>
                                                 <p className="font-bold text-white">Full Güvenlik</p>
-                                                <p className="text-xs text-neutral-400">Şişecam Temperli Cam</p>
+                                                <p className="text-xs text-neutral-500">Şişecam Temperli Cam</p>
                                             </div>
                                         </div>
                                     </div>
@@ -227,10 +242,10 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
 
                             {/* Features list */}
                             <div className="lg:col-span-2">
-                                <h2 className="text-3xl font-bold text-neutral-900 mb-10 border-b-2 border-neutral-100 pb-6 uppercase tracking-tight">Kullanılan Teknolojiler & Özellikler</h2>
+                                <h2 className="text-3xl font-bold text-neutral-900 mb-10 border-b-2 border-neutral-100 pb-6 uppercase tracking-tight">Kullanılan Teknolojiler ve Özellikler</h2>
                                 <div className="grid md:grid-cols-2 gap-8 mb-16">
                                     {system.features.map((feature, i) => (
-                                        <div key={i} className="flex gap-5 p-6 rounded-2xl bg-neutral-50 hover:bg-white hover:shadow-xl transition-all border border-neutral-100 group">
+                                        <div key={i} className="flex gap-5 p-6 rounded-2xl bg-neutral-50 hover:bg-white hover:shadow-xl transition-shadow border border-neutral-100 group">
                                             <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-colors font-bold">
                                                 {i + 1}
                                             </div>
@@ -246,7 +261,7 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                                 <div className="space-y-6 mb-16">
                                     {system.benefits.map((benefit, i) => (
                                         <div key={i} className="flex gap-4 items-center p-6 bg-green-50 rounded-2xl border border-green-100">
-                                            <div className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center shadow-lg shadow-green-200">
+                                            <div className="w-10 h-10 rounded-full bg-green-700 text-white flex items-center justify-center shadow-lg shadow-green-200">
                                                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                                 </svg>
@@ -315,7 +330,7 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                                                 className="w-full aspect-square rounded-2xl shadow-lg border border-neutral-200 group-hover:scale-110 transition-transform"
                                                 style={{ backgroundColor: color.hex }}
                                             />
-                                            <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-tighter">{color.name}</span>
+                                            <span className="text-[10px] uppercase font-bold text-neutral-500 tracking-tighter">{color.name}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -354,14 +369,14 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                 </section>
 
                 {/* Related Systems / Alternatives */}
-                <section className="section bg-neutral-50 mb-[-5rem]">
+                <section className="section bg-neutral-50 mb-[-5rem]" aria-labelledby="related-heading">
                     <div className="container-custom">
-                        <h2 className="text-3xl font-bold text-neutral-900 mb-12">Alternatif Çözümler</h2>
+                        <h2 id="related-heading" className="text-3xl font-bold text-neutral-900 mb-12">Alternatif Cam Balkon Sistemleri</h2>
                         <div className="grid md:grid-cols-3 gap-8">
                             {related.map((item) => (
-                                <Link key={item.id} href={`/cam-balkon-sistemleri/${item.slug}`} className="group bg-white rounded-3xl overflow-hidden shadow-lg border border-neutral-200 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                                <Link key={item.id} href={`/cam-balkon-sistemleri/${item.slug}`} className="group bg-white rounded-3xl overflow-hidden shadow-lg border border-neutral-200 hover:shadow-2xl hover:-translate-y-2 transition-shadow duration-300 focus:ring-2 focus:ring-primary-500 focus:outline-none" aria-label={`${item.name} detaylarına git`}>
                                     <div className="relative aspect-video">
-                                        <Image src={item.image} alt={item.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                                        <OptimizedImage src={item.image} alt={`${item.name} - Cam Balkon Uygulaması`} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                         <div className="absolute bottom-4 left-4 right-4 text-white">
                                             <h3 className="text-xl font-bold leading-tight">{item.name}</h3>
@@ -383,7 +398,6 @@ export default async function GlassSystemDetailPage({ params }: PageProps) {
                 </section>
             </main>
 
-            <WhatsAppCTA systemName={system.name} />
             <Footer />
         </>
     );

@@ -1,20 +1,30 @@
 import type { NextConfig } from "next";
 
 /**
- * Next.js Configuration for Maximum Performance
- * - Image optimization with WebP conversion
- * - Aggressive caching headers for Vercel Edge
- * - Security headers for production
+ * Next.js Configuration for Maximum Performance & SEO
+ * Lighthouse Score Target: 95+
+ * 
+ * Optimizations:
+ * - Static export with aggressive caching
+ * - Turbopack for faster builds
+ * - Image optimization with WebP/AVIF
+ * - Security headers (handled by _headers file for Cloudflare)
  */
 const nextConfig: NextConfig = {
   // Enable static export for Cloudflare Pages
   output: "export",
   trailingSlash: true,
 
+  // Enable Turbopack (Next.js 16 default)
+  turbopack: {},
+
   // Enable experimental features for Next.js 15+
   experimental: {
     // Enable optimized package imports for faster builds
-    optimizePackageImports: ["framer-motion", "lucide-react"],
+    optimizePackageImports: [
+      "framer-motion",
+      "clsx",
+    ],
   },
 
   // Image optimization configuration
@@ -23,10 +33,10 @@ const nextConfig: NextConfig = {
     unoptimized: true,
     // Enable WebP format for better performance
     formats: ["image/avif", "image/webp"],
-    // Device sizes for responsive images
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    // Image sizes for srcset generation
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // Optimized device sizes for responsive images (reduced for faster loading)
+    deviceSizes: [640, 828, 1080, 1200, 1920],
+    // Image sizes for srcset generation (reduced)
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
     // Allow external image domains
     remotePatterns: [
       {
@@ -34,10 +44,13 @@ const nextConfig: NextConfig = {
         hostname: "**",
       },
     ],
+    // Minimize quality loss while reducing size
+    minimumCacheTTL: 31536000, // 1 year cache
   },
 
-  // Enable React strict mode for better debugging
-  reactStrictMode: true,
+  // React strict mode disabled in production for smaller bundle
+  // (removes dev-only double-render checks from React runtime)
+  reactStrictMode: false,
 
   // Compression for faster response times
   compress: true,
@@ -50,23 +63,6 @@ const nextConfig: NextConfig = {
     // Remove console.log in production
     removeConsole: process.env.NODE_ENV === "production",
   },
-
-  // Bundle analyzer for debugging (disabled by default)
-  // webpack: (config, { isServer }) => {
-  //   if (!isServer) {
-  //     config.optimization.splitChunks.cacheGroups = {
-  //       ...config.optimization.splitChunks.cacheGroups,
-  //       framework: {
-  //         chunks: 'all',
-  //         name: 'framework',
-  //         test: /(?<!node_modules.*)[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
-  //         priority: 40,
-  //         enforce: true,
-  //       },
-  //     };
-  //   }
-  //   return config;
-  // },
 };
 
 export default nextConfig;

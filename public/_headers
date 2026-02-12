@@ -5,17 +5,31 @@
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: accelerometer=(), camera=(), geolocation=(self), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://placehold.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob: https://placehold.co; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.facebook.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self';
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; frame-src 'self' https://www.google.com https://www.youtube.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Link: </images/showroom-main.png>; rel=preload; as=image; fetchpriority=high
+  X-Robots-Tag: index, follow
+  Link: </images/showroom-main.webp>; rel=preload; as=image; type=image/webp; fetchpriority=high
 
 /images/*
   Cache-Control: public, max-age=31536000, immutable
-  Vary: Accept-Encoding
+  Vary: Accept-Encoding, Accept
+
+/images/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/webp
+
+/images/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/jpeg
+
+/images/*.png
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/png
 
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
   Vary: Accept-Encoding
+  Access-Control-Allow-Origin: *
 
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
@@ -24,16 +38,28 @@
 /*.js
   Cache-Control: public, max-age=31536000, immutable
   Vary: Accept-Encoding
+  Content-Type: application/javascript; charset=utf-8
 
 /*.css
   Cache-Control: public, max-age=31536000, immutable
   Vary: Accept-Encoding
+  Content-Type: text/css; charset=utf-8
 
 /favicon.ico
-  Cache-Control: public, max-age=604800
+  Cache-Control: public, max-age=604800, immutable
 
 /manifest.json
   Cache-Control: public, max-age=86400
+  Content-Type: application/manifest+json
+
+/sitemap.xml
+  Cache-Control: public, max-age=86400
+  Content-Type: application/xml
+
+/robots.txt
+  Cache-Control: public, max-age=86400
+  Content-Type: text/plain
 
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
+  Content-Type: text/html; charset=utf-8

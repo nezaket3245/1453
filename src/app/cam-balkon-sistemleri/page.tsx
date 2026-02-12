@@ -1,90 +1,141 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import OptimizedImage from '@/components/ui/OptimizedImage';
-import { Header } from '@/components/layout/Header';
+import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
 import { Footer } from '@/components/layout/Footer';
 import { businessConfig } from '@/config/business.config';
 import { glassSystems, glassTypes, colorOptions, seoKeywordClusters } from '@/lib/camBalkonData';
 import { ComparisonMatrix } from '@/components/sections/ComparisonMatrix';
 import { GlassSafetyComparison } from '@/components/sections/GlassSafetyComparison';
 import { TechnicalFAQSection, camBalkonFAQs } from '@/components/sections/TechnicalFAQSection';
-import { WhatsAppCTA } from '@/components/ui/WhatsAppCTA';
 
 /**
  * Cam Balkon Sistemleri Hub Page
- * SEO: target "Beylikdüzü cam balkon", "ısıcamlı cam balkon", etc.
+ * SEO targets: "cam balkon fiyatları 2026", "ısıcamlı cam balkon sistemleri",
+ * "sürme cam balkon", "giyotin cam sistemleri", "katlanır cam balkon metrekare fiyatı"
  */
 export const metadata: Metadata = {
-    title: `Cam Balkon & Sürme Sistemleri | Beylikdüzü | Akçayapı`,
-    description: `Beylikdüzü Akçayapı cam balkon sistemleri: Isıcamlı Tiara Max, sürme ve giyotin cam çözümleri. Profesyonel montaj ve şık tasarımlar.`,
+    title: 'Cam Balkon Fiyatları 2026 Isıcamlı Sistem',
+    description: 'Isıcamlı cam balkon sistemleri, sürme ve giyotin cam çözümleri. Isı yalıtımı, şık tasarım ve ücretsiz keşif için hemen arayın.',
     keywords: [
+        'cam balkon fiyatları 2026',
+        'ısıcamlı cam balkon sistemleri',
+        'sürme cam balkon',
+        'giyotin cam sistemleri',
+        'katlanır cam balkon metrekare fiyatı',
         ...seoKeywordClusters.local,
         ...seoKeywordClusters.transactional,
         ...seoKeywordClusters.problemSolving.slice(0, 5),
     ],
     openGraph: {
-        title: `Cam Balkon & Sürme Sistemleri | ${businessConfig.name}`,
-        description: `Balkonunuzu kış bahçesine dönüştürün. Isı yalıtımlı cam balkon ve sürme sistemlerinde 40 yıllık uzman çözüm ortağınız.`,
-        url: 'https://egepenakcayapi.com.tr/cam-balkon-sistemleri',
-        images: [{ url: '/images/cam-balkon/hero-bg.png', width: 1200, height: 630 }],
+        title: `Cam Balkon Fiyatları 2026 | ${businessConfig.name}`,
+        description: 'Isı yalıtımlı cam balkon ve sürme sistemlerinde 40 yıllık uzman çözüm ortağınız. Ücretsiz keşif ile başlayın.',
+        url: 'https://egepenakcayapi.com/cam-balkon-sistemleri',
+        images: [{ url: '/images/cam-balkon/hero-bg.png', width: 1200, height: 630, alt: 'Modern Isıcamlı Cam Balkon Sistemleri' }],
     },
     alternates: {
-        canonical: 'https://egepenakcayapi.com.tr/cam-balkon-sistemleri',
+        canonical: 'https://egepenakcayapi.com/cam-balkon-sistemleri',
     },
+};
+
+/* Service + BreadcrumbList JSON-LD schemas for rich snippets */
+const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Cam Balkon Montajı ve Satışı',
+    description: 'Isıcamlı cam balkon sistemleri, sürme cam balkon, giyotin cam sistemleri ve katlanır cam balkon montajı. Cam balkon fiyatları 2026 için ücretsiz keşif.',
+    provider: {
+        '@type': 'LocalBusiness',
+        name: businessConfig.name,
+        telephone: businessConfig.contact.mobile,
+        address: {
+            '@type': 'PostalAddress',
+            streetAddress: businessConfig.address.street,
+            addressLocality: businessConfig.address.district,
+            addressRegion: businessConfig.address.city,
+            addressCountry: 'TR',
+        },
+    },
+    areaServed: { '@type': 'City', name: 'İstanbul' },
+    serviceType: ['Cam Balkon Montajı', 'Isıcamlı Cam Balkon', 'Sürme Cam Balkon', 'Giyotin Cam Sistemleri'],
+};
+
+const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: 'https://egepenakcayapi.com' },
+        { '@type': 'ListItem', position: 2, name: 'Cam Balkon Sistemleri', item: 'https://egepenakcayapi.com/cam-balkon-sistemleri' },
+    ],
 };
 
 export default function GlassSystemsPage() {
     return (
         <>
-            <Header />
+            {/* JSON-LD: Service + BreadcrumbList schemas */}
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([serviceSchema, breadcrumbSchema]) }} />
+
+            <HeaderOptimized />
             <main id="main-content" className="min-h-screen bg-white">
-                {/* Hero Section */}
-                <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-neutral-900 text-white overflow-hidden">
-                    <div className="absolute inset-0 opacity-50">
+                {/* Hero Section — single H1, keyword-rich intro */}
+                <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-neutral-900 text-white overflow-hidden min-h-[50vh] lg:min-h-[60vh] flex items-center" aria-labelledby="hero-title">
+                    <div className="absolute inset-0">
                         <OptimizedImage
                             src="/images/showroom-main.png"
-                            alt="Modern Cam Balkon Tasarımı"
+                            alt=""
                             fill
                             priority
+                            sizes="100vw"
                             className="object-cover"
+                            role="presentation"
                         />
                     </div>
                     <div className="container-custom relative z-10">
+                        {/* Breadcrumb navigation */}
+                        <nav aria-label="Breadcrumb" className="mb-8">
+                            <ol className="flex items-center gap-2 text-sm text-white/60">
+                                <li><Link href="/" className="hover:text-white transition-colors">Ana Sayfa</Link></li>
+                                <li>/</li>
+                                <li className="text-white font-medium">Cam Balkon Sistemleri</li>
+                            </ol>
+                        </nav>
                         <div className="max-w-3xl">
-                            <span className="inline-block px-4 py-1.5 rounded-full bg-primary-500 text-white text-xs font-bold uppercase tracking-widest mb-6 animate-fade-in">
+                            <span className="sr-only">
                                 Mimari Cam Çözümleri
                             </span>
-                            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                                Balkonunuzu <span className="text-primary-400">Dört Mevsim</span> Yaşam Alanına Dönüştürün
+                            <h1 id="hero-title" className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4">
+                                Modern ve Isı Yalıtımlı Cam Balkon Sistemleri
                             </h1>
-                            <p className="text-xl text-neutral-400 mb-10 leading-relaxed">
-                                Beylikdüzü&apos;nde ısı yalıtımlı, konforlu ve estetik cam balkon sistemleri.
-                                Tiara Max ve Twin teknolojileriyle %60&apos;a varan enerji tasarrufu sağlayın.
+                            <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl">
+                                <strong>Cam balkon fiyatları 2026</strong> karşılaştırmaları ile en uygun ısıcamlı cam balkon sistemleri, sürme cam balkon ve giyotin cam sistemleri.
+                                Beylikdüzü&apos;nde Tiara Max ve Twin teknolojileriyle %60&apos;a varan enerji tasarrufu sağlayın.
+                                <strong> Ücretsiz keşif</strong> ile şık tasarım ve ısı yalıtımı bir arada.
                             </p>
-                            <div className="flex flex-wrap gap-4">
-                                <Link href="/teklif-al" title="Ücretsiz Cam Balkon Keşif ve Teklif" className="btn btn-primary btn-lg">
-                                    Ücretsiz Keşif İste
-                                </Link>
-                                <a href={`tel:${businessConfig.contact.mobileRaw}`} title="Egepen Akçayapı Cam Balkon Uzmanını Arayın" className="btn btn-outline btn-lg border-white text-white hover:bg-white hover:text-black">
-                                    Hemen Ara: {businessConfig.contact.mobile}
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </section>
 
+                {/* Sineklik Kampanya Reklamı */}
+                <div className="bg-rose-600 text-white py-2.5">
+                    <div className="container mx-auto px-4 flex items-center justify-center gap-3 text-sm">
+                        <span className="font-bold bg-white/20 px-2 py-0.5 rounded text-xs">KAMPANYA</span>
+                        <span>Sineklikte tüm renkli profiller <strong className="text-yellow-300">beyaz fiyatına!</strong></span>
+                        <Link href="/sineklik-sistemleri" className="underline font-semibold hover:text-yellow-200 transition-colors">Detaylar →</Link>
+                    </div>
+                </div>
+
                 {/* ==================== CAM BALKON GALLERY SHOWCASE ==================== */}
-                <section className="section bg-neutral-100">
+                <section className="section bg-neutral-100" aria-labelledby="gallery-heading">
                     <div className="container-custom">
                         <div className="text-center max-w-3xl mx-auto mb-12">
                             <span className="inline-block px-4 py-1 rounded-full bg-primary-50 text-primary-600 text-sm font-bold uppercase tracking-widest mb-4">
                                 Projelerimizden
                             </span>
-                            <h2 className="text-3xl md:text-4xl font-black text-neutral-900 mb-4">
-                                Cam Balkon <span className="text-primary-600">Uygulamalarımız</span>
+                            <h2 id="gallery-heading" className="text-3xl md:text-4xl font-black text-neutral-900 mb-4">
+                                Isıcamlı Cam Balkon <span className="text-primary-600">Uygulama Galerisi</span>
                             </h2>
                             <p className="text-lg text-neutral-600">
-                                Beylikdüzü ve çevre ilçelerde gerçekleştirdiğimiz cam balkon montajlarından örnekler.
+                                Sürme cam balkon, giyotin cam sistemleri ve katlanır cam balkon metrekare fiyatı için Beylikdüzü ve çevre ilçelerdeki projelerimizi inceleyin.
                             </p>
                         </div>
 
@@ -94,8 +145,9 @@ export default function GlassSystemsPage() {
                             <div className="md:col-span-2 lg:col-span-2 relative aspect-video rounded-2xl overflow-hidden group">
                                 <OptimizedImage
                                     src="/images/cam-balkon/cam-balkon-site-manzara.jpg"
-                                    alt="Cam Balkon Montajı - Site Manzaralı"
+                                    alt="Tiara Max - Isıcamlı Sistem - Cam Balkon Uygulaması"
                                     fill
+                                    sizes="(max-width: 768px) 100vw, 66vw"
                                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -110,8 +162,9 @@ export default function GlassSystemsPage() {
                             <div className="relative aspect-square rounded-2xl overflow-hidden group">
                                 <OptimizedImage
                                     src="/images/cam-balkon/cam-balkon-kose.jpg"
-                                    alt="Köşe Cam Balkon Montajı"
+                                    alt="L-Tipi Köşe - Sürme Cam Balkon - Cam Balkon Uygulaması"
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -125,8 +178,9 @@ export default function GlassSystemsPage() {
                             <div className="relative aspect-square rounded-2xl overflow-hidden group">
                                 <OptimizedImage
                                     src="/images/cam-balkon/cam-balkon-sehir-manzara.jpg"
-                                    alt="Şehir Manzaralı Cam Balkon"
+                                    alt="Sürme Cam Balkon - Şehir Manzara - Cam Balkon Uygulaması"
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -140,8 +194,9 @@ export default function GlassSystemsPage() {
                             <div className="relative aspect-square rounded-2xl overflow-hidden group">
                                 <OptimizedImage
                                     src="/images/cam-balkon/cam-balkon-gunbatimi.jpg"
-                                    alt="Gün Batımı Manzaralı Cam Balkon"
+                                    alt="Teras Tipi - Katlanır Cam Balkon - Cam Balkon Uygulaması"
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -155,8 +210,9 @@ export default function GlassSystemsPage() {
                             <div className="relative aspect-square rounded-2xl overflow-hidden group">
                                 <OptimizedImage
                                     src="/images/cam-balkon/cam-balkon-bahce-manzara.jpg"
-                                    alt="Bahçe Manzaralı Cam Balkon"
+                                    alt="Bahçe Manzaralı - Giyotin Cam Sistemi - Cam Balkon Uygulaması"
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-primary-900/90 to-primary-900/40" />
@@ -164,8 +220,8 @@ export default function GlassSystemsPage() {
                                     <span className="text-4xl mb-3">🏠</span>
                                     <h3 className="text-xl font-bold mb-2">Sizin Balkonunuz da Bu Kadar Güzel Olabilir!</h3>
                                     <p className="text-white/80 text-sm mb-4">Ücretsiz keşif ile başlayın</p>
-                                    <Link href="/teklif-al" className="px-4 py-2 bg-secondary-500 text-white font-bold rounded-lg hover:bg-secondary-600 transition-colors">
-                                        Teklif Al →
+                                    <Link href="/iletisim" className="px-4 py-2 bg-secondary-600 text-white font-bold rounded-lg hover:bg-secondary-700 transition-colors focus:ring-2 focus:ring-secondary-400 focus:outline-none" aria-label="Ücretsiz cam balkon keşfi için bize ulaşın">
+                                        Bize Ulaşın →
                                     </Link>
                                 </div>
                             </div>
@@ -173,48 +229,35 @@ export default function GlassSystemsPage() {
                     </div>
                 </section>
 
-                {/* Technical Overview Categories */}
-                <section className="section bg-white" id="sistemler">
+                {/* Technical Overview Categories — keyword-rich headings */}
+                <section className="section bg-white" id="sistemler" aria-labelledby="systems-heading">
                     <div className="container-custom">
                         <div className="text-center max-w-3xl mx-auto mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-6">İhtiyacınıza Uygun Sistemler</h2>
+                            <h2 id="systems-heading" className="text-3xl md:text-4xl font-bold text-neutral-900 mb-6">Cam Balkon Fiyatları ve Sistem Seçenekleri</h2>
                             <p className="text-lg text-neutral-600">
-                                Kullanım amacınıza ve bütçenize en uygun cam balkon çözümünü seçin.
+                                Isıcamlı cam balkon sistemleri, sürme cam balkon, giyotin cam sistemleri ve katlanır cam balkon metrekare fiyatı karşılaştırmaları.
                                 Tüm sistemlerimizde 8-10mm Şişecam temperli camlar kullanılır.
                             </p>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                             {[
-                                { id: 'isicamli', title: 'Isıcamlı Sistemler', tags: 'Tiara Max / Twin', icon: '❄️', desc: 'Maksimum ısı ve ses yalıtımı için 24-28mm çift camlı sistemler. Argon gazlı ve Low-E kaplamalı.' },
-                                { id: 'surme', title: 'Sürme Sistemler', tags: 'Eşikli / Eşiksiz', icon: '↔️', desc: 'Eşikli: maksimum su yalıtımı. Eşiksiz: kafe ve teraslar için kesintisiz geçiş.' },
-                                { id: 'giyotin', title: 'Giyotin Sistemler', tags: 'Motorlu / Manuel', icon: '↕️', desc: 'Dikey sürme sistemler. Somfy/Becker motorlu veya gaz pistonlu ekonomik seçenekler.' },
-                                { id: 'katlanir', title: 'Katlanır Sistemler', tags: 'Tam Açılım', icon: '📁', desc: 'Panoramik görüntü için %100 açılım. Köşe dahil her yere katlanabilen camlar.' },
+                                { id: 'isicamli', title: 'Isıcamlı Cam Balkon Sistemleri', tags: 'Tiara Max / Twin', icon: '❄️', desc: 'Cam balkon fiyatları 2026 için en çok tercih edilen ısıcamlı cam balkon sistemleri. 24-28mm çift camlı, Argon gazlı ve Low-E kaplamalı.' },
+                                { id: 'surme', title: 'Sürme Cam Balkon', tags: 'Eşikli / Eşiksiz', icon: '↔️', desc: 'Sürme cam balkon sistemleri: eşikli modeller maksimum su yalıtımı, eşiksiz modeller kafe ve teraslar için kesintisiz geçiş.' },
+                                { id: 'giyotin', title: 'Giyotin Cam Sistemleri', tags: 'Motorlu / Manuel', icon: '↕️', desc: 'Giyotin cam sistemleri: dikey sürme mekanizmalı. Somfy/Becker motorlu veya gaz pistonlu ekonomik seçenekler.' },
+                                { id: 'katlanir', title: 'Katlanır Cam Balkon', tags: 'Tam Açılım', icon: '📁', desc: 'Katlanır cam balkon metrekare fiyatı ile panoramik görüntü. %100 açılım, köşe dahil katlanabilen camlar.' },
                             ].map((cat) => (
-                                <div key={cat.id} className="group p-8 rounded-3xl bg-neutral-50 border border-neutral-100 hover:bg-white hover:shadow-2xl transition-all duration-500">
-                                    <div className="text-4xl mb-6">{cat.icon}</div>
+                                <div key={cat.id} className="group p-8 rounded-3xl bg-neutral-50 border border-neutral-100 hover:bg-white hover:shadow-2xl transition-[background-color,box-shadow] duration-500">
+                                    <div className="text-4xl mb-6" aria-hidden="true">{cat.icon}</div>
                                     <h3 className="text-xl font-bold mb-2">{cat.title}</h3>
                                     <span className="text-xs font-bold text-primary-600 bg-primary-50 px-2 py-1 rounded inline-block mb-4">{cat.tags}</span>
                                     <p className="text-neutral-600 text-sm mb-6 leading-relaxed">{cat.desc}</p>
-                                    <Link href={`#${cat.id}`} className="inline-flex items-center text-sm font-bold text-black border-b-2 border-neutral-200 hover:border-primary-500 transition-colors">
+                                    <Link href={`#${cat.id}`} className="inline-flex items-center text-sm font-bold text-black border-b-2 border-neutral-200 hover:border-primary-500 transition-colors focus:ring-2 focus:ring-primary-500 focus:outline-none" aria-label={`${cat.title} modellerini incele`}>
                                         Modelleri İncele
                                     </Link>
                                 </div>
                             ))}
                         </div>
-                    </div>
-                </section>
-
-                {/* Comparison Matrix Section */}
-                <section className="section bg-neutral-50">
-                    <div className="container-custom">
-                        <div className="text-center max-w-3xl mx-auto mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-6 font-primary">Sistem Karşılaştırma Matrisi</h2>
-                            <p className="text-lg text-neutral-600">
-                                Karar vermenize yardımcı olmak için sistemlerimizi ısı yalıtımı, fiyat ve kullanım kolaylığına göre karşılaştırdık.
-                            </p>
-                        </div>
-                        <ComparisonMatrix />
                     </div>
                 </section>
 
@@ -233,8 +276,9 @@ export default function GlassSystemsPage() {
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10" />
                                         <OptimizedImage
                                             src={system.image}
-                                            alt={`${system.name} - ${system.tagline}`}
+                                            alt={`${system.name} - ${system.category === 'isicamli' ? 'Isıcamlı Sistem' : system.category === 'surme' ? 'Sürme Sistem' : system.category === 'giyotin' ? 'Giyotin Sistem' : 'Katlanır Sistem'} - Cam Balkon Uygulaması`}
                                             fill
+                                            sizes="(max-width: 1024px) 100vw, 50vw"
                                             className="object-cover"
                                         />
                                     </div>
@@ -257,10 +301,8 @@ export default function GlassSystemsPage() {
                                             {system.category === 'isicamli' ? 'Isı Yalıtımlı' : system.category.charAt(0).toUpperCase() + system.category.slice(1)}
                                         </span>
                                         <div className="flex gap-1">
-                                            {[...Array(system.priceRange === 'premium' ? 3 : system.priceRange === 'orta' ? 2 : 1)].map((_, i) => (
-                                                <span key={i} className="text-amber-500 font-bold">₺</span>
-                                            ))}
-                                        </div>
+                                        <span className="text-emerald-600 font-medium text-sm">Fiyat İçin Arayın</span>
+                                    </div>
                                     </div>
                                     <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-6">{system.name}</h2>
                                     <p className="text-xl text-primary-600 font-medium mb-6">{system.tagline}</p>
@@ -280,17 +322,9 @@ export default function GlassSystemsPage() {
                                     </div>
 
                                     <div className="flex flex-wrap gap-4">
-                                        <Link href={`/cam-balkon-sistemleri/${system.slug}`} className="btn btn-primary">
+                                        <Link href={`/cam-balkon-sistemleri/${system.slug}`} className="btn btn-primary focus:ring-2 focus:ring-primary-500 focus:outline-none" aria-label={`${system.name} hakkında detaylı bilgi`}>
                                             Uygulama Detayları
                                         </Link>
-                                        <a
-                                            href={`https://wa.me/${businessConfig.contact.whatsapp}?text=${encodeURIComponent(`Merhaba, ${system.name} hakkında detaylı bilgi almak istiyorum.`)}`}
-                                            className="btn btn-outline"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            Fiyat Bilgisi Al
-                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -299,14 +333,14 @@ export default function GlassSystemsPage() {
                 ))}
 
                 {/* Color and Glass Customization */}
-                <section className="section bg-neutral-900 text-white">
+                <section className="section bg-neutral-900 text-white" aria-labelledby="customize-heading">
                     <div className="container-custom">
                         <div className="grid lg:grid-cols-2 gap-20 items-center">
                             <div>
-                                <h2 className="text-3xl md:text-5xl font-bold mb-8">Sınırsız <span className="text-primary-400">Özelleştirme</span> Seçenekleri</h2>
-                                <p className="text-lg text-neutral-400 mb-12 leading-relaxed">
-                                    Mimari tarzınıza uygun yüzlerce RAL renk seçeneği ve projenizin güvenliği için farklı cam kalınlıkları sunuyoruz.
-                                    Antrasit Gri&apos;den Wood Grain (Ahşap Görünüm) dokulara kadar geniş bir yelpaze ile evinizin estetiğini tamamlayın.
+                                <h2 id="customize-heading" className="text-3xl md:text-5xl font-bold mb-8">Sınırsız <span className="text-primary-400">Özelleştirme</span> Seçenekleri</h2>
+                                <p className="text-lg text-neutral-500 mb-12 leading-relaxed">
+                                    Cam balkon fiyatları 2026 için mimari tarzınıza uygun yüzlerce RAL renk seçeneği ve farklı cam kalınlıkları sunuyoruz.
+                                    Isıcamlı cam balkon sistemleri için Antrasit Gri&apos;den Wood Grain dokulara kadar geniş bir yelpaze.
                                 </p>
 
                                 <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
@@ -336,7 +370,7 @@ export default function GlassSystemsPage() {
                                             </div>
                                             <div>
                                                 <h4 className="font-bold text-lg mb-1">{gt.name}</h4>
-                                                <p className="text-sm text-neutral-400">{gt.description}</p>
+                                                <p className="text-sm text-neutral-500">{gt.description}</p>
                                             </div>
                                         </div>
                                     ))}
@@ -347,8 +381,9 @@ export default function GlassSystemsPage() {
                                 <div className="relative aspect-[3/4] rounded-[3rem] overflow-hidden border-8 border-white/10 shadow-2xl">
                                     <OptimizedImage
                                         src="/images/cam-balkon/cam-balkon-gunbatimi.jpg"
-                                        alt="Renkli Cam Balkon Profilleri"
+                                        alt="RAL Renk Seçenekleri - Cam Balkon Profilleri - Cam Balkon Uygulaması"
                                         fill
+                                        sizes="(max-width: 1024px) 100vw, 50vw"
                                         className="object-cover"
                                     />
                                 </div>
@@ -362,47 +397,9 @@ export default function GlassSystemsPage() {
                     </div>
                 </section>
 
-                {/* Glass Safety Comparison Section */}
-                <section className="section bg-white" id="cam-karsilastirma">
-                    <div className="container-custom">
-                        <GlassSafetyComparison />
-                    </div>
-                </section>
-
-                {/* Technical FAQ (Semantic & Detailed for Snippets) */}
-                <TechnicalFAQSection
-                    faqs={camBalkonFAQs}
-                    title="Cam Balkon Hakkında Merak Edilenler"
-                    subtitle="Teknik ekibimiz, en çok aldığımız soruları cevapladı. Bilinçli seçim yaparak yaşam alanınızın konforunu artırın."
-                    showSchema={true}
-                />
-
                 {/* CTA / Final Conversion */}
-                <section className="section bg-primary-600 relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-10">
-                        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                            <path d="M0 0 L100 0 L100 100 L0 100 Z" fill="white" />
-                        </svg>
-                    </div>
-                    <div className="container-custom relative z-10 text-center text-white">
-                        <h2 className="text-3xl md:text-5xl font-bold mb-8">Balkonunuza Özel Ölçü ve <span className="text-secondary-400">Net Fiyat</span> Alın</h2>
-                        <p className="text-xl text-primary-100 mb-12 max-w-2xl mx-auto">
-                            Akçayapı uzmanları yerinde keşif yaparak en uygun sistemi belirler.
-                            Ücretsiz keşif ve projelendirme için bir telefon uzağınızdayız.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                            <Link href="/teklif-al" title="Ücretsiz Cam Balkon Teklifi Alın" className="btn btn-secondary btn-lg px-12">
-                                Ücretsiz Teklif Al
-                            </Link>
-                            <a href={`tel:${businessConfig.contact.mobileRaw}`} title="Egepen Akçayapı'yı Hemen Arayın" className="btn btn-outline btn-lg border-white text-white hover:bg-white hover:text-primary-600 px-12">
-                                {businessConfig.contact.mobile}
-                            </a>
-                        </div>
-                    </div>
-                </section>
             </main>
 
-            <WhatsAppCTA />
             <Footer />
         </>
     );

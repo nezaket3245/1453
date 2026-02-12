@@ -5,12 +5,11 @@
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { notFound } from 'next/navigation';
 import { panjurSystems, getPanjurSystemBySlug, somfyEcosystem } from '@/lib/panjurData';
-import { CTASection } from '@/components/sections/CTASection';
 import { businessConfig } from '@/config/business.config';
-import { Header } from '@/components/layout/Header';
+import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
 import { Footer } from '@/components/layout/Footer';
 
 type Props = {
@@ -32,9 +31,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     return {
-        title: `${system.name} | Panjur & Kepenk | Egepen Akçayapı`,
-        description: system.description,
-        keywords: system.seoKeywords.join(', '),
+        title: `${system.name} Panjur ve Kepenk`,
+        description: `${system.description.slice(0, 120)}. Güvenlik, ısı tasarrufu ve otomasyon.`,
+        keywords: [
+            ...system.seoKeywords,
+            'Otomatik panjur metrekare fiyatları',
+            'Motorlu panjur tamiri',
+            'Poliüretan dolgulu alüminyum panjur',
+            'Dükkan kepenk sistemleri',
+            'Akıllı ev uyumlu panjur motoru',
+        ].join(', '),
         openGraph: {
             title: `${system.name} | Egepen Akçayapı`,
             description: system.tagline,
@@ -42,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             locale: 'tr_TR',
         },
         alternates: {
-            canonical: `https://www.egepenakcayapi.com.tr/panjur-kepenk-sistemleri/${system.slug}`,
+            canonical: `${businessConfig.siteUrl}/panjur-kepenk-sistemleri/${system.slug}`,
         },
     };
 }
@@ -55,19 +61,32 @@ export default async function PanjurDetailPage({ params }: Props) {
         notFound();
     }
 
-    // JSON-LD Schema
+    // JSON-LD Schema — enhanced Product with URL and category
     const productSchema = {
         '@context': 'https://schema.org',
         '@type': 'Product',
         name: system.name,
         description: system.description,
         image: system.image,
+        url: `${businessConfig.siteUrl}/panjur-kepenk-sistemleri/${system.slug}`,
+        category: system.category.includes('kepenk') ? 'Kepenk Sistemi' : 'Panjur Sistemi',
         brand: { '@type': 'Brand', name: 'Egepen Akçayapı' },
         offers: {
             '@type': 'AggregateOffer',
             priceCurrency: 'TRY',
             availability: 'https://schema.org/InStock',
         },
+    };
+
+    // BreadcrumbList for SERP breadcrumbs
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: `${businessConfig.siteUrl}/` },
+            { '@type': 'ListItem', position: 2, name: 'Panjur & Kepenk', item: `${businessConfig.siteUrl}/panjur-kepenk-sistemleri` },
+            { '@type': 'ListItem', position: 3, name: system.name, item: `${businessConfig.siteUrl}/panjur-kepenk-sistemleri/${system.slug}` },
+        ],
     };
 
     const faqSchema = {
@@ -101,23 +120,19 @@ export default async function PanjurDetailPage({ params }: Props) {
         <>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify([productSchema, breadcrumbSchema, faqSchema]) }}
             />
 
-            <Header />
+            <HeaderOptimized />
 
             <main id="main-content" className="min-h-screen bg-white">
                 {/* Breadcrumb */}
                 <div className="bg-gray-50 py-4 border-b">
                     <div className="container mx-auto px-4">
                         <nav className="flex items-center text-sm text-gray-500" aria-label="Breadcrumb">
-                            <Link href="/" title="Ana Sayfa" className="hover:text-indigo-600">Ana Sayfa</Link>
+                            <Link href="/" title="Ana Sayfa" className="hover:text-indigo-600 focus:ring-2 focus:ring-indigo-400 focus:outline-none rounded">Ana Sayfa</Link>
                             <span className="mx-2">/</span>
-                            <Link href="/panjur-kepenk-sistemleri" title="Panjur ve Kepenk Sistemleri" className="hover:text-indigo-600">
+                            <Link href="/panjur-kepenk-sistemleri" title="Panjur ve Kepenk Sistemleri" className="hover:text-indigo-600 focus:ring-2 focus:ring-indigo-400 focus:outline-none rounded">
                                 Panjur & Kepenk
                             </Link>
                             <span className="mx-2">/</span>
@@ -139,27 +154,12 @@ export default async function PanjurDetailPage({ params }: Props) {
                                 </h1>
                                 <p className="text-xl text-white/90 font-medium mb-4">{system.tagline}</p>
                                 <p className="text-white/80 mb-8">{system.description}</p>
-
-                                <div className="flex flex-wrap gap-4">
-                                    <Link
-                                        href="/teklif-al"
-                                        className="inline-flex items-center px-6 py-3 bg-white text-gray-900 font-semibold rounded-xl hover:bg-gray-100 transition-all shadow-lg"
-                                    >
-                                        📐 Ücretsiz Teklif Al
-                                    </Link>
-                                    <a
-                                        href={`tel:${businessConfig.contact.mobileRaw}`}
-                                        className="inline-flex items-center px-6 py-3 bg-white/10 text-white font-semibold rounded-xl hover:bg-white/20 border border-white/20"
-                                    >
-                                        📞 {businessConfig.contact.mobile}
-                                    </a>
-                                </div>
                             </div>
 
                             <div className="relative h-80 lg:h-[400px]">
-                                <Image
+                                <OptimizedImage
                                     src={system.image}
-                                    alt={system.name}
+                                    alt={`${system.name} - ${system.category.includes('kepenk') ? 'Kepenk Sistemi' : 'Panjur Sistemi'} - Beylikdüzü`}
                                     fill
                                     className="object-contain drop-shadow-2xl"
                                     priority
@@ -257,7 +257,6 @@ export default async function PanjurDetailPage({ params }: Props) {
                                                 ))}
                                             </ul>
 
-                                            {/* <div className="text-sm text-gray-500">Garanti: {motor.warranty}</div> */}
                                         </div>
                                     ))}
                                 </div>
@@ -343,7 +342,7 @@ export default async function PanjurDetailPage({ params }: Props) {
                     <div className="container mx-auto px-4">
                         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="bg-white rounded-2xl p-8 shadow-sm">
-                                <h3 className="text-xl font-bold text-gray-900 mb-6">🔧 Özellikler</h3>
+                                <h3 className="text-xl font-bold text-gray-900 mb-6">Teknik Özellikler</h3>
                                 <ul className="space-y-3">
                                     {system.features.map((feature, idx) => (
                                         <li key={idx} className="flex items-start">
@@ -355,7 +354,7 @@ export default async function PanjurDetailPage({ params }: Props) {
                             </div>
 
                             <div className="bg-white rounded-2xl p-8 shadow-sm">
-                                <h3 className="text-xl font-bold text-gray-900 mb-6">💡 Avantajlar</h3>
+                                <h3 className="text-xl font-bold text-gray-900 mb-6">Avantajlar</h3>
                                 <ul className="space-y-3">
                                     {system.benefits.map((benefit, idx) => (
                                         <li key={idx} className="flex items-start">
@@ -398,7 +397,7 @@ export default async function PanjurDetailPage({ params }: Props) {
                                         <details key={idx} className="group bg-white rounded-xl overflow-hidden shadow-sm">
                                             <summary className="flex justify-between items-center cursor-pointer p-6 font-semibold text-gray-900 hover:bg-gray-50">
                                                 {item.question}
-                                                <span className="ml-4 text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                                                <span className="ml-4 text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                                             </summary>
                                             <div className="px-6 pb-6 text-gray-700">{item.answer}</div>
                                         </details>
@@ -409,8 +408,6 @@ export default async function PanjurDetailPage({ params }: Props) {
                     </section>
                 )}
 
-                {/* CTA */}
-                <CTASection />
             </main>
 
             <Footer />

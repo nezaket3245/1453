@@ -92,7 +92,7 @@ export function Breadcrumb({ customItems, currentPageTitle }: BreadcrumbProps) {
             "@type": "ListItem",
             position: index + 1,
             name: item.label,
-            item: `https://egepenakcayapi.com.tr${item.href}`,
+            item: `https://egepenakcayapi.com${item.href}`,
         })),
     };
 

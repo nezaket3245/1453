@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/motion-lite";
+import Link from "next/link";
 import OptimizedImage from "@/components/ui/OptimizedImage";
-import { businessConfig } from "@/config/business.config";
 
 /**
  * InteractiveCatalog Component
@@ -156,8 +156,6 @@ export function InteractiveCatalog() {
         ? catalogItems
         : catalogItems.filter(item => item.category === activeCategory);
 
-    const whatsappBase = `https://wa.me/${businessConfig.contact.whatsapp}`;
-
     return (
         <section className="section bg-neutral-50" aria-labelledby="catalog-heading">
             <div className="container-custom">
@@ -206,7 +204,7 @@ export function InteractiveCatalog() {
                         <button
                             key={cat.id}
                             onClick={() => setActiveCategory(cat.id)}
-                            className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${activeCategory === cat.id
+                            className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-colors ${activeCategory === cat.id
                                 ? "bg-primary-600 text-white shadow-lg shadow-primary-500/30"
                                 : "bg-white text-neutral-600 hover:bg-neutral-100 border border-neutral-200"
                                 }`}
@@ -227,7 +225,7 @@ export function InteractiveCatalog() {
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 transition={{ delay: index * 0.05 }}
-                                className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden hover:border-primary-300 hover:shadow-xl transition-all duration-300"
+                                className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden hover:border-primary-300 hover:shadow-xl transition-colors duration-300"
                             >
                                 {/* Product Image */}
                                 <div
@@ -238,15 +236,16 @@ export function InteractiveCatalog() {
                                         src={item.image}
                                         alt={item.title}
                                         fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                         className={`${item.category === 'panjur' ? 'object-contain p-6' : 'object-cover'} group-hover:scale-110 transition-transform duration-500`}
                                     />
                                     {/* Series Badge */}
                                     <div className="absolute top-3 left-3 px-2.5 py-1 bg-primary-600 text-white text-xs font-bold rounded-full">
                                         {item.series}
                                     </div>
-                                    {/* Price Range */}
+                                    {/* Call for Price */}
                                     <div className="absolute top-3 right-3 px-2 py-1 bg-white/90 backdrop-blur-sm text-neutral-700 text-xs font-medium rounded">
-                                        {item.priceRange}
+                                        Fiyat İçin Arayın
                                     </div>
                                     {/* Quick View Overlay */}
                                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -286,15 +285,13 @@ export function InteractiveCatalog() {
                                                 📄 PDF İndir
                                             </a>
                                         )}
-                                        <a
-                                            href={`${whatsappBase}?text=${encodeURIComponent(`Merhaba, ${item.title} hakkında fiyat bilgisi almak istiyorum.`)}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer nofollow"
-                                            title={`${item.title} için WhatsApp'tan fiyat alın`}
-                                            className="flex-1 text-center py-2 text-sm font-bold text-white bg-green-500 rounded-lg hover:bg-green-600 transition-colors"
+                                        <Link
+                                            href="/iletisim"
+                                            title={`${item.title} hakkında bilgi alın`}
+                                            className="flex-1 text-center py-2 text-sm font-bold text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors"
                                         >
-                                            Fiyat Al
-                                        </a>
+                                            Bilgi Al
+                                        </Link>
                                     </div>
                                 </div>
                             </motion.article>
@@ -337,7 +334,7 @@ export function InteractiveCatalog() {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
                             className="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl"
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={(e: React.MouseEvent) => e.stopPropagation()}
                         >
                             {/* Modal Header */}
                             <div className="relative aspect-video bg-gradient-to-br from-primary-50 to-accent-50">
@@ -345,6 +342,7 @@ export function InteractiveCatalog() {
                                     src={selectedItem.image}
                                     alt={selectedItem.title}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                     className={selectedItem.category === 'panjur' ? 'object-contain p-8' : 'object-cover'}
                                 />
                                 <button
@@ -364,7 +362,7 @@ export function InteractiveCatalog() {
                                     <span className="px-3 py-1 bg-primary-100 text-primary-700 text-sm font-bold rounded-full">
                                         {selectedItem.series}
                                     </span>
-                                    <span className="text-neutral-500">{selectedItem.priceRange}</span>
+                                    <span className="text-neutral-500">Fiyat İçin Arayın</span>
                                 </div>
                                 <h3 className="text-2xl font-bold text-neutral-900 mb-4">
                                     {selectedItem.title}
@@ -399,15 +397,13 @@ export function InteractiveCatalog() {
                                             📄 Teknik PDF İndir
                                         </a>
                                     )}
-                                    <a
-                                        href={`${whatsappBase}?text=${encodeURIComponent(`Merhaba, ${selectedItem.title} hakkında detaylı fiyat ve montaj bilgisi almak istiyorum.`)}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer nofollow"
-                                        title={`${selectedItem.title} için WhatsApp'tan teklif alın`}
-                                        className="flex-1 text-center py-3 text-sm font-bold text-white bg-green-500 rounded-xl hover:bg-green-600 transition-colors"
+                                    <Link
+                                        href="/iletisim"
+                                        title={`${selectedItem.title} hakkında bilgi alın`}
+                                        className="flex-1 text-center py-3 text-sm font-bold text-white bg-primary-600 rounded-xl hover:bg-primary-700 transition-colors"
                                     >
-                                        💬 WhatsApp ile Teklif Al
-                                    </a>
+                                        Bilgi Al
+                                    </Link>
                                 </div>
                             </div>
                         </motion.div>

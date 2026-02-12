@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/motion-lite";
 
 /**
  * FAQAccordion Component
@@ -123,7 +123,7 @@ export function FAQAccordion({ faqs, title, subtitle }: FAQAccordionProps) {
 const homepageFAQs: FAQItem[] = [
     {
         question: "Egepen Akçayapı yetkili bayi mi?",
-        answer: "Evet, Egepen Akçayapı, Beylikdüzü ve çevresinde Egepen Deceuninck'in resmi yetkili bayisidir. Tüm ürünlerimiz orijinal Egepen kalitesinde olup, 10 yıla kadar garanti kapsamındadır.",
+        answer: "Evet, Egepen Akçayapı, Beylikdüzü ve çevresinde Egepen Deceuninck'in resmi yetkili bayisidir. Tüm ürünlerimiz orijinal Egepen kalitesindedir.",
     },
     {
         question: "Ücretsiz keşif nasıl yapılır?",
@@ -136,10 +136,6 @@ const homepageFAQs: FAQItem[] = [
     {
         question: "Taksitli ödeme seçeneği var mı?",
         answer: "Evet, tüm kredi kartlarına 12 aya kadar taksit imkanı sunuyoruz. Ayrıca peşin ödemelerde özel indirimler de uygulanmaktadır. Detaylı ödeme seçenekleri için bizimle iletişime geçebilirsiniz.",
-    },
-    {
-        question: "Garanti kapsamı neler içeriyor?",
-        answer: "Egepen profilleri 10 yıl, cam üniteleri 5 yıl, aksesuar ve mekanizmalar 2 yıl garantilidir. Garanti kapsamında üretim hataları, renk solması ve yalıtım performansı güvence altındadır.",
     },
     {
         question: "Hangi bölgelere hizmet veriyorsunuz?",

@@ -29,11 +29,11 @@ export interface LeadData {
   name?: string;
 }
 
-// GA4 Configuration
-const GA4_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA4_ID || 'G-XXXXXXXXXX';
+// GA4 Configuration — Set NEXT_PUBLIC_GA4_ID env variable to enable
+const GA4_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA4_ID || '';
 
-// Meta Pixel Configuration
-const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || 'XXXXXXXXXX';
+// Meta Pixel Configuration — Set NEXT_PUBLIC_META_PIXEL_ID env variable to enable
+const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || '';
 
 /**
  * Check if window is available (client-side)
@@ -223,31 +223,6 @@ export const analytics = {
     metaPixel.event('ViewContent', params);
   },
 
-  /**
-   * Track WhatsApp click
-   */
-  trackWhatsAppClick: (source?: string) => {
-    const params = {
-      contact_method: 'WhatsApp',
-      source: source || 'floating_button',
-    };
-
-    ga4.event('whatsapp_click', params);
-    metaPixel.event('Contact', params);
-  },
-
-  /**
-   * Track phone call click
-   */
-  trackPhoneClick: (source?: string) => {
-    const params = {
-      contact_method: 'Phone',
-      source: source || 'header',
-    };
-
-    ga4.event('phone_click', params);
-    metaPixel.event('Contact', params);
-  },
 };
 
 // TypeScript declarations for global objects

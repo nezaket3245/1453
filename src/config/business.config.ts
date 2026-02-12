@@ -3,7 +3,7 @@
  * EGEPEN AKÇAYAPI - GLOBAL İŞLETME YAPILANDIRMASI
  * ═══════════════════════════════════════════════════════════════════════════
  * SEO, Schema.org, UI tutarlılığı ve yerel arama optimizasyonu için
- * Son Güncelleme: 31 Ocak 2026
+ * Son Güncelleme: 7 Şubat 2026
  */
 
 export const businessConfig = {
@@ -12,6 +12,9 @@ export const businessConfig = {
     legalName: "Akçayapı PVC ve Cam Balkon Sistemleri",
     slogan: "Beylikdüzü'nün Yetkili Egepen Bayisi",
     foundingYear: 1986,
+
+    /** Canonical site URL — single source of truth for all SEO tags */
+    siteUrl: "https://egepenakcayapi.com",
 
     address: {
         street: "Gürpınar Mah. Gürpınar Cad. No: 26A",
@@ -31,16 +34,16 @@ export const businessConfig = {
         landlineRaw: "+902128801507",
         mobile: "0536 640 53 11",
         mobileRaw: "+905366405311",
-        whatsapp: "902128801507",
-        email: "info@egepenakcayapi.com.tr"
+        whatsapp: "902128801507", // Landline number for WhatsApp Business
+        email: "info@egepenakcayapi.com"
     },
 
     social: {
-        facebook: "https://facebook.com/egepenakcayapi",
+        // facebook: removed — old page deleted
         instagram: "https://instagram.com/egepenakcayapi",
         youtube: "https://youtube.com/@egepenakcayapi",
-        linkedin: "https://linkedin.com/company/egepenakcayapi",
-        twitter: "https://twitter.com/egepenakcayapi",
+        // linkedin: removed — page doesn't exist
+        // twitter: removed — account doesn't exist
         googleMaps: "https://www.google.com/maps/place/Egepen,+Ak%C3%A7ayap%C4%B1,Sineklik,Cam+balkon,Giyotin,panjur+sistemleri/@40.9942165,28.6054045,17z/data=!3m1!4b1!4m6!3m5!1s0x14b55f98edadb64f:0x2f92fd58ab8cca21!8m2!3d40.9942125!4d28.6079794!16s%2Fg%2F11svqx1d4t?hl=tr&entry=ttu"
     },
 
@@ -177,7 +180,7 @@ export const businessConfig = {
             "Isıcamlı cam balkon avantajları",
             "PVC pencere mi alüminyum mu?",
             "En iyi PVC pencere markası hangisi?",
-            "Egepen pencere garantisi kaç yıl?",
+            "Egepen pencere fiyatları ne kadar?",
             "Cam balkon kaç günde yapılır?",
             "Panjur fiyatları ne kadar?",
             "Sineklik çeşitleri nelerdir?"

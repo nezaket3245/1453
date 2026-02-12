@@ -9,9 +9,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { aluminumSystems, getAluminumSystemBySlug, thermalBreakTechnology } from '@/lib/aluminumData';
-import { CTASection } from '@/components/sections/CTASection';
 import { businessConfig } from '@/config/business.config';
-import { Header } from '@/components/layout/Header';
+import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
 import { Footer } from '@/components/layout/Footer';
 
 type Props = {
@@ -35,8 +34,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     return {
-        title: `${system.name} | Alüminyum Sistemleri | Egepen Akçayapı`,
-        description: system.description,
+        title: `${system.name} Alüminyum Sistemleri`,
+        description: system.description.slice(0, 155),
         keywords: system.seoKeywords.join(', '),
         openGraph: {
             title: `${system.name} | Egepen Akçayapı`,
@@ -46,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             images: [system.image],
         },
         alternates: {
-            canonical: `https://www.egepenakcayapi.com.tr/aluminyum-sistemleri/${system.slug}`,
+            canonical: `${businessConfig.siteUrl}/aluminyum-sistemleri/${system.slug}`,
         },
     };
 }
@@ -78,11 +77,6 @@ export default async function AluminumSystemDetailPage({ params }: Props) {
                 '@type': 'Organization',
                 name: 'Egepen Akçayapı',
             },
-        },
-        aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: '4.8',
-            reviewCount: '127',
         },
     };
 
@@ -127,14 +121,10 @@ export default async function AluminumSystemDetailPage({ params }: Props) {
         <>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify([productSchema, faqSchema]) }}
             />
 
-            <Header />
+            <HeaderOptimized />
 
             <main id="main-content" className="min-h-screen bg-white">
                 {/* Breadcrumb */}
@@ -168,23 +158,6 @@ export default async function AluminumSystemDetailPage({ params }: Props) {
                                 </h1>
                                 <p className="text-xl text-white/90 font-medium mb-4">{system.tagline}</p>
                                 <p className="text-white/80 mb-8">{system.description}</p>
-
-                                <div className="flex flex-wrap gap-4">
-                                    <Link
-                                        href="/teklif-al"
-                                        className="inline-flex items-center px-6 py-3 bg-white text-gray-900 font-semibold rounded-xl hover:bg-gray-100 transition-all"
-                                    >
-                                        <span className="mr-2">📐</span>
-                                        Teklif Al
-                                    </Link>
-                                    <a
-                                        href={`tel:${businessConfig.contact.mobileRaw}`}
-                                        className="inline-flex items-center px-6 py-3 bg-white/10 text-white font-semibold rounded-xl hover:bg-white/20 transition-all border border-white/20"
-                                    >
-                                        <span className="mr-2">📞</span>
-                                        Hemen Ara
-                                    </a>
-                                </div>
                             </div>
 
                             <div className="relative h-80 lg:h-[400px]">
@@ -397,7 +370,7 @@ export default async function AluminumSystemDetailPage({ params }: Props) {
                                         >
                                             <summary className="flex justify-between items-center cursor-pointer p-6 font-semibold text-gray-900 hover:bg-gray-100 transition-colors">
                                                 {item.question}
-                                                <span className="ml-4 text-gray-400 group-open:rotate-180 transition-transform">
+                                                <span className="ml-4 text-gray-500 group-open:rotate-180 transition-transform">
                                                     ▼
                                                 </span>
                                             </summary>
@@ -423,7 +396,7 @@ export default async function AluminumSystemDetailPage({ params }: Props) {
                                         <Link
                                             key={related.id}
                                             href={`/aluminyum-sistemleri/${related.slug}`}
-                                            className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all group"
+                                            className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow group"
                                         >
                                             <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                                                 {related.name}
@@ -437,8 +410,6 @@ export default async function AluminumSystemDetailPage({ params }: Props) {
                     </section>
                 )}
 
-                {/* CTA */}
-                <CTASection />
             </main>
 
             <Footer />

@@ -1,13 +1,47 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Header } from "@/components/layout/Header";
+import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
 import { Footer } from "@/components/layout/Footer";
 import { businessConfig } from "@/config/business.config";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 
 export const metadata: Metadata = {
-    title: `Hizmetlerimiz | ${businessConfig.name}`,
-    description: `Ücretsiz keşif, profesyonel montaj, bakım ve onarım hizmetlerimizle ${businessConfig.address.city} geneline hizmet veriyoruz. ${businessConfig.brand} kalitesini evinize taşıyoruz.`,
+title: 'Hizmetlerimiz - Profesyonel Montaj',
+  description: 'Ücretsiz keşif, profesyonel montaj, bakım ve onarım hizmetleri. İstanbul genelinde Egepen Deceuninck kalitesiyle PVC pencere ve cam balkon montajı.',
+    openGraph: {
+        title: `Hizmetlerimiz | ${businessConfig.name}`,
+        description: `Ücretsiz keşif, profesyonel montaj, bakım ve onarım hizmetlerimizle ${businessConfig.address.city} geneline hizmet veriyoruz.`,
+        url: `${businessConfig.siteUrl}/hizmetler`,
+        type: "website",
+    },
+    twitter: {
+        card: "summary",
+        title: `Hizmetlerimiz | ${businessConfig.name}`,
+        description: `Ücretsiz keşif, profesyonel montaj, bakım ve onarım hizmetlerimiz.`,
+    },
+    alternates: {
+        canonical: `${businessConfig.siteUrl}/hizmetler`,
+    },
+};
+
+const servicePageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Hizmetlerimiz - Egepen Akçayapı',
+    description: 'Ücretsiz keşif, profesyonel montaj, bakım ve onarım hizmetleri.',
+    url: `${businessConfig.siteUrl}/hizmetler`,
+    provider: {
+        '@type': 'LocalBusiness',
+        name: businessConfig.name,
+        telephone: businessConfig.contact.mobile,
+    },
+    breadcrumb: {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: businessConfig.siteUrl },
+            { '@type': 'ListItem', position: 2, name: 'Hizmetlerimiz', item: `${businessConfig.siteUrl}/hizmetler` },
+        ],
+    },
 };
 
 const services = [
@@ -15,7 +49,7 @@ const services = [
         title: "Ücretsiz Keşif",
         description: "Uzman ekibimiz evinize gelerek cam ve kapılarınız için en uygun çözümleri belirler, hassas ölçüler alır. Bu hizmetimiz tamamen ücretsizdir.",
         icon: "🔍",
-        href: "/teklif-al"
+        href: "/iletisim"
     },
     {
         title: "Profesyonel Montaj",
@@ -33,23 +67,27 @@ const services = [
         title: "Isı Yalıtım Danışmanlığı",
         description: "Binanızın ısı kaybını önlemek için en uygun cam ve profil kombinasyonlarını belirliyor, enerji tasarrufu yapmanızı sağlıyoruz.",
         icon: "🔥",
-        href: "/urunler/legend-pvc-pencere"
+        href: "/pvc-sistemleri/legend-pvc-pencere"
     }
 ];
 
 export default function ServicesPage() {
     return (
         <>
-            <Header />
+            <HeaderOptimized />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicePageSchema) }} />
             <main id="main-content" className="min-h-screen bg-white">
                 {/* Header */}
                 <section className="relative bg-neutral-900 text-white py-24 lg:py-32 text-center overflow-hidden">
                     <div className="absolute inset-0 opacity-30">
                         <OptimizedImage
                             src="/images/cam-balkon/cam-balkon-sehir-manzara.jpg"
-                            alt="Hizmetlerimiz"
+                            alt=""
                             fill
+                            priority
+                            sizes="100vw"
                             className="object-cover"
+                            role="presentation"
                         />
                     </div>
                     <div className="container-custom relative z-10">
@@ -76,6 +114,7 @@ export default function ServicesPage() {
                                             }
                                             alt={service.title}
                                             fill
+                                            sizes="(max-width: 1024px) 100vw, 50vw"
                                             className="object-cover"
                                         />
                                     </div>
@@ -85,7 +124,7 @@ export default function ServicesPage() {
                                         <p className="text-lg text-neutral-600 mb-8 leading-relaxed">
                                             {service.description}
                                         </p>
-                                        <Link href={service.href} title={`${service.title} - Detaylı Bilgi`} className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-all shadow-lg hover:shadow-primary-500/25">
+                                        <Link href={service.href} title={`${service.title} - Detaylı Bilgi`} className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-[background-color,box-shadow] shadow-lg hover:shadow-primary-500/25">
                                             Detaylı Bilgi Al
                                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -98,19 +137,6 @@ export default function ServicesPage() {
                     </div>
                 </section>
 
-                {/* Global Support */}
-                <section className="py-20 bg-neutral-50">
-                    <div className="container-custom text-center">
-                        <h2 className="text-3xl font-bold mb-8">Sorunuz mu Var?</h2>
-                        <p className="text-neutral-600 mb-12 max-w-xl mx-auto">
-                            Hizmetlerimizle ilgili her türlü soru için destek ekibimiz yardıma hazır.
-                        </p>
-                        <div className="flex justify-center gap-6">
-                            <Link href={`tel:${businessConfig.contact.mobileRaw}`} title="Egepen Akçayapı'yı Hemen Arayın" className="btn btn-primary">Bizi Arayın</Link>
-                            <Link href={`https://wa.me/${businessConfig.contact.whatsapp}`} title="WhatsApp Destek Hattı" className="btn btn-outline border-neutral-300">WhatsApp Destek</Link>
-                        </div>
-                    </div>
-                </section>
             </main>
             <Footer />
         </>

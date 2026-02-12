@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import OptimizedImage from "@/components/ui/OptimizedImage";
-import { Header } from "@/components/layout/Header";
+import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
 import { Footer } from "@/components/layout/Footer";
 import { businessConfig } from "@/config/business.config";
 
@@ -9,9 +9,9 @@ import { businessConfig } from "@/config/business.config";
  * Products Page Metadata
  */
 export const metadata: Metadata = {
-    title: `Ürünlerimiz | PVC Pencere, Cam Balkon | ${businessConfig.name}`,
+    title: 'Tüm Ürünler - PVC Pencere ve Cam Balkon',
     description:
-        `PVC pencere, cam balkon, alüminyum doğrama, sineklik, panjur ve duşakabin sistemleri. Egepen garantili ürünler.`,
+        'PVC pencere, cam balkon, alüminyum doğrama, sineklik, panjur ve duşakabin sistemleri. Egepen Deceuninck yetkili bayi ürünleri Beylikdüzü.',
     keywords: [
         ...businessConfig.seo.mainKeywords,
         "PVC pencere",
@@ -25,10 +25,10 @@ export const metadata: Metadata = {
         title: `Ürünlerimiz | ${businessConfig.name}`,
         description:
             `PVC pencere, cam balkon, alüminyum doğrama ve daha fazlası. ${businessConfig.brand} kalitesiyle profesyonel çözümler.`,
-        url: "https://egepenakcayapi.com.tr/urunler",
+        url: "https://egepenakcayapi.com/urunler",
     },
     alternates: {
-        canonical: "https://egepenakcayapi.com.tr/urunler",
+        canonical: "https://egepenakcayapi.com/urunler",
     },
 };
 
@@ -116,7 +116,7 @@ const products = [
 export default function ProductsPage() {
     return (
         <>
-            <Header />
+            <HeaderOptimized />
             <main id="main-content" className="min-h-screen bg-white">
                 {/* Hero Section */}
                 <section className="relative py-20 lg:py-28 bg-gradient-to-br from-primary-600 to-primary-800 overflow-hidden">
@@ -163,7 +163,7 @@ export default function ProductsPage() {
                                     href={product.href}
                                     className="group block"
                                 >
-                                    <article className="h-full bg-white rounded-2xl overflow-hidden shadow-lg border border-neutral-100 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                                    <article className="h-full bg-white rounded-2xl overflow-hidden shadow-lg border border-neutral-100 transition-[box-shadow,transform] duration-300 hover:shadow-2xl hover:-translate-y-2">
                                         {/* Image */}
                                         <div className="relative h-56 overflow-hidden">
                                             <OptimizedImage
@@ -222,32 +222,6 @@ export default function ProductsPage() {
                     </div>
                 </section>
 
-                {/* CTA Section */}
-                <section className="py-16 bg-gradient-to-r from-secondary-500 to-secondary-600">
-                    <div className="container-custom text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                            Hangi Ürünü Seçeceğinizi Bilmiyor musunuz?
-                        </h2>
-                        <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-                            Uzman ekibimiz size en uygun ürünü seçmenizde yardımcı olsun.
-                            Ücretsiz danışmanlık ve keşif hizmeti için hemen bize ulaşın!
-                        </p>
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <Link
-                                href="/teklif-al"
-                                className="px-8 py-4 rounded-xl font-bold bg-white text-secondary-600 hover:bg-neutral-100 transition-colors shadow-lg"
-                            >
-                                Ücretsiz Teklif Al
-                            </Link>
-                            <a
-                                href={`tel:${businessConfig.contact.mobileRaw}`}
-                                className="px-8 py-4 rounded-xl font-bold border-2 border-white text-white hover:bg-white/10 transition-colors"
-                            >
-                                {businessConfig.contact.mobile}
-                            </a>
-                        </div>
-                    </div>
-                </section>
             </main>
             <Footer />
         </>

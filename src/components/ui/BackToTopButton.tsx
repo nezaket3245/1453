@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/motion-lite";
 
 /**
  * BackToTopButton Component
@@ -68,7 +68,7 @@ export function BackToTopButton() {
                             strokeLinecap="round"
                             strokeDasharray={`${2 * Math.PI * 20}`}
                             strokeDashoffset={`${2 * Math.PI * 20 * (1 - scrollProgress / 100)}`}
-                            className="transition-all duration-150"
+                            className="transition-[stroke-dashoffset] duration-150"
                         />
                     </svg>
 

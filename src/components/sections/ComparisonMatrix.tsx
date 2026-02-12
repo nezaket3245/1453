@@ -32,7 +32,7 @@ export function ComparisonMatrix() {
                                 {system.name}
                             </td>
                             {comparisonCriteria.map((criteria) => {
-                                const value = (system as any)[criteria.id] as number;
+                                const value = system[criteria.id as keyof typeof system] as number;
                                 return (
                                     <td key={criteria.id} className="p-6">
                                         <div className="flex flex-col items-center gap-2">
@@ -41,7 +41,7 @@ export function ComparisonMatrix() {
                                                 {[1, 2, 3, 4, 5].map((star) => (
                                                     <div
                                                         key={star}
-                                                        className={`h-1.5 w-4 rounded-full transition-all ${star <= value
+                                                        className={`h-1.5 w-4 rounded-full transition-colors ${star <= value
                                                                 ? 'bg-primary-500 scale-x-110 shadow-[0_0_8px_rgba(0,102,230,0.3)]'
                                                                 : 'bg-neutral-200'
                                                             }`}

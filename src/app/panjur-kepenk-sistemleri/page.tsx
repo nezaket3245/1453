@@ -6,7 +6,7 @@
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import {
     panjurSystems,
     lamelLibrary,
@@ -15,17 +15,24 @@ import {
     energyEfficiencyData,
     panjurSeoKeywords,
 } from '@/lib/panjurData';
-import { CTASection } from '@/components/sections/CTASection';
 import { businessConfig } from '@/config/business.config';
-import { Header } from '@/components/layout/Header';
+import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
 import { Footer } from '@/components/layout/Footer';
 
-// SEO Metadata
+// SEO Metadata — enriched with target keywords for organic visibility
 export const metadata: Metadata = {
-    title: 'Motorlu Panjur & Kepenk Sistemleri | Somfy | Akıllı Ev | Beylikdüzü',
+    title: 'Otomatik Panjur ve Kepenk Fiyatları 2026',
     description:
-        'Somfy motorlu panjur, TaHoma akıllı ev entegrasyonu, ticari kepenk sistemleri. %35 enerji tasarrufu, Alexa/Google Home uyumlu. Beylikdüzü ücretsiz keşif.',
-    keywords: [...panjurSeoKeywords.primary, ...panjurSeoKeywords.technical].join(', '),
+        'Poliüretan dolgulu alüminyum panjur ve akıllı ev uyumlu panjur motoru. Motorlu panjur tamiri, ticari kepenk çözümleri. Güvenlik, ısı tasarrufu, otomasyon.',
+    keywords: [
+        ...panjurSeoKeywords.primary,
+        ...panjurSeoKeywords.technical,
+        'Otomatik panjur metrekare fiyatları',
+        'Motorlu panjur tamiri',
+        'Poliüretan dolgulu alüminyum panjur',
+        'Dükkan kepenk sistemleri',
+        'Akıllı ev uyumlu panjur motoru',
+    ].join(', '),
     openGraph: {
         title: 'Panjur & Kepenk Sistemleri | Egepen Akçayapı',
         description: 'Somfy motorlu panjur ve ticari kepenk çözümleri. Akıllı ev uyumlu.',
@@ -33,27 +40,95 @@ export const metadata: Metadata = {
         locale: 'tr_TR',
     },
     alternates: {
-        canonical: 'https://www.egepenakcayapi.com.tr/panjur-kepenk-sistemleri',
+        canonical: `${businessConfig.siteUrl}/panjur-kepenk-sistemleri`,
     },
 };
 
-// JSON-LD Schema
+// JSON-LD Schema — Service with enriched description
 const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: 'Panjur ve Kepenk Montajı',
-    description: 'Motorlu panjur, akıllı panjur ve ticari kepenk sistemleri montajı.',
+    description:
+        'Otomatik panjur metrekare fiyatları, poliüretan dolgulu alüminyum panjur, dükkan kepenk sistemleri, motorlu panjur tamiri ve akıllı ev uyumlu panjur motoru montajı.',
     provider: {
         '@type': 'LocalBusiness',
         name: 'Egepen Akçayapı',
         address: {
             '@type': 'PostalAddress',
+            streetAddress: 'Gürpınar Mah. Gürpınar Cad. No: 26A',
             addressLocality: 'Beylikdüzü',
             addressRegion: 'İstanbul',
+            postalCode: '34528',
             addressCountry: 'TR',
+        },
+        telephone: '+902128801507',
+        geo: {
+            '@type': 'GeoCoordinates',
+            latitude: '40.9942125',
+            longitude: '28.6079794',
         },
     },
     areaServed: { '@type': 'City', name: 'İstanbul' },
+};
+
+// BreadcrumbList schema for SERP breadcrumbs
+const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: `${businessConfig.siteUrl}/` },
+        { '@type': 'ListItem', position: 2, name: 'Panjur & Kepenk Sistemleri', item: `${businessConfig.siteUrl}/panjur-kepenk-sistemleri` },
+    ],
+};
+
+// FAQPage schema for rich snippets
+const faqPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+        {
+            '@type': 'Question',
+            name: 'Otomatik panjur elektrik kesilince nasıl açılır?',
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Somfy motorlu panjurlarda manuel kumanda ile açılır. Ayrıca şarjlı akü kiti (UPS) opsiyoneliyle elektrik kesildiğinde bile otomatik kontrol sağlanır.',
+            },
+        },
+        {
+            '@type': 'Question',
+            name: 'Panjur ısı yalıtımı sağlar mı?',
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Evet. Poliüretan köpük dolgulu alüminyum lameller ile %35-45 oranında enerji tasarrufu sağlanır. EN ISO 10077-1 standardına göre U değeri 1.8 W/m²K\'e kadar düşer.',
+            },
+        },
+    ],
+};
+
+// HowTo schema for maintenance guide
+const howToSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Panjur Temizliği ve Bakımı',
+    description: 'Panjur sistemlerinin ömrünü uzatmak için düzenli temizlik ve bakım adımları.',
+    step: [
+        {
+            '@type': 'HowToStep',
+            name: 'Lamel yüzeyini temizleyin',
+            text: 'Panjur kapalı konumdayken yumuşak bir bez ile toz ve kiri silin. Agresif temizleyicilerden kaçının.',
+        },
+        {
+            '@type': 'HowToStep',
+            name: 'Kılavuz rayları kontrol edin',
+            text: 'Yılda iki kez kılavuz raylarını silikon bazlı sprey ile yağlayın. Kir birikimini temizleyin.',
+        },
+        {
+            '@type': 'HowToStep',
+            name: 'Motor ve kumandaları kontrol edin',
+            text: 'Motorlu sistemlerde pil durumunu kontrol edin. Sınır ayarlarını test edin, arıza durumunda yetkili servise başvurun.',
+        },
+    ],
 };
 
 // Category cards
@@ -100,84 +175,79 @@ export default function PanjurKepenkPage() {
 
     return (
         <>
+            {/* JSON-LD: Service + Breadcrumb + FAQ + HowTo schemas */}
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify([serviceSchema, breadcrumbSchema, faqPageSchema, howToSchema]) }}
             />
 
-            <Header />
+            <HeaderOptimized />
 
             <main id="main-content" className="min-h-screen bg-white">
                 {/* Hero Section */}
-                <section className="relative bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-800 py-20 lg:py-28 overflow-hidden">
-                    <div className="absolute inset-0 opacity-30">
-                        <Image
+                <section className="relative bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-800 py-20 lg:py-28 overflow-hidden min-h-[50vh] lg:min-h-[60vh] flex items-center">
+                    <div className="absolute inset-0">
+                        <OptimizedImage
                             src="/images/panjur/panjur-motorlu-villa.jpg"
-                            alt="Motorlu Panjur ve Kepenk Sistemleri - Egepen Akçayapı"
+                            alt=""
                             fill
                             className="object-cover"
+                            role="presentation"
                             priority
                         />
                     </div>
                     <div className="absolute inset-0 bg-grid-white/5" />
 
                     <div className="container mx-auto px-4 relative z-10">
+                        {/* Breadcrumb navigation */}
+                        <nav aria-label="Breadcrumb" className="mb-8 flex justify-center">
+                            <ol className="flex items-center gap-2 text-sm text-white/50">
+                                <li><Link href="/" className="hover:text-white transition-colors">Ana Sayfa</Link></li>
+                                <li className="text-white/30">/</li>
+                                <li className="text-white font-medium">Panjur & Kepenk Sistemleri</li>
+                            </ol>
+                        </nav>
+
                         <div className="max-w-4xl mx-auto text-center">
-                            <span className="inline-block px-4 py-2 bg-indigo-500/20 text-indigo-300 rounded-full text-sm font-medium mb-6">
-                                🏠 Akıllı Ev Uyumlu Sistemler
+                            <span className="sr-only">
+                                Akıllı Ev Uyumlu Sistemler
                             </span>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                                Panjur & Kepenk
-                                <span className="text-indigo-400"> Sistemleri</span>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4">
+                                Otomatik Panjur ve Güvenlik Kepenk Sistemleri
                             </h1>
-                            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                                <strong className="text-indigo-300">Somfy motorlu panjur</strong> ile akıllı ev kontrolü.
-                                <strong className="text-indigo-300"> %35 enerji tasarrufu</strong>.
-                                Ticari ve endüstriyel <strong className="text-indigo-300">kepenk çözümleri</strong>.
+                            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
+                                Akıllı ev uyumlu panjur motoru ile güvenlik ve otomasyon.
+                                Poliüretan dolgulu alüminyum panjur ile %35 ısı tasarrufu.
+                                Dükkan kepenk sistemleri ve motorlu panjur tamiri hizmeti.
                             </p>
 
-                            <div className="flex flex-wrap justify-center gap-4 mb-12">
-                                <Link
-                                    href="/teklif-al"
-                                    className="inline-flex items-center px-8 py-4 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-xl transition-all shadow-lg"
-                                >
-                                    <span className="mr-2">📐</span>
-                                    Ücretsiz Keşif Al
-                                </Link>
-                                <a
-                                    href={`tel:${businessConfig.contact.mobileRaw}`}
-                                    className="inline-flex items-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-all border border-white/20"
-                                >
-                                    <span className="mr-2">📞</span>
-                                    {businessConfig.contact.mobile}
-                                </a>
-                            </div>
-
-                            {/* Trust badges */}
-                            <div className="flex flex-wrap justify-center items-center gap-6 text-gray-400 text-sm">
-                                <span className="flex items-center gap-2">
-                                    <span className="text-green-400">✓</span> Somfy Yetkili Bayi
-                                </span>
-                                {/* <span className="flex items-center gap-2">
-                                    <span className="text-green-400">✓</span> 5 Yıl Motor Garantisi
-                                </span> */}
-                                <span className="flex items-center gap-2">
-                                    <span className="text-green-400">✓</span> Alexa/Google Uyumlu
-                                </span>
+                            {/* Trust badges — hidden */}
+                            <div className="sr-only">
+                                <span>Somfy Yetkili Bayi</span>
+                                <span>Alexa/Google Uyumlu</span>
                             </div>
                         </div>
                     </div>
                 </section>
 
+                {/* Sineklik Kampanya Reklamı */}
+                <div className="bg-rose-600 text-white py-2.5">
+                    <div className="container mx-auto px-4 flex items-center justify-center gap-3 text-sm">
+                        <span className="font-bold bg-white/20 px-2 py-0.5 rounded text-xs">KAMPANYA</span>
+                        <span>Sineklikte tüm renkli profiller <strong className="text-yellow-300">beyaz fiyatına!</strong></span>
+                        <Link href="/sineklik-sistemleri" className="underline font-semibold hover:text-yellow-200 transition-colors">Detaylar →</Link>
+                    </div>
+                </div>
+
                 {/* Category Navigation */}
                 <section className="py-16 bg-gray-50">
                     <div className="container mx-auto px-4">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {categories.map((cat) => (
                                 <a
                                     key={cat.id}
                                     href={`#${cat.id}`}
-                                    className="group relative bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all overflow-hidden"
+                                    className="group relative bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-shadow overflow-hidden"
                                 >
                                     <div
                                         className={`absolute inset-0 bg-gradient-to-br ${cat.color} opacity-0 group-hover:opacity-5 transition-opacity`}
@@ -206,10 +276,11 @@ export default function PanjurKepenkPage() {
                                 💡 Enerji Tasarrufu
                             </span>
                             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                                Köpük Dolgulu Panjur ile Tasarruf
+                                Poliüretan Dolgulu Alüminyum Panjur ile Enerji Tasarrufu
                             </h2>
                             <p className="text-gray-600 max-w-2xl mx-auto">
-                                Polyüretan köpük dolgulu lameller ile yaz ve kış aylarında ciddi enerji tasarrufu
+                                Poliüretan köpük dolgulu lameller ile yaz ve kış aylarında ciddi enerji tasarrufu.
+                                <strong> Otomatik panjur metrekare fiyatları</strong> için bize ulaşın.
                             </p>
                         </div>
 
@@ -265,77 +336,6 @@ export default function PanjurKepenkPage() {
                     </div>
                 </section>
 
-                {/* Somfy Ecosystem Section */}
-                <section className="py-20 bg-white">
-                    <div className="container mx-auto px-4">
-                        <div className="text-center mb-12">
-                            <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-4">
-                                🏠 Akıllı Ev
-                            </span>
-                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                                Somfy Akıllı Ev Ekosistemi
-                            </h2>
-                            <p className="text-gray-600 max-w-2xl mx-auto">
-                                TaHoma ile tüm panjurlarınızı tek noktadan kontrol edin
-                            </p>
-                        </div>
-
-                        <div className="max-w-5xl mx-auto">
-                            {/* Hub */}
-                            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 mb-8">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                                    <div>
-                                        <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                                            {somfyEcosystem.hub.name}
-                                        </h3>
-                                        <p className="text-gray-600 mb-6">{somfyEcosystem.hub.description}</p>
-                                        <div className="grid grid-cols-2 gap-3">
-                                            {somfyEcosystem.hub.features.map((feature, idx) => (
-                                                <div key={idx} className="flex items-center text-sm text-gray-700">
-                                                    <span className="text-blue-500 mr-2">✓</span>
-                                                    {feature}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <div className="text-center">
-                                        <div className="text-8xl">📱</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Voice Control */}
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                                {somfyEcosystem.voiceControl.map((vc, idx) => (
-                                    <div key={idx} className="bg-gray-50 rounded-xl p-6 text-center">
-                                        <div className="text-3xl mb-3">
-                                            {vc.includes('Alexa') ? '🔵' : vc.includes('Google') ? '🟢' : '⚪'}
-                                        </div>
-                                        <h4 className="font-bold text-gray-900">{vc}</h4>
-                                        <p className="text-sm text-gray-500 mt-2">Sesli Kontrol</p>
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Scenarios */}
-                            <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-8 text-white">
-                                <h4 className="text-xl font-bold mb-6 text-center">Hazır Senaryolar</h4>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                    {somfyEcosystem.scenarios.map((scenario, idx) => (
-                                        <div key={idx} className="bg-white/10 rounded-xl p-4 text-center backdrop-blur">
-                                            <div className="text-2xl mb-2">
-                                                {idx === 0 ? '🌅' : idx === 1 ? '🌆' : idx === 2 ? '✈️' : '🎬'}
-                                            </div>
-                                            <h5 className="font-semibold text-sm mb-1">{scenario.name}</h5>
-                                            <p className="text-xs text-white/70">{scenario.description}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
                 {/* Egepen Storbox PVC Panjur Section */}
                 <section id="panjur-pvc" className="py-20 bg-white">
                     <div className="container mx-auto px-4">
@@ -344,10 +344,11 @@ export default function PanjurKepenkPage() {
                                 🍱 Egepen Deceuninck
                             </span>
                             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                                Storbox Monoblok Panjur
+                                Storbox Monoblok Panjur — Otomatik Panjur Metrekare Fiyatları
                             </h2>
                             <p className="text-gray-600 max-w-2xl mx-auto">
                                 Pencere ile bütünleşik, yüksek yalıtımlı ve estetik PVC panjur çözümleri.
+                                Poliüretan dolgulu alüminyum panjur ile üstün ısı yalıtımı.
                             </p>
                         </div>
 
@@ -359,9 +360,9 @@ export default function PanjurKepenkPage() {
                                 >
                                     <div className="grid md:grid-cols-2">
                                         <div className="relative h-64 md:h-auto bg-gray-100">
-                                            <Image
+                                            <OptimizedImage
                                                 src={system.image}
-                                                alt={system.name}
+                                                alt={`${system.name} - Monoblok Panjur Sistemi - Beylikdüzü`}
                                                 fill
                                                 className="object-contain p-8 group-hover:scale-105 transition-transform duration-500"
                                             />
@@ -387,7 +388,8 @@ export default function PanjurKepenkPage() {
 
                                             <Link
                                                 href={`/panjur-kepenk-sistemleri/${system.slug}`}
-                                                className="inline-flex items-center justify-center w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-lg"
+                                                className="inline-flex items-center justify-center w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-shadow shadow-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+                                                aria-label={`${system.name} panjur detaylarını incele`}
                                             >
                                                 Detayları İncele
                                             </Link>
@@ -407,7 +409,7 @@ export default function PanjurKepenkPage() {
                                 🏠 Konut Panjurları
                             </span>
                             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                                Alüminyum Panjur Sistemleri
+                                Alüminyum Panjur Sistemleri — Motorlu Panjur Tamiri ve Bakım
                             </h2>
                         </div>
 
@@ -415,12 +417,12 @@ export default function PanjurKepenkPage() {
                             {aluminiumPanjur.map((system) => (
                                 <div
                                     key={system.id}
-                                    className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all"
+                                    className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
                                 >
                                     <div className="relative h-48 bg-gradient-to-br from-blue-600 to-indigo-700">
-                                        <Image
+                                        <OptimizedImage
                                             src={system.image}
-                                            alt={system.name}
+                                            alt={`${system.name} - Alüminyum Panjur - Motorlu Sistem`}
                                             fill
                                             className="object-contain p-6"
                                         />
@@ -470,9 +472,10 @@ export default function PanjurKepenkPage() {
 
                                         <Link
                                             href={`/panjur-kepenk-sistemleri/${system.slug}`}
-                                            className="inline-flex items-center text-indigo-600 font-semibold hover:text-indigo-700"
+                                            className="inline-flex items-center text-indigo-600 font-semibold hover:text-indigo-700 focus:ring-2 focus:ring-indigo-400 focus:outline-none rounded"
+                                            aria-label={`${system.name} detaylarını incele`}
                                         >
-                                            Detaylar ve Fiyat
+                                            Detayları İncele
                                             <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                             </svg>
@@ -480,52 +483,6 @@ export default function PanjurKepenkPage() {
                                     </div>
                                 </div>
                             ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Motor Comparison */}
-                <section className="py-20 bg-white">
-                    <div className="container mx-auto px-4">
-                        <div className="text-center mb-12">
-                            <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium mb-4">
-                                ⚙️ Motor Seçenekleri
-                            </span>
-                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                                Motor Karşılaştırma
-                            </h2>
-                        </div>
-
-                        <div className="max-w-5xl mx-auto overflow-x-auto">
-                            <table className="w-full bg-white rounded-xl shadow-lg overflow-hidden">
-                                <thead>
-                                    <tr className="bg-gray-100">
-                                        <th className="px-4 py-4 text-left text-sm font-semibold text-gray-700">Marka/Model</th>
-                                        <th className="px-4 py-4 text-center text-sm font-semibold text-gray-700">Tork</th>
-                                        <th className="px-4 py-4 text-center text-sm font-semibold text-gray-700">Akıllı Ev</th>
-                                        {/* <th className="px-4 py-4 text-center text-sm font-semibold text-gray-700">Garanti</th> */}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {motorLibrary.slice(0, 4).map((motor, idx) => (
-                                        <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                                            <td className="px-4 py-4">
-                                                <div className="font-semibold text-gray-900">{motor.model}</div>
-                                                <div className="text-xs text-gray-500">{motor.speed}</div>
-                                            </td>
-                                            <td className="px-4 py-4 text-center font-medium">{motor.torque} Nm</td>
-                                            <td className="px-4 py-4 text-center">
-                                                {motor.smartHome ? (
-                                                    <span className="text-green-500">✓</span>
-                                                ) : (
-                                                    <span className="text-gray-300">—</span>
-                                                )}
-                                            </td>
-                                            {/* <td className="px-4 py-4 text-center text-sm">{motor.warranty}</td> */}
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </section>
@@ -538,7 +495,7 @@ export default function PanjurKepenkPage() {
                                 🏪 Ticari Çözümler
                             </span>
                             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                                Ticari Kepenk Sistemleri
+                                Dükkan Kepenk Sistemleri ve Ticari Çözümler
                             </h2>
                         </div>
 
@@ -549,9 +506,9 @@ export default function PanjurKepenkPage() {
                                     className="bg-white rounded-2xl overflow-hidden shadow-lg"
                                 >
                                     <div className="relative h-40 bg-gradient-to-br from-gray-700 to-slate-900">
-                                        <Image
+                                        <OptimizedImage
                                             src={system.image}
-                                            alt={system.name}
+                                            alt={`${system.name} - Dükkan Kepenk Sistemi`}
                                             fill
                                             className="object-contain p-6 opacity-80"
                                         />
@@ -576,7 +533,8 @@ export default function PanjurKepenkPage() {
 
                                         <Link
                                             href={`/panjur-kepenk-sistemleri/${system.slug}`}
-                                            className="inline-flex items-center text-gray-700 font-semibold hover:text-gray-900"
+                                            className="inline-flex items-center text-gray-700 font-semibold hover:text-gray-900 focus:ring-2 focus:ring-gray-400 focus:outline-none rounded"
+                                            aria-label={`${system.name} kepenk detaylarına git`}
                                         >
                                             Detaylar →
                                         </Link>
@@ -606,9 +564,9 @@ export default function PanjurKepenkPage() {
                                     className="bg-white rounded-2xl overflow-hidden shadow-lg"
                                 >
                                     <div className="relative h-48 bg-gradient-to-br from-orange-600 to-red-700">
-                                        <Image
+                                        <OptimizedImage
                                             src={system.image}
-                                            alt={system.name}
+                                            alt={`${system.name} - Endüstriyel Kapı Sistemi`}
                                             fill
                                             className="object-contain p-6"
                                         />
@@ -629,7 +587,8 @@ export default function PanjurKepenkPage() {
 
                                         <Link
                                             href={`/panjur-kepenk-sistemleri/${system.slug}`}
-                                            className="inline-flex items-center px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all"
+                                            className="inline-flex items-center px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-shadow focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                                            aria-label={`${system.name} için proje teklifi al`}
                                         >
                                             Proje Teklifi Al
                                         </Link>
@@ -639,53 +598,6 @@ export default function PanjurKepenkPage() {
                         </div>
                     </div>
                 </section>
-
-                {/* Lamel Options */}
-                <section className="py-20 bg-white">
-                    <div className="container mx-auto px-4">
-                        <div className="text-center mb-12">
-                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                                Lamel Seçenekleri
-                            </h2>
-                            <p className="text-gray-600">İhtiyacınıza göre lamel tipi seçin</p>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                            {lamelLibrary.slice(0, 6).map((lamel) => (
-                                <div key={lamel.id} className="bg-gray-50 rounded-xl p-6">
-                                    <div className="flex justify-between items-start mb-3">
-                                        <h4 className="font-bold text-gray-900">{lamel.name}</h4>
-                                        {lamel.foamFilled && (
-                                            <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">
-                                                Köpük Dolgulu
-                                            </span>
-                                        )}
-                                    </div>
-                                    <p className="text-sm text-gray-600 mb-4">{lamel.description}</p>
-                                    <div className="grid grid-cols-2 gap-2 text-sm">
-                                        <div>
-                                            <span className="text-gray-500">Genişlik:</span>{' '}
-                                            <span className="font-medium">{lamel.width}mm</span>
-                                        </div>
-                                        <div>
-                                            <span className="text-gray-500">Kalınlık:</span>{' '}
-                                            <span className="font-medium">{lamel.thickness}mm</span>
-                                        </div>
-                                        {lamel.uValue && (
-                                            <div className="col-span-2">
-                                                <span className="text-gray-500">U Değeri:</span>{' '}
-                                                <span className="font-medium text-green-600">{lamel.uValue} W/m²K</span>
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* CTA */}
-                <CTASection />
 
                 {/* Local SEO */}
                 <section className="py-12 bg-gray-100">

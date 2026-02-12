@@ -372,7 +372,7 @@ Sessiz Çalışma:
             'Akıllı ev kontrolü',
             'Tam karartma imkanı',
             'Sessiz çalışma (<35dB)',
-            '5 yıl motor garantisi',
+            '5 yıl motor dayanıklılığı',
         ],
         lamelOptions: [
             lamelLibrary.find((l) => l.id === 'alu-45-foam')!,
@@ -410,7 +410,7 @@ Sessiz Çalışma:
         faq: [
             {
                 question: 'Somfy motor ne kadar dayanır?',
-                answer: 'Somfy motorları 100.000+ çalışma döngüsü için test edilmiştir. Günde 4 kez kullanımda 70+ yıl ömür anlamına gelir. 5 yıl üretici garantisi vardır.',
+                answer: 'Somfy motorları 100.000+ çalışma döngüsü için test edilmiştir. Günde 4 kez kullanımda 70+ yıl ömür anlamına gelir. 5 yıl üretici desteği sunulmaktadır.',
             },
             {
                 question: 'Elektrik kesilirse panjur açılır mı?',
@@ -428,7 +428,7 @@ Sessiz Çalışma:
         name: 'Manuel Alüminyum Panjur',
         category: 'panjur-aluminyum',
         tagline: 'Ekonomik ve Güvenilir Klasik Çözüm',
-        description: 'Kayış veya krankla çalışan klasik alüminyum panjur. Köpük dolgulu lamel opsiyonu, 200+ RAL renk, 10 yıl garanti.',
+        description: 'Kayış veya krankla çalışan klasik alüminyum panjur. Köpük dolgulu lamel opsiyonu, 200+ RAL renk, 10 yıl dayanıklılık.',
         longDescription: `Manuel Alüminyum Panjur, güvenilirlik ve ekonomiyi bir araya getirir. Kayış (şerit) veya krank (çevirmeli) mekanizma seçenekleri ile elektrik gerektirmeden çalışır.
 
 Avantajları:
@@ -461,7 +461,7 @@ Lamel Seçenekleri:
             'Ekonomik fiyat',
             'Elektrik gerektirmez',
             'Düşük bakım',
-            '10 yıl garanti',
+            '10 yıl dayanıklılık',
         ],
         lamelOptions: [
             lamelLibrary.find((l) => l.id === 'alu-37')!,

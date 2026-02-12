@@ -99,7 +99,6 @@ export default function OptimizedImage({
     const [imgSrc, setImgSrc] = useState<string | typeof src>(initialSrc);
     const [errorLevel, setErrorLevel] = useState(0);
     const [isLoading, setIsLoading] = useState(!priority);
-    const [isVisible, setIsVisible] = useState(false);
     const imageRef = useRef<HTMLImageElement>(null);
 
     // Reset state when src prop changes
@@ -118,14 +117,6 @@ export default function OptimizedImage({
             setIsLoading(false);
         }
     }, []);
-
-    // Fade-in effect after load
-    useEffect(() => {
-        if (!isLoading) {
-            const timer = setTimeout(() => setIsVisible(true), 50);
-            return () => clearTimeout(timer);
-        }
-    }, [isLoading]);
 
     /**
      * Multi-level error handler with WebP fallback:
@@ -194,6 +185,7 @@ export default function OptimizedImage({
                 fill={fill}
                 priority={priority}
                 loading={priority ? undefined : "lazy"}
+                decoding={priority ? "sync" : "async"}
                 unoptimized // Required for static export compatibility
                 ref={imageRef}
                 className={cn(

@@ -1,192 +1,168 @@
 /**
  * Service Worker for Egepen Akçayapı Website
+ * Optimized for Performance & SEO
  * 
  * Provides:
- * - Offline caching for critical assets
- * - Network-first strategy for dynamic content
- * - Cache-first strategy for static assets
- * - Faster subsequent page loads
- * - Priority loading for "Call Now" on slow connections
+ * - Aggressive caching for static assets
+ * - Network-first for HTML pages
+ * - Offline support with fallback page
+ * - Faster LCP through preloading
  */
 
-const CACHE_NAME = "egepen-akcayapi-v2";
-const STATIC_CACHE = "static-v2";
-const DYNAMIC_CACHE = "dynamic-v2";
-const CRITICAL_CACHE = "critical-v1";
+const CACHE_VERSION = "v3";
+const CACHE_NAME = `egepen-${CACHE_VERSION}`;
+const STATIC_CACHE = `static-${CACHE_VERSION}`;
+const IMAGE_CACHE = `images-${CACHE_VERSION}`;
 
-// Critical assets - loaded first on slow connections
-const CRITICAL_ASSETS = [
+// Critical assets for offline and fast loading
+const PRECACHE_ASSETS = [
     "/",
     "/offline.html",
-];
-
-// Static assets to cache immediately
-const STATIC_ASSETS = [
     "/manifest.json",
-    "/images/logo.svg",
-    "/images/logo-white.svg",
 ];
 
-// Install event - cache critical and static assets
+// Image extensions for image cache
+const IMAGE_EXTENSIONS = [".webp", ".jpg", ".jpeg", ".png", ".svg", ".ico", ".avif"];
+
+// Install: Precache critical assets
 self.addEventListener("install", (event) => {
     event.waitUntil(
-        Promise.all([
-            caches.open(CRITICAL_CACHE).then((cache) => {
-                console.log("[SW] Caching critical assets");
-                return cache.addAll(CRITICAL_ASSETS);
-            }),
-            caches.open(STATIC_CACHE).then((cache) => {
-                console.log("[SW] Caching static assets");
-                return cache.addAll(STATIC_ASSETS);
-            }),
-        ])
+        caches.open(CACHE_NAME).then((cache) => {
+            return cache.addAll(PRECACHE_ASSETS);
+        })
     );
-    // Activate immediately
     self.skipWaiting();
 });
 
-// Activate event - clean old caches
+// Activate: Clean old caches
 self.addEventListener("activate", (event) => {
     event.waitUntil(
         caches.keys().then((keys) => {
             return Promise.all(
                 keys
-                    .filter((key) =>
-                        key !== STATIC_CACHE &&
-                        key !== DYNAMIC_CACHE &&
-                        key !== CRITICAL_CACHE
-                    )
+                    .filter((key) => !key.includes(CACHE_VERSION))
                     .map((key) => caches.delete(key))
             );
         })
     );
-    // Claim all clients immediately
     self.clients.claim();
 });
 
-// Fetch event - serve from cache or network with priority handling
+// Fetch: Route requests to appropriate strategy
 self.addEventListener("fetch", (event) => {
     const { request } = event;
     const url = new URL(request.url);
 
-    // Skip non-GET requests
-    if (request.method !== "GET") return;
+    // Skip non-GET and non-http(s) requests
+    if (request.method !== "GET" || !url.protocol.startsWith("http")) return;
 
-    // Skip chrome-extension and other non-http(s) requests
-    if (!url.protocol.startsWith("http")) return;
-
-    // Priority: Critical elements first (for slow connections)
-    if (isCriticalElement(url)) {
-        event.respondWith(criticalFirst(request));
+    // Skip external domains
+    if (!url.hostname.includes("akcapen") && 
+        !url.hostname.includes("localhost")) {
         return;
     }
 
-    // Strategy based on request type
-    if (isStaticAsset(url)) {
-        // Cache-first for static assets (images, fonts, etc.)
-        event.respondWith(cacheFirst(request));
-    } else if (isAPI(url)) {
-        // Network-first for API requests
-        event.respondWith(networkFirst(request));
-    } else {
-        // Stale-while-revalidate for HTML pages
-        event.respondWith(staleWhileRevalidate(request));
+    // Images: Cache-first with long TTL
+    if (isImage(url.pathname)) {
+        event.respondWith(cacheFirstWithExpiry(request, IMAGE_CACHE, 30 * 24 * 60 * 60 * 1000)); // 30 days
+        return;
     }
+
+    // Static assets (JS, CSS, fonts): Cache-first
+    if (isStaticAsset(url.pathname)) {
+        event.respondWith(cacheFirst(request, STATIC_CACHE));
+        return;
+    }
+
+    // HTML pages: Stale-while-revalidate
+    event.respondWith(staleWhileRevalidate(request, CACHE_NAME));
 });
 
-// Helper: Check if URL is a critical element (phone links, CTA buttons)
-function isCriticalElement(url) {
-    return url.pathname === "/" ||
-        url.pathname.includes("/iletisim") ||
-        url.href.includes("tel:") ||
-        url.href.includes("wa.me");
+// Check if path is an image
+function isImage(pathname) {
+    return IMAGE_EXTENSIONS.some(ext => pathname.toLowerCase().endsWith(ext));
 }
 
-// Helper: Check if URL is a static asset
-function isStaticAsset(url) {
-    const staticExtensions = [".js", ".css", ".png", ".jpg", ".jpeg", ".webp", ".svg", ".woff", ".woff2", ".ico"];
-    return staticExtensions.some((ext) => url.pathname.endsWith(ext));
+// Check if path is a static asset
+function isStaticAsset(pathname) {
+    const staticExtensions = [".js", ".css", ".woff", ".woff2", ".ttf", ".eot"];
+    return staticExtensions.some(ext => pathname.endsWith(ext));
 }
 
-// Helper: Check if URL is an API request
-function isAPI(url) {
-    return url.pathname.startsWith("/api/");
-}
-
-// Strategy: Critical First (prioritize on slow connections)
-async function criticalFirst(request) {
-    // Check connection speed
-    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    const isSlowConnection = connection && (connection.effectiveType === "slow-2g" || connection.effectiveType === "2g" || connection.saveData);
-
-    if (isSlowConnection) {
-        // On slow connections, serve from cache immediately
-        const cached = await caches.match(request);
-        if (cached) {
-            // Update cache in background
-            fetch(request).then((response) => {
-                if (response.ok) {
-                    caches.open(CRITICAL_CACHE).then((cache) => {
-                        cache.put(request, response.clone());
-                    });
-                }
-            }).catch(() => { });
-            return cached;
-        }
-    }
-
-    // Normal speed: Network first with cache fallback
-    return networkFirst(request);
-}
-
-// Strategy: Cache First
-async function cacheFirst(request) {
+// Cache-first strategy
+async function cacheFirst(request, cacheName) {
     const cached = await caches.match(request);
     if (cached) return cached;
 
     try {
         const response = await fetch(request);
-        if (response.ok) {
-            const cache = await caches.open(STATIC_CACHE);
+        if (response.ok && response.status === 200) {
+            const cache = await caches.open(cacheName);
             cache.put(request, response.clone());
         }
         return response;
-    } catch (error) {
-        return new Response("Offline", { status: 503 });
+    } catch {
+        return offlineResponse(request);
     }
 }
 
-// Strategy: Network First
-async function networkFirst(request) {
+// Cache-first with expiry check
+async function cacheFirstWithExpiry(request, cacheName, maxAge) {
+    const cache = await caches.open(cacheName);
+    const cached = await cache.match(request);
+    
+    if (cached) {
+        const dateHeader = cached.headers.get("date");
+        if (dateHeader) {
+            const cachedTime = new Date(dateHeader).getTime();
+            if (Date.now() - cachedTime < maxAge) {
+                return cached;
+            }
+        } else {
+            return cached;
+        }
+    }
+
     try {
         const response = await fetch(request);
-        if (response.ok) {
-            const cache = await caches.open(DYNAMIC_CACHE);
+        if (response.ok && response.status === 200) {
             cache.put(request, response.clone());
         }
         return response;
-    } catch (error) {
-        const cached = await caches.match(request);
+    } catch {
         if (cached) return cached;
-        return new Response(JSON.stringify({ error: "Offline" }), {
-            status: 503,
-            headers: { "Content-Type": "application/json" },
-        });
+        return offlineResponse(request);
     }
 }
 
-// Strategy: Stale While Revalidate
-async function staleWhileRevalidate(request) {
-    const cached = await caches.match(request);
+// Stale-while-revalidate strategy
+async function staleWhileRevalidate(request, cacheName) {
+    const cache = await caches.open(cacheName);
+    const cached = await cache.match(request);
 
-    const fetchPromise = fetch(request).then((response) => {
-        if (response.ok) {
-            caches.open(DYNAMIC_CACHE).then((cache) => {
+    const networkPromise = fetch(request)
+        .then((response) => {
+            if (response.ok && response.status === 200) {
                 cache.put(request, response.clone());
-            });
-        }
-        return response;
-    });
+            }
+            return response;
+        })
+        .catch(() => cached || offlineResponse(request));
 
-    return cached || fetchPromise;
+    return cached || networkPromise;
+}
+
+// Offline fallback response
+function offlineResponse(request) {
+    const url = new URL(request.url);
+    
+    // Return offline page for HTML requests
+    if (request.headers.get("accept")?.includes("text/html")) {
+        return caches.match("/offline.html") || new Response(
+            "<html><body><h1>Çevrimdışı</h1><p>Lütfen internet bağlantınızı kontrol edin.</p></body></html>",
+            { headers: { "Content-Type": "text/html; charset=utf-8" } }
+        );
+    }
+
+    return new Response("Offline", { status: 503, statusText: "Service Unavailable" });
 }

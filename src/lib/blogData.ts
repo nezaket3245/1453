@@ -56,9 +56,9 @@ U-değeri ne kadar düşükse, pencere o kadar iyi yalıtım yapar. Günümüzde
 - Uw ≤ 1.0: Çok iyi
 - Uw ≤ 0.8: Mükemmel (Pasif ev standardı)
 
-### 4. Marka ve Garanti
+### 4. Marka Seçimi
 
-Türkiye'de Egepen Deceuninck gibi köklü markalar, 10 yıla kadar profil garantisi sunmaktadır. Marka seçerken şunlara dikkat edin:
+Marka seçerken şunlara dikkat edin:
 
 - Yetkili bayi ağı
 - Yedek parça bulunabilirliği
@@ -79,7 +79,7 @@ En kaliteli pencere bile kötü montaj edilirse performans gösteremez. Profesyo
 
 ---
 
-*Egepen Akçayapı olarak Beylikdüzü, Gürpınar ve çevresinde ücretsiz keşif hizmeti sunuyoruz. Detaylı bilgi için bizimle iletişime geçin.*
+*Egepen Akçayapı olarak Beylikdüzü, Gürpınar ve çevresinde ücretsiz keşif hizmeti sunuyoruz. Detaylı bilgi için [iletişim sayfamızı](/iletisim) ziyaret edin.*
         `,
         category: "pvc-pencere",
         image: "/images/pvc/pvc-pencere-yemek-odasi.jpg",
@@ -151,7 +151,7 @@ Yılda en az bir kez profesyonel bakım yaptırın. Uzmanlar göremediğiniz sor
 
 ---
 
-*Cam balkon bakım ve onarım hizmetlerimiz hakkında bilgi almak için Akçayapı ile iletişime geçin.*
+*Cam balkon bakım ve onarım hizmetlerimiz hakkında bilgi almak için [iletişim sayfamızı](/iletisim) ziyaret edin.*
         `,
         category: "bakim",
         image: "/images/cam-balkon/cam-balkon-gunbatimi.jpg",
@@ -219,7 +219,7 @@ Egepen Deceuninck Legend serisi, Uw ≤ 0.95 W/m²K değeriyle premium ısı yal
 
 ---
 
-*Beylikdüzü ve çevresinde ücretsiz enerji analizi için Akçayapı'yı arayın.*
+*Beylikdüzü ve çevresinde ücretsiz enerji analizi için [iletişim sayfamızı](/iletisim) ziyaret edin.*
         `,
         category: "enerji-tasarrufu",
         image: "/images/products/legend-series.png",
@@ -279,11 +279,11 @@ Kalitesiz ispanyoletler:
 - Güvenlik riski oluşturur
 - Pencereye zarar verebilir
 
-Egepen orijinal yedek parçalar, 5 yıl garanti kapsamındadır.
+Egepen orijinal yedek parçalar ile uzun ömürlü kullanım sağlanır.
 
 ---
 
-*Akçayapı olarak orijinal Egepen ispanyolet değişimi hizmeti sunuyoruz. Aynı gün servis için bizi arayın.*
+*Akçayapı olarak orijinal Egepen ispanyolet değişimi hizmeti sunuyoruz. Aynı gün servis için [iletişim sayfamızı](/iletisim) ziyaret edin.*
         `,
         category: "bakim",
         image: "/images/pvc/pvc-servis-egepen.jpg",
@@ -365,7 +365,7 @@ Gizli kutu estetik açıdan daha iyi görünür ancak renovasyonlarda uygulanmas
 
 ---
 
-*Beylikdüzü'de panjur montajı ve tamiri için Akçayapı'yı tercih edin.*
+*Beylikdüzü'de panjur montajı ve tamiri için [iletişim sayfamızı](/iletisim) ziyaret edin.*
         `,
         category: "dekorasyon",
         image: "/images/panjur/panjur-motorlu-villa.jpg",
@@ -439,7 +439,7 @@ Akçayapı duşakabinlerinde kullanılan ClearShield kaplama:
 
 ---
 
-*Duşakabin montajı ve bakımı için Beylikdüzü Akçayapı'yı arayın.*
+*Duşakabin montajı ve bakımı için [iletişim sayfamızı](/iletisim) ziyaret edin.*
         `,
         category: "bakim",
         image: "/images/dusakabin/dusakabin-siyah-profil-genis.jpg",
@@ -448,6 +448,583 @@ Akçayapı duşakabinlerinde kullanılan ClearShield kaplama:
         readTime: "5 dk",
         tags: ["Duşakabin", "Temizlik", "Bakım", "Kireç Temizliği"],
         seoKeywords: ["duşakabin temizliği", "duşakabin kireç temizliği", "cam duşakabin bakımı", "temperli cam temizliği"],
+    },
+    {
+        id: "7",
+        slug: "beylikduzu-cam-balkon-montaji",
+        title: "Beylikdüzü Cam Balkon Montajı Nasıl Yapılır? Adım Adım Süreç",
+        excerpt: "Cam balkon montajı profesyonel ekip gerektirir. Keşiften montaja kadar tüm süreci, dikkat edilmesi gerekenleri ve Beylikdüzü'ne özel ipuçlarını anlattık.",
+        content: `
+## Cam Balkon Montajı: Baştan Sona Süreç
+
+Cam balkon yaptırmayı düşünüyorsanız, montaj sürecini bilmek hem beklentilerinizi yönetmenize hem de doğru firmayı seçmenize yardımcı olur.
+
+### 1. Ücretsiz Keşif ve Ölçü
+
+Her şey bir telefon aramasıyla başlar. Uzman ekibimiz evinize gelerek:
+
+- Balkon ölçülerini milimetrik hassasiyetle alır
+- Binanın rüzgar yüküne göre sistem önerir
+- Kat yüksekliğine uygun cam kalınlığını belirler
+- Isıcamlı mı, tek cam mı ihtiyacınıza göre seçim yapar
+
+### 2. Sistem Seçimi
+
+Beylikdüzü'nde denize yakın binalarda rüzgar direnci kritiktir:
+
+- **Katlanır Sistem**: Tam açılabilir, manzara kaybı yok
+- **Sürme Sistem**: Raylı, pratik kullanım
+- **Isıcamlı Sistem**: Kış aylarında tam yalıtım
+
+### 3. Profil ve Cam Üretimi
+
+Ölçüler fabrikaya gönderilir. Üretim süresi genellikle **7-10 iş günüdür**. Bu sürede:
+
+- Alüminyum profiller özel ölçüde kesilir
+- Camlar temperli olarak üretilir (güvenlik standardı)
+- Aksesuar ve fitiller hazırlanır
+
+### 4. Montaj Günü
+
+Profesyonel montaj genellikle **1-2 gün** sürer:
+
+- Eski korkuluklar gerekirse sökülebilir
+- Su tahliye kanalları açılır
+- Profiller sabitlenir, camlar takılır
+- Silikon ve fitil uygulaması yapılır
+- Temizlik ve son kontrol
+
+### 5. Beylikdüzü'ne Özel Dikkat Noktaları
+
+- **Rüzgar**: Yüksek katlarda mutlaka 8mm temperli cam tercih edin
+- **Tuz**: Denize yakın konumlarda korozyona dayanıklı aksesuar şart
+- **Yönetmelik**: Bazı sitelerde cam balkon için yönetim kurulu izni gerekir
+
+---
+
+*Beylikdüzü'nde ücretsiz keşif için [hemen arayın](/iletisim).*
+        `,
+        category: "cam-balkon",
+        image: "/images/cam-balkon/cam-balkon-hero.jpg",
+        author: "Akçayapı Uzman Ekibi",
+        date: "2026-01-15",
+        readTime: "6 dk",
+        tags: ["Cam Balkon", "Montaj", "Beylikdüzü", "Isıcamlı"],
+        seoKeywords: ["cam balkon montajı", "beylikdüzü cam balkon", "cam balkon nasıl yapılır", "cam balkon montaj süreci"],
+    },
+    {
+        id: "8",
+        slug: "pvc-pencere-bakimi-kis-aylari",
+        title: "Kış Aylarında PVC Pencere Bakımı: 7 Altın Kural",
+        excerpt: "Kış soğuklarında pencerelerinizin performansını en üst düzeyde tutmak için yapmanız gereken 7 kritik bakım adımını açıklıyoruz.",
+        content: `
+## Kışa Hazır Pencereler İçin 7 Altın Kural
+
+Kış ayları PVC pencereler için en zorlu dönemdir. Doğru bakımla hem enerji tasarrufu sağlar hem de pencerelerin ömrünü uzatırsınız.
+
+### 1. Conta Kontrolü
+
+Contalar pencerenin hava ve su sızdırmazlığını sağlayan en kritik parçadır:
+
+- **Görsel kontrol**: Contaları parmaklarınızla kontrol edin, çatlak veya sertleşme var mı?
+- **Kağıt testi**: Pencereyi kapatıp arasına kağıt sıkıştırın. Kağıt kolayca çıkıyorsa conta değişimi gerekebilir
+- **Yağlama**: Silikon bazlı sprey ile contaları yumuşak tutun
+
+### 2. İspanyolet Bakımı
+
+İspanyolet (kilitleme mekanizması) pencerenin sıkıca kapanmasını sağlar:
+
+- Her 6 ayda bir yağlayın (silikon sprey veya hafif makine yağı)
+- Kilit noktalarını kontrol edin
+- Sert açma-kapama varsa menteşe ayarı yaptırın
+
+### 3. Drenaj Kanalları
+
+PVC profillerin altında su tahliye delikleri bulunur:
+
+- Bu delikleri düzenli kontrol edin
+- Tıkanmışsa ince bir tel veya çubukla açın
+- Tıkalı drenaj → profil içinde su birikimi → küf ve korozyon
+
+### 4. Cam Temizliği
+
+Temiz camlar güneş ışığının içeri girmesini artırır:
+
+- Hafif sabunlu su ve yumuşak bez kullanın
+- Asla jilet veya aşındırıcı temizleyici kullanmayın
+- Low-E kaplamalı camlarda özel cam temizleyicisi tercih edin
+
+### 5. Profil Temizliği
+
+- Beyaz profilleri sabunlu suyla silin
+- Renk değişimine yol açacak çamaşır suyu veya aseton kullanmayın
+- Laminasyon kaplamalı profillerde sadece nemli bez yeterlidir
+
+### 6. Menteşe Ayarı
+
+Kış soğuğunda profiller hafifçe büzüşebilir:
+
+- Pencere iyi oturmuyorsa menteşe ayarı yaptırın
+- Allen anahtar ile basit ayar yapılabilir (her yöne 1-2mm)
+- Emin değilseniz profesyonel çağırın
+
+### 7. Isıcam Kontrolü
+
+- Camların arasında buğu oluşuyorsa ısıcam sızdırıyor demektir
+- Bu durumda cam ünitesinin değişmesi gerekir (profil değişmez)
+- Egepen kaliteli ısıcamlarda bu sorun çok nadir yaşanır
+
+---
+
+*Pencere bakımı için profesyonel destek almak isterseniz [bize ulaşın](/iletisim).*
+        `,
+        category: "bakim",
+        image: "/images/pvc/pvc-pencere-beyaz.jpg",
+        author: "Akçayapı Uzman Ekibi",
+        date: "2026-01-25",
+        readTime: "5 dk",
+        tags: ["PVC Pencere", "Bakım", "Kış", "Conta", "İspanyolet"],
+        seoKeywords: ["pvc pencere bakımı", "kış pencere bakımı", "pencere conta değişimi", "ispanyolet bakımı"],
+    },
+    {
+        id: "9",
+        slug: "sineklik-cesitleri-hangisi-secilmeli",
+        title: "Sineklik Çeşitleri: Evinize Hangisi Uygun?",
+        excerpt: "Plise, sürme, menteşeli ve kedi sinekliği arasında seçim yapmak zor olabilir. Her modelin avantaj ve dezavantajlarını karşılaştırdık.",
+        content: `
+## Doğru Sineklik Nasıl Seçilir?
+
+Sineklik alırken pencere tipiniz, kullanım alışkanlıklarınız ve evcil hayvan durumunuz belirleyicidir.
+
+### Plise Sineklik
+
+Akordeon gibi katlanarak açılır-kapanır. En estetik modeldir.
+
+**Avantajları:**
+- Açıkken neredeyse görünmez
+- Dikey ve yatay modeller mevcut
+- Kapı ve pencerede kullanılabilir
+- Renk seçenekleri çok geniş
+
+**Dezavantajları:**
+- Fiyatı diğerlerine göre yüksek
+- Tül kumaşı zamanla değişim gerektirebilir
+
+**İdeal kullanım:** Modern daireler, geniş kapı açıklıkları, estetik hassasiyeti olanlar.
+
+### Sürme Sineklik
+
+Pencere rayında kayarak açılır-kapanır.
+
+**Avantajları:**
+- Ekonomik fiyat
+- Basit mekanizma, bozulması zor
+- Kolay temizlenir
+
+**Dezavantajları:**
+- Tam kapanmayabilir (milimetrik boşluklar)
+- Estetik olarak plise kadar şık değil
+
+**İdeal kullanım:** Bütçe dostu çözüm arayanlar, sürme pencere sahipleri.
+
+### Menteşeli Sineklik
+
+Kapı gibi açılır-kapanır, mıknatıslı kapanma.
+
+**Avantajları:**
+- Sık geçiş yapılan kapılarda pratik
+- İyi sızdırmazlık
+- Dayanıklı yapı
+
+**Dezavantajları:**
+- Açık kaldığında yer kaplar
+- Rüzgarda çarpabilir
+
+**İdeal kullanım:** Balkon kapıları, mutfak kapıları.
+
+### Kedi Sinekliği (Pet Screen)
+
+Evcil hayvan sahipleri için güçlendirilmiş örgü.
+
+**Avantajları:**
+- Kedi tırmalamasına dayanıklı (PVC kaplı polyester)
+- Standart sineklik örgüsünden 7 kat daha güçlü
+- Evcil hayvanınız güvende kalır
+
+**Dezavantajları:**
+- Görüş netliği standart örgüye göre biraz düşer
+- Fiyatı biraz daha yüksek
+
+**İdeal kullanım:** Kedi ve küçük köpek sahipleri, yüksek katlarda yaşayanlar.
+
+---
+
+*Hangi sineklik size uygun? [Ücretsiz keşif ile yerinde görelim](/teklif-al).*
+        `,
+        category: "bakim",
+        image: "/images/sineklik/sineklik-plise-genis.jpg",
+        author: "Akçayapı Uzman Ekibi",
+        date: "2026-02-01",
+        readTime: "7 dk",
+        tags: ["Sineklik", "Plise", "Kedi Sinekliği", "Sürme Sineklik"],
+        seoKeywords: ["sineklik çeşitleri", "plise sineklik", "kedi sinekliği", "sürme sineklik", "sineklik fiyatları"],
+    },
+    {
+        id: "10",
+        slug: "enerji-tasarrufu-pencere-yalitim",
+        title: "Pencere Yalıtımı ile Enerji Tasarrufu: Faturalarınızı %40 Düşürün",
+        excerpt: "Isı kaybının %25-30'u pencerelerden olur. Doğru pencere seçimi ve yalıtımıyla faturalarınızı ciddi oranda düşürebilirsiniz.",
+        content: `
+## Pencerelerden Kaçan Isıyı Durdurun
+
+Bir evin toplam ısı kaybının yaklaşık **%25-30'u pencerelerden** gerçekleşir. Eski, tek camlı veya contası bozulmuş pencereler, kışın ısıtma maliyetinizi ciddi şekilde artırır.
+
+### Pencere Yalıtımında Kritik Faktörler
+
+#### 1. Uw Değeri (Isı Geçirgenlik Katsayısı)
+
+Pencere performansını ölçen en önemli değer:
+
+| Pencere Tipi | Uw Değeri | Yalıtım Kalitesi |
+|---|---|---|
+| Eski tek cam | 5.0+ W/m²K | Çok kötü |
+| Çift cam, eski profil | 2.5-3.0 | Orta |
+| Egepen Legend Art | 1.0-1.2 | İyi |
+| Egepen Legend (80mm) | 0.8-1.0 | Mükemmel |
+| Üçlü cam + Legend | 0.6-0.8 | En üstün |
+
+**Kural:** Uw değeri ne kadar düşükse, yalıtım o kadar iyi.
+
+#### 2. Profil Genişliği ve Odacık Sayısı
+
+- **60mm, 3 odacık**: Temel yalıtım
+- **70mm, 5 odacık** (Legend Art): Gelişmiş yalıtım, en popüler
+- **80mm, 7 odacık** (Legend): Premium yalıtım
+
+#### 3. Cam Teknolojisi
+
+- **Low-E Kaplama**: Isıyı içeri yansıtır, güneşi geçirir
+- **Argon Gazı**: Cam arasında hava yerine argon → %15 daha iyi yalıtım
+- **Üçlü Cam**: İki hava boşluğu, maksimum yalıtım
+
+### Gerçek Tasarruf Hesabı
+
+Tipik bir 100m² Beylikdüzü dairesinde eski pencereden yeniye geçişte:
+
+- **Doğalgaz faturası**: Aylık ~₺800 → ~₺500 (kış ayları)
+- **Yıllık tasarruf**: ~₺2.400
+- **Yatırımın geri dönüşü**: 3-5 yıl
+
+### Bonus: Ses Yalıtımı
+
+Beylikdüzü'nde E-5'e veya Metrobüs hattına yakın yaşayanlar için:
+
+- Çift cam: 25-30 dB azaltma
+- Üçlü cam: 35-40 dB azaltma
+- Lamine cam: 40+ dB azaltma (en sessiz)
+
+---
+
+*Eviniz için enerji raporu almak isterseniz [ücretsiz keşif talep edin](/teklif-al).*
+        `,
+        category: "enerji-tasarrufu",
+        image: "/images/pvc/legend-reklam.jpg",
+        author: "Akçayapı Uzman Ekibi",
+        date: "2026-02-05",
+        readTime: "6 dk",
+        tags: ["Enerji Tasarrufu", "Pencere Yalıtımı", "Isı Yalıtımı", "Uw Değeri"],
+        seoKeywords: ["pencere yalıtımı", "enerji tasarrufu pencere", "pvc pencere ısı yalıtımı", "uw değeri nedir"],
+    },
+    {
+        id: "11",
+        slug: "motorlu-panjur-akilli-ev-entegrasyonu",
+        title: "Motorlu Panjur ve Akıllı Ev: Evinizi Telefondan Yönetin",
+        excerpt: "Motorlu panjur sistemleri, akıllı ev entegrasyonuyla güvenlik, enerji tasarrufu ve konfor sağlar. Alexa, Google Home ve Somfy ile uyumlu çözümler.",
+        content: `
+## Motorlu Panjur: Lüks Değil, İhtiyaç
+
+Motorlu panjur artık sadece villalar için değil. Apartman dairelerinde de güvenlik, konfor ve enerji verimliliği sağlayan akıllı bir yatırım.
+
+### Motorlu Panjur Nasıl Çalışır?
+
+Panjur lamelleri içine yerleştirilen elektrik motoru ile:
+
+- **Kumanda ile**: Her odadan bağımsız kontrol
+- **Zamanlayıcı ile**: Sabah otomatik açılır, akşam kapanır
+- **Akıllı ev ile**: Telefonunuzdan veya sesli komutla kontrol
+
+### Akıllı Ev Entegrasyonu
+
+#### Somfy TaHoma Sistemi
+
+Akçayapı olarak Somfy yetkili bayisiyiz. TaHoma hub ile:
+
+- **Alexa**: "Alexa, yatak odası panjurunu kapat"
+- **Google Home**: "Hey Google, tüm panjurları aç"
+- **Apple HomeKit**: iPhone veya iPad ile kontrol
+- **Senaryo**: Güneş batınca otomatik kapanma, sabah alarm saatinizle açılma
+
+#### Sensör Desteği
+
+- **Güneş sensörü**: Sıcak günlerde otomatik kapanır, evi serin tutar
+- **Rüzgar sensörü**: Fırtınada otomatik kapanarak hasarı önler
+- **Yağmur sensörü**: Yağmur başlayınca panjurlar kapanır
+
+### Güvenlik Avantajları
+
+- **Tatil modu**: Evde yokken rastgele açılıp kapanarak evde biri varmış izlenimi yaratır
+- **Hırsız caydırıcı**: Kapalı panjur → fiziksel bariyer
+- **Yangın önlemi**: Poliüretan dolgulu lameller yalıtım sağlar
+
+### Enerji Tasarrufu
+
+Panjurlar pencere önünde ek bir yalıtım katmanı oluşturur:
+
+- **Kışın**: %20-35 ısı kaybı azalır
+- **Yazın**: Doğrudan güneş ışığını keser, klimaya %25 daha az ihtiyaç
+- **Gürültü**: 10-15 dB ek ses yalıtımı
+
+### Fiyat Karşılaştırması
+
+| Sistem | Avantaj | Fiyat Aralığı |
+|---|---|---|
+| Manuel alüminyum panjur | Ekonomik, basit | Uygun |
+| Motorlu alüminyum panjur | Konfor, uzaktan kontrol | Orta |
+| Motorlu + Somfy TaHoma | Tam akıllı ev | Premium |
+
+### Montaj Süreci
+
+1. Ücretsiz keşif (pencere ölçüleri + elektrik altyapısı kontrolü)
+2. Panjur kasası ve lamellerin üretimi (5-7 gün)
+3. Montaj (pencere başına 1-2 saat)
+4. Motor ayarı ve limitleme
+5. Akıllı ev kurulumu (opsiyonel)
+
+---
+
+*Motorlu panjur ve akıllı ev çözümleri için [teklif alın](/teklif-al).*
+        `,
+        category: "dekorasyon",
+        image: "/images/panjur/panjur-motorlu-villa.jpg",
+        author: "Akçayapı Uzman Ekibi",
+        date: "2026-02-10",
+        readTime: "7 dk",
+        tags: ["Motorlu Panjur", "Akıllı Ev", "Somfy", "Otomasyon"],
+        seoKeywords: ["motorlu panjur", "akıllı ev panjur", "somfy panjur", "otomatik panjur fiyatları", "alexa panjur"],
+    },
+    {
+        id: "12",
+        slug: "cam-balkon-m2-fiyatlari-2026",
+        title: "Cam Balkon M2 Fiyatları 2026: Isıcamlı ve Katlanır Sistemler",
+        excerpt: "2026 yılı güncel cam balkon m2 fiyatları, ısıcamlı cam balkon maliyeti ve katlanır sistem karşılaştırması. Beylikdüzü'nde ücretsiz keşif ile net fiyat alın.",
+        content: `
+## 2026 Cam Balkon Fiyatları Ne Kadar?
+
+Cam balkon yaptırmak isteyen ev sahiplerinin en çok merak ettiği konu fiyatlandırmadır. 2026 yılında cam balkon m2 fiyatları, kullanılan sisteme, cam tipine ve montaj koşullarına göre değişkenlik göstermektedir.
+
+### Cam Balkon Fiyatlarını Etkileyen Faktörler
+
+- Cam tipi (tek cam, ısıcamlı, lamine)
+- Sistem türü (katlanır, sürme, sabit)
+- Balkon ölçüleri ve şekli (düz, L, köşe)
+- Kat yüksekliği ve ulaşılabilirlik
+- Profil kalitesi (alüminyum kalınlığı)
+- Montaj zorluğu
+
+### Sistem Bazında Fiyat Karşılaştırması
+
+| Sistem | Özellik | Fiyat Aralığı (m2) |
+|---|---|---|
+| Katlanır cam balkon | Tamamen açılır, ekonomik | Uygun |
+| Isıcamlı cam balkon | Yalıtım sağlar, 4 mevsim | Orta-Premium |
+| Sabit cam balkon | Manzara odaklı, temizlenmesi kolay | Orta |
+| Köşe cam balkon | L ve U balkonlara özel | Premium |
+
+### Isıcamlı Cam Balkon Neden Daha Pahalı?
+
+Isıcamlı cam balkon, çift camlı yapısıyla kış aylarında balkonu yaşam alanına çevirir. Tek camlı sisteme göre fark:
+
+- Kış aylarında 8-12°C daha sıcak balkon
+- Dışarıdan gelen gürültüyü %40 azaltır
+- Toz ve rüzgardan tam koruma
+- Yoğuşma (buğulanma) problemi yaşanmaz
+
+### Beylikdüzü'nde Cam Balkon Montajı
+
+Beylikdüzü, Büyükçekmece ve çevre ilçelerde cam balkon montajı yaparken dikkat edilmesi gerekenler:
+
+- Belediye izni: Bazı sitelerde yönetim kararı gerekir
+- Rüzgar yükü: Yüksek katlarda güçlendirilmiş profil tercih edilmeli
+- Yön: Güneye bakan balkonlarda güneş kontrol cam düşünülmeli
+- Drenaj: Yağmur suyu tahliye sistemi planlanmalı
+
+### Cam Balkon Ödeme Seçenekleri
+
+Egepen Akçayapı olarak müşterilerimize esnek ödeme imkanları sunuyoruz:
+
+- Nakit ödemede özel indirim
+- Kredi kartına taksit imkanı (6-12 ay)
+- Ücretsiz keşif ve ölçüm
+
+---
+
+*Balkonunuzun tam fiyatını öğrenmek için [ücretsiz keşif talep edin](/teklif-al). Aynı gün dönüş yapıyoruz.*
+        `,
+        category: "cam-balkon",
+        image: "/images/cam-balkon/cam-balkon-sehir-manzara.jpg",
+        author: "Akçayapı Uzman Ekibi",
+        date: "2026-02-11",
+        readTime: "5 dk",
+        tags: ["Cam Balkon Fiyatları", "Isıcamlı Cam Balkon", "M2 Fiyat", "Beylikdüzü"],
+        seoKeywords: ["cam balkon m2 fiyatları", "cam balkon m2 fiyat 2026", "ısıcamlı cam balkon fiyatları", "cam balkon fiyatları istanbul", "katlanır cam balkon fiyat"],
+    },
+    {
+        id: "13",
+        slug: "aluminyum-dograma-pvc-farki",
+        title: "Alüminyum Doğrama mı PVC Pencere mi? Karşılaştırma Rehberi",
+        excerpt: "Alüminyum doğrama ve PVC pencere arasındaki farkları, avantaj ve dezavantajlarını detaylı karşılaştırıyoruz. Hangi durumlarda hangisi tercih edilmeli?",
+        content: `
+## Alüminyum vs PVC: Hangisi Sizin İçin Doğru?
+
+Pencere ve kapı seçiminde en sık karşılaşılan soru: "Alüminyum mı PVC mi?" Her iki malzemenin kendine özgü avantajları vardır. Bu rehberde objektif bir karşılaştırma yaparak doğru kararı vermenize yardımcı olacağız.
+
+### Isı Yalıtımı Karşılaştırması
+
+- PVC pencere Uw değeri: 0.8-1.3 W/m2K (mükemmel yalıtım)
+- Alüminyum (thermal break) Uw değeri: 1.4-2.0 W/m2K (iyi yalıtım)
+- Alüminyum (thermal break'siz) Uw değeri: 5.0+ W/m2K (zayıf yalıtım)
+
+PVC pencere, ısı yalıtımında açık ara liderdir. Ancak thermal break teknolojili alüminyum doğramalar da kabul edilebilir yalıtım değerlerine ulaşabilmektedir.
+
+### Ses Yalıtımı
+
+Her iki sistem de cam kalınlığına bağlı olarak iyi ses yalıtımı sağlar:
+
+- PVC + çift cam: 30-35 dB azaltma
+- PVC + üçlü cam: 38-42 dB azaltma
+- Alüminyum (thermal break) + çift cam: 28-32 dB azaltma
+
+### Dayanıklılık ve Ömür
+
+- PVC pencere ömrü: 30-50 yıl
+- Alüminyum doğrama ömrü: 40-60 yıl
+- PVC bakım: Düşük (yılda 2 kez silme yeterli)
+- Alüminyum bakım: Düşük (eloksal kaplama ile)
+
+### Hangi Durumlarda Alüminyum Tercih Edilmeli?
+
+1. Geniş açıklıklar (4 metre üzeri)
+2. Ticari projeler (mağaza, ofis cephe)
+3. Minimal görünüm istenen yerler
+4. Endüstriyel yapılar
+5. Yüksek rüzgar yüküne maruz alanlar
+
+### Hangi Durumlarda PVC Tercih Edilmeli?
+
+1. Konut projeleri (ev, daire)
+2. Maksimum enerji tasarrufu hedefi
+3. Bütçe odaklı projeler
+4. Ses yalıtımı öncelikli alanlar (yatak odaları)
+5. Standart pencere ölçüleri
+
+### Maliyet Karşılaştırması
+
+| Kriter | PVC | Alüminyum (Thermal Break) |
+|---|---|---|
+| Başlangıç maliyeti | Uygun | Yüksek |
+| Enerji tasarruf | Yüksek | Orta |
+| Bakım maliyeti | Düşük | Düşük |
+| 10 yıllık toplam maliyet | En ekonomik | Orta |
+
+### Egepen Akçayapı'da Her İki Seçenek
+
+Egepen Akçayapı olarak hem Egepen Deceuninck PVC pencere sistemleri hem de Alumil alüminyum doğrama çözümleri sunuyoruz. Projenize en uygun seçimi yapmak için:
+
+- Ücretsiz keşif ile ölçü alıyoruz
+- Her iki alternatifi fiyatlandırıyoruz
+- Uzman önerimizi sunuyoruz
+
+---
+
+*PVC ve alüminyum seçeneklerini karşılaştırmak için [ücretsiz keşif randevusu alın](/teklif-al).*
+        `,
+        category: "pvc-pencere",
+        image: "/images/aluminyum/thermal-break-pencere.webp",
+        author: "Akçayapı Uzman Ekibi",
+        date: "2026-02-12",
+        readTime: "6 dk",
+        tags: ["Alüminyum Doğrama", "PVC Pencere", "Karşılaştırma", "Pencere Seçimi"],
+        seoKeywords: ["alüminyum doğrama mı pvc mi", "aluminyum pencere pvc pencere farkı", "pencere seçimi rehberi", "thermal break alüminyum", "pvc pencere avantajları"],
+    },
+    {
+        id: "14",
+        slug: "balkon-cam-kapama-izin-ve-ruhsat",
+        title: "Cam Balkon İçin İzin Gerekli mi? Ruhsat ve Belediye Kuralları",
+        excerpt: "Cam balkon yaptırmadan önce belediye izni, site yönetimi kararı ve imar kurallarını öğrenin. Beylikdüzü ve Büyükçekmece'deki güncel uygulama rehberi.",
+        content: `
+## Cam Balkon Yaptırmak İçin İzin Gerekli mi?
+
+Cam balkon yaptırma kararı aldığınızda akla gelen ilk soru: "İzin almam gerekiyor mu?" Bu konuda net bilgi sahibi olmak, ileride yaşanabilecek sorunları önler.
+
+### Yasal Durum
+
+Kat Mülkiyeti Kanunu'na göre balkon kapatma, binanın dış cephesini ilgilendiren bir değişikliktir. Bu nedenle:
+
+- Apartmanlarda: Kat maliklerinin oy birliği gerekir
+- Sitelerde: Site yönetim kurulu kararı gerekir
+- Müstakil evlerde: Belediye imar mevzuatına uygunluk yeterlidir
+
+### Belediye Başvurusu Gerekli mi?
+
+Mevcut mevzuata göre cam balkon uygulaması:
+
+- Balkonun kapalı alana dönüştürülmesi durumunda: Ruhsat gereklidir
+- Katlanır/açılır cam balkon sistemi: Genellikle ruhsat gerektirmez
+- Isıcamlı sabit sistemler: Belediyeye göre değişir
+
+### Beylikdüzü ve Büyükçekmece'de Uygulama
+
+Beylikdüzü ve Büyükçekmece belediyelerinde cam balkon uygulamaları için:
+
+- Katlanır cam balkon (açılır-kapanır): Çoğu durumda izin gerekmez
+- Site yönetiminden yazılı izin almanız önerilir
+- Binanın dış görünümüyle uyumlu renk ve tasarım tercih edilmeli
+- Tüm daireler aynı sistemi kullanmalıdır (cephe bütünlüğü)
+
+### Dikkat Edilmesi Gerekenler
+
+1. Montaj öncesi mutlaka site yönetimine bilgi verin
+2. Komşularınızla uyum sağlayın (aynı sistem, aynı renk)
+3. Montaj sırasında apartman ortak alanlarına zarar vermeyin
+4. Profesyonel ekiple çalışın (garanti ve sigorta kapsamı)
+5. Montaj fotoğraflarını ve faturayı saklayın
+
+### Cam Balkon Sigorta Kapsamı
+
+- Profesyonel montaj yapılmışsa: Konut sigortası kapsamına alınabilir
+- Cam kırılması: Ek teminat ile sigortalanabilir
+- Doğal afet hasarı: Poliçe kapsamına göre değişir
+
+### Egepen Akçayapı Güvencesi
+
+Egepen Akçayapı olarak tüm cam balkon montajlarımızda:
+
+- Montaj garantisi veriyoruz
+- Site yönetimi ile koordinasyon sağlıyoruz
+- Gerekli evrakları hazırlıyoruz
+- Montaj sonrası kontrol raporu düzenliyoruz
+
+---
+
+*Cam balkon izin süreci hakkında detaylı bilgi ve ücretsiz keşif için [bize ulaşın](/iletisim).*
+        `,
+        category: "cam-balkon",
+        image: "/images/cam-balkon/cam-balkon-site-manzara.jpg",
+        author: "Akçayapı Uzman Ekibi",
+        date: "2026-02-08",
+        readTime: "5 dk",
+        tags: ["Cam Balkon İzin", "Belediye Ruhsat", "Site Yönetimi", "Kat Mülkiyeti"],
+        seoKeywords: ["cam balkon izin", "cam balkon ruhsat", "balkon kapatma izin", "cam balkon belediye izni", "apartman cam balkon kuralları"],
     },
 ];
 

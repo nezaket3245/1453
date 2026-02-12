@@ -5,7 +5,7 @@
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { notFound } from 'next/navigation';
 import {
     dusakabinSystems,
@@ -17,9 +17,8 @@ import {
     DusakabinSystem,
     GlassType,
 } from '@/lib/dusakabinData';
-import { CTASection } from '@/components/sections/CTASection';
 import { businessConfig } from '@/config/business.config';
-import { Header } from '@/components/layout/Header';
+import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
 import { Footer } from '@/components/layout/Footer';
 
 type Props = {
@@ -41,9 +40,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     return {
-        title: `${system.name} | Duşakabin | Egepen Akçayapı`,
-        description: system.description,
-        keywords: system.seoKeywords.join(', '),
+        title: `${system.name} Duşakabin Modelleri`,
+        description: `${system.description.slice(0, 100)}. Su sızdırmazlık, temperli güvenli cam, modern banyo tasarımları.`,
+        keywords: [
+            ...system.seoKeywords,
+            'Duşakabin fiyatları 2026',
+            'Siyah profilli duşakabin modelleri',
+            'Temperli cam duşakabin',
+            'Teknesiz duşakabin kurulumu',
+            'Kolay temizlenen anti-kireç duşakabin camı',
+        ].join(', '),
         openGraph: {
             title: `${system.name} | Egepen Akçayapı`,
             description: system.tagline,
@@ -51,7 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             locale: 'tr_TR',
         },
         alternates: {
-            canonical: `https://www.egepenakcayapi.com.tr/dusakabin-sistemleri/${system.slug}`,
+            canonical: `${businessConfig.siteUrl}/dusakabin-sistemleri/${system.slug}`,
         },
     };
 }
@@ -64,13 +70,15 @@ export default async function DusakabinDetailPage({ params }: Props) {
         notFound();
     }
 
-    // JSON-LD Schema
+    // JSON-LD Schema — enhanced Product with URL and category
     const productSchema = {
         '@context': 'https://schema.org',
         '@type': 'Product',
         name: system.name,
         description: system.description,
         image: system.image,
+        url: `${businessConfig.siteUrl}/dusakabin-sistemleri/${system.slug}`,
+        category: system.category,
         brand: { '@type': 'Brand', name: 'Egepen Akçayapı' },
         offers: {
             '@type': 'AggregateOffer',
@@ -79,11 +87,17 @@ export default async function DusakabinDetailPage({ params }: Props) {
             highPrice: system.priceRange.max,
             availability: 'https://schema.org/InStock',
         },
-        aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: '4.9',
-            reviewCount: '89',
-        },
+    };
+
+    // BreadcrumbList for SERP breadcrumbs
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: `${businessConfig.siteUrl}/` },
+            { '@type': 'ListItem', position: 2, name: 'Duşakabin Sistemleri', item: `${businessConfig.siteUrl}/dusakabin-sistemleri` },
+            { '@type': 'ListItem', position: 3, name: system.name, item: `${businessConfig.siteUrl}/dusakabin-sistemleri/${system.slug}` },
+        ],
     };
 
     const faqSchema = {
@@ -133,22 +147,18 @@ export default async function DusakabinDetailPage({ params }: Props) {
         <>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify([productSchema, breadcrumbSchema, faqSchema]) }}
             />
 
-            <Header />
+            <HeaderOptimized />
             <main id="main-content" className="min-h-screen bg-white">
                 {/* Breadcrumb */}
                 <div className="bg-gray-50 py-4 border-b">
                     <div className="container mx-auto px-4">
                         <nav className="flex items-center text-sm text-gray-500" aria-label="Breadcrumb">
-                            <Link href="/" title="Ana Sayfa" className="hover:text-purple-600">Ana Sayfa</Link>
+                            <Link href="/" title="Ana Sayfa" className="hover:text-purple-600 focus:ring-2 focus:ring-purple-400 focus:outline-none rounded">Ana Sayfa</Link>
                             <span className="mx-2">/</span>
-                            <Link href="/dusakabin-sistemleri" title="Duşakabin Sistemleri" className="hover:text-purple-600">
+                            <Link href="/dusakabin-sistemleri" title="Duşakabin Sistemleri" className="hover:text-purple-600 focus:ring-2 focus:ring-purple-400 focus:outline-none rounded">
                                 Duşakabin
                             </Link>
                             <span className="mx-2">/</span>
@@ -176,37 +186,20 @@ export default async function DusakabinDetailPage({ params }: Props) {
                                 <p className="text-xl text-white/90 font-medium mb-4">{system.tagline}</p>
                                 <p className="text-white/80 mb-6">{system.description}</p>
 
-                                {/* Price Range */}
+                                {/* Call for Price */}
                                 <div className="mb-8 p-4 bg-white/10 rounded-xl border border-white/20">
-                                    <span className="text-white/70 text-sm">Fiyat Aralığı:</span>
+                                    <span className="text-white/70 text-sm">Fiyat Bilgisi:</span>
                                     <div className="text-2xl font-bold text-white">
-                                        ₺{system.priceRange.min.toLocaleString('tr-TR')} - ₺{system.priceRange.max.toLocaleString('tr-TR')}
+                                        Fiyat İçin Arayın
                                     </div>
-                                    <span className="text-xs text-white/60">*Ölçü ve seçeneklere göre değişir</span>
-                                </div>
-
-                                <div className="flex flex-wrap gap-4">
-                                    <Link
-                                        href="/teklif-al"
-                                        className="inline-flex items-center px-6 py-3 bg-white text-gray-900 font-semibold rounded-xl hover:bg-gray-100 transition-all"
-                                    >
-                                        📐 Teklif Al
-                                    </Link>
-                                    <a
-                                        href={`https://wa.me/${businessConfig.contact.whatsapp}?text=Merhaba,%20${encodeURIComponent(system.name)}%20hakkında%20bilgi%20almak%20istiyorum.`}
-                                        target="_blank"
-                                        rel="noopener noreferrer nofollow"
-                                        className="inline-flex items-center px-6 py-3 bg-white/10 text-white font-semibold rounded-xl hover:bg-white/20 border border-white/20"
-                                    >
-                                        💬 WhatsApp Bilgi Al
-                                    </a>
+                                    <span className="text-xs text-white/60">*Özel ölçü ve seçeneklere göre fiyat değişir</span>
                                 </div>
                             </div>
 
                             <div className="relative h-80 lg:h-[400px]">
-                                <Image
+                                <OptimizedImage
                                     src={system.image}
-                                    alt={system.name}
+                                    alt={`${system.name} - ${style.label} Duşakabin Modeli - Beylikdüzü`}
                                     fill
                                     className="object-contain drop-shadow-2xl"
                                     priority
@@ -295,7 +288,7 @@ export default async function DusakabinDetailPage({ params }: Props) {
 
                                 <div className="flex flex-wrap justify-center gap-6">
                                     {availableProfileDetails.map((profile) => profile && (
-                                        <div key={profile.id} className="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:shadow-lg transition-all min-w-[120px]">
+                                        <div key={profile.id} className="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:shadow-lg transition-shadow min-w-[120px]">
                                             <div
                                                 className="w-16 h-16 rounded-full shadow-lg border-4 border-white mb-3"
                                                 style={{ backgroundColor: profile.hex }}
@@ -318,7 +311,7 @@ export default async function DusakabinDetailPage({ params }: Props) {
                     <div className="container mx-auto px-4">
                         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="bg-white rounded-2xl p-8 shadow-sm">
-                                <h3 className="text-xl font-bold text-gray-900 mb-6">🔧 Özellikler</h3>
+                                <h3 className="text-xl font-bold text-gray-900 mb-6">Teknik Özellikler</h3>
                                 <ul className="space-y-3">
                                     {system.features.map((feature: string, idx: number) => (
                                         <li key={idx} className="flex items-start">
@@ -330,7 +323,7 @@ export default async function DusakabinDetailPage({ params }: Props) {
                             </div>
 
                             <div className="bg-white rounded-2xl p-8 shadow-sm">
-                                <h3 className="text-xl font-bold text-gray-900 mb-6">💡 Avantajlar</h3>
+                                <h3 className="text-xl font-bold text-gray-900 mb-6">Avantajlar</h3>
                                 <ul className="space-y-3">
                                     {system.benefits.map((benefit: string, idx: number) => (
                                         <li key={idx} className="flex items-start">
@@ -411,7 +404,7 @@ export default async function DusakabinDetailPage({ params }: Props) {
                                 </div>
                                 {/* <div className="bg-white rounded-xl p-6 text-center shadow-sm">
                                     <div className="text-3xl mb-3">🛡️</div>
-                                    <div className="font-bold text-gray-900 mb-1">Garanti</div>
+                                    <div className="font-bold text-gray-900 mb-1">Dayanıklılık</div>
                                     <div className="text-green-600 font-medium">{system.warranty}</div>
                                 </div> */}
                                 <div className="bg-white rounded-xl p-6 text-center shadow-sm">
@@ -467,7 +460,8 @@ export default async function DusakabinDetailPage({ params }: Props) {
                                         <Link
                                             key={related.id}
                                             href={`/dusakabin-sistemleri/${related.slug}`}
-                                            className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all group"
+                                            className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow group focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                                            aria-label={`${related.name} duşakabin detaylarına git`}
                                         >
                                             <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
                                                 {related.name}
@@ -475,9 +469,9 @@ export default async function DusakabinDetailPage({ params }: Props) {
                                             <p className="text-sm text-gray-600 mb-3">{related.tagline}</p>
                                             <div className="flex justify-between items-center">
                                                 <span className="text-purple-600 font-bold">
-                                                    ₺{related.priceRange.min.toLocaleString('tr-TR')}+
+                                                    Fiyat İçin Arayın
                                                 </span>
-                                                <span className="text-gray-400 text-sm group-hover:text-purple-600 transition-colors">
+                                                <span className="text-gray-500 text-sm group-hover:text-purple-600 transition-colors">
                                                     İncele →
                                                 </span>
                                             </div>
@@ -489,31 +483,6 @@ export default async function DusakabinDetailPage({ params }: Props) {
                     </section>
                 )}
 
-                {/* WhatsApp Float CTA */}
-                <section className="py-12 bg-gradient-to-r from-green-500 to-emerald-600">
-                    <div className="container mx-auto px-4 text-center">
-                        <h3 className="text-2xl font-bold text-white mb-4">
-                            {system.name} Hakkında Detaylı Bilgi Alın
-                        </h3>
-                        <p className="text-green-100 mb-6">
-                            Banyonuzun fotoğrafını gönderin, size özel ölçü ve fiyat çalışalım
-                        </p>
-                        <a
-                            href={`https://wa.me/${businessConfig.contact.whatsapp}?text=Merhaba,%20${encodeURIComponent(system.name)}%20için%20fiyat%20teklifi%20almak%20istiyorum.%20Banyo%20fotoğrafımı%20göndereceğim.`}
-                            target="_blank"
-                            rel="noopener noreferrer nofollow"
-                            className="inline-flex items-center gap-3 px-8 py-4 bg-white text-green-600 font-bold rounded-2xl hover:bg-green-50 transition-all shadow-xl"
-                        >
-                            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                            </svg>
-                            WhatsApp ile Fiyat Al
-                        </a>
-                    </div>
-                </section>
-
-                {/* CTA */}
-                <CTASection />
             </main>
             <Footer />
         </>

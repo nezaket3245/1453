@@ -98,7 +98,7 @@ function RatingBar({ value, maxValue = 5, color = 'primary' }: { value: number; 
             {[...Array(maxValue)].map((_, i) => (
                 <div
                     key={i}
-                    className={`h-2 w-6 rounded-full transition-all ${i < value ? colorClasses[color as keyof typeof colorClasses] || colorClasses.primary : 'bg-neutral-200'
+                    className={`h-2 w-6 rounded-full transition-colors ${i < value ? colorClasses[color as keyof typeof colorClasses] || colorClasses.primary : 'bg-neutral-200'
                         }`}
                 />
             ))}
@@ -151,8 +151,8 @@ export function GlassSafetyComparison() {
                             </th>
                             <th className="p-5 text-center font-bold">
                                 <div className="flex flex-col items-center gap-1">
-                                    <span>💰 Fiyat</span>
-                                    <span className="text-[10px] font-normal opacity-60">Maliyet seviyesi</span>
+                                    <span>� Fiyat</span>
+                                    <span className="text-[10px] font-normal opacity-60">Fiyat için arayın</span>
                                 </div>
                             </th>
                         </tr>
@@ -162,7 +162,7 @@ export function GlassSafetyComparison() {
                             <tr
                                 key={glass.id}
                                 onClick={() => setSelectedGlass(selectedGlass === glass.id ? null : glass.id)}
-                                className={`cursor-pointer transition-all ${selectedGlass === glass.id
+                                className={`cursor-pointer transition-colors ${selectedGlass === glass.id
                                         ? 'bg-primary-50 border-l-4 border-l-primary-500'
                                         : 'hover:bg-neutral-50'
                                     }`}
@@ -192,13 +192,8 @@ export function GlassSafetyComparison() {
                                     </div>
                                 </td>
                                 <td className="p-5">
-                                    <div className="flex justify-center gap-1">
-                                        {[...Array(glass.price)].map((_, i) => (
-                                            <span key={i} className="text-amber-500 font-bold">₺</span>
-                                        ))}
-                                        {[...Array(5 - glass.price)].map((_, i) => (
-                                            <span key={i} className="text-neutral-200 font-bold">₺</span>
-                                        ))}
+                                    <div className="flex justify-center">
+                                        <span className="text-sm text-amber-600 font-medium">Fiyat İçin Arayın</span>
                                     </div>
                                 </td>
                             </tr>
@@ -250,7 +245,7 @@ export function GlassSafetyComparison() {
             {/* Safety Info Box */}
             <div className="mt-8 p-6 bg-green-50 rounded-2xl border border-green-200">
                 <div className="flex gap-4 items-start">
-                    <div className="flex-shrink-0 w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center text-white text-2xl">
+                    <div className="flex-shrink-0 w-12 h-12 bg-green-700 rounded-xl flex items-center justify-center text-white text-2xl">
                         ✓
                     </div>
                     <div>

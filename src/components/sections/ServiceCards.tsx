@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "@/lib/motion-lite";
 import Link from "next/link";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 import { businessConfig } from "@/config/business.config";
@@ -22,7 +22,6 @@ interface ServiceCardData {
     image: string;
     href: string;
     features: string[];
-    warranty: string;
     badge?: string;
     priceRange?: string;
 }
@@ -40,7 +39,6 @@ const services: ServiceCardData[] = [
             "Antrasit & Ahşap kaplama",
             "Gürültü izolasyonu",
         ],
-        warranty: "10 Yıl Garanti",
         badge: "En Popüler",
         priceRange: "₺₺₺",
     },
@@ -56,7 +54,6 @@ const services: ServiceCardData[] = [
             "%100 açılım özelliği",
             "Kış bahçesi çözümü",
         ],
-        warranty: "5 Yıl Garanti",
         badge: "Yüksek Talep",
         priceRange: "₺₺",
     },
@@ -72,7 +69,6 @@ const services: ServiceCardData[] = [
             "Alüminyum çerçeve",
             "Özel ölçü üretim",
         ],
-        warranty: "2 Yıl Garanti",
         priceRange: "₺",
     },
     {
@@ -87,7 +83,6 @@ const services: ServiceCardData[] = [
             "TaHoma Akıllı Ev Uyumu",
             "%45 Isı ve Ses Yalıtımı",
         ],
-        warranty: "10 Yıl Sistem Garantisi",
         badge: "Egepen Kalitesi",
         priceRange: "₺₺",
     },
@@ -103,7 +98,6 @@ const services: ServiceCardData[] = [
             "Paslanmaz aksesuar",
             "Kolay montaj",
         ],
-        warranty: "5 Yıl Garanti",
         priceRange: "₺₺",
     },
     {
@@ -118,7 +112,6 @@ const services: ServiceCardData[] = [
             "Yüksek dayanıklılık",
             "Ticari çözümler",
         ],
-        warranty: "10 Yıl Garanti",
         priceRange: "₺₺₺",
     },
 ];
@@ -170,7 +163,7 @@ export function ServiceCards() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden hover:border-primary-300 hover:shadow-xl transition-all duration-300"
+                            className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden hover:border-primary-300 hover:shadow-xl transition-[border-color,box-shadow] duration-300"
                         >
                             {/* Image Header */}
                             <div className="relative aspect-[16/10] bg-gradient-to-br from-primary-50 to-accent-50 overflow-hidden">
@@ -178,6 +171,7 @@ export function ServiceCards() {
                                     src={service.image}
                                     alt={service.title}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                     className={cn(
                                         "object-cover group-hover:scale-110 transition-transform duration-500",
                                         (service.id === 'panjur' || service.id === 'dusakabin' || service.id === 'aluminyum') && "object-contain p-2"
@@ -189,10 +183,10 @@ export function ServiceCards() {
                                         {service.badge}
                                     </div>
                                 )}
-                                {/* Price Range */}
+                                {/* Call for Price */}
                                 {service.priceRange && (
                                     <div className="absolute top-4 right-4 px-2 py-1 bg-white/90 backdrop-blur-sm text-neutral-700 text-xs font-medium rounded">
-                                        {service.priceRange}
+                                        Fiyat İçin Arayın
                                     </div>
                                 )}
                             </div>
@@ -217,16 +211,6 @@ export function ServiceCards() {
                                     ))}
                                 </ul>
 
-                                {/* Warranty Badge */}
-                                {!(service.id === 'sineklik' || service.id === 'dusakabin' || service.id === 'panjur') && (
-                                    <div className="flex items-center gap-2 mb-4 py-2 px-3 bg-green-50 rounded-lg">
-                                        <svg className="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.75h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                                        </svg>
-                                        <span className="text-sm font-medium text-green-700">{service.warranty}</span>
-                                    </div>
-                                )}
-
                                 {/* Actions */}
                                 <div className="flex gap-3">
                                     <Link
@@ -241,9 +225,9 @@ export function ServiceCards() {
                                         target="_blank"
                                         rel="noopener noreferrer nofollow"
                                         title={`${service.title} için WhatsApp'tan fiyat alın`}
-                                        className="flex-1 text-center py-2.5 text-sm font-bold text-white bg-green-500 rounded-lg hover:bg-green-600 transition-colors"
+                                        className="flex-1 text-center py-2.5 text-sm font-bold text-white bg-green-700 rounded-lg hover:bg-green-800 transition-colors"
                                     >
-                                        Fiyat Al
+                                        Bilgi Al
                                     </a>
                                 </div>
                             </div>

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import OptimizedImage from "@/components/ui/OptimizedImage";
-import { Header } from "@/components/layout/Header";
+import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { businessConfig } from "@/config/business.config";
@@ -9,7 +9,7 @@ import { projects, projectCategories } from "@/lib/projectsData";
 import { ProjectListing } from "@/components/sections/ProjectListing";
 
 export const metadata: Metadata = {
-    title: `Projelerimiz | Referans Çalışmalar | ${businessConfig.name}`,
+    title: 'Projelerimiz ve Referans Çalışmalar',
     description: `Beylikdüzü ve İstanbul genelinde tamamladığımız PVC pencere, cam balkon ve duşakabin projeleri. 10.000+ başarılı proje referansı.`,
     keywords: [
         "PVC pencere projeleri",
@@ -21,27 +21,28 @@ export const metadata: Metadata = {
     openGraph: {
         title: `Projelerimiz | ${businessConfig.name}`,
         description: `Tamamladığımız başarılı projeler ve müşteri referansları`,
-        url: "https://egepenakcayapi.com.tr/projeler",
+        url: "https://egepenakcayapi.com/projeler",
     },
     alternates: {
-        canonical: "https://egepenakcayapi.com.tr/projeler",
+        canonical: "https://egepenakcayapi.com/projeler",
     },
 };
 
 export default function ProjectsPage() {
     return (
         <>
-            <Header />
+            <HeaderOptimized />
             <main id="main-content" className="min-h-screen bg-white">
                 {/* Hero Section */}
                 <section className="relative bg-gradient-to-br from-neutral-900 to-neutral-800 text-white py-20 lg:py-28 overflow-hidden">
                     <div className="absolute inset-0 opacity-20">
                         <OptimizedImage
                             src="/images/pvc/pvc-surme-manzara.jpg"
-                            alt="Background"
+                            alt=""
                             fill
                             className="object-cover"
                             priority
+                            role="presentation"
                         />
                     </div>
                     <div className="container-custom relative z-10">
@@ -101,7 +102,7 @@ export default function ProjectsPage() {
                             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                                 Müşteri Yorumları
                             </h2>
-                            <p className="text-neutral-400">
+                            <p className="text-neutral-600">
                                 Projelerimizi tamamladığımız müşterilerimizden gelen gerçek geri bildirimler
                             </p>
                         </div>
@@ -113,7 +114,7 @@ export default function ProjectsPage() {
                                 .map((project, idx) => (
                                     <div
                                         key={project.id}
-                                        className="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 hover:border-primary-500/30 transition-all group"
+                                        className="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 hover:border-primary-500/30 transition-[background-color,box-shadow,transform] group"
                                     >
                                         <div className="flex gap-1 mb-6">
                                             {[...Array(5)].map((_, i) => (
@@ -171,7 +172,7 @@ export default function ProjectsPage() {
                             ].map((area) => (
                                 <div
                                     key={area}
-                                    className="text-center p-6 bg-neutral-50 rounded-2xl hover:bg-primary-600 hover:text-white transition-all duration-300 group shadow-sm hover:shadow-xl hover:-translate-y-1"
+                                    className="text-center p-6 bg-neutral-50 rounded-2xl hover:bg-primary-600 hover:text-white transition-[background-color,box-shadow,transform] duration-300 group shadow-sm hover:shadow-xl hover:-translate-y-1"
                                 >
                                     <span className="text-3xl mb-3 block group-hover:scale-125 transition-transform">📍</span>
                                     <span className="font-bold text-sm tracking-tight">{area}</span>
@@ -181,32 +182,6 @@ export default function ProjectsPage() {
                     </div>
                 </section>
 
-                {/* CTA Section */}
-                <section className="py-24 bg-primary-600 text-white text-center relative overflow-hidden">
-                    <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] opacity-20" />
-                    <div className="container-custom relative z-10">
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-8 leading-tight">
-                            Sizin Projeniz de <span className="text-secondary-400">Gurur Tablomuz</span> Olsun
-                        </h2>
-                        <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
-                            Ev veya iş yeriniz için ücretsiz keşif ve fiyat teklifi alın.
-                            Uzman ekibimizle en kaliteli çözümleri bütçenize uygun sunalım.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-5 justify-center">
-                            <Button variant="secondary" size="xl" href="/teklif-al" className="px-10 h-16 shadow-2xl">
-                                Ücretsiz Keşif Talep Et
-                            </Button>
-                            <Button
-                                variant="outline"
-                                size="xl"
-                                href={`https://wa.me/${businessConfig.contact.whatsapp}`}
-                                className="px-10 h-16 text-white border-white/40 hover:bg-white hover:text-primary-600 transition-all backdrop-blur-sm"
-                            >
-                                WhatsApp İletişimi
-                            </Button>
-                        </div>
-                    </div>
-                </section>
             </main>
             <Footer />
         </>

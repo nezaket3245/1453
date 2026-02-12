@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 import Link from "next/link";
-import { Header } from "@/components/layout/Header";
+import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { products } from "@/lib/data";
@@ -23,8 +23,8 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     if (!product) return { title: "Ürün Bulunamadı" };
 
     return {
-        title: `${product.name} | ${businessConfig.name}`,
-        description: product.description,
+        title: `${product.name} Ürün Detayı`,
+        description: product.description.slice(0, 155),
         keywords: product.features.map(f => f.slice(0, 20)),
         openGraph: {
             title: product.name,
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
             images: [{ url: product.image }],
         },
         alternates: {
-            canonical: `https://egepenakcayapi.com.tr/urunler/${product.slug}`,
+            canonical: `${businessConfig.siteUrl}/${product.slug}`,
         },
     };
 }
@@ -62,7 +62,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
             />
-            <Header />
+            <HeaderOptimized />
             <main id="main-content" className="min-h-screen bg-white">
                 {/* Breadcrumb & Hero */}
                 <section className="bg-neutral-50 border-b border-neutral-100 py-8 lg:py-12">
@@ -86,11 +86,8 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                                     {product.longDescription || product.description}
                                 </p>
                                 <div className="flex flex-wrap gap-4">
-                                    <Button variant="primary" size="lg" href="/teklif-al">
-                                        Fiyat Teklifi Al
-                                    </Button>
-                                    <Button variant="outline" size="lg" href={`https://wa.me/${businessConfig.contact.whatsapp}`} external>
-                                        WhatsApp Destek
+                                    <Button variant="primary" size="lg" href="/iletisim">
+                                        İletişim
                                     </Button>
                                 </div>
                             </div>
@@ -160,19 +157,8 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                                         ))}
                                     </div>
                                     <div className="mt-8 pt-8 border-t border-white/10">
-                                        <div className="flex items-center gap-3 mb-6">
-                                            <div className="w-12 h-12 rounded-full bg-secondary-500/20 flex items-center justify-center">
-                                                <svg className="w-6 h-6 text-secondary-400" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <p className="text-sm font-bold">10 Yıl Garanti</p>
-                                                <p className="text-xs text-white/40">{businessConfig.brand} Güvencesiyle</p>
-                                            </div>
-                                        </div>
-                                        <Button variant="secondary" fullWidth href="/teklif-al">
-                                            Hemen Ölçüm İsteyin
+                                        <Button variant="secondary" fullWidth href="/iletisim">
+                                            Bilgi Alın
                                         </Button>
                                     </div>
                                 </div>
@@ -187,7 +173,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                         <h2 className="text-3xl font-bold text-neutral-900 mb-12 text-center">Diğer Çözümlerimiz</h2>
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                             {products.filter(p => p.slug !== slug).map(other => (
-                                <Link key={other.id} href={`/urunler/${other.slug}`} className="group bg-white p-4 rounded-xl border border-neutral-200 hover:shadow-lg transition-all">
+                                <Link key={other.id} href={`/urunler/${other.slug}`} className="group bg-white p-4 rounded-xl border border-neutral-200 hover:shadow-lg transition-shadow">
                                     <div className="relative aspect-video rounded-lg overflow-hidden mb-4">
                                         <OptimizedImage src={other.image} alt={other.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
                                     </div>

@@ -6,7 +6,8 @@
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
+// Unused Image import removed — all images use OptimizedImage
+// import Image from 'next/image';
 import {
     dusakabinSystems,
     glassTypes,
@@ -17,23 +18,28 @@ import {
     authorityGuides,
     getDusakabinSystemsByCategory,
 } from '@/lib/dusakabinData';
-import { CTASection } from '@/components/sections/CTASection';
 import DusakabinConfigurator from './DusakabinConfigurator';
 import { businessConfig } from '@/config/business.config';
 import OptimizedImage from "@/components/ui/OptimizedImage";
-import { Header } from '@/components/layout/Header';
+import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
 import { Footer } from '@/components/layout/Footer';
 
-// SEO Metadata - Optimized for local + product searches
+// SEO Metadata - Optimized with target keywords
 export const metadata: Metadata = {
-    title: 'Duşakabin Modelleri & Fiyatları 2026 | Siyah Çerçeveli | Çerçevesiz | Beylikdüzü',
-    description: 'Beylikdüzü duşakabin fiyatları, siyah çerçeveli duşakabin, çerçevesiz cam duşakabin, walk-in sistemler. 5mm-10mm temperli cam, nano kaplama, özel ölçü imalat. Ücretsiz keşif!',
+    title: 'Duşakabin Modelleri ve Fiyatları 2026',
+    description:
+        'Temperli cam duşakabin modelleri ve uygun fiyatlar. Teknesiz duşakabin kurulumu, anti-kireç kolay temizlenen cam. Su sızdırmazlık, modern banyo tasarımları.',
     keywords: [
         ...dusakabinSeoKeywords.core,
         ...dusakabinSeoKeywords.blackEdition,
         ...dusakabinSeoKeywords.frameless,
         ...dusakabinSeoKeywords.local,
         ...dusakabinSeoKeywords.technical,
+        'Duşakabin fiyatları 2026',
+        'Siyah profilli duşakabin modelleri',
+        'Temperli cam duşakabin',
+        'Teknesiz duşakabin kurulumu',
+        'Kolay temizlenen anti-kireç duşakabin camı',
     ].join(', '),
     openGraph: {
         title: 'Premium Duşakabin Sistemleri | Egepen Akçayapı',
@@ -42,7 +48,7 @@ export const metadata: Metadata = {
         locale: 'tr_TR',
     },
     alternates: {
-        canonical: 'https://www.egepenakcayapi.com.tr/dusakabin-sistemleri',
+        canonical: `${businessConfig.siteUrl}/dusakabin-sistemleri`,
     },
 };
 
@@ -53,7 +59,7 @@ export default function DusakabinPage() {
     const hingedLuxurySystems = getDusakabinSystemsByCategory('hinged-luxury');
     const walkInSystems = getDusakabinSystemsByCategory('walk-in');
 
-    // JSON-LD Schema - Service with AggregateRating
+    // JSON-LD Schema - Service with AggregateRating and enriched description
     const serviceSchema = {
         '@context': 'https://schema.org',
         '@type': 'Service',
@@ -63,19 +69,22 @@ export default function DusakabinPage() {
             name: 'Egepen Akçayapı',
             address: {
                 '@type': 'PostalAddress',
+                streetAddress: 'Gürpınar Mah. Gürpınar Cad. No: 26A',
                 addressLocality: 'Beylikdüzü',
                 addressRegion: 'İstanbul',
+                postalCode: '34528',
                 addressCountry: 'TR',
+            },
+            telephone: '+902128801507',
+            geo: {
+                '@type': 'GeoCoordinates',
+                latitude: '40.9942125',
+                longitude: '28.6079794',
             },
         },
         areaServed: ['Beylikdüzü', 'Esenyurt', 'Büyükçekmece', 'Avcılar', 'Küçükçekmece'],
-        description: 'Premium duşakabin sistemleri: Siyah çerçeveli, çerçevesiz, walk-in, sürme sistemler. Temperli cam, nano kaplama, profesyonel montaj.',
-        aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: '4.9',
-            reviewCount: '127',
-            bestRating: '5',
-        },
+        description:
+            'Duşakabin fiyatları, siyah profilli duşakabin modelleri, temperli cam duşakabin, teknesiz duşakabin kurulumu. Su sızdırmazlık, profesyonel montaj.',
     };
 
     // Product List Schema for rich snippets
@@ -103,33 +112,33 @@ export default function DusakabinPage() {
         })),
     };
 
-    // FAQ Schema for authority content
+    // FAQ Schema for authority content — with target questions
     const faqSchema = {
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
         mainEntity: [
             {
                 '@type': 'Question',
-                name: 'Duşakabin cam kalınlığı ne olmalı?',
+                name: 'Duşakabin camı nasıl temizlenir?',
                 acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Sürme sistemlerde 6mm yeterlidir. Menteşeli sistemlerde 8mm standart, çerçevesiz lüks sistemlerde 10mm önerilir. Kalın cam daha az titreşir ve daha sağlam hissettirir.',
+                    text: 'Sirke-su karışımı veya anti-kireç sprey kullanın. Nano kaplamalı camlarda sadece ıslak bez yeterlidir. Her kullanımdan sonra camı silecek ile kurulayın.',
                 },
             },
             {
                 '@type': 'Question',
-                name: 'Tekneli mi teknesiz duşakabin mi tercih etmeliyim?',
+                name: 'Temperli cam patlar mı?',
                 acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Kiralık evlerde veya eski binalarda tekneli sistem pratiktir. Yeni yapılarda veya komple renovasyonda teknesiz (wet-room) modern görünüm sağlar. Engelli/yaşlı erişimi için teknesiz önerilir.',
+                    text: 'Temperli cam normal camdan 4-5 kat daha dayanıklıdır. Kırılma durumunda küçük küp parçalara ayrılarak yaralanma riskini minimize eder. EN 12150-1 standardına uygun üretilir.',
                 },
             },
             {
                 '@type': 'Question',
-                name: 'Nano kaplama gerçekten işe yarıyor mu?',
+                name: 'Teknesiz duşakabin avantajları nelerdir?',
                 acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Evet, kaliteli nano kaplama (hidrofobik) su damlalarını iter ve kireç birikmesini %90 azaltır. 5-10 yıl etkili kalır ve temizlik süresini yarıya indirir.',
+                    text: 'Teknesiz (wet-room) duşakabin modern görünüm, kolay temizlik ve engelli/yaşlı dostu erişilebilirlik sağlar. Zemin eğimi ve fayans seçimi ile su sızdırmazlık sağlanır.',
                 },
             },
         ],
@@ -137,31 +146,33 @@ export default function DusakabinPage() {
 
     return (
         <>
+            {/* JSON-LD: Service + ProductList + FAQ + Breadcrumb schemas */}
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(productListSchema) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify([serviceSchema, productListSchema, faqSchema, {
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
+                    itemListElement: [
+                        { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: `${businessConfig.siteUrl}/` },
+                        { '@type': 'ListItem', position: 2, name: 'Duşakabin Sistemleri', item: `${businessConfig.siteUrl}/dusakabin-sistemleri` },
+                    ],
+                }]) }}
             />
 
-            <Header />
+            <HeaderOptimized />
 
             <main id="main-content" className="min-h-screen bg-white">
                 {/* Hero Section */}
-                <section className="relative bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-20 lg:py-28 overflow-hidden">
+                <section className="relative bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-20 lg:py-28 overflow-hidden min-h-[50vh] lg:min-h-[60vh] flex items-center">
                     {/* Decorative Elements */}
-                    <div className="absolute inset-0 opacity-50">
+                    <div className="absolute inset-0">
                         <OptimizedImage
                             src="/images/showroom-main.png"
-                            alt="Duşakabin Sistemleri"
+                            alt=""
                             fill
                             className="object-cover"
+                            priority
+                            role="presentation"
                         />
                     </div>
 
@@ -169,56 +180,35 @@ export default function DusakabinPage() {
                     <div className="container mx-auto px-4 relative z-10">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                             <div>
-                                <div className="flex items-center gap-3 mb-6">
-                                    <span className="px-3 py-1 bg-purple-500/20 text-purple-300 text-sm font-medium rounded-full border border-purple-500/30">
-                                        ⭐ 4.9/5 Müşteri Puanı
-                                    </span>
-                                    {/* <span className="px-3 py-1 bg-green-500/20 text-green-300 text-sm font-medium rounded-full border border-green-500/30">
-                                        10 Yıla Kadar Garanti
-                                    </span> */}
+                                {/* Breadcrumb navigation */}
+                                <nav aria-label="Breadcrumb" className="mb-6">
+                                    <ol className="flex items-center gap-2 text-sm text-white/60">
+                                        <li><Link href="/" className="hover:text-white transition-colors">Ana Sayfa</Link></li>
+                                        <li className="text-white/40">/</li>
+                                        <li className="text-white font-medium">Duşakabin Sistemleri</li>
+                                    </ol>
+                                </nav>
+
+                                <div className="sr-only">
+                                    <span>⭐ 4.9/5 Müşteri Puanı</span>
+                                    <span>10 Yıla Kadar Dayanıklılık</span>
                                 </div>
 
-                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
-                                    Premium{' '}
-                                    <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                                        Duşakabin
-                                    </span>{' '}
-                                    Sistemleri
+                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4">
+                                    Şık ve Fonksiyonel Duşakabin Sistemleri
                                 </h1>
 
-                                <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                                    Siyah çerçeveli modern tasarımlar, çerçevesiz lüks sistemler, walk-in açık konseptler.{' '}
-                                    <strong className="text-white">5mm-10mm temperli cam</strong>, nano kaplama teknolojisi, özel ölçü imalat.
+                                <p className="text-lg md:text-xl text-white/80 mb-8 max-w-xl">
+                                    Siyah profilli duşakabin modelleri, çerçevesiz lüks sistemler, walk-in açık konseptler.
+                                    Temperli cam duşakabin, kolay temizlenen (anti-kireç) duşakabin camı,
+                                    özel ölçü imalat. Teknesiz duşakabin kurulumu için ücretsiz keşif.
                                 </p>
 
-                                <div className="flex flex-wrap gap-4">
-                                    <Link
-                                        href="#konfigurator"
-                                        className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-2xl hover:from-purple-700 hover:to-indigo-700 transition-all shadow-lg shadow-purple-500/30"
-                                    >
-                                        🛁 Tasarımını Oluştur
-                                    </Link>
-                                    <a
-                                        href={`https://wa.me/${businessConfig.contact.whatsapp}?text=${encodeURIComponent("Merhaba, duşakabin hakkında bilgi almak istiyorum.")}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center px-8 py-4 bg-white/10 text-white font-bold rounded-2xl hover:bg-white/20 transition-all border border-white/20"
-                                    >
-                                        📸 Fotoğraf Gönder, Fiyat Al
-                                    </a>
-                                </div>
-
-                                {/* Trust Badges */}
-                                <div className="mt-10 flex flex-wrap items-center gap-6 text-sm text-gray-400">
-                                    <span className="flex items-center gap-2">
-                                        <span className="text-green-400">✓</span> Ücretsiz Keşif
-                                    </span>
-                                    <span className="flex items-center gap-2">
-                                        <span className="text-green-400">✓</span> Özel Ölçü İmalat
-                                    </span>
-                                    <span className="flex items-center gap-2">
-                                        <span className="text-green-400">✓</span> CE & TSE Sertifikalı
-                                    </span>
+                                {/* Trust Badges — hidden */}
+                                <div className="hidden">
+                                    <span>Ücretsiz Keşif</span>
+                                    <span>Özel Ölçü İmalat</span>
+                                    <span>CE & TSE Sertifikalı</span>
                                 </div>
                             </div>
 
@@ -236,6 +226,15 @@ export default function DusakabinPage() {
                     </div>
                 </section>
 
+                {/* Sineklik Kampanya Reklamı */}
+                <div className="bg-rose-600 text-white py-2.5">
+                    <div className="container mx-auto px-4 flex items-center justify-center gap-3 text-sm">
+                        <span className="font-bold bg-white/20 px-2 py-0.5 rounded text-xs">KAMPANYA</span>
+                        <span>Sineklikte tüm renkli profiller <strong className="text-yellow-300">beyaz fiyatına!</strong></span>
+                        <Link href="/sineklik-sistemleri" className="underline font-semibold hover:text-yellow-200 transition-colors">Detaylar →</Link>
+                    </div>
+                </div>
+
                 {/* Category Navigation */}
                 <section className="py-8 bg-gray-50 border-b sticky top-16 z-40">
                     <div className="container mx-auto px-4">
@@ -249,7 +248,7 @@ export default function DusakabinPage() {
                                 <a
                                     key={cat.id}
                                     href={`#${cat.id}`}
-                                    className="px-5 py-2.5 bg-white rounded-xl font-medium text-gray-700 hover:text-purple-600 hover:bg-purple-50 transition-all shadow-sm border"
+                                    className="px-5 py-2.5 bg-white rounded-xl font-medium text-gray-700 hover:text-purple-600 hover:bg-purple-50 transition-shadow shadow-sm border"
                                 >
                                     {cat.label}
                                     <span className="ml-2 px-2 py-0.5 bg-gray-100 text-gray-500 text-xs rounded-full">
@@ -270,7 +269,7 @@ export default function DusakabinPage() {
                                     CAM TEKNOLOJİSİ
                                 </span>
                                 <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                                    Temperli Cam: Güvenlik ve Estetik
+                                    Temperli Cam Duşakabin: Güvenlik ve Estetik
                                 </h2>
                                 <p className="text-gray-600 max-w-2xl mx-auto">
                                     EN 12150-1 standardında üretilen temperli cam, normal camdan 4-5 kat daha güçlüdür.
@@ -282,7 +281,7 @@ export default function DusakabinPage() {
                                 {glassTypes.map((glass) => (
                                     <div
                                         key={glass.id}
-                                        className="bg-gray-50 rounded-2xl p-5 text-center hover:shadow-lg hover:bg-white transition-all border border-gray-100"
+                                        className="bg-gray-50 rounded-2xl p-5 text-center hover:shadow-lg hover:bg-white transition-shadow border border-gray-100"
                                     >
                                         <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gray-200 to-gray-300 mx-auto mb-3 shadow-inner" />
                                         <h4 className="font-bold text-gray-900 text-sm mb-1">{glass.nameTR}</h4>
@@ -308,9 +307,9 @@ export default function DusakabinPage() {
                                     BLACK EDITION
                                 </span>
                                 <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
-                                    Siyah Kare Serisi
+                                    Siyah Profilli Duşakabin Modelleri — Black Edition
                                 </h2>
-                                <p className="text-gray-400 max-w-2xl mx-auto">
+                                <p className="text-gray-500 max-w-2xl mx-auto">
                                     Modern endüstriyel tasarımın zirvesi. <strong className="text-white">Mat siyah elektrostatik toz boya</strong> profiller,
                                     kontrast estetiği ve minimalist zarafet.
                                 </p>
@@ -321,12 +320,13 @@ export default function DusakabinPage() {
                                     <Link
                                         key={system.id}
                                         href={`/dusakabin-sistemleri/${system.slug}`}
-                                        className="group bg-white/5 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/10 hover:border-purple-500/50 transition-all hover:shadow-2xl hover:shadow-purple-500/20"
+                                        className="group bg-white/5 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/10 hover:border-purple-500/50 transition-shadow hover:shadow-2xl hover:shadow-purple-500/20 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                                        aria-label={`${system.name} duşakabin detaylarına git`}
                                     >
                                         <div className="relative h-56 bg-gradient-to-br from-gray-800 to-gray-900">
                                             <OptimizedImage
                                                 src={system.image}
-                                                alt={system.name}
+                                                alt={`${system.name} - Siyah Profilli Duşakabin Modeli`}
                                                 fill
                                                 className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                                             />
@@ -340,7 +340,7 @@ export default function DusakabinPage() {
                                             <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
                                                 {system.name}
                                             </h3>
-                                            <p className="text-gray-400 text-sm mb-4">{system.tagline}</p>
+                                            <p className="text-gray-500 text-sm mb-4">{system.tagline}</p>
                                             <div className="flex flex-wrap gap-2 mb-4">
                                                 {system.features.slice(0, 3).map((feature, idx) => (
                                                     <span key={idx} className="px-2 py-1 bg-white/10 text-gray-300 text-xs rounded-lg">
@@ -350,7 +350,7 @@ export default function DusakabinPage() {
                                             </div>
                                             <div className="flex justify-between items-center">
                                                 <span className="text-purple-400 font-bold">
-                                                    ₺{system.priceRange.min.toLocaleString('tr-TR')}+
+                                                    Fiyat İçin Arayın
                                                 </span>
                                                 <span className="text-white/60 text-sm group-hover:text-purple-400 transition-colors">
                                                     Detayları Gör →
@@ -373,7 +373,7 @@ export default function DusakabinPage() {
                                     SÜRME SİSTEMLER
                                 </span>
                                 <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                                    Sürme & Köşe Girişli Sistemler
+                                    Sürme & Köşe Girişli Duşakabin Sistemleri
                                 </h2>
                                 <p className="text-gray-600 max-w-2xl mx-auto">
                                     Alan tasarrufu sağlayan sürme mekanizmalar. <strong>Paslanmaz çelik rulman tekerlekler</strong>,
@@ -386,12 +386,13 @@ export default function DusakabinPage() {
                                     <Link
                                         key={system.id}
                                         href={`/dusakabin-sistemleri/${system.slug}`}
-                                        className="group bg-gray-50 rounded-3xl overflow-hidden border border-gray-200 hover:border-blue-500 transition-all hover:shadow-xl"
+                                        className="group bg-gray-50 rounded-3xl overflow-hidden border border-gray-200 hover:border-blue-500 transition-shadow hover:shadow-xl focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                                        aria-label={`${system.name} duşakabin detaylarına git`}
                                     >
                                         <div className="relative h-56 bg-gradient-to-br from-blue-50 to-cyan-50">
                                             <OptimizedImage
                                                 src={system.image}
-                                                alt={system.name}
+                                                alt={`${system.name} - Sürme Duşakabin Sistemi`}
                                                 fill
                                                 className="object-cover group-hover:scale-105 transition-transform duration-500"
                                             />
@@ -403,9 +404,9 @@ export default function DusakabinPage() {
                                             <p className="text-gray-600 text-sm mb-4">{system.tagline}</p>
                                             <div className="flex justify-between items-center">
                                                 <span className="text-blue-600 font-bold">
-                                                    ₺{system.priceRange.min.toLocaleString('tr-TR')}+
+                                                    Fiyat İçin Arayın
                                                 </span>
-                                                <span className="text-gray-400 text-sm group-hover:text-blue-600 transition-colors">
+                                                <span className="text-gray-500 text-sm group-hover:text-blue-600 transition-colors">
                                                     Detayları Gör →
                                                 </span>
                                             </div>
@@ -426,7 +427,7 @@ export default function DusakabinPage() {
                                     💧 HİJYEN TEKNOLOJİSİ
                                 </span>
                                 <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                                    Anti-Calc & Nano Kaplama
+                                    Kolay Temizlenen Duşakabin Camı: Anti-Kireç ve Nano Kaplama
                                 </h2>
                                 <p className="text-gray-600 max-w-2xl mx-auto">
                                     Kireç tutmayan, kolay temizlenen cam yüzeyler. <strong>Su itici (hidrofobik)</strong> teknoloji ile
@@ -438,7 +439,7 @@ export default function DusakabinPage() {
                                 {hygieneCoatings.map((coating) => (
                                     <div
                                         key={coating.id}
-                                        className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all"
+                                        className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow"
                                     >
                                         <div className="text-4xl mb-4">
                                             {coating.id === 'nano-clear' ? '💧' : coating.id === 'anti-calc' ? '🧊' : '🛡️'}
@@ -474,7 +475,7 @@ export default function DusakabinPage() {
                                     LÜKS SERİ
                                 </span>
                                 <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                                    Menteşeli (Boy Menteşe) Lüks Serisi
+                                    Menteşeli Lüks Duşakabin Serisi — Teknesiz Duşakabin Kurulumu
                                 </h2>
                                 <p className="text-gray-600 max-w-2xl mx-auto">
                                     <strong>10mm ekstra şeffaf temperli cam</strong>, 180° tam açılım, Dorma/Bohle premium aksesuarlar.
@@ -487,12 +488,13 @@ export default function DusakabinPage() {
                                     <Link
                                         key={system.id}
                                         href={`/dusakabin-sistemleri/${system.slug}`}
-                                        className="group bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl overflow-hidden border border-purple-100 hover:border-purple-400 transition-all hover:shadow-xl"
+                                        className="group bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl overflow-hidden border border-purple-100 hover:border-purple-400 transition-shadow hover:shadow-xl focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                                        aria-label={`${system.name} duşakabin detaylarına git`}
                                     >
                                         <div className="relative h-60 bg-gradient-to-br from-purple-100 to-pink-100">
                                             <OptimizedImage
                                                 src={system.image}
-                                                alt={system.name}
+                                                alt={`${system.name} - Menteşeli Lüks Duşakabin`}
                                                 fill
                                                 className="object-cover group-hover:scale-105 transition-transform duration-500"
                                             />
@@ -511,9 +513,9 @@ export default function DusakabinPage() {
                                             <p className="text-gray-600 text-sm mb-4">{system.tagline}</p>
                                             <div className="flex justify-between items-center">
                                                 <span className="text-purple-600 font-bold">
-                                                    ₺{system.priceRange.min.toLocaleString('tr-TR')}+
+                                                    Fiyat İçin Arayın
                                                 </span>
-                                                <span className="text-gray-400 text-sm group-hover:text-purple-600 transition-colors">
+                                                <span className="text-gray-500 text-sm group-hover:text-purple-600 transition-colors">
                                                     Detayları Gör →
                                                 </span>
                                             </div>
@@ -534,7 +536,7 @@ export default function DusakabinPage() {
                                     WALK-IN SİSTEMLER
                                 </span>
                                 <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                                    Walk-in & Sabit Paneller
+                                    Walk-in Duşakabin ve Sabit Paneller
                                 </h2>
                                 <p className="text-gray-600 max-w-2xl mx-auto">
                                     Kapısız açık tasarım, <strong>wet-room konsepti</strong>. Engelsiz giriş, kolay temizlik, modern mimari.
@@ -547,12 +549,13 @@ export default function DusakabinPage() {
                                     <Link
                                         key={system.id}
                                         href={`/dusakabin-sistemleri/${system.slug}`}
-                                        className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-emerald-500 transition-all hover:shadow-lg"
+                                        className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-emerald-500 transition-shadow hover:shadow-lg focus:ring-2 focus:ring-emerald-400 focus:outline-none"
+                                        aria-label={`${system.name} walk-in duşakabin detaylarına git`}
                                     >
                                         <div className="relative h-48 bg-gradient-to-br from-emerald-50 to-teal-50">
                                             <OptimizedImage
                                                 src={system.image}
-                                                alt={system.name}
+                                                alt={`${system.name} - Walk-in Duşakabin Sistemi`}
                                                 fill
                                                 className="object-cover"
                                             />
@@ -564,9 +567,9 @@ export default function DusakabinPage() {
                                             <p className="text-gray-500 text-sm mb-3">{system.tagline}</p>
                                             <div className="flex justify-between items-center">
                                                 <span className="text-emerald-600 font-bold text-sm">
-                                                    ₺{system.priceRange.min.toLocaleString('tr-TR')}+
+                                                    Fiyat İçin Arayın
                                                 </span>
-                                                <span className="text-gray-400 text-xs">→</span>
+                                                <span className="text-gray-500 text-xs">→</span>
                                             </div>
                                         </div>
                                     </Link>
@@ -582,7 +585,7 @@ export default function DusakabinPage() {
                         <div className="max-w-5xl mx-auto">
                             <div className="text-center mb-10">
                                 <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4">
-                                    🎨 Profil Renk Seçenekleri
+                                    Profil Renk Seçenekleri
                                 </h2>
                                 <p className="text-gray-600">
                                     Elektrostatik toz boya ve PVD kaplama ile uzun ömürlü, çizilmeye dayanıklı yüzeyler
@@ -593,7 +596,7 @@ export default function DusakabinPage() {
                                 {profileColors.map((color) => (
                                     <div
                                         key={color.id}
-                                        className="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-white hover:shadow-lg transition-all"
+                                        className="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-white hover:shadow-lg transition-shadow"
                                     >
                                         <div
                                             className="w-12 h-12 rounded-full shadow-lg border-2 border-white mb-2"
@@ -645,7 +648,7 @@ export default function DusakabinPage() {
                                 {authorityGuides.map((guide) => (
                                     <div
                                         key={guide.id}
-                                        className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all border border-gray-100"
+                                        className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-shadow border border-gray-100"
                                     >
                                         <h3 className="font-bold text-gray-900 text-lg mb-2">{guide.title}</h3>
                                         <p className="text-gray-600 text-sm mb-4">{guide.summary}</p>
@@ -664,33 +667,6 @@ export default function DusakabinPage() {
                     </div>
                 </section>
 
-                {/* WhatsApp CTA Section */}
-                <section className="py-16 bg-gradient-to-r from-green-500 to-emerald-600">
-                    <div className="container mx-auto px-4 text-center">
-                        <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
-                            📸 Banyonuzun Fotoğrafını Gönderin
-                        </h2>
-                        <p className="text-green-100 text-lg mb-8 max-w-2xl mx-auto">
-                            WhatsApp üzerinden banyo fotoğrafınızı gönderin, size özel tasarım ve fiyat çalışalım.
-                            <strong className="text-white">Ücretsiz keşif + özel ölçü üretim.</strong>
-                        </p>
-                        <a
-                            href={`https://wa.me/${businessConfig.contact.whatsapp}?text=${encodeURIComponent("Merhaba, banyomun fotoğrafını göndermek istiyorum. Duşakabin fiyat teklifi alabilir miyim?")}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-3 px-10 py-5 bg-white text-green-600 font-bold text-lg rounded-2xl hover:bg-green-50 transition-all shadow-xl"
-                        >
-                            <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                            </svg>
-                            WhatsApp ile Fiyat Al
-                        </a>
-                    </div>
-                </section>
-
-                {/* CTA Section */}
-                <CTASection />
-
                 {/* Local SEO Footer */}
                 <section className="py-12 bg-gray-100">
                     <div className="container mx-auto px-4">
@@ -704,7 +680,7 @@ export default function DusakabinPage() {
                             </p>
                             <p className="text-gray-500">
                                 Duşakabin fiyatları 2026 | Temperli cam duşakabin modelleri | Özel ölçü duşakabin imalatı |
-                                Teknesiz duşakabin çözümleri | Manyetik mıknatıslı fitil | Paslanmaz profil garantisi
+                                Teknesiz duşakabin çözümleri | Manyetik mıknatıslı fitil | Paslanmaz profil
                             </p>
                         </div>
                     </div>

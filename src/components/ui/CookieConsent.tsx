@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "@/lib/motion-lite";
 import Link from "next/link";
 
 /**
@@ -12,6 +12,7 @@ import Link from "next/link";
  */
 export function CookieConsent() {
     const [isVisible, setIsVisible] = useState(false);
+    const acceptBtnRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
         // Check if user has already made a choice
@@ -22,6 +23,13 @@ export function CookieConsent() {
             return () => clearTimeout(timer);
         }
     }, []);
+
+    // Auto-focus the accept button when banner appears
+    useEffect(() => {
+        if (isVisible) {
+            requestAnimationFrame(() => acceptBtnRef.current?.focus());
+        }
+    }, [isVisible]);
 
     const acceptAll = () => {
         localStorage.setItem("cookie-consent", "accepted");
@@ -34,7 +42,8 @@ export function CookieConsent() {
     };
 
     return (
-        <AnimatePresence>
+        <div aria-live="polite">
+            <AnimatePresence>
             {isVisible && (
                 <motion.aside
                     initial={{ y: 100, opacity: 0 }}
@@ -64,7 +73,7 @@ export function CookieConsent() {
                                 <p id="cookie-consent-desc" className="text-sm text-neutral-600 leading-relaxed">
                                     Web sitemizde deneyiminizi iyileştirmek için çerezler kullanıyoruz.
                                     Sitemizi kullanarak{" "}
-                                    <Link href="/gizlilik-politikasi" title="KVKK ve Gizlilik Politikası" className="text-primary-600 hover:underline">
+                                    <Link href="/gizlilik-politikasi" title="KVKK ve Gizlilik Politikası" className="text-primary-600 underline decoration-primary-400/50 hover:decoration-primary-600">
                                         Gizlilik Politikamızı
                                     </Link>
                                     {" "}kabul etmiş olursunuz.
@@ -82,6 +91,7 @@ export function CookieConsent() {
                                 </button>
                                 <button
                                     onClick={acceptAll}
+                                    ref={acceptBtnRef}
                                     className="px-5 py-2.5 text-sm font-bold text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors"
                                     aria-label="Tüm çerezleri kabul et"
                                 >
@@ -93,5 +103,6 @@ export function CookieConsent() {
                 </motion.aside>
             )}
         </AnimatePresence>
+        </div>
     );
 }

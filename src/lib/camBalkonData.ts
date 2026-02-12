@@ -191,7 +191,7 @@ Sistem, Somfy ve Becker motorları ile entegre çalışabilir, akıllı ev siste
             { name: 'Bronz', ral: 'RAL 8022', hex: '#1A1718' },
             { name: 'Altın Meşe', ral: 'Wood Grain', hex: '#B8860B' },
         ],
-        warranty: '10 Yıl Üretici Garantisi',
+        warranty: '10 Yıl',
         priceRange: 'premium',
         seoKeywords: [
             'Beylikdüzü ısıcamlı cam balkon',
@@ -209,7 +209,7 @@ Sistem, Somfy ve Becker motorları ile entegre çalışabilir, akıllı ev siste
             },
             {
                 question: 'Argon gazı zamanla boşalır mı?',
-                answer: 'Kaliteli üretilmiş ısıcamlı ünitelerde Argon kaybı yılda %1\'den azdır. 20 yıl sonra bile camlarınız etkili şekilde çalışmaya devam eder. Akçayapı olarak tüm ısıcamlı sistemlerimizde 10 yıl gaz garantisi sunuyoruz.',
+                answer: 'Kaliteli üretilmiş ısıcamlı ünitelerde Argon kaybı yılda %1\'den azdır. 20 yıl sonra bile camlarınız etkili şekilde çalışmaya devam eder. Akçayapı olarak tüm ısıcamlı sistemlerimizde 10 yıl gaz dayanıklılığı sunuyoruz.',
             },
             {
                 question: 'Cam balkon su sızdırır mı?',
@@ -238,7 +238,7 @@ Sistem, Somfy ve Becker motorları ile entegre çalışabilir, akıllı ev siste
 
 Standart termal profil yapısı sayesinde, klasik cam balkon sistemlerine göre %50'ye varan enerji tasarrufu sağlar. Beylikdüzü, Esenyurt ve Büyükçekmece gibi İstanbul'un batı yakasında yoğun talep gören bu sistem, kalite ve ekonomiyi bir arada sunar.
 
-Kolay kullanımı ve düşük bakım maliyeti ile uzun yıllar sorunsuz hizmet verir. 8mm temperli camlardan oluşan yapısı güvenliği, çift conta sistemi ise hava sızdırmazlığı garanti eder.`,
+Kolay kullanımı ve düşük bakım maliyeti ile uzun yıllar sorunsuz hizmet verir. 8mm temperli camlardan oluşan yapısı güvenliği, çift conta sistemi ise hava sızdırmazlığı sağlar.`,
         image: "/images/cam-balkon/twin-isicamli-yeni.jpg",
         gallery: [
             '/images/cam-balkon/twin-isicamli-yeni.jpg',
@@ -280,7 +280,7 @@ Kolay kullanımı ve düşük bakım maliyeti ile uzun yıllar sorunsuz hizmet v
             { name: 'Beyaz', ral: 'RAL 9016', hex: '#F7F9FA' },
             { name: 'Antrasit Gri', ral: 'RAL 7016', hex: '#383E42' },
         ],
-        warranty: '5 Yıl Üretici Garantisi',
+        warranty: '5 Yıl',
         priceRange: 'orta',
         seoKeywords: [
             'ekonomik ısıcamlı cam balkon',
@@ -367,7 +367,7 @@ Kolay kullanımı ve düşük bakım maliyeti ile uzun yıllar sorunsuz hizmet v
             { name: 'Antrasit Gri', ral: 'RAL 7016', hex: '#383E42' },
             { name: 'Bronz', ral: 'RAL 8022', hex: '#1A1718' },
         ],
-        warranty: '5 Yıl Üretici Garantisi',
+        warranty: '5 Yıl',
         priceRange: 'orta',
         seoKeywords: [
             'eşikli cam balkon',
@@ -454,7 +454,7 @@ Gizli drenaj sistemi sayesinde yağmur suyu kontrollü şekilde tahliye edilir. 
             { name: 'Siyah', ral: 'RAL 9005', hex: '#0A0A0A' },
             { name: 'Beyaz', ral: 'RAL 9016', hex: '#F7F9FA' },
         ],
-        warranty: '5 Yıl Üretici Garantisi',
+        warranty: '5 Yıl',
         priceRange: 'premium',
         seoKeywords: [
             'eşiksiz cam balkon',
@@ -551,7 +551,7 @@ Akıllı ev sistemleriyle (Google Home, Alexa, Apple HomeKit) entegre çalışab
             { name: 'Beyaz', ral: 'RAL 9016', hex: '#F7F9FA' },
             { name: 'Bronz', ral: 'RAL 8022', hex: '#1A1718' },
         ],
-        warranty: '7 Yıl Motor Garantisi + 5 Yıl Sistem Garantisi',
+        warranty: '7 Yıl Motor + 5 Yıl Sistem',
         priceRange: 'premium',
         seoKeywords: [
             'motorlu cam balkon',
@@ -595,7 +595,7 @@ Akıllı ev sistemleriyle (Google Home, Alexa, Apple HomeKit) entegre çalışab
 
 Özellikle bütçe odaklı müşteriler için ideal olan bu sistem, motorlu versiyona göre %40-50 daha uygun fiyatlıdır. Elektrik bağlantısı gerektirmez, bu da montaj maliyetini düşürür ve bakım ihtiyacını minimuma indirir.
 
-Sistemde kullanılan gaz pistonları otomotiv sektöründen (bagaj kapağı amortisörü) adapte edilmiştir ve 50.000+ açma/kapama döngüsü garanti edilir. Yavaş kapanma özelliği ile çarpma ve parmak sıkışma riski yoktur.`,
+Sistemde kullanılan gaz pistonları otomotiv sektöründen (bagaj kapağı amortisörü) adapte edilmiştir ve 50.000+ açma/kapama döngüsü test edilmiştir. Yavaş kapanma özelliği ile çarpma ve parmak sıkışma riski yoktur.`,
         image: "/images/panjur/panjur-modern-villa.jpg",
         gallery: [
             '/images/cam-balkon/cam-balkon-sehir-manzara.jpg',
@@ -642,7 +642,7 @@ Sistemde kullanılan gaz pistonları otomotiv sektöründen (bagaj kapağı amor
             { name: 'Antrasit Gri', ral: 'RAL 7016', hex: '#383E42' },
             { name: 'Siyah', ral: 'RAL 9005', hex: '#0A0A0A' },
         ],
-        warranty: '5 Yıl Sistem Garantisi',
+        warranty: '5 Yıl Sistem',
         priceRange: 'orta',
         seoKeywords: [
             'manuel giyotin cam balkon',
@@ -737,7 +737,7 @@ Alt ve üst ray arası maksimum panel yüksekliği 3200mm'ye kadar çıkabilir. 
             { name: 'Bronz', ral: 'RAL 8022', hex: '#1A1718' },
             { name: 'Ceviz', ral: 'Wood Grain', hex: '#5D432C' },
         ],
-        warranty: '5 Yıl Üretici Garantisi',
+        warranty: '5 Yıl',
         priceRange: 'orta',
         seoKeywords: [
             'katlanır cam balkon',

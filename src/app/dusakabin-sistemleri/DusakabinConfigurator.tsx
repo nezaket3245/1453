@@ -104,7 +104,7 @@ export default function DusakabinConfigurator() {
                                     <button
                                         key={shape.id}
                                         onClick={() => setConfig({ ...config, shape: shape.id })}
-                                        className={`p-4 rounded-xl border-2 transition-all text-center ${
+                                        className={`p-4 rounded-xl border-2 transition-colors text-center ${
                                             config.shape === shape.id
                                                 ? 'border-purple-500 bg-purple-50 shadow-lg'
                                                 : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'
@@ -171,7 +171,7 @@ export default function DusakabinConfigurator() {
                                     <button
                                         key={glass.id}
                                         onClick={() => setConfig({ ...config, glassType: glass.id, glassThickness: glass.thickness[0] })}
-                                        className={`p-4 rounded-xl border-2 transition-all text-left ${
+                                        className={`p-4 rounded-xl border-2 transition-colors text-left ${
                                             config.glassType === glass.id
                                                 ? 'border-purple-500 bg-purple-50 shadow-lg'
                                                 : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'
@@ -211,7 +211,7 @@ export default function DusakabinConfigurator() {
                                             <button
                                                 key={t}
                                                 onClick={() => setConfig({ ...config, glassThickness: t })}
-                                                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                                                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                                                     config.glassThickness === t
                                                         ? 'bg-purple-600 text-white'
                                                         : 'bg-white border border-gray-200 text-gray-700 hover:border-purple-300'
@@ -244,7 +244,7 @@ export default function DusakabinConfigurator() {
                                     <button
                                         key={color.id}
                                         onClick={() => setConfig({ ...config, profileColor: color.id })}
-                                        className={`p-4 rounded-xl border-2 transition-all text-center ${
+                                        className={`p-4 rounded-xl border-2 transition-colors text-center ${
                                             config.profileColor === color.id
                                                 ? 'border-purple-500 bg-purple-50 shadow-lg'
                                                 : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'
@@ -277,7 +277,7 @@ export default function DusakabinConfigurator() {
                             <div className="grid grid-cols-1 gap-3">
                                 <button
                                     onClick={() => setConfig({ ...config, coating: null })}
-                                    className={`p-4 rounded-xl border-2 transition-all text-left ${
+                                    className={`p-4 rounded-xl border-2 transition-colors text-left ${
                                         config.coating === null
                                             ? 'border-purple-500 bg-purple-50'
                                             : 'border-gray-200 hover:border-purple-300'
@@ -290,7 +290,7 @@ export default function DusakabinConfigurator() {
                                     <button
                                         key={coating.id}
                                         onClick={() => setConfig({ ...config, coating: coating.id })}
-                                        className={`p-4 rounded-xl border-2 transition-all text-left ${
+                                        className={`p-4 rounded-xl border-2 transition-colors text-left ${
                                             config.coating === coating.id
                                                 ? 'border-purple-500 bg-purple-50 shadow-lg'
                                                 : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'
@@ -359,7 +359,7 @@ export default function DusakabinConfigurator() {
                     <button
                         onClick={() => setStep(Math.max(1, step - 1))}
                         disabled={step === 1}
-                        className={`px-5 py-2.5 rounded-xl font-medium transition-all ${
+                        className={`px-5 py-2.5 rounded-xl font-medium transition-colors ${
                             step === 1
                                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -376,7 +376,7 @@ export default function DusakabinConfigurator() {
                                 (step === 2 && !config.glassType) ||
                                 (step === 3 && !config.profileColor)
                             }
-                            className={`px-5 py-2.5 rounded-xl font-medium transition-all ${
+                            className={`px-5 py-2.5 rounded-xl font-medium transition-colors ${
                                 (step === 1 && !config.shape) ||
                                 (step === 2 && !config.glassType) ||
                                 (step === 3 && !config.profileColor)
@@ -391,7 +391,7 @@ export default function DusakabinConfigurator() {
                             href={whatsappLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="px-6 py-2.5 rounded-xl font-medium bg-green-500 text-white hover:bg-green-600 shadow-lg flex items-center gap-2"
+                            className="px-6 py-2.5 rounded-xl font-medium bg-green-700 text-white hover:bg-green-800 shadow-lg flex items-center gap-2"
                         >
                             <WhatsAppIcon className="w-5 h-5" />
                             WhatsApp ile Gönder

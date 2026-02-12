@@ -98,8 +98,6 @@ export async function submitRepairRequest(
     // 3. Trigger SMS/WhatsApp notification
     // 4. Create CRM entry
 
-    console.log("Repair Request Submitted:", data);
-
     // Success response
     return {
         success: true,
@@ -128,8 +126,6 @@ export async function submitQuickQuote(
             message: "Lütfen tüm zorunlu alanları doldurunuz",
         };
     }
-
-    console.log("Quick Quote Request:", { name, phone, productInterest, message });
 
     return {
         success: true,

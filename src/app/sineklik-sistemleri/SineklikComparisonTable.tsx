@@ -81,8 +81,9 @@ export default function SineklikComparisonTable({
     return (
         <div>
             <div className="text-center mb-10">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    📊 Sineklik Sistemleri Karşılaştırması
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 flex items-center justify-center gap-3">
+                    <svg className="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                    Sineklik Sistemleri Karşılaştırması
                 </h2>
                 <p className="text-gray-600 max-w-2xl mx-auto mb-6">
                     Plise, stor, menteşeli, sürme ve kedi sinekliği sistemlerini karşılaştırın.
@@ -109,14 +110,18 @@ export default function SineklikComparisonTable({
             {/* Desktop Table */}
             <div className="hidden lg:block overflow-x-auto">
                 <table className="w-full border-collapse">
+                    <caption className="sr-only">Sineklik modelleri karşılaştırma tablosu</caption>
                     <thead>
                         <tr className="bg-gray-50">
-                            <th className="text-left p-4 font-semibold text-gray-900 border-b">
+                            <th scope="col" className="text-left p-4 font-semibold text-gray-900 border-b">
                                 Sistem
                             </th>
                             {criteria.map((c) => (
                                 <th
                                     key={c.id}
+                                    scope="col"
+                                    role="columnheader"
+                                    aria-sort={sortBy === c.id ? 'descending' : 'none'}
                                     className="text-center p-4 font-semibold text-gray-900 border-b cursor-pointer hover:bg-gray-100"
                                     onClick={() => setSortBy(c.id)}
                                     title={c.description}
@@ -149,14 +154,14 @@ export default function SineklikComparisonTable({
                                         : 'bg-white hover:bg-gray-50'
                                 }`}
                             >
-                                <td className="p-4 font-semibold text-gray-900">
+                                <th scope="row" className="p-4 font-semibold text-gray-900">
                                     {idx === 0 && (
                                         <span className="inline-block px-2 py-1 bg-emerald-100 text-emerald-700 text-xs rounded mr-2">
                                             En İyi
                                         </span>
                                     )}
                                     {system.name}
-                                </td>
+                                </th>
                                 {criteria.map((c) => {
                                     const value = getCriteriaValue(system, c.id);
                                     return (
@@ -167,6 +172,7 @@ export default function SineklikComparisonTable({
                                                     {[1, 2, 3, 4, 5].map((i) => (
                                                         <div
                                                             key={i}
+                                                            aria-hidden="true"
                                                             className={`w-4 h-4 rounded-sm ${
                                                                 i <= value
                                                                     ? getRatingColor(value)
@@ -216,6 +222,7 @@ export default function SineklikComparisonTable({
                                             {[1, 2, 3, 4, 5].map((i) => (
                                                 <div
                                                     key={i}
+                                                    aria-hidden="true"
                                                     className={`w-4 h-4 rounded-sm ${
                                                         i <= value
                                                             ? getRatingColor(value)

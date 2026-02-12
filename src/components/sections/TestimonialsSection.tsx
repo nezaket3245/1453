@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 
 
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "@/lib/motion-lite";
 import { cn } from "@/lib/utils";
 
 /**
@@ -140,7 +140,7 @@ export function TestimonialsSection() {
                                 key={index}
                                 onClick={() => setActiveIndex(index)}
                                 className={cn(
-                                    "w-2.5 h-2.5 rounded-full transition-all duration-300",
+                                    "w-2.5 h-2.5 rounded-full transition-[width,background-color] duration-300",
                                     index === activeIndex
                                         ? "w-8 bg-secondary-500"
                                         : "bg-white/30 hover:bg-white/50"

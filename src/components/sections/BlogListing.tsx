@@ -30,7 +30,7 @@ export function BlogListing({ posts }: BlogListingProps) {
                             <button
                                 key={category.id}
                                 onClick={() => setActiveCategory(category.id)}
-                                className={`flex-shrink-0 px-5 py-2.5 rounded-full font-medium text-sm transition-all flex items-center gap-2 border ${activeCategory === category.id
+                                className={`flex-shrink-0 px-5 py-2.5 rounded-full font-medium text-sm transition-[box-shadow,transform] flex items-center gap-2 border ${activeCategory === category.id
                                         ? "bg-primary-600 text-white border-primary-600 shadow-lg shadow-primary-600/20"
                                         : "bg-neutral-50 text-neutral-600 border-neutral-200 hover:border-primary-300 hover:bg-primary-50"
                                     }`}
@@ -67,7 +67,7 @@ export function BlogListing({ posts }: BlogListingProps) {
                                     <span className="px-4 py-1.5 bg-primary-100 text-primary-700 rounded-full text-xs font-bold uppercase tracking-wider">
                                         {blogCategories.find((c) => c.id === featuredPost.category)?.name}
                                     </span>
-                                    <span className="text-neutral-400 text-sm font-medium">
+                                    <span className="text-neutral-500 text-sm font-medium">
                                         {formatDate(featuredPost.date)}
                                     </span>
                                 </div>
@@ -84,12 +84,12 @@ export function BlogListing({ posts }: BlogListingProps) {
                                         </div>
                                         <div>
                                             <p className="font-bold text-neutral-900">{featuredPost.author}</p>
-                                            <p className="text-xs text-neutral-400 font-medium">{featuredPost.readTime}</p>
+                                            <p className="text-xs text-neutral-500 font-medium">{featuredPost.readTime}</p>
                                         </div>
                                     </div>
                                     <Link
                                         href={`/blog/${featuredPost.slug}`}
-                                        className="inline-flex items-center gap-3 px-6 py-3 bg-neutral-900 text-white rounded-full font-bold hover:bg-primary-600 transition-all shadow-xl"
+                                        className="inline-flex items-center gap-3 px-6 py-3 bg-neutral-900 text-white rounded-full font-bold hover:bg-primary-600 transition-[box-shadow,transform] shadow-xl"
                                     >
                                         Yazıyı Oku
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" strokeWidth={3}>
@@ -110,7 +110,7 @@ export function BlogListing({ posts }: BlogListingProps) {
                         <h2 className="text-2xl md:text-3xl font-black text-neutral-900">
                             {activeCategory === "all" ? "Son Paylaşımlar" : `${blogCategories.find(c => c.id === activeCategory)?.name} Yazıları`}
                         </h2>
-                        <span className="text-sm font-bold text-neutral-400 uppercase tracking-widest bg-white px-4 py-2 rounded-full border border-neutral-200">
+                        <span className="text-sm font-bold text-neutral-500 uppercase tracking-widest bg-white px-4 py-2 rounded-full border border-neutral-200">
                             {filteredPosts.length} İçerik
                         </span>
                     </div>
@@ -124,7 +124,7 @@ export function BlogListing({ posts }: BlogListingProps) {
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.9 }}
                                     key={post.id}
-                                    className="group bg-white rounded-[2rem] overflow-hidden border border-neutral-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
+                                    className="group bg-white rounded-[2rem] overflow-hidden border border-neutral-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-[box-shadow,transform] duration-500"
                                 >
                                     <Link href={`/blog/${post.slug}`} className="flex flex-col h-full">
                                         <div className="relative aspect-[16/10] overflow-hidden">
@@ -142,7 +142,7 @@ export function BlogListing({ posts }: BlogListingProps) {
                                             </div>
                                         </div>
                                         <div className="p-8 flex flex-col flex-1">
-                                            <div className="flex items-center gap-3 text-xs font-bold text-neutral-400 mb-4 uppercase tracking-widest">
+                                            <div className="flex items-center gap-3 text-xs font-bold text-neutral-500 mb-4 uppercase tracking-widest">
                                                 <span>{formatDate(post.date)}</span>
                                                 <span className="w-1 h-1 bg-neutral-300 rounded-full" />
                                                 <span>{post.readTime}</span>
@@ -161,7 +161,7 @@ export function BlogListing({ posts }: BlogListingProps) {
                                                         </span>
                                                     ))}
                                                 </div>
-                                                <span className="w-8 h-8 rounded-full bg-neutral-50 text-neutral-400 flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-all">
+                                                <span className="w-8 h-8 rounded-full bg-neutral-50 text-neutral-400 flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-[box-shadow,transform]">
                                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" strokeWidth={3}>
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                                     </svg>
@@ -181,7 +181,7 @@ export function BlogListing({ posts }: BlogListingProps) {
                             <p className="text-neutral-500">Bu kategori için içeriklerimiz çok yakında burada olacak.</p>
                             <button
                                 onClick={() => setActiveCategory("all")}
-                                className="mt-6 px-8 py-3 bg-primary-600 text-white font-bold rounded-full hover:shadow-lg transition-all"
+                                className="mt-6 px-8 py-3 bg-primary-600 text-white font-bold rounded-full hover:shadow-lg transition-[box-shadow,transform]"
                             >
                                 Tüm Yazılara Dön
                             </button>

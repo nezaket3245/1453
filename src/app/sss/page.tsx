@@ -1,28 +1,28 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Header } from "@/components/layout/Header";
+import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { businessConfig } from "@/config/business.config";
 import { faqs, faqCategories, generateFAQSchema } from "@/lib/faqData";
 
 export const metadata: Metadata = {
-    title: `Sıkça Sorulan Sorular | SSS | ${businessConfig.name}`,
-    description: `PVC pencere, cam balkon, fiyat, montaj ve garanti hakkında sıkça sorulan sorular ve cevapları. ${businessConfig.brand} Beylikdüzü yetkili bayisi.`,
+    title: 'Sıkça Sorulan Sorular - PVC ve Cam Balkon',
+    description: `PVC pencere, cam balkon, fiyat ve montaj hakkında sıkça sorulan sorular ve cevapları. ${businessConfig.brand} Beylikdüzü yetkili bayisi.`,
     keywords: [
         "PVC pencere sıkça sorulan sorular",
         "cam balkon SSS",
-        "Egepen garanti",
+        "Egepen yetkili bayi",
         "pencere fiyat",
         "montaj süresi",
     ],
     openGraph: {
         title: `SSS | ${businessConfig.name}`,
         description: `PVC pencere ve cam balkon hakkında sık sorulan sorular`,
-        url: "https://egepenakcayapi.com.tr/sss",
+        url: "https://egepenakcayapi.com/sss",
     },
     alternates: {
-        canonical: "https://egepenakcayapi.com.tr/sss",
+        canonical: "https://egepenakcayapi.com/sss",
     },
 };
 
@@ -37,7 +37,7 @@ export default function FAQPage() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
             />
 
-            <Header />
+            <HeaderOptimized />
 
             <main id="main-content" className="min-h-screen bg-neutral-50">
                 {/* Hero Section */}
@@ -59,7 +59,7 @@ export default function FAQPage() {
                                 Sıkça Sorulan <span className="text-secondary-400">Sorular</span>
                             </h1>
                             <p className="text-xl text-white/80 leading-relaxed">
-                                PVC pencere, cam balkon, fiyatlandırma, montaj ve garanti hakkında
+                                PVC pencere, cam balkon, fiyatlandırma ve montaj hakkında
                                 merak ettiklerinizi burada bulabilirsiniz.
                             </p>
                         </div>
@@ -158,25 +158,8 @@ export default function FAQPage() {
                             </h2>
                             <p className="text-neutral-600 mb-8 max-w-xl mx-auto">
                                 Uzman ekibimiz sorularınızı yanıtlamak için hazır.
-                                Bize telefon veya WhatsApp üzerinden ulaşabilirsiniz.
+                                <Link href="/iletisim" className="text-primary-600 hover:text-primary-700 font-semibold ml-1">İletişim sayfamızdan</Link> bize ulaşabilirsiniz.
                             </p>
-                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <Button
-                                    variant="primary"
-                                    size="lg"
-                                    href={`tel:${businessConfig.contact.mobileRaw}`}
-                                >
-                                    📞 Hemen Arayın
-                                </Button>
-                                <Button
-                                    variant="outline"
-                                    size="lg"
-                                    href={`https://wa.me/${businessConfig.contact.whatsapp}?text=Merhaba, bir sorum var.`}
-                                    external
-                                >
-                                    💬 WhatsApp ile Sorun
-                                </Button>
-                            </div>
                         </div>
                     </div>
                 </section>
@@ -208,16 +191,16 @@ export default function FAQPage() {
                                     icon: "📚",
                                 },
                                 {
-                                    title: "Teklif Al",
-                                    desc: "Ücretsiz keşif",
-                                    href: "/teklif-al",
-                                    icon: "📝",
+                                    title: "İletişim",
+                                    desc: "Bize ulaşın",
+                                    href: "/iletisim",
+                                    icon: "📩",
                                 },
                             ].map((link) => (
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className="flex items-center gap-4 p-5 bg-white rounded-xl border border-neutral-200 hover:border-primary-300 hover:shadow-md transition-all group"
+                                    className="flex items-center gap-4 p-5 bg-white rounded-xl border border-neutral-200 hover:border-primary-300 hover:shadow-md transition-[border-color,box-shadow] group"
                                 >
                                     <span className="text-3xl">{link.icon}</span>
                                     <div>

@@ -1,12 +1,312 @@
-# Cloudflare Pages Redirects
-# www to non-www redirect
-https://www.akcapen-pvc.pages.dev/* https://akcapen-pvc.pages.dev/:splat 301
+# ============================================================================
+# Cloudflare Pages — Comprehensive 301 Redirect Map
+# Migrating: egepenakcayapi.com (WordPress) → egepenakcayapi.com (Next.js)
+# Also handles: egepenakcayapi.com.tr old intermediate site routes
+# ============================================================================
 
-# HTTP to HTTPS (handled automatically by Cloudflare)
+# ──────────────────────────────────────────────────────────
+# 1. DOMAIN-LEVEL REDIRECTS (www → non-www, .com.tr → .com)
+# ──────────────────────────────────────────────────────────
+https://www.egepenakcayapi.com/* https://egepenakcayapi.com/:splat 301
+https://egepenakcayapi.com.tr/* https://egepenakcayapi.com/:splat 301
+https://www.egepenakcayapi.com.tr/* https://egepenakcayapi.com/:splat 301
 
-# Old URL redirects (if any)
+# Dev/staging domains → production
+https://akcapen-pvc.pages.dev/* https://egepenakcayapi.com/:splat 301
+https://www.akcapen-pvc.pages.dev/* https://egepenakcayapi.com/:splat 301
+https://akcapen-pvc-2lv.pages.dev/* https://egepenakcayapi.com/:splat 301
+
+# ──────────────────────────────────────────────────────────
+# 2. LEGACY WORDPRESS (egepenakcayapi.com) — Main Navigation
+# ──────────────────────────────────────────────────────────
 /index.html / 301
 /home / 301
+/egepenakcayapi / 301
+/egepenakcayapi/ / 301
+/egepenakcayapi/index.html / 301
+/sample-page / 301
+/sample-page/ / 301
 
-# Trailing slash normalization
-/*/ /:splat 301
+# Old WordPress Contact/About page (was the İletişim page)
+/egepenakcayapi-com/index.html /iletisim 301
+/egepenakcayapi-com/ /iletisim 301
+/egepenakcayapi-com /iletisim 301
+/egepenakcayapi-com/gizlilik-politikasi/index.html /gizlilik-politikasi 301
+/egepenakcayapi-com/gizlilik-politikasi/ /gizlilik-politikasi 301
+/egepenakcayapi-com/gizlilik-politikasi /gizlilik-politikasi 301
+/iletisim-egepenakcayapi-kimdir/index.html /iletisim 301
+/iletisim-egepenakcayapi-kimdir/ /iletisim 301
+/iletisim-egepenakcayapi-kimdir /iletisim 301
+
+# Category / product hub pages
+/pvc/index.html /pvc-sistemleri 301
+/pvc/ /pvc-sistemleri 301
+/pvc /pvc-sistemleri 301
+/aluminyum-dograma/index.html /aluminyum-sistemleri 301
+/aluminyum-dograma/ /aluminyum-sistemleri 301
+/aluminyum-dograma /aluminyum-sistemleri 301
+/cam-balkon/index.html /cam-balkon-sistemleri 301
+/cam-balkon/ /cam-balkon-sistemleri 301
+/cam-balkon /cam-balkon-sistemleri 301
+/sineklik/index.html /sineklik-sistemleri 301
+/sineklik/ /sineklik-sistemleri 301
+/sineklik /sineklik-sistemleri 301
+/dusakabin/index.html /dusakabin-sistemleri 301
+/dusakabin/ /dusakabin-sistemleri 301
+/dusakabin /dusakabin-sistemleri 301
+/panjur/index.html /panjur-kepenk-sistemleri 301
+/panjur/ /panjur-kepenk-sistemleri 301
+/panjur /panjur-kepenk-sistemleri 301
+
+# Static pages (removed self-redirects for /iletisim and /gizlilik-politikasi - they exist natively)
+/video-galeri/index.html /projeler 301
+/video-galeri/ /projeler 301
+/video-galeri /projeler 301
+/enerji-tasarrufu-hesaplama/index.html /sss 301
+/enerji-tasarrufu-hesaplama/ /sss 301
+/enerji-tasarrufu-hesaplama /sss 301
+
+# WordPress category pages
+/category/kolay-cozumler/index.html /blog 301
+/category/kolay-cozumler/ /blog 301
+/category/kolay-cozumler /blog 301
+/category/* /blog 301
+
+# ──────────────────────────────────────────────────────────
+# 3. LEGACY WORDPRESS — Blog Posts (with & without index.html)
+# ──────────────────────────────────────────────────────────
+
+# PVC-related posts
+/legend-pvc-pencereler-nedir-nasil-calisir/index.html /blog/pvc-pencere-secimi-rehberi 301
+/legend-pvc-pencereler-nedir-nasil-calisir/ /blog/pvc-pencere-secimi-rehberi 301
+/legend-pvc-pencereler-nedir-nasil-calisir /blog/pvc-pencere-secimi-rehberi 301
+/legend-art-pencere-sistemleri/index.html /pvc-sistemleri/legend-art-pvc-pencere 301
+/legend-art-pencere-sistemleri/ /pvc-sistemleri/legend-art-pvc-pencere 301
+/legend-art-pencere-sistemleri /pvc-sistemleri/legend-art-pvc-pencere 301
+/zendow-pencereler/index.html /pvc-sistemleri/zendow-pvc-pencere 301
+/zendow-pencereler/ /pvc-sistemleri/zendow-pvc-pencere 301
+/zendow-pencereler /pvc-sistemleri/zendow-pvc-pencere 301
+/pvc-dograma-camlarda-olusan-terleme-nasil-onlenir-cozuldu/index.html /blog/kislik-pencere-yalitimi 301
+/pvc-dograma-camlarda-olusan-terleme-nasil-onlenir-cozuldu/ /blog/kislik-pencere-yalitimi 301
+/pvc-dograma-camlarda-olusan-terleme-nasil-onlenir-cozuldu /blog/kislik-pencere-yalitimi 301
+/pvc-dogramalarda-aksesuar-nedir-ve-cam-neden-onemlidir/index.html /blog/ispanyolet-nedir-nasil-calisir 301
+/pvc-dogramalarda-aksesuar-nedir-ve-cam-neden-onemlidir/ /blog/ispanyolet-nedir-nasil-calisir 301
+/pvc-dogramalarda-aksesuar-nedir-ve-cam-neden-onemlidir /blog/ispanyolet-nedir-nasil-calisir 301
+
+# Old numbered WordPress posts
+/1150-2/index.html /blog 301
+/1150-2/ /blog 301
+/1150-2 /blog 301
+
+# Sürme system posts
+/4990-2/index.html /pvc-sistemleri/legend-surme-sistem 301
+/4990-2/ /pvc-sistemleri/legend-surme-sistem 301
+/4990-2 /pvc-sistemleri/legend-surme-sistem 301
+/4741-2/index.html /pvc-sistemleri/legend-surme-plus-sistem 301
+/4741-2/ /pvc-sistemleri/legend-surme-plus-sistem 301
+/4741-2 /pvc-sistemleri/legend-surme-plus-sistem 301
+
+# Sineklik post
+/etkili-sineklik-secimi-ve-sineklerle-mucadelede-oneriler/index.html /blog/sineklik-cesitleri-hangisi-secilmeli 301
+/etkili-sineklik-secimi-ve-sineklerle-mucadelede-oneriler/ /blog/sineklik-cesitleri-hangisi-secilmeli 301
+/etkili-sineklik-secimi-ve-sineklerle-mucadelede-oneriler /blog/sineklik-cesitleri-hangisi-secilmeli 301
+
+# Egepen info post
+/neden-egepen-deceuninck/index.html /hakkimizda 301
+/neden-egepen-deceuninck/ /hakkimizda 301
+/neden-egepen-deceuninck /hakkimizda 301
+
+# Door maintenance post
+/kapi-gicirdamasi-nasil-giderilir-cozuldu/index.html /blog/pvc-pencere-bakimi-kis-aylari 301
+/kapi-gicirdamasi-nasil-giderilir-cozuldu/ /blog/pvc-pencere-bakimi-kis-aylari 301
+/kapi-gicirdamasi-nasil-giderilir-cozuldu /blog/pvc-pencere-bakimi-kis-aylari 301
+
+# ──────────────────────────────────────────────────────────
+# 4. LEGACY WORDPRESS — Post ID Query Strings (?p=)
+# WordPress uses ?p=ID format for draft/short links
+# ──────────────────────────────────────────────────────────
+/?p=3602 /blog/kislik-pencere-yalitimi 301
+/?p=1181 /blog/ispanyolet-nedir-nasil-calisir 301
+/?p=4990 /pvc-sistemleri/legend-surme-sistem 301
+/?p=4741 /pvc-sistemleri/legend-surme-plus-sistem 301
+/?p=1150 /hakkimizda 301
+/?p=3193 /pvc-sistemleri 301
+/?p=2827 /aluminyum-sistemleri 301
+/?p=3098 /cam-balkon-sistemleri 301
+/?p=3190 /dusakabin-sistemleri 301
+/?p=3196 /panjur-kepenk-sistemleri 301
+/?p=3067 /projeler 301
+/?p=5203 /sss 301
+/?p=4935 /iletisim 301
+/?p=3 /gizlilik-politikasi 301
+/?p=5239 /blog/sineklik-cesitleri-hangisi-secilmeli 301
+/?p=5189 /hakkimizda 301
+/?p=4732 /pvc-sistemleri/legend-art-pvc-pencere 301
+/?p=3752 /blog/pvc-pencere-secimi-rehberi 301
+/?p=938 /pvc-sistemleri/zendow-pvc-pencere 301
+/?p=883 /blog/pvc-pencere-bakimi-kis-aylari 301
+/?p=2904 / 301
+/?page_id=2827 /aluminyum-sistemleri 301
+/?page_id=3190 /dusakabin-sistemleri 301
+/?page_id=* / 301
+/?p=* /blog 301
+
+# ──────────────────────────────────────────────────────────
+# 5. LEGACY — Product Color Sample Pages (Egepen Color Codes)
+# ──────────────────────────────────────────────────────────
+/1025_darkoak.html /pvc-sistemleri/legend-pvc-pencere 301
+/1072_anthracitegrey.html /pvc-sistemleri/legend-pvc-pencere 301
+/1110_goldenoak.html /pvc-sistemleri/legend-pvc-pencere 301
+/1090_mahogany.html /pvc-sistemleri/legend-pvc-pencere 301
+/1032_walnut.html /pvc-sistemleri/legend-pvc-pencere 301
+/1050_winchesteroak.html /pvc-sistemleri/legend-pvc-pencere 301
+/1060_irishoak.html /pvc-sistemleri/legend-pvc-pencere 301
+/1082_basaltgrey.html /pvc-sistemleri/legend-pvc-pencere 301
+/1116_silvergrey.html /pvc-sistemleri/legend-pvc-pencere 301
+/1019_whitegrain.html /pvc-sistemleri/legend-pvc-pencere 301
+/1100_cream.html /pvc-sistemleri/legend-pvc-pencere 301
+
+# Catch-all for any other color HTML pages
+/*_*.html /pvc-sistemleri 301
+
+# ──────────────────────────────────────────────────────────
+# 6. INTERMEDIATE SITE (egepenakcayapi.com old routes)
+# These are from the previous Next.js version with different URL structure
+# ──────────────────────────────────────────────────────────
+/products /urunler 301
+/products/ /urunler 301
+/products/pvc-dograma /pvc-sistemleri 301
+/products/pvc-dograma/ /pvc-sistemleri 301
+/products/cam-balkon /cam-balkon-sistemleri 301
+/products/cam-balkon/ /cam-balkon-sistemleri 301
+/products/sineklik-sistemleri /sineklik-sistemleri 301
+/products/sineklik-sistemleri/ /sineklik-sistemleri 301
+/products/aluminyum-dograma /aluminyum-sistemleri 301
+/products/aluminyum-dograma/ /aluminyum-sistemleri 301
+/products/dusakabin /dusakabin-sistemleri 301
+/products/dusakabin/ /dusakabin-sistemleri 301
+/products/panjur /panjur-kepenk-sistemleri 301
+/products/panjur/ /panjur-kepenk-sistemleri 301
+/products/* /urunler 301
+/about /hakkimizda 301
+/about/ /hakkimizda 301
+/contact /iletisim 301
+/contact/ /iletisim 301
+
+# ──────────────────────────────────────────────────────────
+# 7. WORDPRESS INFRASTRUCTURE — Catch-alls
+# ──────────────────────────────────────────────────────────
+/wp-content/* / 301
+/wp-includes/* / 301
+/wp-admin/* / 301
+/wp-login.php / 301
+/wp-cron.php / 301
+/xmlrpc.php / 301
+/wp-json/* / 301
+/feed / 301
+/feed/ / 301
+/comments/feed / 301
+/comments/feed/ / 301
+
+# WordPress sitemaps
+/wp-sitemap.xml /sitemap.xml 301
+/wp-sitemap-posts-post-1.xml /sitemap.xml 301
+/wp-sitemap-posts-page-1.xml /sitemap.xml 301
+/wp-sitemap-taxonomies-category-1.xml /sitemap.xml 301
+
+# WordPress search & misc PHP
+/?s=* / 301
+/wp-signup.php / 301
+/wp-register.php / 301
+/wp-trackback.php / 301
+/wp-comments-post.php / 301
+
+# WordPress RSS feed variants
+/rss / 301
+/rss/ / 301
+/atom / 301
+/atom/ / 301
+/*/feed / 301
+/*/feed/ / 301
+
+# Date-based archive pages (WordPress)
+/2019/* /blog 301
+/2020/* /blog 301
+/2021/* /blog 301
+/2022/* /blog 301
+/2023/* /blog 301
+/2024/* /blog 301
+/2025/* /blog 301
+/2026/* /blog 301
+
+# Author & archive pages
+/author/akcaizorba /hakkimizda 301
+/author/akcaizorba/ /hakkimizda 301
+/author/akcaizorba/feed /hakkimizda 301
+/author/akcaizorba/feed/ /hakkimizda 301
+/author/* /hakkimizda 301
+/tag/* /blog 301
+/page/* /blog 301
+/attachment/* / 301
+
+# ──────────────────────────────────────────────────────────
+# 8. COMMON CRAWL PATTERNS & TYPOS
+# ──────────────────────────────────────────────────────────
+/anasayfa / 301
+/ana-sayfa / 301
+/urunlerimiz /urunler 301
+/hizmetlerimiz /hizmetler 301
+/referanslar /projeler 301
+/referanslarimiz /projeler 301
+/galeri /projeler 301
+/sikca-sorulan-sorular /sss 301
+/fiyat /teklif-al 301
+/fiyatlar /teklif-al 301
+/teklif /teklif-al 301
+/kvkk /gizlilik-politikasi 301
+
+# PVC common search terms
+/pvc-pencere /pvc-sistemleri 301
+/pvc-pencere/ /pvc-sistemleri 301
+/pvc-pencere-fiyatlari /pvc-sistemleri 301
+/pvc-kapi /pvc-sistemleri 301
+/egepen /hakkimizda 301
+/egepen-deceuninck /hakkimizda 301
+/cam-balkon-fiyatlari /cam-balkon-sistemleri 301
+/sineklik-fiyatlari /sineklik-sistemleri 301
+/panjur-fiyatlari /panjur-kepenk-sistemleri 301
+/dusakabin-fiyatlari /dusakabin-sistemleri 301
+/aluminyum-pencere /aluminyum-sistemleri 301
+/aluminyum-dograma-fiyatlari /aluminyum-sistemleri 301
+/aluminyum-pencere-fiyatlari /aluminyum-sistemleri 301
+/pvc-dograma /pvc-sistemleri 301
+/pvc-kapı /pvc-sistemleri 301
+/cam-balkon-perdesi /cam-balkon-sistemleri 301
+/cam-balkon-perdesi/ /cam-balkon-sistemleri 301
+/balkon-cam /cam-balkon-sistemleri 301
+/surme-cam /cam-balkon-sistemleri 301
+/sineklik-modelleri /sineklik-sistemleri 301
+/plise-sineklik /sineklik-sistemleri 301
+/dusakabin-modelleri /dusakabin-sistemleri 301
+/stor-panjur /panjur-kepenk-sistemleri 301
+/kepenk /panjur-kepenk-sistemleri 301
+/kepenk/ /panjur-kepenk-sistemleri 301
+/kepenk-fiyatlari /panjur-kepenk-sistemleri 301
+/beylikduzu-pvc /pvc-sistemleri 301
+/beylikduzu-cam-balkon /cam-balkon-sistemleri 301
+/beylikduzu /hakkimizda 301
+/hakkinda /hakkimizda 301
+/hakkinda/ /hakkimizda 301
+/biz-kimiz /hakkimizda 301
+/biz-kimiz/ /hakkimizda 301
+/blog/ /blog 301
+/haberler /blog 301
+/haberler/ /blog 301
+/makaleler /blog 301
+/makaleler/ /blog 301
+
+# ──────────────────────────────────────────────────────────
+# 9. .COM.TR DOMAIN BLANKET REDIRECT (must be LAST)
+# After specific paths are matched above, catch remaining .com.tr traffic
+# ──────────────────────────────────────────────────────────
+# Already handled by domain-level rule in section 1

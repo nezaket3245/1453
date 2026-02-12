@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Header } from "@/components/layout/Header";
+import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
 import { Footer } from "@/components/layout/Footer";
 import { QuoteForm } from "./QuoteForm";
 import { businessConfig } from "@/config/business.config";
@@ -8,9 +8,9 @@ import { businessConfig } from "@/config/business.config";
  * Quote Page Metadata
  */
 export const metadata: Metadata = {
-    title: `Ücretsiz Teklif Al | ${businessConfig.name}`,
+    title: 'Ücretsiz Teklif Al ve Keşif Formu',
     description:
-        `PVC pencere, cam balkon, alüminyum doğrama için ${businessConfig.address.district} ve çevresinde ücretsiz keşif ve teklif alın. 24 saat içinde size dönüş yapalım.`,
+        'PVC pencere, cam balkon, alüminyum doğrama için Beylikdüzü ve çevresinde ücretsiz keşif ve teklif alın. 24 saat içinde size dönüş yapalım.',
     keywords: [
         ...businessConfig.seo.mainKeywords,
         "PVC pencere teklif",
@@ -21,10 +21,10 @@ export const metadata: Metadata = {
     openGraph: {
         title: `Ücretsiz Teklif Al | ${businessConfig.name}`,
         description: `PVC pencere, cam balkon için ${businessConfig.address.district} ücretsiz keşif ve teklif alın.`,
-        url: "https://egepenakcayapi.com.tr/teklif-al",
+        url: "https://egepenakcayapi.com/teklif-al",
     },
     alternates: {
-        canonical: "https://egepenakcayapi.com.tr/teklif-al",
+        canonical: "https://egepenakcayapi.com/teklif-al",
     },
 };
 
@@ -36,10 +36,10 @@ const contactSchema = {
     "@type": "ContactPage",
     name: `${businessConfig.name} Teklif Formu`,
     description: `PVC pencere ve cam balkon için ${businessConfig.address.district} bölgesinde ücretsiz teklif alın`,
-    url: "https://egepenakcayapi.com.tr/teklif-al",
+    url: "https://egepenakcayapi.com/teklif-al",
     mainEntity: {
         "@type": "LocalBusiness",
-        "@id": "https://egepenakcayapi.com.tr/#organization",
+        "@id": "https://egepenakcayapi.com/#organization",
     },
 };
 
@@ -52,7 +52,7 @@ export default function QuotePage() {
                     __html: JSON.stringify(contactSchema),
                 }}
             />
-            <Header />
+            <HeaderOptimized />
             <main id="main-content" className="min-h-screen bg-gradient-to-b from-neutral-50 to-white">
                 {/* Hero Section */}
                 <section className="relative py-20 lg:py-32 bg-gradient-to-br from-primary-600 to-primary-800 overflow-hidden">
@@ -154,7 +154,7 @@ export default function QuotePage() {
                                     <ul className="space-y-2 text-sm text-neutral-700">
                                         <li className="flex items-center gap-2">
                                             <CheckIcon className="w-4 h-4 text-green-500" />
-                                            <span>10 Yıl Garanti</span>
+                                            <span>Egepen Yetkili Bayi</span>
                                         </li>
                                         <li className="flex items-center gap-2">
                                             <CheckIcon className="w-4 h-4 text-green-500" />

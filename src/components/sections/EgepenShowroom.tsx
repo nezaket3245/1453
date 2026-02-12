@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/motion-lite";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 import { Button } from "@/components/ui/Button";
 import { analytics } from "@/lib/analytics";
@@ -154,7 +154,6 @@ export function EgepenShowroom({
   showCatalogDownload = true 
 }: EgepenShowroomProps) {
   const [selectedProduct, setSelectedProduct] = useState(egepenProducts[0]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleProductSelect = (product: typeof egepenProducts[0]) => {
     setSelectedProduct(product);
@@ -176,11 +175,6 @@ export function EgepenShowroom({
     
     // Open PDF in new tab
     window.open(product.catalogUrl, "_blank");
-  };
-
-  const handleQuoteRequest = () => {
-    analytics.trackQuoteRequest(selectedProduct.name, "showroom");
-    setIsModalOpen(true);
   };
 
   return (
@@ -226,14 +220,16 @@ export function EgepenShowroom({
         </div>
 
         {/* Product Series Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-3 mb-12" role="tablist" aria-label="PVC pencere serileri">
           {egepenProducts.map((product) => (
             <button
               key={product.id}
               onClick={() => handleProductSelect(product)}
-              aria-pressed={selectedProduct.id === product.id}
+              role="tab"
+              aria-selected={selectedProduct.id === product.id}
+              aria-controls="showroom-tabpanel"
               className={`
-                relative px-6 py-3 rounded-xl font-bold text-sm transition-all
+                relative px-6 py-3 rounded-xl font-bold text-sm transition-colors
                 ${selectedProduct.id === product.id
                   ? "bg-primary-600 text-white shadow-lg shadow-primary-500/30"
                   : "bg-white text-neutral-700 hover:bg-primary-50 border border-neutral-200"
@@ -241,7 +237,7 @@ export function EgepenShowroom({
               `}
             >
               {product.badge && selectedProduct.id === product.id && (
-                <span className="absolute -top-2 -right-2 px-2 py-0.5 bg-secondary-500 text-white text-[10px] font-bold rounded-full">
+                <span className="absolute -top-2 -right-2 px-2 py-0.5 bg-secondary-600 text-white text-[10px] font-bold rounded-full">
                   {product.badge}
                 </span>
               )}
@@ -258,6 +254,9 @@ export function EgepenShowroom({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
+            id="showroom-tabpanel"
+            role="tabpanel"
+            aria-label={selectedProduct.name}
             className="grid lg:grid-cols-2 gap-12 items-start"
           >
             {/* Product Image & Quick Info */}
@@ -267,13 +266,15 @@ export function EgepenShowroom({
                   src={selectedProduct.image}
                   alt={`Egepen ${selectedProduct.name} PVC Profil`}
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-contain p-8"
                 />
                 
                 {/* Badge */}
                 {selectedProduct.badge && (
-                  <div className="absolute top-4 left-4 px-4 py-2 bg-secondary-500 text-white text-sm font-bold rounded-full shadow-lg">
-                    ⭐ {selectedProduct.badge}
+                  <div className="absolute top-4 left-4 px-4 py-2 bg-secondary-600 text-white text-sm font-bold rounded-full shadow-lg flex items-center gap-1.5">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                    {selectedProduct.badge}
                   </div>
                 )}
               </div>
@@ -283,13 +284,13 @@ export function EgepenShowroom({
                 <Button
                   variant="primary"
                   size="lg"
-                  onClick={handleQuoteRequest}
+                  href="/pvc-sistemleri"
                   className="flex-1"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  Fiyat Teklifi Al
+                  Ürün Detayları
                 </Button>
                 
                 {showCatalogDownload && (
@@ -311,7 +312,10 @@ export function EgepenShowroom({
 
               {/* Color Options */}
               <div className="mt-8 p-6 bg-white rounded-2xl border border-neutral-200">
-                <h4 className="font-bold text-neutral-900 mb-4">🎨 Renk Seçenekleri</h4>
+                <h3 className="font-bold text-neutral-900 mb-4 flex items-center gap-2">
+                  <svg className="w-5 h-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z" /></svg>
+                  Renk Seçenekleri
+                </h3>
                 <div className="flex flex-wrap gap-2">
                   {selectedProduct.colors.map((color) => (
                     <span
@@ -351,15 +355,22 @@ export function EgepenShowroom({
                   </h4>
                 </div>
                 <table className="w-full">
+                  <caption className="sr-only">{selectedProduct.name} teknik özellikleri</caption>
+                  <thead className="sr-only">
+                    <tr>
+                      <th scope="col">Özellik</th>
+                      <th scope="col">Değer</th>
+                    </tr>
+                  </thead>
                   <tbody>
                     {Object.entries(selectedProduct.specs).map(([key, value], index) => (
                       <tr 
                         key={key}
                         className={index % 2 === 0 ? "bg-neutral-50" : "bg-white"}
                       >
-                        <td className="px-6 py-4 font-medium text-neutral-700 border-b border-neutral-100">
+                        <th scope="row" className="px-6 py-4 font-medium text-neutral-700 border-b border-neutral-100 text-left">
                           {specLabels[key] || key}
-                        </td>
+                        </th>
                         <td className="px-6 py-4 text-right font-bold text-primary-600 border-b border-neutral-100">
                           {typeof value === "number" ? `${value} Oda` : value}
                         </td>
@@ -401,7 +412,7 @@ export function EgepenShowroom({
                 key={product.id}
                 onClick={() => handleProductSelect(product)}
                 className={`
-                  group p-4 rounded-2xl border-2 transition-all text-left
+                  group p-4 rounded-2xl border-2 transition-colors text-left
                   ${selectedProduct.id === product.id
                     ? "border-primary-500 bg-primary-50"
                     : "border-neutral-200 bg-white hover:border-primary-300 hover:bg-primary-50/50"
@@ -413,6 +424,7 @@ export function EgepenShowroom({
                     src={product.image}
                     alt={product.name}
                     fill
+                    sizes="(max-width: 768px) 25vw, 120px"
                     className="object-contain p-2 group-hover:scale-105 transition-transform"
                   />
                 </div>

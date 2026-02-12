@@ -4,6 +4,35 @@
  * Egepen Akçayapı - Design System
  * High-Performance CSS with Custom Properties
  * Mobile-First Approach with Zero Layout Shift
+ * 
+ * Performance Optimizations:
+ * - CSS containment for better rendering
+ * - content-visibility for off-screen content
+ * - will-change for animated elements
+ * - Reduced motion support
+ */
+
+/* ===============================================
+   PERFORMANCE: Content Containment
+   =============================================== */
+.section,
+section {
+  contain: layout style;
+}
+
+article,
+aside,
+footer,
+header,
+nav {
+  contain: layout;
+}
+
+/**
+ * Off-screen content optimization
+ * Note: content-visibility: auto can cause SEO crawlers to miss content
+ * and Lighthouse to report missing elements. Only apply to non-critical
+ * sections deep in the page.
  */
 
 /* ===============================================
@@ -29,7 +58,7 @@
   --secondary-300: #ffb74d;
   --secondary-400: #ffa31a;
   --secondary-500: #e68a00;
-  --secondary-600: #b36b00;
+  --secondary-600: #9a5c00;
   --secondary-700: #804d00;
   --secondary-800: #4d2e00;
   --secondary-900: #1a0f00;
@@ -192,22 +221,19 @@
   --container-2xl: 1536px;
 }
 
-/* Dark Mode Override */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --background-secondary: #111827;
-    --background-tertiary: #1f2937;
-    --foreground: #f9fafb;
-    --foreground-secondary: #d1d5db;
-    --foreground-muted: #6b7280;
-    --surface: #111827;
-    --surface-elevated: #1f2937;
-    --surface-overlay: rgba(0, 0, 0, 0.8);
-    --border: #374151;
-    --border-hover: #4b5563;
-  }
-}
+/**
+ * Dark Mode Override - DISABLED
+ * 
+ * The site uses hardcoded light-mode Tailwind classes (bg-white, text-neutral-900, etc.)
+ * throughout all components. Enabling dark mode CSS variables without updating every
+ * component's classes causes visual conflicts (e.g. dark background + dark text).
+ * 
+ * To properly enable dark mode in the future:
+ * 1. Add `darkMode: 'class'` to Tailwind config
+ * 2. Update all components with `dark:` variants
+ * 3. Add a theme toggle component
+ * 4. Then re-enable these variable overrides
+ */
 
 /* Tailwind Theme Integration */
 @theme inline {
@@ -254,34 +280,15 @@
   --color-neutral-800: var(--neutral-800);
   --color-neutral-900: var(--neutral-900);
   --color-neutral-950: var(--neutral-950);
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
 }
 
 /* ===============================================
    BASE STYLES
+   (Box-sizing, html, body base rules are inlined 
+   in layout.tsx critical CSS for FCP)
    =============================================== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-size-adjust: 100%;
-}
-
-body {
-  min-height: 100vh;
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
-  line-height: var(--leading-normal);
-  overflow-x: hidden;
-}
 
 /* Focus Styles for Accessibility */
 :focus-visible {
@@ -381,137 +388,6 @@ select,
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-.text-gradient-secondary {
-  background: linear-gradient(135deg, var(--secondary-400) 0%, var(--secondary-600) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ===============================================
-   GLASSMORPHISM UTILITIES
-   =============================================== */
-.glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.glass-dark {
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* ===============================================
-   BUTTON STYLES
-   =============================================== */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  font-weight: 600;
-  font-size: var(--font-base);
-  line-height: 1;
-  border-radius: var(--radius-lg);
-  transition: all var(--transition-base);
-  cursor: pointer;
-  border: none;
-  text-decoration: none;
-  white-space: nowrap;
-  min-height: 44px;
-  min-width: 44px;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
-  color: white;
-  box-shadow: var(--shadow-md), 0 0 0 0 rgba(0, 102, 230, 0.4);
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
-  box-shadow: var(--shadow-lg), 0 0 20px rgba(0, 102, 230, 0.3);
-  transform: translateY(-2px);
-}
-
-.btn-primary:active {
-  transform: translateY(0);
-}
-
-.btn-secondary {
-  background: linear-gradient(135deg, var(--secondary-500) 0%, var(--secondary-600) 100%);
-  color: white;
-  box-shadow: var(--shadow-md);
-}
-
-.btn-secondary:hover {
-  background: linear-gradient(135deg, var(--secondary-600) 0%, var(--secondary-700) 100%);
-  box-shadow: var(--shadow-lg), 0 0 20px rgba(230, 138, 0, 0.3);
-  transform: translateY(-2px);
-}
-
-.btn-outline {
-  background: transparent;
-  color: var(--primary-600);
-  border: 2px solid var(--primary-500);
-}
-
-.btn-outline:hover {
-  background: var(--primary-500);
-  color: white;
-  transform: translateY(-2px);
-}
-
-.btn-ghost {
-  background: transparent;
-  color: var(--foreground);
-}
-
-.btn-ghost:hover {
-  background: var(--neutral-100);
-}
-
-.btn-lg {
-  padding: 1rem 2rem;
-  font-size: var(--font-lg);
-}
-
-.btn-sm {
-  padding: 0.5rem 1rem;
-  font-size: var(--font-sm);
-}
-
-/* ===============================================
-   CARD STYLES
-   =============================================== */
-.card {
-  background: var(--surface);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--border);
-  overflow: hidden;
-  transition: all var(--transition-base);
-}
-
-.card:hover {
-  box-shadow: var(--shadow-xl);
-  transform: translateY(-4px);
-}
-
-.card-glass {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-lg);
 }
 
 /* ===============================================
@@ -728,13 +604,8 @@ select,
 
 /* ===============================================
    IMAGE OPTIMIZATION
+   (Basic img rules are in inline critical CSS for FCP)
    =============================================== */
-img {
-  max-width: 100%;
-  height: auto;
-  vertical-align: middle;
-}
-
 img[loading="lazy"] {
   background-color: var(--neutral-100);
 }

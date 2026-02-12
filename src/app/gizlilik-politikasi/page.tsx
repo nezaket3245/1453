@@ -1,21 +1,25 @@
 import { Metadata } from "next";
-import { Header } from "@/components/layout/Header";
+import Link from "next/link";
+import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
 import { Footer } from "@/components/layout/Footer";
 import { businessConfig } from "@/config/business.config";
 
 export const metadata: Metadata = {
-    title: "Gizlilik Politikası ve KVKK | Egepen Akçayapı",
+    title: 'Gizlilik Politikası ve KVKK Aydınlatma',
     description: "Egepen Akçayapı kişisel verilerin korunması kanunu (KVKK) kapsamında gizlilik politikası ve çerez politikası hakkında bilgilendirme.",
     robots: {
         index: true,
         follow: true,
+    },
+    alternates: {
+        canonical: `${businessConfig.siteUrl}/gizlilik-politikasi`,
     },
 };
 
 export default function GizlilikPolitikasiPage() {
     return (
         <>
-            <Header />
+            <HeaderOptimized />
             <main id="main-content" className="min-h-screen bg-neutral-50">
                 {/* Hero Section */}
                 <section className="bg-gradient-to-br from-primary-600 to-primary-800 text-white py-20">
@@ -23,9 +27,9 @@ export default function GizlilikPolitikasiPage() {
                         <nav aria-label="Breadcrumb" className="mb-8">
                             <ol className="flex items-center gap-2 text-sm text-primary-200">
                                 <li>
-                                    <a href="/" title="Ana Sayfa" className="hover:text-white transition-colors">
+                                    <Link href="/" title="Ana Sayfa" className="hover:text-white transition-colors">
                                         Ana Sayfa
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li aria-hidden="true">/</li>
                                 <li className="text-white font-medium">Gizlilik Politikası</li>
@@ -149,7 +153,6 @@ export default function GizlilikPolitikasiPage() {
                                     <p><strong>Firma:</strong> {businessConfig.legalName}</p>
                                     <p><strong>Adres:</strong> {businessConfig.address.full}</p>
                                     <p><strong>Telefon:</strong> {businessConfig.contact.mobile}</p>
-                                    <p><strong>E-posta:</strong> {businessConfig.contact.email}</p>
                                 </address>
                             </div>
 

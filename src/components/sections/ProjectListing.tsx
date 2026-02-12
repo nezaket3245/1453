@@ -27,7 +27,7 @@ export function ProjectListing({ projects: initialProjects, categories }: Projec
                             <button
                                 key={category.id}
                                 onClick={() => setActiveCategory(category.id)}
-                                className={`flex-shrink-0 px-5 py-2.5 rounded-full font-medium text-sm transition-all flex items-center gap-2 border ${activeCategory === category.id
+                                className={`flex-shrink-0 px-5 py-2.5 rounded-full font-medium text-sm transition-shadow flex items-center gap-2 border ${activeCategory === category.id
                                     ? "bg-primary-600 text-white border-primary-600 shadow-lg shadow-primary-600/20"
                                     : "bg-white text-neutral-600 border-neutral-200 hover:border-primary-300 hover:bg-primary-50"
                                     }`}
@@ -53,7 +53,7 @@ export function ProjectListing({ projects: initialProjects, categories }: Projec
                                     exit={{ opacity: 0, scale: 0.9 }}
                                     transition={{ duration: 0.3 }}
                                     key={project.id}
-                                    className="group bg-white rounded-2xl overflow-hidden border border-neutral-100 shadow-sm hover:shadow-xl transition-all duration-300"
+                                    className="group bg-white rounded-2xl overflow-hidden border border-neutral-100 shadow-sm hover:shadow-xl transition-shadow duration-300"
                                 >
                                     {/* Image */}
                                     <div className="relative aspect-[4/3] overflow-hidden">

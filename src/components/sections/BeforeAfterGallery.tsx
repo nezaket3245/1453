@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/motion-lite";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 
 /**
@@ -126,9 +126,10 @@ export function BeforeAfterGallery() {
                                     src={activeItem.after}
                                     alt={`${activeItem.title} - Sonra`}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                     className="object-cover"
                                 />
-                                <div className="absolute bottom-4 right-4 px-3 py-1.5 bg-green-500 text-white text-sm font-bold rounded-lg">
+                                <div className="absolute bottom-4 right-4 px-3 py-1.5 bg-green-700 text-white text-sm font-bold rounded-lg">
                                     SONRA
                                 </div>
                             </div>
@@ -142,6 +143,7 @@ export function BeforeAfterGallery() {
                                     src={activeItem.before}
                                     alt={`${activeItem.title} - Önce`}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                     className="object-cover"
                                 />
                                 <div className="absolute bottom-4 left-4 px-3 py-1.5 bg-neutral-700 text-white text-sm font-bold rounded-lg">
@@ -189,7 +191,7 @@ export function BeforeAfterGallery() {
                                     setActiveItem(item);
                                     setSliderPosition(50);
                                 }}
-                                className={`w-full flex items-center gap-4 p-4 rounded-xl transition-all ${activeItem.id === item.id
+                                className={`w-full flex items-center gap-4 p-4 rounded-xl transition-colors ${activeItem.id === item.id
                                     ? "bg-white/10 border border-white/20"
                                     : "bg-white/5 border border-transparent hover:bg-white/10"
                                     }`}
@@ -199,6 +201,7 @@ export function BeforeAfterGallery() {
                                         src={item.after}
                                         alt={item.title}
                                         fill
+                                        sizes="(max-width: 768px) 25vw, 120px"
                                         className="object-cover"
                                     />
                                 </div>

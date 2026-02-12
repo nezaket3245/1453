@@ -41,15 +41,6 @@ export function formatPrice(amount: number): string {
 }
 
 /**
- * Generates a WhatsApp URL with pre-filled message
- */
-export function getWhatsAppUrl(phone: string, message?: string): string {
-    const cleanedPhone = phone.replace(/\D/g, "");
-    const encodedMessage = message ? encodeURIComponent(message) : "";
-    return `https://wa.me/${cleanedPhone}${encodedMessage ? `?text=${encodedMessage}` : ""}`;
-}
-
-/**
  * Truncates text to a specified length with ellipsis
  */
 export function truncateText(text: string, maxLength: number): string {

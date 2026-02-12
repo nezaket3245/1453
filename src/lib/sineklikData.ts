@@ -341,7 +341,7 @@ export const sineklikSystems: SineklikSystem[] = [
             { name: 'Altın Meşe', ral: 'Wood Grain', hex: '#B8860B' },
             { name: 'Kahverengi', ral: 'RAL 8014', hex: '#4A3728' },
         ],
-        warranty: '3 Yıl Garanti',
+        warranty: '3 Yıl',
         priceRange: 'orta',
         seoKeywords: [
             'plise sineklik',
@@ -426,7 +426,7 @@ Sistem kapalıyken üst kasada toplanır ve pencere görünümünü hiç bozmaz.
             { name: 'Beyaz', ral: 'RAL 9016', hex: '#F7F9FA' },
             { name: 'Antrasit Gri', ral: 'RAL 7016', hex: '#383E42' },
         ],
-        warranty: '3 Yıl Garanti',
+        warranty: '3 Yıl',
         priceRange: 'orta',
         seoKeywords: [
             'yatay plise sineklik',
@@ -518,7 +518,7 @@ Hem menteşeli kapı tipi hem de sürme pencere tipi üretimi yapılmaktadır. B
             { name: 'Siyah Tül + Antrasit Profil', ral: 'RAL 7016', hex: '#383E42' },
             { name: 'Siyah Tül + Kahverengi Profil', ral: 'RAL 8014', hex: '#4A3728' },
         ],
-        warranty: '5 Yıl Garanti (Tül dahil)',
+        warranty: '5 Yıl (Tül dahil)',
         priceRange: 'premium',
         seoKeywords: [
             'kedi sinekliği',
@@ -615,7 +615,7 @@ Dayanıklı alüminyum çerçeve ve yüksek görünürlük sağlayan fiberglass 
             { name: 'Kahverengi', ral: 'RAL 8014', hex: '#4A3728' },
             { name: 'Antrasit', ral: 'RAL 7016', hex: '#383E42' },
         ],
-        warranty: '2 Yıl Garanti',
+        warranty: '2 Yıl',
         priceRange: 'ekonomik',
         seoKeywords: [
             'sürme sineklik',
@@ -698,7 +698,7 @@ Dayanıklı alüminyum çerçeve ve yüksek görünürlük sağlayan fiberglass 
             { name: 'Kahverengi', ral: 'RAL 8014', hex: '#4A3728' },
             { name: 'Altın Meşe', ral: 'Wood Grain', hex: '#B8860B' },
         ],
-        warranty: '3 Yıl Garanti',
+        warranty: '3 Yıl',
         priceRange: 'orta',
         seoKeywords: [
             'menteşeli sineklik',
@@ -782,7 +782,7 @@ Yaylı otomatik geri sarım mekanizması sayesinde bıraktığınızda yavaşça
             { name: 'Beyaz', ral: 'RAL 9016', hex: '#F7F9FA' },
             { name: 'Antrasit Gri', ral: 'RAL 7016', hex: '#383E42' },
         ],
-        warranty: '2 Yıl Garanti',
+        warranty: '2 Yıl',
         priceRange: 'orta',
         seoKeywords: [
             'stor sineklik',

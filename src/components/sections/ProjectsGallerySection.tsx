@@ -1,30 +1,54 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useCallback } from "react";
+import { motion, AnimatePresence } from "@/lib/motion-lite";
 import OptimizedImage from "@/components/ui/OptimizedImage";
+import { Lightbox, type LightboxImage } from "@/components/ui/Lightbox";
 import { businessConfig } from "@/config/business.config";
 
 /**
  * ProjectsGallerySection Component
  * 
  * Visual trust builder showcasing completed projects in Beylikdüzü region.
- * Replaces generic stock photos with real project examples.
+ * Features a full-screen Lightbox with image gallery navigation,
+ * keyboard support, and swipe gestures on mobile.
  * 
  * SEO: Targets "Beylikdüzü PVC montaj", "cam balkon kurulum örnekleri"
  */
 
-import { projects, projectCategories } from "@/lib/projectsData";
+import { projects, projectCategories, type Project } from "@/lib/projectsData";
 
 export function ProjectsGallerySection() {
     const [activeCategory, setActiveCategory] = useState("all");
-    const [selectedProject, setSelectedProject] = useState<any>(null);
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [lightboxImages, setLightboxImages] = useState<LightboxImage[]>([]);
+    const [lightboxTitle, setLightboxTitle] = useState("");
+    const [lightboxIndex, setLightboxIndex] = useState(0);
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
     const filteredProjects = activeCategory === "all"
         ? projects
         : projects.filter(p => p.category === activeCategory);
 
     const categories = projectCategories;
+
+    /** Open lightbox for a specific project */
+    const openLightbox = useCallback((project: Project, imageIndex = 0) => {
+        const images: LightboxImage[] = project.images.map((src, i) => ({
+            src,
+            alt: `${project.title} - ${project.location} - Fotoğraf ${i + 1}`,
+        }));
+        setLightboxImages(images);
+        setLightboxTitle(project.title);
+        setLightboxIndex(imageIndex);
+        setSelectedProject(project);
+        setLightboxOpen(true);
+    }, []);
+
+    const closeLightbox = useCallback(() => {
+        setLightboxOpen(false);
+        setSelectedProject(null);
+    }, []);
 
     return (
         <section
@@ -71,7 +95,7 @@ export function ProjectsGallerySection() {
                         <button
                             key={category.id}
                             onClick={() => setActiveCategory(category.id)}
-                            className={`px-5 py-2.5 rounded-full font-bold text-sm transition-all ${activeCategory === category.id
+                            className={`px-5 py-2.5 rounded-full font-bold text-sm transition-shadow ${activeCategory === category.id
                                 ? "bg-primary-600 text-white shadow-lg shadow-primary-500/30"
                                 : "bg-white text-neutral-600 hover:bg-neutral-100 border border-neutral-200"
                                 }`}
@@ -95,8 +119,8 @@ export function ProjectsGallerySection() {
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 transition={{ delay: index * 0.05 }}
-                                className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer border border-neutral-100"
-                                onClick={() => setSelectedProject(project)}
+                                className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 cursor-pointer border border-neutral-100"
+                                onClick={() => openLightbox(project)}
                             >
                                 {/* Image */}
                                 <div className="relative aspect-[4/3] overflow-hidden">
@@ -104,6 +128,7 @@ export function ProjectsGallerySection() {
                                         src={project.images[0]}
                                         alt={`${project.title} - ${project.location}`}
                                         fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                                     />
                                     {/* Overlay on hover */}
@@ -139,7 +164,7 @@ export function ProjectsGallerySection() {
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                         </svg>
                                         {project.location}
-                                        <span className="text-neutral-300">•</span>
+                                        <span className="text-neutral-500">•</span>
                                         {project.year}
                                     </div>
                                     <p className="text-sm text-neutral-600 line-clamp-2">
@@ -171,81 +196,99 @@ export function ProjectsGallerySection() {
                 </motion.div>
             </div>
 
-            {/* Project Detail Modal */}
+            {/* Lightbox — full-screen image gallery */}
+            <Lightbox
+                images={lightboxImages}
+                initialIndex={lightboxIndex}
+                isOpen={lightboxOpen}
+                onClose={closeLightbox}
+                title={lightboxTitle}
+            />
+
+            {/* Project Detail Drawer */}
             <AnimatePresence>
-                {selectedProject && (
+                {selectedProject && !lightboxOpen && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-                        onClick={() => setSelectedProject(null)}
+                        className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/60 backdrop-blur-sm"
+                        onClick={closeLightbox}
                     >
                         <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                            className="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
-                            onClick={(e) => e.stopPropagation()}
+                            initial={{ y: 100, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: 100, opacity: 0 }}
+                            className="bg-white rounded-t-3xl md:rounded-3xl max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl"
+                            onClick={(e: React.MouseEvent) => e.stopPropagation()}
                         >
-                            {/* Modal Image */}
-                            <div className="relative aspect-video">
-                                <OptimizedImage
-                                    src={selectedProject.images[0]}
-                                    alt={selectedProject.title}
-                                    fill
-                                    className="object-cover"
-                                />
-                                <button
-                                    onClick={() => setSelectedProject(null)}
-                                    className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors"
-                                    aria-label="Kapat"
-                                >
-                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" strokeWidth={2}>
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
-                            </div>
+                            <div className="p-6 md:p-8">
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className="flex items-center gap-3">
+                                        <span className="px-3 py-1 bg-primary-50 text-primary-600 text-xs font-bold rounded-full">
+                                            {selectedProject.category}
+                                        </span>
+                                        <span className="text-sm text-neutral-500">{selectedProject.year}</span>
+                                    </div>
+                                    <button
+                                        onClick={closeLightbox}
+                                        className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center hover:bg-neutral-200 transition-colors"
+                                        aria-label="Kapat"
+                                    >
+                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <h3 className="text-xl font-bold text-neutral-900 mb-2">{selectedProject.title}</h3>
+                                <p className="text-neutral-600 text-sm mb-6">{selectedProject.description}</p>
 
-                            {/* Modal Content */}
-                            <div className="p-8">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <span className="px-3 py-1 bg-primary-50 text-primary-600 text-xs font-bold rounded-full">
-                                        {selectedProject.category}
-                                    </span>
-                                    <span className="text-sm text-neutral-500">{selectedProject.year}</span>
+                                {/* Image Thumbnails — click to open lightbox at that image */}
+                                <div className="flex gap-2 overflow-x-auto mb-6">
+                                    {selectedProject.images.map((img: string, i: number) => (
+                                        <button
+                                            key={i}
+                                            onClick={() => openLightbox(selectedProject, i)}
+                                            className="relative w-24 h-18 rounded-lg overflow-hidden flex-shrink-0 hover:ring-2 hover:ring-primary-500 transition-shadow"
+                                            aria-label={`Fotoğraf ${i + 1} büyüt`}
+                                        >
+                                            <OptimizedImage src={img} alt="" fill sizes="96px" className="object-cover" />
+                                        </button>
+                                    ))}
                                 </div>
-                                <h3 className="text-2xl font-bold text-neutral-900 mb-2">
-                                    {selectedProject.title}
-                                </h3>
-                                <p className="flex items-center gap-2 text-neutral-600 mb-6">
-                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" strokeWidth={2}>
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+
+                                {/* Features */}
+                                {selectedProject.features && selectedProject.features.length > 0 && (
+                                    <ul className="grid grid-cols-2 gap-2 mb-6">
+                                        {selectedProject.features.map((f: string, i: number) => (
+                                            <li key={i} className="flex items-center gap-2 text-sm text-neutral-700">
+                                                <svg className="w-4 h-4 text-primary-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                                {f}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+
+                                {/* Testimonial */}
+                                {selectedProject.testimonial && (
+                                    <blockquote className="bg-neutral-50 rounded-xl p-4 mb-6 border-l-4 border-primary-500">
+                                        <p className="text-sm text-neutral-700 italic mb-2">&ldquo;{selectedProject.testimonial.text}&rdquo;</p>
+                                        <cite className="text-sm font-bold text-neutral-900 not-italic">— {selectedProject.testimonial.author}</cite>
+                                    </blockquote>
+                                )}
+
+                                <a
+                                    href="/teklif-al"
+                                    title="Benzer proje için teklif al"
+                                    className="inline-flex items-center justify-center w-full gap-2 px-6 py-3.5 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors min-h-[48px]"
+                                >
+                                    Benzer Projem İçin Teklif Al
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                     </svg>
-                                    {selectedProject.location}
-                                </p>
-                                <p className="text-neutral-600 leading-relaxed mb-8">
-                                    {selectedProject.description}
-                                </p>
-                                <div className="flex flex-col sm:flex-row gap-4">
-                                    <a
-                                        href="/teklif-al"
-                                        title="Benzer Proje İçin Ücretsiz Teklif Alın"
-                                        className="flex-1 text-center px-6 py-3 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors"
-                                    >
-                                        Benzer Proje İçin Teklif Al
-                                    </a>
-                                    <a
-                                        href={`https://wa.me/${businessConfig.contact.whatsapp}?text=${encodeURIComponent(`Merhaba, "${selectedProject.title}" projeniz hakkında bilgi almak istiyorum.`)}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer nofollow"
-                                        title="Bu Proje Hakkında WhatsApp'tan Sorun"
-                                        className="flex-1 text-center px-6 py-3 bg-green-500 text-white font-bold rounded-xl hover:bg-green-600 transition-colors"
-                                    >
-                                        WhatsApp ile Sor
-                                    </a>
-                                </div>
+                                </a>
                             </div>
                         </motion.div>
                     </motion.div>

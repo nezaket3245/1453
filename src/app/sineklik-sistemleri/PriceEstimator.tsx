@@ -9,7 +9,6 @@
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { businessConfig } from '@/config/business.config';
 
 interface PriceRange {
     min: number;
@@ -108,11 +107,12 @@ export default function PriceEstimator() {
     return (
         <div className="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-3xl p-8 text-white">
             <div className="text-center mb-8">
-                <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-sm font-medium mb-4">
-                    💰 Anında Fiyat Tahmini
+                <span className="inline-flex items-center gap-2 px-3 py-1 bg-white/20 rounded-full text-sm font-medium mb-4">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    Anında Fiyat Tahmini
                 </span>
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">Sineklik Fiyat Hesaplayıcı</h3>
-                <p className="text-emerald-100">
+                <p className="text-emerald-50">
                     Ölçülerinizi girin, tahmini fiyatı anında görün
                 </p>
             </div>
@@ -202,7 +202,7 @@ export default function PriceEstimator() {
                             {currentSystem.meshUpgrades.map((mesh, idx) => (
                                 <label
                                     key={idx}
-                                    className={`flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all ${
+                                    className={`flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-colors ${
                                         meshUpgrade === idx
                                             ? 'bg-white/30 border-2 border-white'
                                             : 'bg-white/10 border-2 border-transparent hover:bg-white/20'
@@ -278,20 +278,14 @@ export default function PriceEstimator() {
 
                         <div className="mt-6 space-y-3">
                             <Link
-                                href="/teklif-al"
+                                href="/iletisim"
                                 className="block w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-center font-semibold rounded-xl transition-colors"
                             >
-                                Kesin Fiyat İçin Teklif Al
+                                Detaylı Bilgi İçin İletişime Geçin
                             </Link>
-                            <a
-                                href={`tel:${businessConfig.contact.mobileRaw}`}
-                                className="block w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 text-center font-semibold rounded-xl transition-colors"
-                            >
-                                📞 Hemen Ara
-                            </a>
                         </div>
 
-                        <p className="text-xs text-gray-400 text-center mt-4">
+                        <p className="text-xs text-gray-600 text-center mt-4">
                             * Bu fiyatlar tahminidir. Kesin fiyat için ücretsiz keşif gereklidir.
                         </p>
                     </motion.div>

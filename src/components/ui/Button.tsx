@@ -1,8 +1,5 @@
-"use client";
-
 import { forwardRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 /**
@@ -132,7 +129,8 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
         const baseStyles = cn(
             "inline-flex items-center justify-center",
             "font-semibold rounded-lg",
-            "transition-all duration-200 ease-in-out",
+            "transition-[transform,background-color,box-shadow,opacity] duration-200 ease-in-out",
+            "hover:scale-[1.02] active:scale-[0.98]",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2",
             "disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none",
             "touch-manipulation",
@@ -156,19 +154,13 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
             </>
         );
 
-        const motionProps = {
-            whileHover: { scale: 1.02 },
-            whileTap: { scale: 0.98 },
-            transition: { type: "spring", stiffness: 400, damping: 17 } as const,
-        };
-
         // Render as Link
         if ("href" in props && props.href) {
             const { href, external } = props as ButtonAsLinkProps;
 
             if (external) {
                 return (
-                    <motion.a
+                    <a
                         ref={ref as React.ForwardedRef<HTMLAnchorElement>}
                         href={href}
                         target="_blank"
@@ -177,25 +169,22 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
                         onClick={onClick}
                         title={title}
                         aria-label={ariaLabel}
-                        {...motionProps}
                     >
                         {content}
-                    </motion.a>
+                    </a>
                 );
             }
 
             return (
-                <Link href={href} passHref legacyBehavior>
-                    <motion.a
-                        ref={ref as React.ForwardedRef<HTMLAnchorElement>}
-                        className={baseStyles}
-                        onClick={onClick}
-                        title={title}
-                        aria-label={ariaLabel}
-                        {...motionProps}
-                    >
-                        {content}
-                    </motion.a>
+                <Link
+                    ref={ref as React.ForwardedRef<HTMLAnchorElement>}
+                    href={href}
+                    className={baseStyles}
+                    onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}
+                    title={title}
+                    aria-label={ariaLabel}
+                >
+                    {content}
                 </Link>
             );
         }
@@ -203,7 +192,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
         // Render as Button
         const buttonProps = props as ButtonAsButtonProps;
         return (
-            <motion.button
+            <button
                 ref={ref as React.ForwardedRef<HTMLButtonElement>}
                 type={buttonProps.type || "button"}
                 disabled={buttonProps.disabled || isLoading}
@@ -212,10 +201,9 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
                 aria-disabled={buttonProps.disabled || isLoading}
                 title={title}
                 aria-label={ariaLabel}
-                {...motionProps}
             >
                 {content}
-            </motion.button>
+            </button>
         );
     }
 );

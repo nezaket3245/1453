@@ -9,70 +9,109 @@ import { sineklikSystems } from "@/lib/sineklikData";
 import { aluminumSystems } from "@/lib/aluminumData";
 import { panjurSystems } from "@/lib/panjurData";
 import { dusakabinSystems } from "@/lib/dusakabinData";
+import { businessConfig } from "@/config/business.config";
 
-const baseUrl = "https://akcapen-pvc.pages.dev";
+const baseUrl = businessConfig.siteUrl;
+const lastMod = new Date('2026-02-12');
 
 export default function sitemap(): MetadataRoute.Sitemap {
     // Ana sayfalar
     const staticPages: MetadataRoute.Sitemap = [
         {
             url: baseUrl,
-            lastModified: new Date(),
+            lastModified: lastMod,
             changeFrequency: "weekly",
             priority: 1.0,
         },
         {
             url: `${baseUrl}/hakkimizda`,
-            lastModified: new Date(),
+            lastModified: lastMod,
             changeFrequency: "monthly",
             priority: 0.8,
         },
         {
             url: `${baseUrl}/hizmetler`,
-            lastModified: new Date(),
+            lastModified: lastMod,
             changeFrequency: "monthly",
             priority: 0.8,
         },
         {
             url: `${baseUrl}/urunler`,
-            lastModified: new Date(),
-            changeFrequency: "weekly",
-            priority: 0.9,
-        },
-        {
-            url: `${baseUrl}/pvc-sistemleri`,
-            lastModified: new Date(),
+            lastModified: lastMod,
             changeFrequency: "weekly",
             priority: 0.9,
         },
         {
             url: `${baseUrl}/projeler`,
-            lastModified: new Date(),
+            lastModified: lastMod,
             changeFrequency: "weekly",
             priority: 0.8,
         },
         {
             url: `${baseUrl}/blog`,
-            lastModified: new Date(),
+            lastModified: lastMod,
             changeFrequency: "weekly",
             priority: 0.8,
         },
         {
             url: `${baseUrl}/sss`,
-            lastModified: new Date(),
+            lastModified: lastMod,
             changeFrequency: "monthly",
             priority: 0.7,
         },
         {
             url: `${baseUrl}/iletisim`,
-            lastModified: new Date(),
+            lastModified: lastMod,
             changeFrequency: "monthly",
             priority: 0.7,
         },
         {
             url: `${baseUrl}/teklif-al`,
-            lastModified: new Date(),
+            lastModified: lastMod,
             changeFrequency: "monthly",
+            priority: 0.9,
+        },
+        {
+            url: `${baseUrl}/gizlilik-politikasi`,
+            lastModified: lastMod,
+            changeFrequency: "yearly",
+            priority: 0.3,
+        },
+        // Kategori hub sayfaları
+        {
+            url: `${baseUrl}/pvc-sistemleri`,
+            lastModified: lastMod,
+            changeFrequency: "weekly",
+            priority: 0.9,
+        },
+        {
+            url: `${baseUrl}/cam-balkon-sistemleri`,
+            lastModified: lastMod,
+            changeFrequency: "weekly",
+            priority: 0.9,
+        },
+        {
+            url: `${baseUrl}/sineklik-sistemleri`,
+            lastModified: lastMod,
+            changeFrequency: "weekly",
+            priority: 0.9,
+        },
+        {
+            url: `${baseUrl}/aluminyum-sistemleri`,
+            lastModified: lastMod,
+            changeFrequency: "weekly",
+            priority: 0.9,
+        },
+        {
+            url: `${baseUrl}/panjur-kepenk-sistemleri`,
+            lastModified: lastMod,
+            changeFrequency: "weekly",
+            priority: 0.9,
+        },
+        {
+            url: `${baseUrl}/dusakabin-sistemleri`,
+            lastModified: lastMod,
+            changeFrequency: "weekly",
             priority: 0.9,
         },
     ];
@@ -80,17 +119,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // PVC Ürün Detay Sayfaları
     const pvcProductPages: MetadataRoute.Sitemap = pvcProductSeries.map((product) => ({
         url: `${baseUrl}/pvc-sistemleri/${product.slug}`,
-        lastModified: new Date(),
+        lastModified: lastMod,
         changeFrequency: "monthly" as const,
         priority: 0.8,
     }));
 
-    // Genel Ürün Detay Sayfaları
+    // Genel Ürün Kategori Sayfaları (slug'lar doğrudan rota ile eşleşiyor)
     const productPages: MetadataRoute.Sitemap = products.map((product) => ({
-        url: `${baseUrl}/urunler/${product.slug}`,
-        lastModified: new Date(),
-        changeFrequency: "monthly" as const,
-        priority: 0.7,
+        url: `${baseUrl}/${product.slug}`,
+        lastModified: lastMod,
+        changeFrequency: "weekly" as const,
+        priority: 0.9,
     }));
 
     // Blog Sayfaları
@@ -104,7 +143,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Cam Balkon Sistemleri Detay Sayfaları
     const glassSystemPages: MetadataRoute.Sitemap = glassSystems.map((system) => ({
         url: `${baseUrl}/cam-balkon-sistemleri/${system.slug}`,
-        lastModified: new Date(),
+        lastModified: lastMod,
         changeFrequency: "monthly" as const,
         priority: 0.8,
     }));
@@ -112,85 +151,44 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Sineklik Sistemleri Detay Sayfaları
     const sineklikPages: MetadataRoute.Sitemap = sineklikSystems.map((system) => ({
         url: `${baseUrl}/sineklik-sistemleri/${system.slug}`,
-        lastModified: new Date(),
+        lastModified: lastMod,
         changeFrequency: "monthly" as const,
         priority: 0.8,
     }));
 
-    // Sineklik Ana Sayfa
-    const sineklikMainPage: MetadataRoute.Sitemap = [
-        {
-            url: `${baseUrl}/sineklik-sistemleri`,
-            lastModified: new Date(),
-            changeFrequency: "weekly" as const,
-            priority: 0.9,
-        },
-    ];
-
-    // Alüminyum Ana Sayfa ve Detay Sayfaları
-    const aluminumMainPage: MetadataRoute.Sitemap = [
-        {
-            url: `${baseUrl}/aluminyum-sistemleri`,
-            lastModified: new Date(),
-            changeFrequency: "weekly" as const,
-            priority: 0.9,
-        },
-    ];
-
+    // Alüminyum Detay Sayfaları
     const aluminumDetailPages: MetadataRoute.Sitemap = aluminumSystems.map((system) => ({
         url: `${baseUrl}/aluminyum-sistemleri/${system.slug}`,
-        lastModified: new Date(),
+        lastModified: lastMod,
         changeFrequency: "monthly" as const,
         priority: 0.8,
     }));
 
-    // Panjur & Kepenk Ana Sayfa ve Detay Sayfaları
-    const panjurMainPage: MetadataRoute.Sitemap = [
-        {
-            url: `${baseUrl}/panjur-kepenk-sistemleri`,
-            lastModified: new Date(),
-            changeFrequency: "weekly" as const,
-            priority: 0.9,
-        },
-    ];
-
+    // Panjur & Kepenk Detay Sayfaları
     const panjurDetailPages: MetadataRoute.Sitemap = panjurSystems.map((system) => ({
         url: `${baseUrl}/panjur-kepenk-sistemleri/${system.slug}`,
-        lastModified: new Date(),
+        lastModified: lastMod,
         changeFrequency: "monthly" as const,
         priority: 0.8,
     }));
 
-    // Duşakabin Ana Sayfa ve Detay Sayfaları
-    const dusakabinMainPage: MetadataRoute.Sitemap = [
-        {
-            url: `${baseUrl}/dusakabin-sistemleri`,
-            lastModified: new Date(),
-            changeFrequency: "weekly" as const,
-            priority: 0.9,
-        },
-    ];
-
+    // Duşakabin Detay Sayfaları
     const dusakabinDetailPages: MetadataRoute.Sitemap = dusakabinSystems.map((system) => ({
         url: `${baseUrl}/dusakabin-sistemleri/${system.slug}`,
-        lastModified: new Date(),
+        lastModified: lastMod,
         changeFrequency: "monthly" as const,
         priority: 0.8,
     }));
 
     return [
         ...staticPages,
-        ...pvcProductPages,
         ...productPages,
+        ...pvcProductPages,
         ...blogPages,
         ...glassSystemPages,
-        ...sineklikMainPage,
         ...sineklikPages,
-        ...aluminumMainPage,
         ...aluminumDetailPages,
-        ...panjurMainPage,
         ...panjurDetailPages,
-        ...dusakabinMainPage,
         ...dusakabinDetailPages
     ];
 }

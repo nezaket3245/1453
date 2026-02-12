@@ -241,7 +241,7 @@ Kondens kanallı profil yapısı, olası yoğuşma suyunu kontrollü şekilde d�
             { name: 'Doğal Anodize', type: 'anodic', code: 'C0', hex: '#C0C0C0' },
             { name: 'Altın Meşe', type: 'wood-effect', code: 'Golden Oak', hex: '#B8860B' },
         ],
-        warranty: '10 Yıl Profil + 5 Yıl Aksesuar Garantisi',
+        warranty: '10 Yıl Profil + 5 Yıl Aksesuar',
         certifications: ['CE', 'TSE', 'EN 14351-1', 'ISO 9001'],
         priceRange: 'orta',
         seoKeywords: [
@@ -312,7 +312,7 @@ Yapısal Özellikler:
             'Bağımsız panel değişimi',
             'Yüksek yapısal güvenlik',
             'Estetik profil görünümü',
-            'Uzun süreli garanti',
+            'Uzun ömürlü yapı',
         ],
         applications: [
             'Ofis plazaları',
@@ -327,7 +327,7 @@ Yapısal Özellikler:
             { name: 'Siyah', type: 'ral', code: 'RAL 9005', hex: '#0A0A0A' },
             { name: 'Bronz Anodize', type: 'anodic', code: 'C32', hex: '#8B7355' },
         ],
-        warranty: '15 Yıl Sistem Garantisi',
+        warranty: '15 Yıl Sistem',
         certifications: ['CE', 'EN 13830', 'CWCT'],
         priceRange: 'premium',
         seoKeywords: [
@@ -401,7 +401,7 @@ Estetik Avantajlar:
             { name: 'Görünmez (Cam Only)', type: 'ral', hex: '#87CEEB' },
             { name: 'İç Profil Antrasit', type: 'ral', code: 'RAL 7016', hex: '#383E42' },
         ],
-        warranty: '15 Yıl Sistem + 25 Yıl Silikon Garantisi',
+        warranty: '15 Yıl Sistem + 25 Yıl Silikon',
         certifications: ['CE', 'EN 13830', 'ETAG 002', 'ASTM C1401'],
         priceRange: 'premium',
         seoKeywords: [
@@ -480,7 +480,7 @@ Modüler Esneklik:
             { name: 'Beyaz', type: 'ral', code: 'RAL 9016', hex: '#F7F9FA' },
             { name: 'Krom Efekt', type: 'anodic', hex: '#C0C0C0' },
         ],
-        warranty: '5 Yıl Sistem Garantisi',
+        warranty: '5 Yıl Sistem',
         certifications: ['CE', 'EN 10077', 'ISO 717-1'],
         priceRange: 'orta',
         seoKeywords: [
@@ -563,7 +563,7 @@ Termal Performans:
             { name: 'Beyaz', type: 'ral', code: 'RAL 9016', hex: '#F7F9FA' },
             { name: 'Corten Efekt', type: 'wood-effect', hex: '#8B4513' },
         ],
-        warranty: '10 Yıl Sistem Garantisi',
+        warranty: '10 Yıl Sistem',
         certifications: ['CE', 'EN 14351-1', 'RAL Gütezeichen'],
         priceRange: 'premium',
         seoKeywords: [

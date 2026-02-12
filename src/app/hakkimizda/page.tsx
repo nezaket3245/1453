@@ -1,24 +1,68 @@
 import { Metadata } from "next";
 import OptimizedImage from "@/components/ui/OptimizedImage";
-import { Header } from "@/components/layout/Header";
+import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { businessConfig } from "@/config/business.config";
 
 export const metadata: Metadata = {
-    title: `Hakkımızda | ${businessConfig.name}`,
-    description: `40 yıllık tecrübe ile PVC pencere ve cam balkon sistemlerinde lider. Egepen yetkili bayisi olarak kaliteli hizmet sunuyoruz.`,
+title: 'Hakkımızda - 40 Yıllık Tecrübe',
+  description: 'Beylikdüzü Egepen Deceuninck yetkili bayisi. 40 yıllık tecrübe ile PVC pencere, cam balkon ve panjur sistemlerinde profesyonel çözümler sunuyoruz.',
+    openGraph: {
+        title: `Hakkımızda | ${businessConfig.name}`,
+        description: `40 yıllık tecrübe ile PVC pencere ve cam balkon sistemlerinde lider. Egepen yetkili bayisi.`,
+        url: `${businessConfig.siteUrl}/hakkimizda`,
+        type: "website",
+    },
+    twitter: {
+        card: "summary",
+        title: `Hakkımızda | ${businessConfig.name}`,
+        description: `40 yıllık tecrübe ile PVC pencere ve cam balkon sistemlerinde lider.`,
+    },
+    alternates: {
+        canonical: `${businessConfig.siteUrl}/hakkimizda`,
+    },
+};
+
+const aboutSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'Hakkımızda - Egepen Akçayapı',
+    description: '40 yıllık tecrübe ile PVC pencere ve cam balkon sistemlerinde lider. Egepen yetkili bayisi.',
+    url: `${businessConfig.siteUrl}/hakkimizda`,
+    mainEntity: {
+        '@type': 'Organization',
+        name: businessConfig.name,
+        foundingDate: '1986',
+        url: businessConfig.siteUrl,
+        telephone: businessConfig.contact.mobile,
+        address: {
+            '@type': 'PostalAddress',
+            addressLocality: businessConfig.address.district,
+            addressRegion: businessConfig.address.city,
+            addressCountry: 'TR',
+        },
+    },
+    breadcrumb: {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: businessConfig.siteUrl },
+            { '@type': 'ListItem', position: 2, name: 'Hakkımızda', item: `${businessConfig.siteUrl}/hakkimizda` },
+        ],
+    },
 };
 
 export default function AboutPage() {
     return (
         <>
-            <Header />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }} />
+
+            <HeaderOptimized />
             <main id="main-content" className="min-h-screen">
                 {/* Hero Section */}
                 <section className="relative py-20 lg:py-32 bg-primary-900 text-white overflow-hidden">
                     <div className="absolute inset-0 opacity-50">
-                        <OptimizedImage src="/images/showroom-main.png" alt="Background" fill className="object-cover" />
+                        <OptimizedImage src="/images/showroom-main.png" alt="" fill priority sizes="100vw" className="object-cover" role="presentation" />
                     </div>
                     <div className="container-custom relative z-10">
                         <div className="max-w-3xl">
@@ -38,7 +82,7 @@ export default function AboutPage() {
                     <div className="container-custom">
                         <div className="grid lg:grid-cols-2 gap-16 items-center">
                             <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl">
-                                <OptimizedImage src="/images/pvc/pvc-montaj-insaat.jpg" alt="Fabrikamız" fill className="object-cover" />
+                                <OptimizedImage src="/images/pvc/pvc-montaj-insaat.jpg" alt="Fabrikamız" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
                             </div>
                             <div>
                                 <h2 className="text-3xl font-bold text-neutral-900 mb-6">Biz Kimiz?</h2>
@@ -52,11 +96,11 @@ export default function AboutPage() {
                                     <div className="grid grid-cols-2 gap-6 pt-6">
                                         <div>
                                             <h4 className="text-3xl font-bold text-primary-600 mb-1">10.000+</h4>
-                                            <p className="text-sm font-medium uppercase tracking-wider text-neutral-500">Tamamlanan Proje</p>
+                                            <p className="text-sm font-medium uppercase tracking-wider text-neutral-600">Tamamlanan Proje</p>
                                         </div>
                                         <div>
                                             <h4 className="text-3xl font-bold text-primary-600 mb-1">40+</h4>
-                                            <p className="text-sm font-medium uppercase tracking-wider text-neutral-500">Yıllık Deneyim</p>
+                                            <p className="text-sm font-medium uppercase tracking-wider text-neutral-600">Yıllık Deneyim</p>
                                         </div>
                                     </div>
                                 </div>
@@ -88,16 +132,6 @@ export default function AboutPage() {
                     </div>
                 </section>
 
-                {/* CTA */}
-                <section className="py-20 bg-primary-600 text-white text-center">
-                    <div className="container-custom">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-8">Projeleriniz İçin Yanınızdayız</h2>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Button variant="secondary" size="lg" href="/teklif-al">Ücretsiz Keşif İste</Button>
-                            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary-600" href="/urunler">Ürünlerimizi İncele</Button>
-                        </div>
-                    </div>
-                </section>
             </main>
             <Footer />
         </>

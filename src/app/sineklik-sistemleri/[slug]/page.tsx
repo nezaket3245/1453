@@ -6,16 +6,15 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import {
     sineklikSystems,
     getSystemBySlug,
     getRelatedSystems,
 } from '@/lib/sineklikData';
-import { CTASection } from '@/components/sections/CTASection';
 import { businessConfig } from '@/config/business.config';
-import { Header } from '@/components/layout/Header';
+import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
 import { Footer } from '@/components/layout/Footer';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 
 // Generate static params for all systems
 export async function generateStaticParams() {
@@ -24,7 +23,7 @@ export async function generateStaticParams() {
     }));
 }
 
-// Generate metadata for each system page
+// Generate SEO-optimized metadata for each system page
 export async function generateMetadata({
     params,
 }: {
@@ -39,19 +38,25 @@ export async function generateMetadata({
         };
     }
 
+    const categoryLabel = system.category === 'plise' ? 'Pileli Sineklik' : system.category === 'kedi' ? 'Kedi Sinekliği' : system.category === 'surme' ? 'Sürme Sineklik' : system.category === 'menteseli' ? 'Menteşeli Sineklik' : 'Stor Sineklik';
+    const title = `${system.name} | ${categoryLabel} Fiyatı | Beylikdüzü`;
+    const desc = `${system.name}: ${categoryLabel} fiyatları ve özellikleri. ${system.warranty}. Özel ölçü imalat ve hızlı montaj ile Beylikdüzü ücretsiz keşif.`;
+
     return {
-        title: `${system.name} | Fiyat ve Özellikler | Beylikdüzü`,
-        description: `${system.description} ${system.warranty}. Beylikdüzü ve İstanbul Avrupa Yakası ücretsiz keşif.`,
-        keywords: system.seoKeywords.join(', '),
+        title,
+        description: desc.slice(0, 155),
+        keywords: [
+            ...system.seoKeywords,
+        ].join(', '),
         openGraph: {
-            title: `${system.name} | Egepen Akçayapı`,
+            title: `${system.name} | Sineklik Fiyatları`,
             description: system.tagline,
-            images: [system.image],
+            images: [{ url: system.image, width: 800, height: 600, alt: `${system.name} - ${categoryLabel} Uygulaması` }],
             type: 'website',
             locale: 'tr_TR',
         },
         alternates: {
-            canonical: `https://www.egepenakcayapi.com.tr/sineklik-sistemleri/${system.slug}`,
+            canonical: `${businessConfig.siteUrl}/sineklik-sistemleri/${system.slug}`,
         },
     };
 }
@@ -70,13 +75,15 @@ export default async function SineklikDetailPage({
 
     const relatedSystems = getRelatedSystems(system.id, 3);
 
-    // Product Schema
+    // Product Schema — enhanced with url and category
     const productSchema = {
         '@context': 'https://schema.org',
         '@type': 'Product',
         name: system.name,
         description: system.description,
-        image: `https://www.egepenakcayapi.com.tr${system.image}`,
+        image: `${businessConfig.siteUrl}${system.image}`,
+        url: `${businessConfig.siteUrl}/sineklik-sistemleri/${system.slug}`,
+        category: system.category === 'plise' ? 'Pileli Sineklik' : system.category === 'kedi' ? 'Kedi Sinekliği' : system.category === 'surme' ? 'Sürme Sineklik' : system.category === 'menteseli' ? 'Menteşeli Sineklik' : 'Stor Sineklik',
         brand: {
             '@type': 'Brand',
             name: system.schema.brand,
@@ -96,11 +103,6 @@ export default async function SineklikDetailPage({
                 },
             },
         },
-        aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: '4.8',
-            reviewCount: '127',
-        },
     };
 
     // FAQ Schema
@@ -117,19 +119,26 @@ export default async function SineklikDetailPage({
         })),
     };
 
+    // BreadcrumbList schema for sub-page
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: `${businessConfig.siteUrl}` },
+            { '@type': 'ListItem', position: 2, name: 'Sineklik Sistemleri', item: `${businessConfig.siteUrl}/sineklik-sistemleri` },
+            { '@type': 'ListItem', position: 3, name: system.name, item: `${businessConfig.siteUrl}/sineklik-sistemleri/${system.slug}` },
+        ],
+    };
+
     return (
         <>
-            {/* JSON-LD Schemas */}
+            {/* JSON-LD Schemas: Product + FAQ + Breadcrumb */}
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify([productSchema, faqSchema, breadcrumbSchema]) }}
             />
 
-            <Header />
+            <HeaderOptimized />
 
             <main id="main-content" className="min-h-screen bg-white">
                 {/* Breadcrumb */}
@@ -154,15 +163,15 @@ export default async function SineklikDetailPage({
                 </div>
 
                 {/* Hero Section */}
-                <section className="py-12 lg:py-20">
+                <section className="py-10 lg:py-16">
                     <div className="container mx-auto px-4">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
                             {/* Product Image */}
-                            <div className="sticky top-24">
-                                <div className="relative h-[400px] lg:h-[500px] bg-gradient-to-br from-emerald-100 to-teal-100 rounded-2xl overflow-hidden shadow-lg">
-                                    <Image
+                            <div>
+                                <div className="relative h-[350px] lg:h-[450px] bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl overflow-hidden shadow-md">
+                                    <OptimizedImage
                                         src={system.image}
-                                        alt={system.name}
+                                        alt={`${system.name} - ${system.category === 'plise' ? 'Pileli' : system.category === 'kedi' ? 'Kedi Sinekliği' : system.category === 'surme' ? 'Sürme' : system.category === 'menteseli' ? 'Menteşeli' : 'Stor'} Sineklik Uygulaması`}
                                         fill
                                         className="object-contain p-8"
                                         priority
@@ -170,22 +179,14 @@ export default async function SineklikDetailPage({
                                     {/* Badges */}
                                     <div className="absolute top-4 left-4 flex flex-col gap-2">
                                         <span
-                                            className={`px-3 py-1 rounded-full text-sm font-medium ${system.priceRange === 'premium'
-                                                ? 'bg-amber-500 text-white'
-                                                : system.priceRange === 'orta'
-                                                    ? 'bg-blue-500 text-white'
-                                                    : 'bg-green-500 text-white'
-                                                }`}
+                                            className="px-3 py-1 rounded-full text-sm font-medium bg-emerald-500 text-white"
                                         >
-                                            {system.priceRange === 'premium'
-                                                ? 'Premium'
-                                                : system.priceRange === 'orta'
-                                                    ? 'Orta Segment'
-                                                    : 'Ekonomik'}
+                                            Fiyat İçin Arayın
                                         </span>
                                         {system.category === 'kedi' && (
-                                            <span className="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-medium">
-                                                🐱 Pet Screen
+                                            <span className="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-medium flex items-center gap-1">
+                                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286z" /></svg>
+                                                Pet Screen
                                             </span>
                                         )}
                                     </div>
@@ -204,9 +205,9 @@ export default async function SineklikDetailPage({
                                                 key={idx}
                                                 className="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:ring-2 ring-emerald-500"
                                             >
-                                                <Image
+                                                <OptimizedImage
                                                     src={img}
-                                                    alt={`${system.name} ${idx + 1}`}
+                                                    alt={`${system.name} detay görünüm ${idx + 1}`}
                                                     width={80}
                                                     height={80}
                                                     className="object-cover"
@@ -240,13 +241,13 @@ export default async function SineklikDetailPage({
                                     {system.tagline}
                                 </p>
                                 <p className="text-gray-600 mb-6 leading-relaxed">
-                                    {system.description}
+                                    {system.description} Özel ölçü imalat ve hızlı montaj için bize ulaşın.
                                 </p>
 
                                 {/* Technical Specs */}
                                 <div className="bg-gray-50 rounded-xl p-6 mb-6">
                                     <h2 className="text-lg font-bold text-gray-900 mb-4">
-                                        📋 Teknik Özellikler
+                                        Teknik Özellikler
                                     </h2>
                                     <div className="grid grid-cols-2 gap-4">
                                         {system.technicalSpecs.map((spec, idx) => (
@@ -265,7 +266,7 @@ export default async function SineklikDetailPage({
                                 {/* Features */}
                                 <div className="mb-6">
                                     <h2 className="text-lg font-bold text-gray-900 mb-4">
-                                        ✨ Özellikler
+                                        Özellikler
                                     </h2>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                                         {system.features.map((feature, idx) => (
@@ -286,7 +287,7 @@ export default async function SineklikDetailPage({
                                 {system.colorOptions.length > 0 && (
                                     <div className="mb-6">
                                         <h2 className="text-lg font-bold text-gray-900 mb-4">
-                                            🎨 Renk Seçenekleri
+                                            Profil Renkleri
                                         </h2>
                                         <div className="flex flex-wrap gap-3">
                                             {system.colorOptions.map((color) => (
@@ -309,45 +310,17 @@ export default async function SineklikDetailPage({
                                     </div>
                                 )}
 
-                                {/* CTA Buttons */}
-                                <div className="flex flex-wrap gap-4">
-                                    <Link
-                                        href="/teklif-al"
-                                        className="inline-flex items-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl transition-all shadow-lg"
-                                    >
-                                        <span className="mr-2">💰</span>
-                                        Fiyat Teklifi Al
-                                    </Link>
-                                    <a
-                                        href={`https://wa.me/${businessConfig.contact.whatsapp}?text=${encodeURIComponent(
-                                            `${system.name} hakkında bilgi almak istiyorum`
-                                        )}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer nofollow"
-                                        className="inline-flex items-center px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl transition-all"
-                                    >
-                                        <span className="mr-2">📱</span>
-                                        WhatsApp
-                                    </a>
-                                    <a
-                                        href={`tel:${businessConfig.contact.mobileRaw}`}
-                                        className="inline-flex items-center px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl transition-all"
-                                    >
-                                        <span className="mr-2">📞</span>
-                                        Hemen Arayın
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
                 {/* Long Description */}
-                <section className="py-12 bg-gray-50">
+                <section className="py-10 bg-gray-50">
                     <div className="container mx-auto px-4">
                         <div className="max-w-3xl mx-auto">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                                {system.name} Hakkında Detaylı Bilgi
+                            <h2 className="text-xl font-bold text-gray-900 mb-4">
+                                {system.name} Detayları
                             </h2>
                             <div className="prose prose-emerald max-w-none">
                                 {system.longDescription.split('\n\n').map((paragraph, idx) => (
@@ -361,13 +334,14 @@ export default async function SineklikDetailPage({
                 </section>
 
                 {/* Ideal For & Benefits */}
-                <section className="py-12">
+                <section className="py-10">
                     <div className="container mx-auto px-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                             {/* Ideal For */}
                             <div className="bg-emerald-50 rounded-2xl p-6">
-                                <h3 className="text-lg font-bold text-emerald-800 mb-4">
-                                    🎯 Kimler İçin İdeal?
+                                <h3 className="text-lg font-bold text-emerald-800 mb-4 flex items-center gap-2">
+                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" /></svg>
+                                    Kimler İçin İdeal?
                                 </h3>
                                 <ul className="space-y-2">
                                     {system.idealFor.map((item, idx) => (
@@ -384,8 +358,9 @@ export default async function SineklikDetailPage({
 
                             {/* Benefits */}
                             <div className="bg-blue-50 rounded-2xl p-6">
-                                <h3 className="text-lg font-bold text-blue-800 mb-4">
-                                    💪 Avantajları
+                                <h3 className="text-lg font-bold text-blue-800 mb-4 flex items-center gap-2">
+                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" /></svg>
+                                    Avantajları
                                 </h3>
                                 <ul className="space-y-2">
                                     {system.benefits.map((benefit, idx) => (
@@ -405,11 +380,11 @@ export default async function SineklikDetailPage({
 
                 {/* Mesh Options */}
                 {system.meshOptions.length > 0 && (
-                    <section className="py-12 bg-gray-50">
+                    <section className="py-10 bg-gray-50">
                         <div className="container mx-auto px-4">
                             <div className="max-w-4xl mx-auto">
-                                <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                                    🔬 Tül Seçenekleri
+                                <h2 className="text-xl font-bold text-gray-900 mb-5 text-center">
+                                    Tül Seçenekleri
                                 </h2>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                     {system.meshOptions.map((mesh, idx) => (
@@ -436,11 +411,11 @@ export default async function SineklikDetailPage({
 
                 {/* FAQ Section */}
                 {system.faq.length > 0 && (
-                    <section className="py-12">
+                    <section className="py-10">
                         <div className="container mx-auto px-4">
                             <div className="max-w-3xl mx-auto">
-                                <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                                    ❓ Sık Sorulan Sorular
+                                <h2 className="text-xl font-bold text-gray-900 mb-5 text-center">
+                                    Sık Sorulan Sorular
                                 </h2>
                                 <div className="space-y-4">
                                     {system.faq.map((item, idx) => (
@@ -451,7 +426,7 @@ export default async function SineklikDetailPage({
                                             <summary className="px-6 py-4 cursor-pointer font-medium text-gray-900 hover:bg-gray-100 flex justify-between items-center">
                                                 {item.question}
                                                 <svg
-                                                    className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"
+                                                    className="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform"
                                                     fill="none"
                                                     stroke="currentColor"
                                                     viewBox="0 0 24 24"
@@ -476,22 +451,23 @@ export default async function SineklikDetailPage({
                 )}
 
                 {/* Related Systems */}
-                <section className="py-12 bg-gray-50">
+                <section className="py-10 bg-gray-50">
                     <div className="container mx-auto px-4">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                            🔗 İlgili Sistemler
+                        <h2 className="text-xl font-bold text-gray-900 mb-5 text-center">
+                            İlgili Sineklik Sistemleri
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                             {relatedSystems.map((related) => (
                                 <Link
                                     key={related.id}
                                     href={`/sineklik-sistemleri/${related.slug}`}
-                                    className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all group"
+                                    className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow group focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                                    aria-label={`${related.name} detaylarına git`}
                                 >
                                     <div className="relative h-32 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-lg mb-4 overflow-hidden">
-                                        <Image
+                                        <OptimizedImage
                                             src={related.image}
-                                            alt={related.name}
+                                            alt={`${related.name} - Sineklik Uygulaması`}
                                             fill
                                             className="object-contain p-4 group-hover:scale-105 transition-transform"
                                         />
@@ -506,8 +482,6 @@ export default async function SineklikDetailPage({
                     </div>
                 </section>
 
-                {/* CTA Section */}
-                <CTASection />
             </main>
 
             <Footer />

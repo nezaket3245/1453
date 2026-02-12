@@ -2,7 +2,7 @@
  * Egepen Deceuninck PVC Product Data
  * Comprehensive technical specifications for all product series
  * Source: egepen.com.tr official product catalog (Ocak 2026)
- * Son Güncelleme: 30 Ocak 2026
+ * Son Güncelleme: 7 Şubat 2026
  */
 
 export interface PVCProductSeries {
@@ -98,7 +98,6 @@ Legend PVC Pencere ve Kapı Sistemi, pencerenin mekanınıza en iyi ısı yalıt
             "Enerji faturalarında %45'e varan tasarruf",
             "Üstün ses yalıtımı ile sessiz yaşam alanları",
             "Yüksek statik güç ile geniş ebatlı pencere imkanı",
-            "10 yıl Egepen garantisi",
         ],
         applications: [
             "Lüks konutlar",
@@ -162,7 +161,6 @@ LegendArt Sistemi, içerisinde yer alan ürün çeşitliliği ile her detaya uyg
             "Estetik ve şık görünüm",
             "Yüksek akustik yalıtım performansı",
             "Rüzgarlı bölgelerde bile mükemmel çözüm",
-            "10 yıl Egepen garantisi",
         ],
         applications: [
             "Modern konutlar",
@@ -226,7 +224,6 @@ Zendow PVC Pencere ve Kapı Sistemi'nin pencere ve kapıları yüksek yalıtım 
             "Üstün akustik performans",
             "Çevre dostu ve sürdürülebilir",
             "Konforu ve estetiği bir arada sunar",
-            "10 yıl Egepen garantisi",
         ],
         applications: [
             "Konutlar",

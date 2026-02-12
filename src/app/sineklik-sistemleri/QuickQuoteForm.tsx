@@ -7,6 +7,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 interface FormData {
@@ -75,8 +76,12 @@ export default function QuickQuoteForm() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="max-w-2xl mx-auto text-center py-12"
+                role="alert"
+                aria-live="polite"
             >
-                <div className="text-6xl mb-6">✅</div>
+                <div className="w-16 h-16 mx-auto mb-6 bg-emerald-500 rounded-full flex items-center justify-center">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                </div>
                 <h3 className="text-2xl font-bold text-white mb-4">
                     Talebiniz Alındı!
                 </h3>
@@ -85,22 +90,13 @@ export default function QuickQuoteForm() {
                     sizi arayacağız.
                 </p>
                 <div className="flex justify-center gap-4">
-                    <a
-                        href="tel:+905320000000"
+                    <Link
+                        href="/iletisim"
                         className="inline-flex items-center px-6 py-3 bg-white text-emerald-700 font-semibold rounded-xl"
                     >
-                        <span className="mr-2">📞</span>
-                        Hemen Arayın
-                    </a>
-                    <a
-                        href="https://wa.me/905320000000"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center px-6 py-3 bg-green-500 text-white font-semibold rounded-xl"
-                    >
-                        <span className="mr-2">📱</span>
-                        WhatsApp
-                    </a>
+                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                        İletişim Sayfası
+                    </Link>
                 </div>
             </motion.div>
         );
@@ -109,8 +105,9 @@ export default function QuickQuoteForm() {
     return (
         <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                    💰 Hızlı Fiyat Teklifi Alın
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center justify-center gap-3">
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    Hızlı Fiyat Teklifi Alın
                 </h2>
                 <p className="text-emerald-100 text-lg">
                     Pencere ve kapı sayınızı girin, size özel fiyat teklifi hazırlayalım.
@@ -160,7 +157,7 @@ export default function QuickQuoteForm() {
                                 setFormData({ ...formData, phone: e.target.value })
                             }
                             className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-white/50 focus:border-transparent min-h-[48px]"
-                            placeholder="0532 000 00 00"
+                            placeholder="0536 640 53 11"
                         />
                     </div>
 
@@ -276,6 +273,7 @@ export default function QuickQuoteForm() {
                         <select
                             id="quick-quote-district"
                             required
+                            aria-required="true"
                             value={formData.district}
                             onChange={(e) =>
                                 setFormData({ ...formData, district: e.target.value })
@@ -309,8 +307,8 @@ export default function QuickQuoteForm() {
                         }
                         className="w-5 h-5 text-amber-500 bg-white/10 border-white/20 rounded focus:ring-amber-500"
                     />
-                    <label htmlFor="hasPets" className="ml-3 text-white">
-                        <span className="mr-2">🐱</span>
+                    <label htmlFor="hasPets" className="ml-3 text-white flex items-center gap-2">
+                        <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
                         Evcil hayvanım var (Kedi/Köpek)
                     </label>
                 </div>
@@ -323,7 +321,9 @@ export default function QuickQuoteForm() {
                         className="bg-amber-500/20 border border-amber-400/30 rounded-xl p-4 text-amber-100"
                     >
                         <div className="flex items-start">
-                            <span className="text-2xl mr-3">🐈</span>
+                            <span className="text-2xl mr-3">
+                                <svg className="w-7 h-7 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                            </span>
                             <div>
                                 <p className="font-medium mb-1">
                                     Evcil hayvan sahipleri için önerimiz:
@@ -359,7 +359,7 @@ export default function QuickQuoteForm() {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="flex-1 inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-100 text-emerald-700 font-bold rounded-xl transition-all shadow-lg disabled:opacity-50"
+                        className="flex-1 inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-100 text-emerald-700 font-bold rounded-xl transition-colors shadow-lg disabled:opacity-50"
                     >
                         {isSubmitting ? (
                             <>
@@ -386,18 +386,18 @@ export default function QuickQuoteForm() {
                             </>
                         ) : (
                             <>
-                                <span className="mr-2">📐</span>
+                                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
                                 Ücretsiz Keşif Talep Et
                             </>
                         )}
                     </button>
-                    <a
-                        href="tel:+905320000000"
-                        className="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-all border border-white/20"
+                    <Link
+                        href="/iletisim"
+                        className="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-colors border border-white/20"
                     >
-                        <span className="mr-2">📞</span>
-                        Şimdi Arayın
-                    </a>
+                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                        İletişim
+                    </Link>
                 </div>
 
                 {/* Trust Badges */}
@@ -410,10 +410,6 @@ export default function QuickQuoteForm() {
                         <span className="mr-2">✓</span>
                         Aynı Gün Dönüş
                     </div>
-                    {/* <div className="flex items-center">
-                        <span className="mr-2">✓</span>
-                        Garanti Belgeli
-                    </div> */}
                     <div className="flex items-center">
                         <span className="mr-2">✓</span>
                         40 Yıl Tecrübe

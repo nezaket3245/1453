@@ -1,21 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { businessConfig } from "@/config/business.config";
+import { getCategoryOptions } from "@/data/categories";
 
 /**
- * Product Categories for the Quote Form
+ * Product Categories for the Quote Form — sourced from centralized data
  */
-const productCategories = [
-    { id: "pvc-pencere", label: "PVC Pencere & Kapı", icon: "🪟" },
-    { id: "cam-balkon", label: "Cam Balkon", icon: "🏠" },
-    { id: "aluminyum", label: "Alüminyum Doğrama", icon: "🔧" },
-    { id: "sineklik", label: "Sineklik", icon: "🦟" },
-    { id: "panjur", label: "Panjur", icon: "🌤️" },
-    { id: "dusakabin", label: "Duşakabin", icon: "🚿" },
-];
+const productCategories = getCategoryOptions();
 
 /**
  * Phone number validation and formatting for Turkish numbers
@@ -34,9 +29,29 @@ const validatePhoneNumber = (phone: string): boolean => {
 };
 
 interface FormErrors {
+    name?: string;
     phone?: string;
+    email?: string;
     products?: string;
+    consent?: string;
 }
+
+/**
+ * Validates Turkish name input (allows Turkish special characters)
+ */
+const validateName = (name: string): boolean => {
+    const trimmed = name.trim();
+    // Minimum 2 characters, allows Turkish chars: ğüşıöçĞÜŞİÖÇ
+    return trimmed.length >= 2 && /^[a-zA-ZğüşıöçĞÜŞİÖÇ\s'-]+$/.test(trimmed);
+};
+
+/**
+ * Validates email format when provided (optional field)
+ */
+const validateEmail = (email: string): boolean => {
+    if (!email) return true; // Optional field
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};
 
 /**
  * Quote Form Component
@@ -90,12 +105,27 @@ export function QuoteForm() {
 
     const validateForm = (): boolean => {
         const newErrors: FormErrors = {};
+
+        if (!validateName(formData.name)) {
+            newErrors.name = "Lütfen geçerli bir ad soyad girin (en az 2 karakter)";
+        }
+
         if (!validatePhoneNumber(formData.phone)) {
             newErrors.phone = "Geçerli bir telefon numarası girin (05XX XXX XX XX)";
         }
+
+        if (!validateEmail(formData.email)) {
+            newErrors.email = "Geçerli bir e-posta adresi girin";
+        }
+
         if (selectedProducts.length === 0) {
             newErrors.products = "En az bir ürün seçmelisiniz";
         }
+
+        if (!formData.consent) {
+            newErrors.consent = "KVKK metnini onaylamanız gerekmektedir";
+        }
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -111,15 +141,19 @@ export function QuoteForm() {
             .map((p) => p.label)
             .join(", ");
 
-        const whatsappMessage = `*Yeni Teklif Talebi*%0A%0A` +
-            `*Ad Soyad:* ${formData.name}%0A` +
-            `*Ürünler:* ${selectedProductLabels}%0A` +
-            `*Telefon:* ${formData.phone}%0A` +
-            `*Mülk Tipi:* ${formData.propertyType || "Belirtilmedi"}%0A` +
-            `*Adres:* ${formData.address || "Belirtilmedi"}%0A` +
-            `*Mesaj:* ${formData.message || "Yok"}`;
+        // Use encodeURIComponent for proper Turkish UTF-8 character handling
+        const whatsappMessage = [
+            "*Yeni Teklif Talebi*",
+            "",
+            `*Ad Soyad:* ${formData.name.trim()}`,
+            `*Ürünler:* ${selectedProductLabels}`,
+            `*Telefon:* ${formData.phone}`,
+            `*Mülk Tipi:* ${formData.propertyType || "Belirtilmedi"}`,
+            `*Adres:* ${formData.address.trim() || "Belirtilmedi"}`,
+            `*Mesaj:* ${formData.message.trim() || "Yok"}`,
+        ].join("\n");
 
-        const whatsappUrl = `https://wa.me/${businessConfig.contact.whatsapp.replace(/\+/g, "")}?text=${whatsappMessage}`;
+        const whatsappUrl = `https://wa.me/${businessConfig.contact.whatsapp.replace(/\+/g, "")}?text=${encodeURIComponent(whatsappMessage)}`;
 
         setTimeout(() => {
             window.open(whatsappUrl, "_blank");
@@ -242,7 +276,7 @@ export function QuoteForm() {
                             type="button"
                             onClick={() => handleProductToggle(product.id)}
                             className={cn(
-                                "flex items-center gap-2 p-3 rounded-xl border-2 transition-all duration-200 min-h-[48px] min-w-[48px]",
+                                "flex items-center gap-2 p-3 rounded-xl border-2 transition-colors duration-200 min-h-[48px] min-w-[48px]",
                                 selectedProducts.includes(product.id)
                                     ? "border-primary-500 bg-primary-50 text-primary-700"
                                     : "border-neutral-200 hover:border-neutral-300 text-neutral-600"
@@ -269,11 +303,19 @@ export function QuoteForm() {
                         autoComplete="name"
                         required
                         aria-required="true"
+                        aria-invalid={!!errors.name}
+                        aria-describedby={errors.name ? "quote-name-error" : undefined}
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all min-h-[48px]"
+                        className={cn(
+                            "w-full px-4 py-3 rounded-xl border outline-none transition-colors min-h-[48px]",
+                            errors.name
+                                ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                                : "border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
+                        )}
                         placeholder="Adınız Soyadınız"
                     />
+                    {errors.name && <p id="quote-name-error" className="mt-1 text-sm text-red-500" role="alert">{errors.name}</p>}
                 </div>
                 <div>
                     <label htmlFor="quote-phone" className="block text-sm font-medium text-neutral-700 mb-2">
@@ -292,7 +334,7 @@ export function QuoteForm() {
                         value={formData.phone}
                         onChange={handlePhoneChange}
                         className={cn(
-                            "w-full px-4 py-3 rounded-xl border outline-none transition-all min-h-[48px]",
+                            "w-full px-4 py-3 rounded-xl border outline-none transition-colors min-h-[48px]",
                             errors.phone
                                 ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                                 : "border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
@@ -313,11 +355,19 @@ export function QuoteForm() {
                         id="quote-email"
                         name="email"
                         autoComplete="email"
+                        aria-invalid={!!errors.email}
+                        aria-describedby={errors.email ? "quote-email-error" : undefined}
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all min-h-[48px]"
+                        className={cn(
+                            "w-full px-4 py-3 rounded-xl border outline-none transition-colors min-h-[48px]",
+                            errors.email
+                                ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                                : "border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
+                        )}
                         placeholder="ornek@mail.com"
                     />
+                    {errors.email && <p id="quote-email-error" className="mt-1 text-sm text-red-500" role="alert">{errors.email}</p>}
                 </div>
                 <div>
                     <label htmlFor="quote-propertyType" className="block text-sm font-medium text-neutral-700 mb-2">
@@ -328,7 +378,7 @@ export function QuoteForm() {
                         name="propertyType"
                         value={formData.propertyType}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all bg-white min-h-[48px]"
+                        className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-colors bg-white min-h-[48px]"
                     >
                         <option value="">Seçiniz</option>
                         <option value="Daire">Daire</option>
@@ -351,7 +401,7 @@ export function QuoteForm() {
                     autoComplete="street-address"
                     value={formData.address}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all min-h-[48px]"
+                    className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-colors min-h-[48px]"
                     placeholder="Örn: Beylikdüzü, Gürpınar..."
                 />
             </div>
@@ -366,7 +416,7 @@ export function QuoteForm() {
                     rows={3}
                     value={formData.message}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-colors resize-none"
                     placeholder="Varsa ölçüleri belirtebilirsiniz..."
                 />
             </div>
@@ -379,18 +429,21 @@ export function QuoteForm() {
                         name="consent"
                         required
                         aria-required="true"
+                        aria-invalid={!!errors.consent}
+                        aria-describedby={errors.consent ? "quote-consent-error" : undefined}
                         checked={formData.consent}
                         onChange={handleInputChange}
                         className="mt-1 w-5 h-5 min-w-[20px] min-h-[20px] rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
                     />
                     <span className="text-sm text-neutral-600">
-                        <a href="/gizlilik-politikasi" title="KVKK ve Gizlilik Politikası" className="text-primary-600 hover:underline">
-                            KVKK mütununu
-                        </a>
+                        <Link href="/gizlilik-politikasi" title="KVKK ve Gizlilik Politikası" className="text-primary-600 hover:underline">
+                            KVKK metnini
+                        </Link>
                         &apos;nı okudum ve teklif amacıyla iletişim kurulmasını onaylıyorum.{" "}
                         <span className="text-red-500">*</span>
                     </span>
                 </label>
+                {errors.consent && <p id="quote-consent-error" className="mt-1 text-sm text-red-500" role="alert">{errors.consent}</p>}
             </div>
 
             <button

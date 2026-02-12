@@ -1,9 +1,15 @@
 import { Product } from "@/types";
 
+/**
+ * Merkezi Ürün Veritabanı
+ * Tüm ürün kategorileri, slug'lar ve teknik bilgiler
+ * Slug'lar site URL yapısıyla birebir eşleşmelidir
+ * Son Güncelleme: 7 Şubat 2026
+ */
 export const products: Product[] = [
     {
         id: "pvc-pencere",
-        slug: "pvc-pencere",
+        slug: "pvc-sistemleri",
         name: "PVC Pencere & Kapı Sistemleri",
         category: "pvc-pencere",
         description: "Beylikdüzü Egepen yetkili bayisi olarak Legend ve Zen Spirit serileriyle en yüksek ısı ve ses yalıtımı sağlıyoruz.",
@@ -19,18 +25,17 @@ export const products: Product[] = [
             { label: "Profil Serisi", value: "Legend / Zen Spirit" },
             { label: "Isı İletim", value: "Uf = 0.92 W/m²K" },
             { label: "Hava Sızdırmazlık", value: "4. Sınıf (Maksimum)" },
-            { label: "Rüzgar Dayımı", value: "C5 Sınıfı" }
+            { label: "Rüzgar Dayanımı", value: "C5 Sınıfı" }
         ],
         benefits: [
             "Isınma faturalarında %40 tasarruf.",
             "Deniz kenarı rüzgarları için tam sızdırmazlık.",
-            "10 Yıl Egepen fabrika garantisi.",
             "Hırsızlığa karşı WK2 güvenlik seviyesi."
         ]
     },
     {
         id: "cam-balkon",
-        slug: "cam-balkon",
+        slug: "cam-balkon-sistemleri",
         name: "Cam Balkon & Sürme Sistemleri",
         category: "cam-balkon",
         description: "Eşikli ve eşiksiz sürme sistemleri, katlanır cam balkon çözümleri ile balkonlarınızı dört mevsim yaşam alanına dönüştürün.",
@@ -56,28 +61,54 @@ export const products: Product[] = [
     },
     {
         id: "sineklik",
-        slug: "sineklik",
-        name: "Sineklik & Panjur Sistemleri",
+        slug: "sineklik-sistemleri",
+        name: "Sineklik Sistemleri",
         category: "sineklik",
-        description: "Pileli (plise), menteşeli ve stor sineklikler. Otomatik motorlu ve güvenlikli panjur sistemleri.",
-        longDescription: "Gürpınar ve Beylikdüzü bölgelerindeki rüzgarlı havalarda bile rayından çıkmayan özel pileli sineklik sistemleri ve evinizi güneşten ve yabancı müdahalelerden koruyan motorlu alüminyum panjur sistemlerini Akçayapı kalitesiyle sunuyoruz.",
-        image: "/images/projeler/panjur-villa-montaj.png",
+        description: "Plise (pileli), menteşeli, sürme ve stor sineklik çözümleri. Kedi sinekliği (Pet Screen) ile evcil hayvan güvenliği.",
+        longDescription: "Gürpınar ve Beylikdüzü bölgelerindeki rüzgarlı havalarda bile rayından çıkmayan özel pileli sineklik sistemleri. Fiberglass, Anti-Dust ve Pet Screen tül seçenekleriyle her eve uygun çözümler sunuyoruz.",
+        image: "/images/sineklik/yatay-plise-sineklik.png",
         features: [
             "Plise (Pileli) Sineklik Sistemleri",
-            "Otomatik Motorlu Uzaktan Kumandalı Panjur",
-            "Poliüretan Dolgulu Alüminyum Lameller",
-            "Özel Renk Seçenekli Profiller",
-            "Hırsızlığa Karşı Emniyet Kilitli Panjur"
+            "Menteşeli Kapı Tipi Sineklik",
+            "Sürme ve Stor Sineklik Modelleri",
+            "Kedi Sinekliği (Pet Screen) - 7x Dayanıklı",
+            "Fiberglass & Anti-Dust Tül Seçenekleri"
         ],
         technicalSpecs: [
-            { label: "Sineklik Tül", value: "Fiberglass / Anti-Dust" },
-            { label: "Panjur Motoru", value: "Somfy / Mosel" },
-            { label: "Kutu Tipi", value: "Gizli Kutu veya Dıştan Takma" }
+            { label: "Tül Malzeme", value: "Fiberglass / Anti-Dust / Pet Screen" },
+            { label: "Profil", value: "Alüminyum - RAL Renk Seçenekli" },
+            { label: "Profil", value: "Alüminyum - RAL Renk Seçenekli" }
         ],
         benefits: [
             "Haşerelerden 7/24 kesintisiz koruma.",
-            "Güneş ısısını %70 oranında kesen panjurlar.",
-            "Tam karartma ile konforlu uyku ortamı."
+            "Evcil hayvanlar için yırtılmaz tül.",
+            "Kolay sökülebilir ve yıkanabilir yapı."
+        ]
+    },
+    {
+        id: "panjur",
+        slug: "panjur-kepenk-sistemleri",
+        name: "Panjur & Kepenk Sistemleri",
+        category: "panjur",
+        description: "Motorlu alüminyum panjur, Egepen Storbox monoblok ve çelik kepenk. Somfy motor, güvenlik kilidi ve tam karartma özelliği.",
+        longDescription: "Evinizi güneşten ve yabancı müdahalelerden koruyan motorlu alüminyum panjur sistemlerini Akçayapı kalitesiyle sunuyoruz. Somfy ve Mosel motorlu otomasyon, poliüretan dolgulu lamellerle üstün ısı yalıtımı.",
+        image: "/images/projeler/panjur-villa-montaj.png",
+        features: [
+            "Somfy / Mosel Motorlu Otomasyon",
+            "Poliüretan Dolgulu Alüminyum Lamel",
+            "Egepen Storbox Monoblok Sistem",
+            "Hırsızlığa Karşı Emniyet Kilidi",
+            "Akıllı Ev Entegrasyonu (WiFi)"
+        ],
+        technicalSpecs: [
+            { label: "Motor", value: "Somfy / Mosel" },
+            { label: "Lamel", value: "Alüminyum 45mm Köpük Dolgulu" },
+            { label: "Kutu Tipi", value: "Gizli Kutu veya Dıştan Takma" }
+        ],
+        benefits: [
+            "Güneş ısısını %70 oranında keser.",
+            "Tam karartma ile konforlu uyku ortamı.",
+            "Uzaktan kumanda ve zamanlayıcı özelliği."
         ]
     },
     {
@@ -102,6 +133,32 @@ export const products: Product[] = [
             "Kolay temizlenebilir cam yüzeyler.",
             "Modern ve ferah banyo tasarımları.",
             "Hızlı ve temiz montaj süreci."
+        ]
+    },
+    {
+        id: "aluminyum",
+        slug: "aluminyum-sistemleri",
+        name: "Alüminyum Doğrama Sistemleri",
+        category: "aluminyum",
+        description: "Isı yalıtımlı alüminyum pencere, giydirme cephe, ofis bölme ve sürme sistemleri. Ticari ve endüstriyel projeler için ideal.",
+        longDescription: "Thermal break teknolojisiyle ısı yalıtımlı alüminyum pencere, kapı ve cephe sistemleri. Geniş açıklıklar, yüksek katlı binalar ve ticari projeler için hafif ama dayanıklı alüminyum çözümler sunuyoruz.",
+        image: "/images/aluminyum/aluminyum-cephe-bina.jpg",
+        features: [
+            "Thermal Break Isı Yalıtımlı Profil",
+            "Giydirme Cephe & Yapısal Silikon",
+            "Hebe-Schiebe Sürme Sistemleri",
+            "Ofis Bölme ve Cam Kapı Sistemleri",
+            "6 Metreye Kadar Geniş Açıklık"
+        ],
+        technicalSpecs: [
+            { label: "Profil Tipi", value: "Thermal Break Alüminyum" },
+            { label: "Isı İletim", value: "Uf = 1.5-2.5 W/m²K" },
+            { label: "Yangın Sınıfı", value: "A1 Yanmaz" }
+        ],
+        benefits: [
+            "Geniş açıklıklar için yüksek statik dayanım.",
+            "40-50 yıl ürün ömrü.",
+            "Ticari ve endüstriyel projelere uygun."
         ]
     }
 ];

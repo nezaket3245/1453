@@ -1,29 +1,30 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "@/lib/motion-lite";
 import { pvcProductSeries, comparisonMetrics, PVCProductSeries } from "@/lib/pvcData";
 
 /**
  * Product Series Comparison Table
- * Dynamic technical specifications comparison matrix
+ * Dynamic technical specifications comparison matrix with WCAG AA accessibility.
  */
 export function ComparisonTable() {
     // Filter only window series for main comparison
     const windowSeries = pvcProductSeries.filter(p => p.category === "pencere");
 
     return (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto" role="region" aria-label="Pencere serileri karşılaştırma tablosu" tabIndex={0}>
             <motion.table
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className="w-full min-w-[800px] border-collapse"
             >
+                <caption className="sr-only">Egepen Deceuninck PVC pencere serileri teknik özellik karşılaştırması</caption>
                 <thead>
                     <tr className="bg-primary-600 text-white">
-                        <th className="p-4 text-left font-bold rounded-tl-xl">Teknik Özellik</th>
+                        <th scope="col" className="p-4 text-left font-bold rounded-tl-xl">Teknik Özellik</th>
                         {windowSeries.map((series) => (
-                            <th key={series.id} className="p-4 text-center font-bold">
+                            <th scope="col" key={series.id} className="p-4 text-center font-bold">
                                 {series.name.replace(" Serisi", "")}
                             </th>
                         ))}
@@ -35,13 +36,13 @@ export function ComparisonTable() {
                             key={metric.key}
                             className={idx % 2 === 0 ? "bg-white" : "bg-neutral-50"}
                         >
-                            <td className="p-4 border-b border-neutral-200">
+                            <th scope="row" className="p-4 border-b border-neutral-200 text-left font-normal">
                                 <div className="flex items-center gap-2">
-                                    <span className="text-xl">{metric.icon}</span>
+                                    <span className="text-xl" aria-hidden="true">{metric.icon}</span>
                                     <span className="font-medium text-neutral-800">{metric.label}</span>
-                                    {metric.unit && <span className="text-neutral-400 text-sm">({metric.unit})</span>}
+                                    {metric.unit && <span className="text-neutral-500 text-sm">({metric.unit})</span>}
                                 </div>
-                            </td>
+                            </th>
                             {windowSeries.map((series) => {
                                 const value = series.technicalSpecs[metric.key as keyof PVCProductSeries["technicalSpecs"]];
                                 const displayValue = value !== undefined ? String(value) : "-";
@@ -63,23 +64,25 @@ export function ComparisonTable() {
 
 /**
  * Sliding Systems Comparison Table
+ * Accessible comparison for PVC sliding door/window series.
  */
 export function SlidingComparisonTable() {
     const slidingSeries = pvcProductSeries.filter(p => p.category === "surme");
 
     return (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto" role="region" aria-label="Sürme sistemleri karşılaştırma tablosu" tabIndex={0}>
             <motion.table
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className="w-full min-w-[600px] border-collapse"
             >
+                <caption className="sr-only">Egepen Deceuninck PVC sürme sistemleri teknik özellik karşılaştırması</caption>
                 <thead>
                     <tr className="bg-secondary-600 text-white">
-                        <th className="p-4 text-left font-bold rounded-tl-xl">Teknik Özellik</th>
+                        <th scope="col" className="p-4 text-left font-bold rounded-tl-xl">Teknik Özellik</th>
                         {slidingSeries.map((series) => (
-                            <th key={series.id} className="p-4 text-center font-bold">
+                            <th scope="col" key={series.id} className="p-4 text-center font-bold">
                                 {series.name.replace(" Sürme", "")}
                             </th>
                         ))}
@@ -91,12 +94,12 @@ export function SlidingComparisonTable() {
                             key={metric.key}
                             className={idx % 2 === 0 ? "bg-white" : "bg-neutral-50"}
                         >
-                            <td className="p-4 border-b border-neutral-200">
+                            <th scope="row" className="p-4 border-b border-neutral-200 text-left font-normal">
                                 <div className="flex items-center gap-2">
-                                    <span className="text-xl">{metric.icon}</span>
+                                    <span className="text-xl" aria-hidden="true">{metric.icon}</span>
                                     <span className="font-medium text-neutral-800">{metric.label}</span>
                                 </div>
-                            </td>
+                            </th>
                             {slidingSeries.map((series) => {
                                 const value = series.technicalSpecs[metric.key as keyof PVCProductSeries["technicalSpecs"]];
                                 const displayValue = value !== undefined ? String(value) : "-";
