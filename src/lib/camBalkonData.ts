@@ -322,9 +322,9 @@ Kolay kullanımı ve düşük bakım maliyeti ile uzun yıllar sorunsuz hizmet v
 Özellikle Marmara Denizi'ne yakın Beylikdüzü, Gürpınar ve Avcılar gibi rüzgarlı bölgelerde, fırtına ve sağanak yağışlara karşı mükemmel koruma sağlar. Çift rulmanlı sürme mekanizması yumuşak ve sessiz çalışır.
 
 3'lü veya 5'li ray sistemi ile geniş balkonlarda bile estetik görünüm korunur. Her panel bağımsız olarak hareket eder ve istenilen konumda kilitlenebilir.`,
-        image: '/images/cam-balkon/cam-balkon-kose.jpg',
+        image: '/images/cam-balkon/esikli-surme.jpg',
         gallery: [
-            '/images/cam-balkon/cam-balkon-kose.jpg',
+            '/images/cam-balkon/esikli-surme.jpg',
             '/images/cam-balkon/cam-balkon-sehir-manzara.jpg',
         ],
         technicalSpecs: [
@@ -409,9 +409,9 @@ Kolay kullanımı ve düşük bakım maliyeti ile uzun yıllar sorunsuz hizmet v
 Özellikle kafeler, restoranlar ve butik oteller için ideal olan bu sistem, tekerlekli sandalye ve bebek arabası erişimine de uygundur. Modern minimalist mimari tarzıyla mükemmel uyum sağlar.
 
 Gizli drenaj sistemi sayesinde yağmur suyu kontrollü şekilde tahliye edilir. Özel contalama teknolojisi ile eşiksiz olmasına rağmen iyi bir hava sızdırmazlığı elde edilir.`,
-        image: '/images/cam-balkon/cam-balkon-bahce-manzara.jpg',
+        image: '/images/cam-balkon/esiksiz-surme.jpg',
         gallery: [
-            '/images/cam-balkon/cam-balkon-bahce-manzara.jpg',
+            '/images/cam-balkon/esiksiz-surme.jpg',
             '/images/cam-balkon/cam-balkon-sehir-manzara.jpg',
         ],
         technicalSpecs: [
@@ -498,7 +498,7 @@ Gizli drenaj sistemi sayesinde yağmur suyu kontrollü şekilde tahliye edilir. 
 Yüksek katlarda oturanlar için özel olarak tasarlanan rüzgar sensörü, belirli bir rüzgar hızına ulaşıldığında camları otomatik olarak kapatır. Bu özellik özellikle Beylikdüzü'ndeki yüksek rezidanslarda büyük önem taşır.
 
 Akıllı ev sistemleriyle (Google Home, Alexa, Apple HomeKit) entegre çalışabilir. Güneş sensörü opsiyonu ile gün batımında otomatik kapanma programlanabilir. Çocuk güvenlik modu aktifken camlar uzaktan kontrol edilemez.`,
-        image: "/images/panjur/panjur-motorlu-villa.jpg",
+        image: "/images/cam-balkon/giyotin-motorlu.jpg",
         videoUrl: 'https://www.youtube.com/embed/Ptzlx_tHdzQ',
         gallery: [
             '/images/cam-balkon/cam-balkon-gunbatimi.jpg',
@@ -596,7 +596,7 @@ Akıllı ev sistemleriyle (Google Home, Alexa, Apple HomeKit) entegre çalışab
 Özellikle bütçe odaklı müşteriler için ideal olan bu sistem, motorlu versiyona göre %40-50 daha uygun fiyatlıdır. Elektrik bağlantısı gerektirmez, bu da montaj maliyetini düşürür ve bakım ihtiyacını minimuma indirir.
 
 Sistemde kullanılan gaz pistonları otomotiv sektöründen (bagaj kapağı amortisörü) adapte edilmiştir ve 50.000+ açma/kapama döngüsü test edilmiştir. Yavaş kapanma özelliği ile çarpma ve parmak sıkışma riski yoktur.`,
-        image: "/images/panjur/panjur-modern-villa.jpg",
+        image: "/images/cam-balkon/giyotin-manuel.jpg",
         gallery: [
             '/images/cam-balkon/cam-balkon-sehir-manzara.jpg',
             '/images/cam-balkon/cam-balkon-gunbatimi.jpg',

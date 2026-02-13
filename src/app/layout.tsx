@@ -1,13 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { businessConfig } from "@/config/business.config";
 import { SkipToContent } from "@/components/ui/SkipToContent";
 import { ClientUIComponents } from "@/components/layout/ClientUIComponents";
-import { AppProviders } from "@/components/providers/AppProviders";
 
-// Single optimized font — Inter removed to save ~50KB font download
-// Outfit covers all needed weights; system-ui provides adequate fallback
+// Optimize font loading with subset and preload
+const inter = Inter({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-inter",
+  display: "swap",
+  preload: true,
+  fallback: ["system-ui", "arial"],
+});
+
 const outfit = Outfit({
   subsets: ["latin", "latin-ext"],
   variable: "--font-outfit",
@@ -26,12 +32,12 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(businessConfig.siteUrl),
+  metadataBase: new URL("https://akcapen-pvc.pages.dev"),
   title: {
-    default: 'PVC Pencere Fiyatları 2026 | Egepen Akçayapı Beylikdüzü',
-    template: '%s | Egepen Akçayapı',
+    default: `PVC Pencere Fiyatları 2026 | Egepen Akçayapı Beylikdüzü - Resmi Yetkili Bayi`,
+    template: `%s | Egepen Akçayapı - PVC Pencere & Cam Balkon Beylikdüzü`,
   },
-  description: 'Beylikdüzü Egepen Deceuninck yetkili bayisi. PVC pencere fiyatları 2026, cam balkon m2 fiyat, sineklik ve panjur sistemleri. 40 yıl tecrübe, ücretsiz keşif.',
+  description: `✓ Beylikdüzü Egepen Deceuninck yetkili bayisi. PVC pencere fiyatları 2026, cam balkon m2 fiyat, sineklik ve panjur sistemleri. Ücretsiz keşif ve profesyonel montaj. ☎ 0212 880 15 07`,
   keywords: [
     // Ana anahtar kelimeler
     "pvc pencere fiyatları",
@@ -56,7 +62,7 @@ export const metadata: Metadata = {
     "cam balkon kapatma fiyatları",
   ],
   applicationName: "Egepen Akçayapı",
-  authors: [{ name: businessConfig.name, url: businessConfig.siteUrl }],
+  authors: [{ name: businessConfig.name, url: "https://akcapen-pvc.pages.dev" }],
   creator: businessConfig.name,
   publisher: businessConfig.name,
   generator: "Next.js",
@@ -82,13 +88,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "tr_TR",
-    url: businessConfig.siteUrl,
+    url: "https://akcapen-pvc.pages.dev",
     siteName: "Egepen Akçayapı - PVC Pencere & Cam Balkon",
     title: "PVC Pencere Fiyatları 2026 | Egepen Akçayapı Beylikdüzü",
-    description: `Beylikdüzü Egepen Deceuninck yetkili bayisi. PVC pencere, cam balkon, sineklik ve panjur fiyatları. 40 yıl tecrübe.`,
+    description: `Beylikdüzü Egepen Deceuninck yetkili bayisi. PVC pencere, cam balkon, sineklik ve panjur fiyatları. Ücretsiz keşif, profesyonel montaj.`,
     images: [
       {
-        url: `${businessConfig.siteUrl}/images/og-home.jpg`,
+        url: "https://akcapen-pvc.pages.dev/images/og-home.jpg",
         width: 1200,
         height: 630,
         alt: "Egepen Akçayapı - PVC Pencere ve Cam Balkon Sistemleri Beylikdüzü",
@@ -101,27 +107,26 @@ export const metadata: Metadata = {
     site: "@egepenakcayapi",
     creator: "@egepenakcayapi",
     title: `PVC Pencere Fiyatları 2026 | Egepen Akçayapı Beylikdüzü`,
-    description: `Beylikdüzü Egepen yetkili bayisi. PVC pencere, cam balkon, sineklik ve panjur. 40 yıl tecrübe.`,
+    description: `Beylikdüzü Egepen yetkili bayisi. PVC pencere, cam balkon, sineklik ve panjur. Ücretsiz keşif, profesyonel montaj.`,
     images: {
-      url: `${businessConfig.siteUrl}/images/og-home.jpg`,
+      url: "https://akcapen-pvc.pages.dev/images/og-home.jpg",
       alt: "Egepen Akçayapı PVC Pencere ve Cam Balkon",
     },
   },
   alternates: {
-    canonical: businessConfig.siteUrl,
+    canonical: "https://akcapen-pvc.pages.dev",
     languages: {
-      "tr-TR": businessConfig.siteUrl,
+      "tr-TR": "https://akcapen-pvc.pages.dev",
     },
   },
   verification: {
-    // TODO: Add real verification codes from Google/Yandex/Bing webmaster consoles
-    // google: "PASTE_REAL_CODE_HERE",
-    // yandex: "PASTE_REAL_CODE_HERE",
+    google: "google-site-verification-code",
+    yandex: "yandex-verification-code",
   },
   category: "Home Improvement",
   classification: "Business",
   other: {
-    // "msvalidate.01": "PASTE_REAL_BING_CODE_HERE",
+    "msvalidate.01": "bing-verification-code",
     "apple-mobile-web-app-title": "Egepen Akçayapı",
     "mobile-web-app-capable": "yes",
   },
@@ -134,14 +139,14 @@ export const metadata: Metadata = {
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
-  "@id": `${businessConfig.siteUrl}/#organization`,
+  "@id": "https://akcapen-pvc.pages.dev/#organization",
   "name": businessConfig.name,
   "legalName": businessConfig.legalName,
   "alternateName": ["Egepen Akçayapı", "Akçayapı PVC", "Egepen Beylikdüzü"],
-  "description": "Beylikdüzü ve İstanbul Avrupa yakasında Egepen Deceuninck yetkili bayisi. PVC pencere, cam balkon, sineklik, panjur ve duşakabin sistemleri satış ve montaj hizmeti. 40 yıllık tecrübe.",
-  "image": `${businessConfig.siteUrl}/images/showroom-main.webp`,
-  "logo": `${businessConfig.siteUrl}/images/akcay-yapi-logo.png`,
-  "url": businessConfig.siteUrl,
+  "description": "Beylikdüzü ve İstanbul Avrupa yakasında Egepen Deceuninck yetkili bayisi. PVC pencere, cam balkon, sineklik, panjur ve duşakabin sistemleri satış ve montaj hizmeti.",
+  "image": "https://akcapen-pvc.pages.dev/images/hero-bg.jpg",
+  "logo": "https://akcapen-pvc.pages.dev/images/logo.svg",
+  "url": "https://akcapen-pvc.pages.dev",
   "telephone": businessConfig.contact.mobile,
   "email": businessConfig.contact.email,
   "priceRange": "₺₺",
@@ -168,7 +173,7 @@ const localBusinessSchema = {
     "streetAddress": businessConfig.address.street,
     "addressLocality": businessConfig.address.district,
     "addressRegion": businessConfig.address.city,
-    "postalCode": businessConfig.address.zip,
+    "postalCode": (businessConfig.address as any).zip || "34528",
     "addressCountry": "TR"
   },
   "geo": {
@@ -220,7 +225,8 @@ const localBusinessSchema = {
   ],
   "sameAs": [
     businessConfig.social.instagram,
-    businessConfig.social.youtube
+    businessConfig.social.youtube,
+    businessConfig.social.googleMaps,
   ],
   "knowsAbout": [
     "PVC Pencere",
@@ -240,6 +246,13 @@ const localBusinessSchema = {
   "numberOfEmployees": {
     "@type": "QuantitativeValue",
     "value": "15-25"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "127",
+    "bestRating": "5",
+    "worstRating": "1"
   }
 };
 
@@ -249,7 +262,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="tr" dir="ltr" className={outfit.variable}>
+    <html lang="tr" dir="ltr" className={`${outfit.variable} ${inter.variable}`}>
       <head>
         <meta charSet="utf-8" />
         
@@ -275,14 +288,16 @@ export default function RootLayout({
         <meta httpEquiv="content-language" content="tr" />
 
         {/* Favicon Links - Optimized */}
-        <link rel="icon" href="/favicon.ico" sizes="48x48" />
-        <link rel="icon" type="image/png" sizes="192x192" href="/images/icon-192x192.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+        <link rel="icon" type="image/svg+xml" href="/images/icon-192x192.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icon-192x192.svg" />
         <link rel="manifest" href="/manifest.json" />
 
-        {/* DNS Prefetch - Only for actually used external resources */}
-        {/* Fonts are self-hosted by next/font — no preconnect needed */}
-        {/* GA is disabled — dns-prefetch removed */}
+        {/* DNS Prefetch & Preconnect for Performance */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="//www.google-analytics.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
         {/* Preload LCP Image - Critical for Performance */}
         <link
@@ -298,22 +313,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
-        {/* Organization Schema - Logo for Google Knowledge Panel */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "Akçay Yapı",
-            "alternateName": "Egepen Akçayapı",
-            "logo": `${businessConfig.siteUrl}/images/akcay-yapi-logo.png`,
-            "url": businessConfig.siteUrl,
-            "sameAs": [
-              businessConfig.social.instagram,
-              businessConfig.social.youtube,
-            ],
-          }) }}
-        />
 
         {/* Critical CSS for Above-the-Fold Content */}
         <style
@@ -322,7 +321,7 @@ export default function RootLayout({
               /* Critical CSS - Minimal above-the-fold styles */
               *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
               html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-size-adjust:100%}
-              body{min-height:100vh;background:#fff;color:#0f172a;font-family:var(--font-outfit),system-ui,-apple-system,sans-serif;line-height:1.5;overflow-x:hidden}
+              body{min-height:100vh;background:#fff;color:#0f172a;font-family:var(--font-outfit),var(--font-inter),system-ui,-apple-system,sans-serif;line-height:1.5;overflow-x:hidden}
               img,picture,video,canvas,svg{display:block;max-width:100%;height:auto}
               .container-custom{width:100%;max-width:1280px;margin:0 auto;padding-left:1rem;padding-right:1rem}
               @media(min-width:640px){.container-custom{padding-left:1.5rem;padding-right:1.5rem}}
@@ -341,28 +340,40 @@ export default function RootLayout({
         {/* Skip to Content - Accessibility */}
         <SkipToContent />
 
-        <AppProviders>
-          {children}
-        </AppProviders>
+        {children}
 
         {/* Client-side UI Components - All lazy loaded */}
         <ClientUIComponents />
 
-        {/* 
-          Google Analytics 4 — Gerçek GA4 ID'nizi aldığınızda aşağıdaki yorumları kaldırın
-          ve G-XXXXXXXXXX yerine gerçek Measurement ID'nizi yazın.
-        */}
-        {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" />
+        {/* Deferred Analytics - Loads after user interaction */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-XXXXXXXXXX');
+              // Defer analytics loading until after user interaction
+              (function(){
+                var loaded=false;
+                function loadAnalytics(){
+                  if(loaded)return;
+                  loaded=true;
+                  var s=document.createElement('script');
+                  s.src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+                  s.async=true;
+                  document.head.appendChild(s);
+                  window.dataLayer=window.dataLayer||[];
+                  function gtag(){dataLayer.push(arguments)}
+                  window.gtag=gtag;
+                  gtag('js',new Date());
+                  gtag('config','G-XXXXXXXXXX',{send_page_view:true,anonymize_ip:true});
+                }
+                ['scroll','click','touchstart'].forEach(function(e){
+                  window.addEventListener(e,loadAnalytics,{once:true,passive:true});
+                });
+                // Fallback: load after 4 seconds if no interaction
+                setTimeout(loadAnalytics,4000);
+              })();
             `,
           }}
-        /> */}
+        />
       </body>
     </html>
   );

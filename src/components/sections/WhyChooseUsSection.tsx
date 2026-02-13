@@ -33,7 +33,7 @@ const advantages = [
             </svg>
         ),
         title: "Profesyonel Montaj Ekibi",
-        description: "40 yıllık deneyimli ustalarımız, aynı gün montaj ve mükemmel işçilik sunuyor. Tüm montajlar TSE standartlarına uygun yapılır.",
+        description: "Deneyimli ustalarımız, aynı gün montaj ve mükemmel işçilik sunuyor. Tüm montajlar TSE standartlarına uygun yapılır.",
         highlight: "AYNI GÜN MONTAJ",
         color: "from-blue-500 to-cyan-500"
     },
@@ -106,7 +106,7 @@ export function WhyChooseUsSection() {
                         transition={{ delay: 0.2 }}
                         className="text-lg text-neutral-600 leading-relaxed"
                     >
-                        40 yıldır Beylikdüzü, Gürpınar ve çevresinde binlerce aileye hizmet verdik.
+                        Beylikdüzü, Gürpınar ve çevresinde binlerce aileye hizmet veriyoruz.
                         Rakiplerimizden farkımız, sadece ürün satmak değil, kalıcı çözümler sunmaktır.
                     </motion.p>
                 </div>

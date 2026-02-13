@@ -1,44 +1,59 @@
+"use client";
+
 import Link from "next/link";
 import { businessConfig } from "@/config/business.config";
-import { getPrimaryStore, formatWorkingHoursDisplay } from "@/data/stores";
-import { productCategories } from "@/data/categories";
 
 /**
- * Service area data sourced from businessConfig (DRY)
+ * Beylikdüzü neighborhoods for local SEO targeting
  */
-const { beylikduzu, buyukcekmece, nearbyDistricts } = businessConfig.serviceAreas;
+const beylikduzuNeighborhoods = [
+    "Adnan Kahveci", "Barış", "Büyükşehir", "Cumhuriyet", "Dereağzı",
+    "Gürpınar", "Kavaklı", "Marmara", "Sahil", "Yakuplu"
+];
+
+/**
+ * Büyükçekmece neighborhoods - TÜM MAHALLELER
+ */
+const buyukcekmceNeighborhoods = [
+    "Atatürk", "Bahçelievler", "Batıköy", "Beykent", "Celaliye",
+    "Cumhuriyet", "Dizdariye", "Fatih", "Fevzi Çakmak", "Hürriyet",
+    "Kamiloba", "Karaağaç", "Kumburgaz", "Mimarsinan", "Muratbey",
+    "Pınartepe", "Ulus", "Yenimahalle", "19 Mayıs", "Alkent 2000",
+    "Boğaziçi", "Çakmaklı", "Güzelce", "Tepecik", "Türkoba"
+];
+
+const nearbyDistricts = [
+    "Esenyurt", "Avcılar", "Küçükçekmece",
+    "Başakşehir", "Bahçeşehir", "Hadımköy", "Silivri", "Çatalca"
+];
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
-    const primaryStore = getPrimaryStore();
 
     return (
         <footer className="bg-neutral-900 text-white pt-20 pb-10" role="contentinfo" aria-label="Site alt bilgi">
             {/* Service Areas Section - Local SEO Critical */}
             <div className="container-custom mb-16">
                 <div className="bg-neutral-800/50 rounded-2xl p-8">
-                    <h2 className="text-2xl font-bold text-white mb-6 text-center flex items-center justify-center gap-2">
-                        <svg className="w-6 h-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
-                        Hizmet Bölgelerimiz
+                    <h2 className="text-2xl font-bold text-white mb-6 text-center">
+                        🏠 Hizmet Bölgelerimiz
                     </h2>
-                    <p className="text-neutral-300 text-center max-w-2xl mx-auto mb-8">
+                    <p className="text-neutral-400 text-center max-w-2xl mx-auto mb-8">
                         Beylikdüzü, Büyükçekmece ve çevre ilçelerde <strong className="text-white">ücretsiz keşif</strong> ve profesyonel montaj hizmeti sunuyoruz.
                     </p>
 
-                    <div className="grid md:grid-cols-3 gap-8" aria-label="Hizmet verilen bölgeler">
+                    <div className="grid md:grid-cols-3 gap-8" role="list" aria-label="Hizmet verilen bölgeler">
                         {/* Beylikdüzü Neighborhoods */}
                         <div>
-                            <h3 className="text-lg font-bold text-primary-300 mb-4 flex items-center gap-2">
-                                <span className="w-8 h-8 bg-primary-500/20 rounded-lg flex items-center justify-center text-primary-400">
-                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
-                                </span>
+                            <h3 className="text-lg font-bold text-primary-400 mb-4 flex items-center gap-2">
+                                <span className="w-8 h-8 bg-primary-500/20 rounded-lg flex items-center justify-center" aria-hidden="true">📍</span>
                                 Beylikdüzü
                             </h3>
                             <div className="grid grid-cols-2 gap-1">
-                                {beylikduzu.neighborhoods.map((neighborhood) => (
+                                {beylikduzuNeighborhoods.map((neighborhood) => (
                                     <span
                                         key={neighborhood}
-                                        className="text-sm text-neutral-300 hover:text-white transition-colors cursor-default"
+                                        className="text-sm text-neutral-400 hover:text-white transition-colors cursor-default"
                                     >
                                         • {neighborhood}
                                     </span>
@@ -49,22 +64,20 @@ export function Footer() {
                         {/* Büyükçekmece Neighborhoods */}
                         <div>
                             <h3 className="text-lg font-bold text-secondary-400 mb-4 flex items-center gap-2">
-                                <span className="w-8 h-8 bg-secondary-500/20 rounded-lg flex items-center justify-center text-secondary-400">
-                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
-                                </span>
+                                <span className="w-8 h-8 bg-secondary-500/20 rounded-lg flex items-center justify-center" aria-hidden="true">📍</span>
                                 Büyükçekmece
                             </h3>
                             <div className="grid grid-cols-2 gap-1">
-                                {buyukcekmece.neighborhoods.slice(0, 16).map((neighborhood) => (
+                                {buyukcekmceNeighborhoods.slice(0, 16).map((neighborhood) => (
                                     <span
                                         key={neighborhood}
-                                        className="text-xs text-neutral-300 hover:text-white transition-colors cursor-default"
+                                        className="text-xs text-neutral-400 hover:text-white transition-colors cursor-default"
                                     >
                                         • {neighborhood}
                                     </span>
                                 ))}
-                                <span className="text-xs text-neutral-300 col-span-2">
-                                    +{buyukcekmece.neighborhoods.length - 16} mahalle daha...
+                                <span className="text-xs text-neutral-500 col-span-2">
+                                    +{buyukcekmceNeighborhoods.length - 16} mahalle daha...
                                 </span>
                             </div>
                         </div>
@@ -72,16 +85,14 @@ export function Footer() {
                         {/* Nearby Districts */}
                         <div>
                             <h3 className="text-lg font-bold text-accent-400 mb-4 flex items-center gap-2">
-                                <span className="w-8 h-8 bg-accent-500/20 rounded-lg flex items-center justify-center text-accent-400">
-                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" /></svg>
-                                </span>
+                                <span className="w-8 h-8 bg-accent-500/20 rounded-lg flex items-center justify-center" aria-hidden="true">🗺️</span>
                                 Yakın İlçeler
                             </h3>
                             <div className="grid grid-cols-2 gap-1">
-                                {nearbyDistricts.map((district: string) => (
+                                {nearbyDistricts.map((district) => (
                                     <span
                                         key={district}
-                                        className="text-sm text-neutral-300 hover:text-white transition-colors cursor-default"
+                                        className="text-sm text-neutral-400 hover:text-white transition-colors cursor-default"
                                     >
                                         • {district}
                                     </span>
@@ -90,28 +101,42 @@ export function Footer() {
                         </div>
                     </div>
 
-
+                    {/* Quick Contact CTA */}
+                    <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a
+                            href={`tel:${businessConfig.contact.mobileRaw}`}
+                            title="Egepen Akçayapı'yı Hemen Arayın"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors"
+                        >
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            Hemen Ara: {businessConfig.contact.mobile}
+                        </a>
+                        <a
+                            href={`https://wa.me/${businessConfig.contact.whatsapp}?text=${encodeURIComponent("Merhaba, bölgemde ücretsiz keşif istiyorum.")}`}
+                            target="_blank"
+                            rel="noopener noreferrer nofollow"
+                            title="WhatsApp ile Ücretsiz Keşif İsteyin"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 text-white font-bold rounded-xl hover:bg-green-600 transition-colors"
+                        >
+                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                            </svg>
+                            WhatsApp ile Ulaşın
+                        </a>
+                    </div>
                 </div>
             </div>
 
             <div className="container-custom grid lg:grid-cols-4 gap-12 mb-16">
                 {/* Branding & Bio */}
                 <div className="lg:col-span-1">
-                    <Link href="/" title="Egepen Akçayapı Ana Sayfa" className="mb-6 block focus:ring-2 focus:ring-white/50 focus:outline-none rounded">
-                        <picture>
-                            <source srcSet="/images/akcay-yapi-logo.webp" type="image/webp" />
-                            <img
-                                src="/images/akcay-yapi-logo.png"
-                                alt="Egepen Akçay Yapı - PVC ve Cam Balkon Sistemleri"
-                                width={180}
-                                height={43}
-                                loading="lazy"
-                                className="h-8 w-auto brightness-0 invert"
-                            />
-                        </picture>
+                    <Link href="/" title="Egepen Akçayapı Ana Sayfa" className="text-2xl font-black text-white italic uppercase tracking-tighter mb-6 block">
+                        {businessConfig.name}
                     </Link>
-                    <p className="text-neutral-300 text-sm leading-relaxed mb-6">
-                        Beylikdüzü ve Gürpınar bölgesinde 40 yıllık tecrübe ile {businessConfig.brand} yetkili bayisi olarak hizmet vermekteyiz. Isı yalıtımı ve güvenlikte dünya standartlarını evinize getiriyoruz.
+                    <p className="text-neutral-400 text-sm leading-relaxed mb-6">
+                        Beylikdüzü ve Gürpınar bölgesinde {businessConfig.brand} yetkili bayisi olarak hizmet vermekteyiz. Isı yalıtımı ve güvenlikte dünya standartlarını evinize getiriyoruz.
                     </p>
                     <div className="flex gap-4">
                         <a href={businessConfig.social.instagram} target="_blank" rel="noopener noreferrer nofollow" title="Egepen Akçayapı Instagram" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary-500 transition-colors" aria-label="Instagram">
@@ -120,14 +145,13 @@ export function Footer() {
                         <a href={businessConfig.social.youtube} target="_blank" rel="noopener noreferrer nofollow" title="Egepen Akçayapı YouTube Kanalı" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary-500 transition-colors" aria-label="YouTube">
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
                         </a>
-
                     </div>
                 </div>
 
                 {/* Quick Links */}
                 <div>
                     <h3 className="text-lg font-bold mb-6 border-l-4 border-primary-500 pl-3 uppercase">Hızlı Linkler</h3>
-                    <ul className="space-y-4 text-neutral-300">
+                    <ul className="space-y-4 text-neutral-400">
                         <li><Link href="/urunler" title="Egepen Akçayapı Ürünleri" className="hover:text-white transition-colors">Ürünlerimiz</Link></li>
                         <li><Link href="/pvc-sistemleri" title="PVC Pencere Sistemleri" className="hover:text-white transition-colors">PVC Sistemleri</Link></li>
                         <li><Link href="/projeler" title="Tamamlanan Projeler ve Referanslar" className="hover:text-white transition-colors">Referanslar</Link></li>
@@ -138,68 +162,62 @@ export function Footer() {
                     </ul>
                 </div>
 
-                {/* Services — from centralized categories */}
+                {/* Services */}
                 <div>
                     <h3 className="text-lg font-bold mb-6 border-l-4 border-primary-500 pl-3 uppercase">Hizmetlerimiz</h3>
-                    <ul className="space-y-4 text-neutral-300">
-                        {productCategories.map((cat) => (
-                            <li key={cat.id}>
-                                <Link href={cat.href} title={cat.name} className="hover:text-white transition-colors">
-                                    {cat.shortName}
-                                </Link>
-                            </li>
-                        ))}
+                    <ul className="space-y-4 text-neutral-400">
+                        <li><Link href="/pvc-sistemleri" title="Egepen Deceuninck PVC Pencere Sistemleri" className="hover:text-white transition-colors">PVC Pencere Sistemleri</Link></li>
+                        <li><Link href="/cam-balkon-sistemleri" title="Isıcamlı ve Sürme Cam Balkon Sistemleri" className="hover:text-white transition-colors">Cam Balkon</Link></li>
+                        <li><Link href="/panjur-kepenk-sistemleri" title="Motorlu ve Manuel Panjur Sistemleri" className="hover:text-white transition-colors">Panjur & Kepenk</Link></li>
+                        <li><Link href="/sineklik-sistemleri" title="Plise, Sürme ve Menteşeli Sineklik" className="hover:text-white transition-colors">Sineklik Çözümleri</Link></li>
+                        <li><Link href="/dusakabin-sistemleri" title="Premium Cam Duşakabin Sistemleri" className="hover:text-white transition-colors">Duşakabin</Link></li>
                     </ul>
                 </div>
 
                 {/* Contact Info */}
                 <div>
                     <h3 className="text-lg font-bold mb-6 border-l-4 border-primary-500 pl-3 uppercase">İletişim Bilgileri</h3>
-                    <ul className="space-y-6 text-neutral-300">
+                    <address className="not-italic">
+                    <ul className="space-y-6 text-neutral-400">
                         <li className="flex gap-4">
-                            <span className="text-primary-500" aria-hidden="true">
-                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
-                            </span>
+                            <span className="text-primary-500 font-bold" aria-hidden="true">📍</span>
                             <a href={businessConfig.social.googleMaps} target="_blank" rel="noopener noreferrer nofollow" title="Egepen Akçayapı Google Maps Konumu" className="text-sm hover:text-white transition-colors">{businessConfig.address.full}</a>
                         </li>
                         <li className="flex gap-4">
-                            <span className="text-primary-500" aria-hidden="true">
-                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
-                            </span>
-                            <a href={`tel:${businessConfig.contact.landlineRaw}`} className="hover:text-white transition-colors">{businessConfig.contact.landline}</a>
+                            <span className="text-primary-500 font-bold" aria-hidden="true">📞</span>
+                            <a href={`tel:${businessConfig.contact.landlineRaw}`} title="Egepen Akçayapı Sabit Telefon" className="hover:text-white transition-colors">{businessConfig.contact.landline}</a>
                         </li>
                         <li className="flex gap-4">
-                            <span className="text-primary-500" aria-hidden="true">
-                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
-                            </span>
-                            <a href={`tel:${businessConfig.contact.mobileRaw}`} className="hover:text-white transition-colors font-medium">{businessConfig.contact.mobile}</a>
+                            <span className="text-primary-500 font-bold" aria-hidden="true">📱</span>
+                            <a href={`tel:${businessConfig.contact.mobileRaw}`} title="Egepen Akçayapı Cep Telefonu" className="hover:text-white transition-colors font-medium">{businessConfig.contact.mobile}</a>
                         </li>
-                        {/* E-posta gizlendi */}
                         <li className="flex gap-4">
-                            <span className="text-primary-500" aria-hidden="true">
-                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                            </span>
-                            <span className="text-sm">
-                                <span className="block font-medium text-white">Çalışma Saatleri</span>
-                                <span className="block">{formatWorkingHoursDisplay(primaryStore.workingHours)}</span>
-                            </span>
+                            <span className="text-primary-500 font-bold" aria-hidden="true">✉️</span>
+                            <a
+                                href={`mailto:${businessConfig.contact.email}`}
+                                title="E-posta ile İletişime Geçin"
+                                className="hover:text-white transition-colors text-sm"
+                            >
+                                {businessConfig.contact.email}
+                            </a>
                         </li>
                     </ul>
+                    </address>
                 </div>
             </div>
 
             {/* SEO Text for Local Search */}
             <div className="container-custom mb-8">
-                <p className="text-xs text-neutral-300 text-center max-w-4xl mx-auto leading-relaxed">
+                <p className="text-xs text-neutral-600 text-center max-w-4xl mx-auto leading-relaxed">
                     <strong>Egepen Akçayapı</strong> - Beylikdüzü, Gürpınar, Yakuplu, Kavaklı, Adnan Kahveci ve çevre bölgelerde
                     PVC pencere, cam balkon, sineklik, panjur ve duşakabin montaj hizmeti veren <strong>Egepen Deceuninck yetkili bayisi</strong>.
-                    İstanbul Avrupa yakasında 40 yıllık tecrübe ile profesyonel hizmet. Ücretsiz keşif.
+                    İstanbul Avrupa yakasında Egepen Deceuninck yetkili bayisi. Profesyonel hizmet ve ücretsiz keşif.
                 </p>
             </div>
 
-            <div className="border-t border-white/5 pt-8 text-center text-neutral-300 text-xs">
+            <div className="border-t border-white/5 pt-8 text-center text-neutral-500 text-xs">
                 <p>© {currentYear} {businessConfig.legalName}. Tüm Hakları Saklıdır.</p>
-                <p className="mt-2 text-neutral-300">Egepen Deceuninck Yetkili Bayi - Beylikdüzü / İstanbul</p>
+                <p className="mt-2 text-neutral-600">Egepen Deceuninck Yetkili Bayi - Beylikdüzü / İstanbul</p>
             </div>
         </footer>
     );

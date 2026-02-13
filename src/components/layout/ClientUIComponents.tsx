@@ -5,7 +5,9 @@ import dynamic from "next/dynamic";
 /**
  * ClientUIComponents
  * 
- * Wraps all client-side UI components that need ssr: false.
+ * Global client-side UI widgets loaded with ssr: false.
+ * Floating WhatsApp & Sticky CTA removed — all communication
+ * funneled through the dedicated İletişim page.
  */
 
 const BackToTopButton = dynamic(
@@ -18,18 +20,20 @@ const CookieConsent = dynamic(
   { ssr: false }
 );
 
-const StickyCTA = dynamic(
-  () => import("@/components/ui/StickyCTA").then((mod) => ({ default: mod.StickyCTA })),
+const AnalyticsProvider = dynamic(
+  () => import("@/components/providers/AnalyticsProvider").then((mod) => ({ default: mod.AnalyticsProvider })),
   { ssr: false }
 );
 
 export function ClientUIComponents() {
   return (
     <>
+      {/* Analytics Provider */}
+      <AnalyticsProvider />
+
       {/* Global UI Components */}
       <BackToTopButton />
       <CookieConsent />
-      <StickyCTA />
     </>
   );
 }

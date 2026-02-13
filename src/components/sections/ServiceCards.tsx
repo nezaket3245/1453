@@ -1,16 +1,13 @@
-"use client";
-
-import { motion } from "@/lib/motion-lite";
 import Link from "next/link";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 import { businessConfig } from "@/config/business.config";
 import { cn } from "@/lib/utils";
 
 /**
- * ServiceCards Component
+ * ServiceCards Component - Server Component (no client JS)
  * 
- * Feature-rich service cards following F-Pattern layout.
- * Each card includes: Features, Warranty, "Get Price" CTA.
+ * Feature-rich service cards with CSS-only animations.
+ * Converted from framer-motion to pure CSS for better performance.
  * 
  * SEO: Targets individual service keywords for local market.
  */
@@ -124,46 +121,31 @@ export function ServiceCards() {
             <div className="container-custom">
                 {/* Section Header */}
                 <div className="text-center max-w-3xl mx-auto mb-12">
-                    <motion.span
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                    <span
                         className="inline-block px-4 py-1.5 rounded-full bg-primary-50 text-primary-600 text-sm font-bold uppercase tracking-widest mb-4"
                     >
                         Hizmetlerimiz
-                    </motion.span>
-                    <motion.h2
+                    </span>
+                    <h2
                         id="services-heading"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
                         className="text-3xl md:text-4xl lg:text-5xl font-black text-neutral-900 mb-6"
                     >
                         Beylikdüzü&apos;nde{" "}
                         <span className="text-primary-600">Profesyonel Çözümler</span>
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
+                    </h2>
+                    <p
                         className="text-lg text-neutral-600"
                     >
                         Her biri Egepen kalitesiyle, yerel ekibimiz tarafından profesyonelce monte edilen sistemler.
-                    </motion.p>
+                    </p>
                 </div>
 
                 {/* Service Cards Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {services.map((service, index) => (
-                        <motion.article
+                    {services.map((service) => (
+                        <article
                             key={service.id}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden hover:border-primary-300 hover:shadow-xl transition-[border-color,box-shadow] duration-300"
+                            className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden hover:border-primary-300 hover:shadow-xl transition-all duration-300"
                         >
                             {/* Image Header */}
                             <div className="relative aspect-[16/10] bg-gradient-to-br from-primary-50 to-accent-50 overflow-hidden">
@@ -171,7 +153,6 @@ export function ServiceCards() {
                                     src={service.image}
                                     alt={service.title}
                                     fill
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                     className={cn(
                                         "object-cover group-hover:scale-110 transition-transform duration-500",
                                         (service.id === 'panjur' || service.id === 'dusakabin' || service.id === 'aluminyum') && "object-contain p-2"
@@ -183,10 +164,10 @@ export function ServiceCards() {
                                         {service.badge}
                                     </div>
                                 )}
-                                {/* Call for Price */}
+                                {/* Price Range */}
                                 {service.priceRange && (
                                     <div className="absolute top-4 right-4 px-2 py-1 bg-white/90 backdrop-blur-sm text-neutral-700 text-xs font-medium rounded">
-                                        Fiyat İçin Arayın
+                                        {service.priceRange}
                                     </div>
                                 )}
                             </div>
@@ -211,6 +192,8 @@ export function ServiceCards() {
                                     ))}
                                 </ul>
 
+
+
                                 {/* Actions */}
                                 <div className="flex gap-3">
                                     <Link
@@ -225,13 +208,13 @@ export function ServiceCards() {
                                         target="_blank"
                                         rel="noopener noreferrer nofollow"
                                         title={`${service.title} için WhatsApp'tan fiyat alın`}
-                                        className="flex-1 text-center py-2.5 text-sm font-bold text-white bg-green-700 rounded-lg hover:bg-green-800 transition-colors"
+                                        className="flex-1 text-center py-2.5 text-sm font-bold text-white bg-green-500 rounded-lg hover:bg-green-600 transition-colors"
                                     >
-                                        Bilgi Al
+                                        Fiyat Al
                                     </a>
                                 </div>
                             </div>
-                        </motion.article>
+                        </article>
                     ))}
                 </div>
             </div>

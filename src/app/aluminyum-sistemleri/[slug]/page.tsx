@@ -1,417 +1,172 @@
-/**
- * Dynamic Aluminum System Detail Page
- * SEO: Individual product pages for each aluminum system
- * Features: Full specs, FAQ, gallery, schema.org Product markup
- */
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import OptimizedImage from "@/components/ui/OptimizedImage";
+import Link from "next/link";
+import { HeaderOptimized } from "@/components/layout/HeaderOptimized";
+import { Footer } from "@/components/layout/Footer";
+import { PageHero } from "@/components/ui/PageHero";
+import { ExpandableSection, ExpandableGroup, DetailRow } from "@/components/ui/ExpandableSection";
+import { businessConfig } from "@/config/business.config";
+import { aluminumSystems, getAluminumSystemBySlug } from "@/lib/aluminumData";
 
-import { Metadata } from 'next';
-import Link from 'next/link';
-import Image from 'next/image';
-import { notFound } from 'next/navigation';
-import { aluminumSystems, getAluminumSystemBySlug, thermalBreakTechnology } from '@/lib/aluminumData';
-import { businessConfig } from '@/config/business.config';
-import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
-import { Footer } from '@/components/layout/Footer';
-
-type Props = {
+interface AluminumPageProps {
     params: Promise<{ slug: string }>;
-};
+}
 
-// Generate static params for all aluminum systems
 export async function generateStaticParams() {
-    return aluminumSystems.map((system) => ({
-        slug: system.slug,
-    }));
+    return aluminumSystems.map((s) => ({ slug: s.slug }));
 }
 
-// Dynamic metadata
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: AluminumPageProps): Promise<Metadata> {
     const { slug } = await params;
     const system = getAluminumSystemBySlug(slug);
-
-    if (!system) {
-        return { title: 'Sistem Bulunamadı' };
-    }
-
+    if (!system) return { title: "Ürün Bulunamadı" };
     return {
-        title: `${system.name} Alüminyum Sistemleri`,
-        description: system.description.slice(0, 155),
-        keywords: system.seoKeywords.join(', '),
-        openGraph: {
-            title: `${system.name} | Egepen Akçayapı`,
-            description: system.tagline,
-            type: 'website',
-            locale: 'tr_TR',
-            images: [system.image],
-        },
-        alternates: {
-            canonical: `${businessConfig.siteUrl}/aluminyum-sistemleri/${system.slug}`,
-        },
+        title: `${system.name} - Alüminyum Doğrama Fiyatları`,
+        description: system.description,
+        alternates: { canonical: `https://egepenakcayapi.com/aluminyum-sistemleri/${slug}` },
     };
 }
 
-export default async function AluminumSystemDetailPage({ params }: Props) {
+export default async function AluminumProductPage({ params }: AluminumPageProps) {
     const { slug } = await params;
     const system = getAluminumSystemBySlug(slug);
+    if (!system) notFound();
 
-    if (!system) {
-        notFound();
-    }
-
-    // JSON-LD Product Schema
-    const productSchema = {
-        '@context': 'https://schema.org',
-        '@type': 'Product',
-        name: system.name,
-        description: system.description,
-        image: system.image,
-        brand: {
-            '@type': 'Brand',
-            name: 'Egepen Akçayapı',
-        },
-        offers: {
-            '@type': 'AggregateOffer',
-            priceCurrency: 'TRY',
-            availability: 'https://schema.org/InStock',
-            seller: {
-                '@type': 'Organization',
-                name: 'Egepen Akçayapı',
-            },
-        },
-    };
-
-    // FAQ Schema
-    const faqSchema = {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: system.faq.map((item) => ({
-            '@type': 'Question',
-            name: item.question,
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: item.answer,
-            },
-        })),
-    };
-
-    // Get category color
-    const getCategoryColor = () => {
-        switch (system.category) {
-            case 'thermal-break':
-                return { gradient: 'from-orange-500 to-red-600', light: 'orange' };
-            case 'curtain-wall':
-                return { gradient: 'from-blue-500 to-indigo-600', light: 'blue' };
-            case 'office-partition':
-                return { gradient: 'from-emerald-500 to-teal-600', light: 'emerald' };
-            case 'hebe-schiebe':
-                return { gradient: 'from-purple-500 to-pink-600', light: 'purple' };
-            default:
-                return { gradient: 'from-gray-500 to-slate-600', light: 'gray' };
-        }
-    };
-
-    const colors = getCategoryColor();
-
-    // Related systems (same category)
-    const relatedSystems = aluminumSystems
-        .filter((s) => s.category === system.category && s.id !== system.id)
-        .slice(0, 2);
+    const relatedSystems = aluminumSystems.filter(s => s.slug !== slug).slice(0, 3);
 
     return (
         <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify([productSchema, faqSchema]) }}
-            />
-
             <HeaderOptimized />
+            <main id="main-content" className="min-h-screen bg-neutral-50">
+                <PageHero
+                    title={system.name}
+                    subtitle={system.tagline}
+                    compact
+                    breadcrumbs={[
+                        { label: "Alüminyum Sistemleri", href: "/aluminyum-sistemleri" },
+                        { label: system.name },
+                    ]}
+                />
 
-            <main id="main-content" className="min-h-screen bg-white">
-                {/* Breadcrumb */}
-                <div className="bg-gray-50 py-4 border-b">
-                    <div className="container mx-auto px-4">
-                        <nav className="flex items-center text-sm text-gray-500" aria-label="Breadcrumb">
-                            <Link href="/" title="Ana Sayfa" className="hover:text-blue-600">
-                                Ana Sayfa
-                            </Link>
-                            <span className="mx-2">/</span>
-                            <Link href="/aluminyum-sistemleri" title="Alüminyum Doğrama Sistemleri" className="hover:text-blue-600">
-                                Alüminyum Sistemleri
-                            </Link>
-                            <span className="mx-2">/</span>
-                            <span className="text-gray-900">{system.name}</span>
-                        </nav>
+                <div className="container-custom py-10 md:py-14">
+                    <div className="grid lg:grid-cols-5 gap-8">
+                        <div className="lg:col-span-3">
+                            <div className="relative aspect-video rounded-2xl overflow-hidden bg-neutral-100 mb-6">
+                                <OptimizedImage src={system.image} alt={system.name} fill sizes="(max-width: 1024px) 100vw, 60vw" className="object-cover" priority />
+                            </div>
+                            <p className="text-neutral-600 leading-relaxed mb-6">{system.description}</p>
+
+                            <ExpandableGroup>
+                                {system.technicalSpecs.length > 0 && (
+                                    <ExpandableSection title="Teknik Özellikler" variant="card">
+                                        <div className="space-y-0">
+                                            {system.technicalSpecs.map((spec, i) => (
+                                                <DetailRow key={i} label={spec.label} value={spec.value} />
+                                            ))}
+                                        </div>
+                                    </ExpandableSection>
+                                )}
+
+                                {system.features.length > 0 && (
+                                    <ExpandableSection title="Öne Çıkan Özellikler" variant="card">
+                                        <ul className="space-y-2">
+                                            {system.features.map((f, i) => (
+                                                <li key={i} className="flex items-start gap-2 text-sm text-neutral-600">
+                                                    <span className="text-primary-500 mt-0.5">✓</span>{f}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </ExpandableSection>
+                                )}
+
+                                {system.benefits.length > 0 && (
+                                    <ExpandableSection title="Avantajlar" variant="card">
+                                        <ul className="space-y-2">
+                                            {system.benefits.map((b, i) => (
+                                                <li key={i} className="flex items-start gap-2 text-sm text-neutral-600">
+                                                    <span className="text-green-500 mt-0.5">●</span>{b}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </ExpandableSection>
+                                )}
+
+                                {system.applications.length > 0 && (
+                                    <ExpandableSection title="Kullanım Alanları" variant="card">
+                                        <div className="flex flex-wrap gap-2">
+                                            {system.applications.map((a, i) => (
+                                                <span key={i} className="inline-block text-xs bg-neutral-100 text-neutral-600 px-3 py-1.5 rounded-full">{a}</span>
+                                            ))}
+                                        </div>
+                                    </ExpandableSection>
+                                )}
+
+                                {system.faq.length > 0 && (
+                                    <ExpandableSection title="Sıkça Sorulan Sorular" variant="card">
+                                        <div className="space-y-4">
+                                            {system.faq.map((item, i) => (
+                                                <div key={i}>
+                                                    <h4 className="text-sm font-semibold text-neutral-800 mb-1">{item.question}</h4>
+                                                    <p className="text-sm text-neutral-600">{item.answer}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </ExpandableSection>
+                                )}
+
+                                {system.longDescription && (
+                                    <ExpandableSection title="Detaylı Bilgi" variant="card">
+                                        <p className="text-sm text-neutral-600 leading-relaxed">{system.longDescription}</p>
+                                    </ExpandableSection>
+                                )}
+                            </ExpandableGroup>
+                        </div>
+
+                        <div className="lg:col-span-2">
+                            <div className="sticky top-24 space-y-4">
+                                <div className="bg-white rounded-2xl border border-neutral-200 p-6">
+                                    <h3 className="font-bold text-neutral-900 mb-4">Hızlı Bilgi</h3>
+                                    <div className="space-y-3 text-sm">
+                                        <div className="flex justify-between"><span className="text-neutral-500">Garanti</span><span className="font-medium">{system.warranty}</span></div>
+                                        <div className="flex justify-between"><span className="text-neutral-500">Segment</span><span className="font-medium capitalize">{system.priceRange}</span></div>
+                                        {system.technicalSpecs.slice(0, 2).map((spec, i) => (
+                                            <div key={i} className="flex justify-between"><span className="text-neutral-500">{spec.label}</span><span className="font-medium">{spec.value}</span></div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="bg-primary-600 rounded-2xl p-6 text-white">
+                                    <h3 className="font-bold mb-2">Fiyat Teklifi Alın</h3>
+                                    <p className="text-sm text-white/80 mb-4">Bu ürün için ücretsiz keşif ve fiyat teklifi alın.</p>
+                                    <Link href="/iletisim" className="block w-full text-center px-4 py-3 bg-white text-primary-600 font-bold rounded-xl hover:bg-neutral-100 transition-colors">
+                                        İletişime Geçin
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    {relatedSystems.length > 0 && (
+                        <div className="mt-12 pt-8 border-t border-neutral-200">
+                            <h2 className="text-xl font-bold text-neutral-900 mb-6">Diğer Alüminyum Sistemleri</h2>
+                            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {relatedSystems.map(s => (
+                                    <Link key={s.id} href={`/aluminyum-sistemleri/${s.slug}`} className="group block bg-white rounded-xl border border-neutral-200 overflow-hidden hover:shadow-md transition-all">
+                                        <div className="relative aspect-video bg-neutral-100">
+                                            <OptimizedImage src={s.image} alt={s.name} fill sizes="33vw" className="object-cover" />
+                                        </div>
+                                        <div className="p-4">
+                                            <h3 className="font-semibold text-neutral-800 group-hover:text-primary-600 transition-colors">{s.name}</h3>
+                                            <p className="text-sm text-neutral-500 mt-1">{s.tagline}</p>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
-
-                {/* Hero Section */}
-                <section className={`relative bg-gradient-to-br ${colors.gradient} py-16 lg:py-24`}>
-                    <div className="absolute inset-0 bg-grid-white/10" />
-                    <div className="container mx-auto px-4 relative z-10">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                            <div className="text-white">
-                                <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-sm font-medium mb-4">
-                                    {system.warranty}
-                                </span>
-                                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-                                    {system.name}
-                                </h1>
-                                <p className="text-xl text-white/90 font-medium mb-4">{system.tagline}</p>
-                                <p className="text-white/80 mb-8">{system.description}</p>
-                            </div>
-
-                            <div className="relative h-80 lg:h-[400px]">
-                                <Image
-                                    src={system.image}
-                                    alt={system.name}
-                                    fill
-                                    className="object-contain drop-shadow-2xl"
-                                    priority
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Technical Specifications */}
-                <section className="py-16 bg-white">
-                    <div className="container mx-auto px-4">
-                        <div className="max-w-5xl mx-auto">
-                            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
-                                Teknik Özellikler
-                            </h2>
-
-                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
-                                {system.technicalSpecs.map((spec, idx) => (
-                                    <div
-                                        key={idx}
-                                        className={`p-4 rounded-xl border ${spec.highlight
-                                            ? `bg-${colors.light}-50 border-${colors.light}-200`
-                                            : 'bg-gray-50 border-gray-200'
-                                            }`}
-                                    >
-                                        <div className="text-sm text-gray-500 mb-1">{spec.label}</div>
-                                        <div
-                                            className={`font-bold ${spec.highlight ? `text-${colors.light}-700` : 'text-gray-900'
-                                                }`}
-                                        >
-                                            {spec.value}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Thermal Data (if available) */}
-                            {system.thermalData && (
-                                <div className={`bg-gradient-to-r ${colors.gradient} rounded-2xl p-8 text-white mb-12`}>
-                                    <h3 className="text-xl font-bold mb-6 text-center">Termal Performans</h3>
-                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                                        <div>
-                                            <div className="text-3xl font-bold">{system.thermalData.uValue}</div>
-                                            <div className="text-white/80 text-sm">W/m²K (Uw)</div>
-                                        </div>
-                                        <div>
-                                            <div className="text-3xl font-bold">{system.thermalData.airTightness}</div>
-                                            <div className="text-white/80 text-sm">Hava Sızdırmazlık</div>
-                                        </div>
-                                        <div>
-                                            <div className="text-3xl font-bold">{system.thermalData.waterTightness}</div>
-                                            <div className="text-white/80 text-sm">Su Sızdırmazlık</div>
-                                        </div>
-                                        <div>
-                                            <div className="text-3xl font-bold">{system.thermalData.soundInsulation}</div>
-                                            <div className="text-white/80 text-sm">dB Ses Yalıtımı</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Features & Benefits */}
-                <section className="py-16 bg-gray-50">
-                    <div className="container mx-auto px-4">
-                        <div className="max-w-5xl mx-auto">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                {/* Features */}
-                                <div className="bg-white rounded-2xl p-8 shadow-sm">
-                                    <h3 className="text-xl font-bold text-gray-900 mb-6">
-                                        🔧 Özellikler
-                                    </h3>
-                                    <ul className="space-y-3">
-                                        {system.features.map((feature, idx) => (
-                                            <li key={idx} className="flex items-start">
-                                                <span className={`text-${colors.light}-500 mr-3`}>✓</span>
-                                                <span className="text-gray-700">{feature}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-
-                                {/* Benefits */}
-                                <div className="bg-white rounded-2xl p-8 shadow-sm">
-                                    <h3 className="text-xl font-bold text-gray-900 mb-6">
-                                        💡 Avantajlar
-                                    </h3>
-                                    <ul className="space-y-3">
-                                        {system.benefits.map((benefit, idx) => (
-                                            <li key={idx} className="flex items-start">
-                                                <span className={`text-${colors.light}-500 mr-3`}>★</span>
-                                                <span className="text-gray-700">{benefit}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Applications */}
-                <section className="py-16 bg-white">
-                    <div className="container mx-auto px-4">
-                        <div className="max-w-5xl mx-auto">
-                            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
-                                Uygulama Alanları
-                            </h2>
-                            <div className="flex flex-wrap justify-center gap-3">
-                                {system.applications.map((app, idx) => (
-                                    <span
-                                        key={idx}
-                                        className={`px-4 py-2 bg-${colors.light}-100 text-${colors.light}-700 rounded-full font-medium`}
-                                    >
-                                        {app}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Color Options */}
-                <section className="py-16 bg-gray-50">
-                    <div className="container mx-auto px-4">
-                        <div className="max-w-5xl mx-auto">
-                            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
-                                Renk Seçenekleri
-                            </h2>
-                            <div className="flex flex-wrap justify-center gap-6">
-                                {system.colorOptions.map((color, idx) => (
-                                    <div key={idx} className="text-center">
-                                        <div
-                                            className="w-16 h-16 rounded-xl shadow-lg mb-2 border-2 border-white"
-                                            style={{ backgroundColor: color.hex }}
-                                        />
-                                        <div className="text-sm font-medium text-gray-900">{color.name}</div>
-                                        {color.code && (
-                                            <div className="text-xs text-gray-500">{color.code}</div>
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
-                            <p className="text-center text-gray-500 text-sm mt-6">
-                                + 200 RAL renk ve özel dekor seçenekleri
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Certifications */}
-                <section className="py-12 bg-white">
-                    <div className="container mx-auto px-4">
-                        <div className="max-w-5xl mx-auto text-center">
-                            <h3 className="text-lg font-bold text-gray-900 mb-4">Sertifikalar</h3>
-                            <div className="flex flex-wrap justify-center gap-4">
-                                {system.certifications.map((cert, idx) => (
-                                    <span
-                                        key={idx}
-                                        className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium"
-                                    >
-                                        {cert}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Long Description */}
-                <section className="py-16 bg-gray-50">
-                    <div className="container mx-auto px-4">
-                        <div className="max-w-3xl mx-auto">
-                            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
-                                Detaylı Bilgi
-                            </h2>
-                            <div className="prose prose-lg max-w-none">
-                                {system.longDescription.split('\n\n').map((paragraph, idx) => (
-                                    <p key={idx} className="text-gray-700 mb-4">
-                                        {paragraph}
-                                    </p>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* FAQ Section */}
-                {system.faq.length > 0 && (
-                    <section className="py-16 bg-white">
-                        <div className="container mx-auto px-4">
-                            <div className="max-w-3xl mx-auto">
-                                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
-                                    Sıkça Sorulan Sorular
-                                </h2>
-                                <div className="space-y-4">
-                                    {system.faq.map((item, idx) => (
-                                        <details
-                                            key={idx}
-                                            className="group bg-gray-50 rounded-xl overflow-hidden"
-                                        >
-                                            <summary className="flex justify-between items-center cursor-pointer p-6 font-semibold text-gray-900 hover:bg-gray-100 transition-colors">
-                                                {item.question}
-                                                <span className="ml-4 text-gray-500 group-open:rotate-180 transition-transform">
-                                                    ▼
-                                                </span>
-                                            </summary>
-                                            <div className="px-6 pb-6 text-gray-700">{item.answer}</div>
-                                        </details>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                )}
-
-                {/* Related Systems */}
-                {relatedSystems.length > 0 && (
-                    <section className="py-16 bg-gray-50">
-                        <div className="container mx-auto px-4">
-                            <div className="max-w-5xl mx-auto">
-                                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
-                                    Benzer Sistemler
-                                </h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    {relatedSystems.map((related) => (
-                                        <Link
-                                            key={related.id}
-                                            href={`/aluminyum-sistemleri/${related.slug}`}
-                                            className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow group"
-                                        >
-                                            <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                                                {related.name}
-                                            </h3>
-                                            <p className="text-sm text-gray-600">{related.tagline}</p>
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                )}
-
             </main>
-
             <Footer />
         </>
     );

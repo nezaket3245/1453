@@ -114,13 +114,14 @@ export function TestimonialsSection() {
                         <span className="text-secondary-400">Ne Diyor?</span>
                     </h2>
                     <p className="text-lg text-white/70 leading-relaxed">
-                        5000&apos;den fazla mutlu müşterimizin deneyimlerini dinleyin.
+                        Müşterilerimizin deneyimlerini ve memnuniyetlerini dinleyin.
                     </p>
 
                 </motion.div>
 
                 {/* Testimonials Carousel - Mobile */}
-                <div className="lg:hidden">
+                <div className="lg:hidden" role="region" aria-roledescription="carousel" aria-label="Müşteri yorumları">
+                    <div aria-live="polite" aria-atomic="true">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeIndex}
@@ -128,10 +129,14 @@ export function TestimonialsSection() {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: -50 }}
                             transition={{ duration: 0.3 }}
+                            role="group"
+                            aria-roledescription="slide"
+                            aria-label={`Yorum ${activeIndex + 1} / ${testimonials.length}`}
                         >
                             <TestimonialCard testimonial={testimonials[activeIndex]} />
                         </motion.div>
                     </AnimatePresence>
+                    </div>
 
                     {/* Dots Navigation */}
                     <div className="flex items-center justify-center gap-2 mt-8">
@@ -145,7 +150,8 @@ export function TestimonialsSection() {
                                         ? "w-8 bg-secondary-500"
                                         : "bg-white/30 hover:bg-white/50"
                                 )}
-                                aria-label={`Yorum ${index + 1}`}
+                                aria-label={`Yorum ${index + 1} / ${testimonials.length}`}
+                                aria-current={index === activeIndex ? "true" : undefined}
                             />
                         ))}
                     </div>
@@ -205,7 +211,7 @@ function TestimonialCard({
     return (
         <article className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-white/10 h-full flex flex-col">
             {/* Rating */}
-            <div className="flex items-center gap-1 mb-4">
+            <div className="flex items-center gap-1 mb-4" role="img" aria-label={`${testimonial.rating} üzerinden 5 yıldız`}>
                 {[...Array(5)].map((_, i) => (
                     <StarIcon
                         key={i}

@@ -1,7 +1,3 @@
-"use client";
-
-
-
 import { Button } from "@/components/ui/Button";
 import { businessConfig } from "@/config/business.config";
 
@@ -24,7 +20,7 @@ export function CTASection() {
                                 Ayrıcalığıyla Yenileyin
                             </h2>
                             <p className="text-xl text-white/80 mb-10 leading-relaxed max-w-xl">
-                                {businessConfig.address.district} bölgesindeki binlerce mutlu müşterimize katılın. Profesyonel ekibimiz 24 saat içinde yerinde ölçüm yapsın.
+                                Profesyonel ekibimiz 24 saat içinde yerinde ücretsiz ölçüm yapsın.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <Button variant="secondary" size="xl" href="/teklif-al" className="px-10">

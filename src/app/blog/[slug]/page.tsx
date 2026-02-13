@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 import Link from "next/link";
-import { HeaderOptimized } from '@/components/layout/HeaderOptimized';
+import { HeaderOptimized } from "@/components/layout/HeaderOptimized";
 import { Footer } from "@/components/layout/Footer";
-import { Button } from "@/components/ui/Button";
+import { PageHero } from "@/components/ui/PageHero";
 import { businessConfig } from "@/config/business.config";
 import {
     blogPosts,
@@ -12,427 +12,300 @@ import {
     getBlogPostBySlug,
     getRelatedPosts,
     formatDate,
-    BlogPost,
 } from "@/lib/blogData";
 
 interface BlogPostPageProps {
     params: Promise<{ slug: string }>;
 }
 
-/**
- * Generate Static Params for all blog posts
- */
 export async function generateStaticParams() {
-    return blogPosts.map((post) => ({
-        slug: post.slug,
-    }));
+    return blogPosts.map((post) => ({ slug: post.slug }));
 }
 
-/**
- * Generate Metadata for Blog Post
- */
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
     const { slug } = await params;
     const post = getBlogPostBySlug(slug);
-
     if (!post) return { title: "Yazı Bulunamadı" };
 
+    const catLabel = blogCategories.find((c) => c.id === post.category)?.name ?? post.category;
+
     return {
-        title: `${post.title.slice(0, 50)} | ${businessConfig.name}`,
-        description: post.excerpt.slice(0, 155),
-        keywords: [
-            ...post.seoKeywords,
-            'PVC pencere temizliği püf noktaları',
-            '2026 cam balkon trendleri',
-            'Kış bahçesi dekorasyon fikirleri',
-            'Isı yalıtımı için en iyi cam hangisi?',
-            'Sürgülü sistem bakımı nasıl yapılır?',
-        ],
-        authors: [{ name: post.author }],
+        title: `${post.title} | ${catLabel} — ${businessConfig.name}`,
+        description: post.excerpt,
+        keywords: post.seoKeywords,
+        alternates: { canonical: `${businessConfig.siteUrl}/blog/${slug}` },
         openGraph: {
             title: post.title,
             description: post.excerpt,
             type: "article",
-            publishedTime: post.date,
-            authors: [post.author],
-            images: [{ url: post.image }],
             locale: "tr_TR",
-        },
-        alternates: {
-            canonical: `https://egepenakcayapi.com/blog/${post.slug}`,
+            url: `${businessConfig.siteUrl}/blog/${slug}`,
+            images: post.image ? [{ url: post.image }] : undefined,
         },
     };
 }
 
-/**
- * Generate BlogPosting + BreadcrumbList JSON-LD schemas
- */
-function generateArticleSchema(post: BlogPost) {
+// ---------------------------------------------------------------------------
+// Structured Data builders
+// ---------------------------------------------------------------------------
+function buildArticleSchema(post: (typeof blogPosts)[0]) {
     return {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         headline: post.title,
         description: post.excerpt,
-        image: `${businessConfig.siteUrl}${post.image}`,
-        author: {
-            "@type": "Organization",
-            name: businessConfig.name,
-        },
+        image: post.image,
+        datePublished: post.date,
+        dateModified: post.date,
+        author: { "@type": "Person", name: post.author },
         publisher: {
             "@type": "Organization",
             name: businessConfig.name,
-            logo: {
-                "@type": "ImageObject",
-                url: `${businessConfig.siteUrl}/logo.png`,
-            },
+            url: businessConfig.siteUrl,
         },
-        datePublished: post.date,
-        dateModified: post.date,
         mainEntityOfPage: {
             "@type": "WebPage",
             "@id": `${businessConfig.siteUrl}/blog/${post.slug}`,
         },
+        keywords: post.seoKeywords?.join(", "),
     };
 }
 
-function generateBreadcrumbSchema(post: BlogPost) {
+function buildBreadcrumbSchema(post: (typeof blogPosts)[0]) {
     return {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: `${businessConfig.siteUrl}/` },
+            { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: businessConfig.siteUrl },
             { "@type": "ListItem", position: 2, name: "Blog", item: `${businessConfig.siteUrl}/blog` },
             { "@type": "ListItem", position: 3, name: post.title, item: `${businessConfig.siteUrl}/blog/${post.slug}` },
         ],
     };
 }
 
+// ---------------------------------------------------------------------------
+// Content renderer — fixes: inline markdown (bold, italic, links),
+// numbered lists, horizontal rules, italic-vs-bullet disambiguation
+// ---------------------------------------------------------------------------
+function processInlineMarkdown(text: string): React.ReactNode[] {
+    // Pattern: **bold**, *italic*, [text](url)
+    const parts: React.ReactNode[] = [];
+    const regex = /\*\*(.+?)\*\*|\*(.+?)\*|\[([^\]]+)\]\(([^)]+)\)/g;
+    let lastIdx = 0;
+    let match: RegExpExecArray | null;
+
+    while ((match = regex.exec(text)) !== null) {
+        // Push plain text before this match
+        if (match.index > lastIdx) {
+            parts.push(text.slice(lastIdx, match.index));
+        }
+        if (match[1]) {
+            // **bold**
+            parts.push(<strong key={match.index} className="font-semibold text-neutral-800">{match[1]}</strong>);
+        } else if (match[2]) {
+            // *italic*
+            parts.push(<em key={match.index}>{match[2]}</em>);
+        } else if (match[3] && match[4]) {
+            // [text](url)
+            parts.push(
+                <Link key={match.index} href={match[4]} className="text-primary-600 hover:underline">
+                    {match[3]}
+                </Link>
+            );
+        }
+        lastIdx = match.index + match[0].length;
+    }
+
+    if (lastIdx < text.length) {
+        parts.push(text.slice(lastIdx));
+    }
+
+    return parts.length > 0 ? parts : [text];
+}
+
+function renderContent(content: string) {
+    const blocks = content.split("\n\n").filter(Boolean);
+
+    return blocks.map((block, i) => {
+        const trimmed = block.trim();
+
+        // Horizontal rule
+        if (/^---+$/.test(trimmed)) {
+            return <hr key={i} className="my-6 border-neutral-200" />;
+        }
+
+        // h2
+        if (trimmed.startsWith("## ")) {
+            return (
+                <h2 key={i} className="text-xl font-bold text-neutral-900 mt-8 mb-3">
+                    {processInlineMarkdown(trimmed.replace("## ", ""))}
+                </h2>
+            );
+        }
+
+        // h3
+        if (trimmed.startsWith("### ")) {
+            return (
+                <h3 key={i} className="text-lg font-semibold text-neutral-800 mt-6 mb-2">
+                    {processInlineMarkdown(trimmed.replace("### ", ""))}
+                </h3>
+            );
+        }
+
+        // Unordered list — but NOT italic (*text* on single line)
+        if (/^[-]\s/.test(trimmed) || (/^\*\s/.test(trimmed) && !trimmed.endsWith("*"))) {
+            const items = trimmed.split("\n").filter((line) => line.trim());
+            return (
+                <ul key={i} className="space-y-1.5 my-3 ml-4" role="list">
+                    {items.map((item, j) => (
+                        <li key={j} className="text-neutral-600 text-sm flex items-start gap-2">
+                            <span className="text-primary-500 mt-0.5 shrink-0" aria-hidden="true">&bull;</span>
+                            <span>{processInlineMarkdown(item.replace(/^[-*]\s/, ""))}</span>
+                        </li>
+                    ))}
+                </ul>
+            );
+        }
+
+        // Numbered list
+        if (/^\d+\.\s/.test(trimmed)) {
+            const items = trimmed.split("\n").filter((line) => line.trim());
+            return (
+                <ol key={i} className="space-y-1.5 my-3 ml-4 list-decimal list-inside" role="list">
+                    {items.map((item, j) => (
+                        <li key={j} className="text-neutral-600 text-sm">
+                            <span>{processInlineMarkdown(item.replace(/^\d+\.\s/, ""))}</span>
+                        </li>
+                    ))}
+                </ol>
+            );
+        }
+
+        // Default paragraph — with inline markdown support
+        return (
+            <p key={i} className="text-neutral-600 leading-relaxed mb-4">
+                {processInlineMarkdown(trimmed)}
+            </p>
+        );
+    });
+}
+
+// ---------------------------------------------------------------------------
+// Page component
+// ---------------------------------------------------------------------------
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const { slug } = await params;
     const post = getBlogPostBySlug(slug);
-
-    if (!post) {
-        notFound();
-    }
+    if (!post) notFound();
 
     const relatedPosts = getRelatedPosts(slug, 3);
-    const category = blogCategories.find((c) => c.id === post.category);
-    const schema = generateArticleSchema(post);
-    const breadcrumbSchema = generateBreadcrumbSchema(post);
+    const catLabel = blogCategories.find((c) => c.id === post.category)?.name ?? post.category;
 
     return (
         <>
-            {/* BlogPosting + BreadcrumbList JSON-LD Schema */}
+            {/* Structured Data */}
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify([schema, breadcrumbSchema]) }}
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify([
+                        buildArticleSchema(post),
+                        buildBreadcrumbSchema(post),
+                    ]),
+                }}
             />
 
             <HeaderOptimized />
 
-            <main id="main-content" className="min-h-screen bg-white">
-                {/* Hero */}
-                <section className="relative bg-gradient-to-br from-neutral-900 to-neutral-800 text-white py-16 lg:py-24">
-                    <div className="container-custom">
-                        <nav aria-label="Breadcrumb" className="mb-6">
-                            <ol className="flex items-center gap-2 text-sm text-white/60">
-                                <li>
-                                    <Link href="/" className="hover:text-white transition-colors focus:ring-2 focus:ring-white/50 focus:outline-none rounded py-1.5 px-1.5 inline-flex items-center min-h-[24px]">
-                                        Ana Sayfa
-                                    </Link>
-                                </li>
-                                <li aria-hidden="true">/</li>
-                                <li>
-                                    <Link href="/blog" className="hover:text-white transition-colors focus:ring-2 focus:ring-white/50 focus:outline-none rounded py-1.5 px-1.5 inline-flex items-center min-h-[24px]">
-                                        Blog
-                                    </Link>
-                                </li>
-                                <li>/</li>
-                                <li className="text-white/80 truncate max-w-[200px]">{post.title}</li>
-                            </ol>
-                        </nav>
+            <main id="main-content" className="min-h-screen bg-neutral-50">
+                <PageHero
+                    title={post.title}
+                    compact
+                    breadcrumbs={[
+                        { label: "Blog", href: "/blog" },
+                        { label: post.title },
+                    ]}
+                />
 
-                        <div className="max-w-4xl">
-                            <div className="flex items-center gap-4 mb-6">
-                                <span className="px-4 py-1.5 bg-white/10 text-secondary-400 rounded-full text-sm font-medium border border-white/20">
-                                    {category?.icon} {category?.name}
-                                </span>
-                                <span className="text-white/60 text-sm">
-                                    {formatDate(post.date)}
-                                </span>
-                                <span className="text-white/60 text-sm">
-                                    ⏱️ {post.readTime} okuma
-                                </span>
-                            </div>
-                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-6">
-                                {post.title}
-                            </h1>
-                            <p className="text-xl text-white/70 mb-8">
-                                {post.excerpt}
-                            </p>
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-full bg-primary-600 flex items-center justify-center text-white font-bold text-lg">
-                                    A
-                                </div>
-                                <div>
-                                    <p className="font-medium text-white">{post.author}</p>
-                                    <p className="text-sm text-white/50">{businessConfig.brand} Uzman Yazarı</p>
-                                </div>
-                            </div>
+                <article className="container-custom py-10 md:py-14">
+                    <div className="max-w-3xl mx-auto">
+                        {/* Meta info */}
+                        <div className="flex flex-wrap items-center gap-3 mb-6 text-sm text-neutral-500">
+                            <span className="bg-primary-50 text-primary-600 px-3 py-1 rounded-full text-xs font-medium uppercase">
+                                {catLabel}
+                            </span>
+                            <time dateTime={post.date}>{formatDate(post.date)}</time>
+                            <span aria-hidden="true">&bull;</span>
+                            <span>{post.readTime} dk okuma</span>
                         </div>
-                    </div>
-                </section>
 
-                {/* Featured Image */}
-                <section className="container-custom -mt-6 mb-12 relative z-10">
-                    <div className="relative aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl">
-                        <OptimizedImage
-                            src={post.image}
-                            alt={post.title}
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
-                </section>
+                        {/* Featured Image */}
+                        <div className="relative aspect-video rounded-2xl overflow-hidden bg-neutral-100 mb-8">
+                            <OptimizedImage
+                                src={post.image}
+                                alt={post.title}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 768px"
+                                className="object-cover"
+                                priority
+                            />
+                        </div>
 
-                {/* Content */}
-                <section className="pb-16">
-                    <div className="container-custom">
-                        <div className="grid lg:grid-cols-12 gap-12">
-                            {/* Main Content */}
-                            <article className="lg:col-span-8">
-                                <div className="prose prose-lg max-w-none prose-headings:text-neutral-900 prose-p:text-neutral-600 prose-p:leading-relaxed prose-a:text-primary-600 prose-strong:text-neutral-900 prose-ul:text-neutral-600 prose-li:marker:text-primary-600">
-                                    {(() => {
-                                        const lines = post.content.split("\n");
-                                        const elements: React.ReactNode[] = [];
-                                        let i = 0;
-                                        while (i < lines.length) {
-                                            const paragraph = lines[i];
-                                            if (paragraph.startsWith("## ")) {
-                                                elements.push(<h2 key={i} className="text-2xl font-bold mt-12 mb-6">{paragraph.replace("## ", "")}</h2>);
-                                            } else if (paragraph.startsWith("### ")) {
-                                                elements.push(<h3 key={i} className="text-xl font-bold mt-8 mb-4">{paragraph.replace("### ", "")}</h3>);
-                                            } else if (paragraph.startsWith("- ")) {
-                                                // Group consecutive unordered list items
-                                                const items: { key: number; text: string }[] = [];
-                                                while (i < lines.length && lines[i].startsWith("- ")) {
-                                                    items.push({ key: i, text: lines[i].replace("- ", "") });
-                                                    i++;
-                                                }
-                                                elements.push(
-                                                    <ul key={`ul-${items[0].key}`} className="ml-6 list-disc">
-                                                        {items.map(item => <li key={item.key}>{item.text}</li>)}
-                                                    </ul>
-                                                );
-                                                continue; // i already advanced
-                                            } else if (/^\d+\. /.test(paragraph)) {
-                                                // Group consecutive ordered list items
-                                                const items: { key: number; text: string }[] = [];
-                                                while (i < lines.length && /^\d+\. /.test(lines[i])) {
-                                                    items.push({ key: i, text: lines[i].replace(/^\d+\. /, "") });
-                                                    i++;
-                                                }
-                                                elements.push(
-                                                    <ol key={`ol-${items[0].key}`} className="ml-6 list-decimal">
-                                                        {items.map(item => <li key={item.key}>{item.text}</li>)}
-                                                    </ol>
-                                                );
-                                                continue; // i already advanced
-                                            } else if (paragraph.startsWith("✓ ") || paragraph.startsWith("✗ ")) {
-                                                elements.push(
-                                                    <div key={i} className="flex items-center gap-2 my-2">
-                                                        <span className={paragraph.startsWith("✓") ? "text-green-600" : "text-red-600"}>{paragraph.charAt(0)}</span>
-                                                        <span>{paragraph.slice(2)}</span>
-                                                    </div>
-                                                );
-                                            } else if (paragraph.startsWith("|")) {
-                                                // Skip table rows
-                                            } else if (paragraph.startsWith("---")) {
-                                                elements.push(<hr key={i} className="my-8 border-neutral-200" />);
-                                            } else if (paragraph.startsWith("*") && paragraph.endsWith("*")) {
-                                                elements.push(
-                                                    <p key={i} className="italic text-neutral-500 bg-neutral-50 p-4 rounded-lg border-l-4 border-primary-500">
-                                                        {paragraph.replace(/\*/g, "")}
-                                                    </p>
-                                                );
-                                            } else if (paragraph.trim()) {
-                                                elements.push(<p key={i} className="mb-4">{paragraph}</p>);
-                                            }
-                                            i++;
-                                        }
-                                        return elements;
-                                    })()}
-                                </div>
+                        {/* Content */}
+                        <div className="prose-container">{renderContent(post.content)}</div>
 
-                                {/* Tags */}
-                                <div className="mt-12 pt-8 border-t border-neutral-200">
-                                    <h4 className="font-bold text-neutral-900 mb-4">Etiketler</h4>
-                                    <div className="flex flex-wrap gap-2">
-                                        {post.tags.map((tag) => (
-                                            <span
-                                                key={tag}
-                                                className="px-4 py-2 bg-neutral-100 text-neutral-600 rounded-full text-sm hover:bg-primary-100 hover:text-primary-700 transition-colors cursor-pointer"
-                                            >
-                                                #{tag}
+                        {/* Tags */}
+                        {post.tags && post.tags.length > 0 && (
+                            <footer className="mt-8 pt-6 border-t border-neutral-200">
+                                <p className="sr-only">Etiketler</p>
+                                <ul className="flex flex-wrap gap-2" role="list" aria-label="Yazı etiketleri">
+                                    {post.tags.map((tag, i) => (
+                                        <li key={i}>
+                                            <span className="text-xs bg-neutral-100 text-neutral-600 px-3 py-1.5 rounded-full">
+                                                {tag}
                                             </span>
-                                        ))}
-                                    </div>
-                                </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </footer>
+                        )}
 
-                                {/* Share */}
-                                <div className="mt-8 p-6 bg-neutral-50 rounded-2xl">
-                                    <h4 className="font-bold text-neutral-900 mb-4">Bu Yazıyı Paylaşın</h4>
-                                    <div className="flex gap-3">
-                                        <a
-                                            href={`https://wa.me/?text=${encodeURIComponent(post.title + " - " + "https://egepenakcayapi.com/blog/" + post.slug)}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="px-4 py-2 bg-green-700 text-white rounded-lg font-medium hover:bg-green-800 transition-colors"
+                        {/* Related Posts */}
+                        {relatedPosts.length > 0 && (
+                            <aside className="mt-12 pt-8 border-t border-neutral-200" aria-labelledby="related-heading">
+                                <h2 id="related-heading" className="text-xl font-bold text-neutral-900 mb-6">
+                                    İlgili Yazılar
+                                </h2>
+                                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    {relatedPosts.map((p) => (
+                                        <Link
+                                            key={p.id}
+                                            href={`/blog/${p.slug}`}
+                                            className="group block bg-white rounded-xl border border-neutral-200 overflow-hidden hover:shadow-md transition-all"
                                         >
-                                            WhatsApp
-                                        </a>
-                                        <a
-                                            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent("https://egepenakcayapi.com/blog/" + post.slug)}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="px-4 py-2 bg-neutral-800 text-white rounded-lg font-medium hover:bg-neutral-900 transition-colors"
-                                        >
-                                            Twitter
-                                        </a>
-                                        <a
-                                            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://egepenakcayapi.com/blog/" + post.slug)}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
-                                        >
-                                            Facebook
-                                        </a>
-                                    </div>
-                                </div>
-                            </article>
-
-                            {/* Sidebar */}
-                            <aside className="lg:col-span-4">
-                                <div className="sticky top-28 space-y-8">
-                                    {/* CTA */}
-                                    <div className="bg-primary-600 text-white p-8 rounded-2xl">
-                                        <h3 className="text-xl font-bold mb-4">
-                                            Ücretsiz Keşif Hizmeti
-                                        </h3>
-                                        <p className="text-white/80 mb-6 text-sm">
-                                            PVC pencere, cam balkon veya tamir ihtiyacınız için uzman ekibimiz evinize gelsin.
-                                        </p>
-                                        <Button variant="secondary" fullWidth href="/iletisim">
-                                            Bize Ulaşın
-                                        </Button>
-                                    </div>
-
-                                    {/* Related Posts */}
-                                    {relatedPosts.length > 0 && (
-                                        <div className="bg-neutral-50 p-6 rounded-2xl">
-                                            <h3 className="text-lg font-bold text-neutral-900 mb-6">
-                                                İlgili Yazılar
-                                            </h3>
-                                            <div className="space-y-4">
-                                                {relatedPosts.map((related) => (
-                                                    <Link
-                                                        key={related.id}
-                                                        href={`/blog/${related.slug}`}
-                                                        className="block group focus:ring-2 focus:ring-primary-400 focus:outline-none rounded-lg"
-                                                        aria-label={`${related.title} yazısını oku`}
-                                                    >
-                                                        <div className="flex gap-4">
-                                                            <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
-                                                                <OptimizedImage
-                                                                    src={related.image}
-                                                                    alt={`${related.title} - Blog Görseli`}
-                                                                    fill
-                                                                    className="object-cover group-hover:scale-110 transition-transform"
-                                                                />
-                                                            </div>
-                                                            <div>
-                                                                <h4 className="font-medium text-neutral-900 group-hover:text-primary-600 transition-colors line-clamp-2 text-sm">
-                                                                    {related.title}
-                                                                </h4>
-                                                                <p className="text-xs text-neutral-500 mt-1">
-                                                                    {related.readTime}
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </Link>
-                                                ))}
+                                            <div className="relative aspect-video bg-neutral-100">
+                                                <OptimizedImage
+                                                    src={p.image}
+                                                    alt={p.title}
+                                                    fill
+                                                    sizes="(max-width: 768px) 100vw, 33vw"
+                                                    className="object-cover"
+                                                />
                                             </div>
-                                        </div>
-                                    )}
-
-                                    {/* Contact Info */}
-                                    <div className="bg-neutral-900 text-white p-6 rounded-2xl">
-                                        <h3 className="text-lg font-bold mb-4">Bize Ulaşın</h3>
-                                        <div className="space-y-3 text-sm">
-                                            <div className="flex items-center gap-3 text-white/60">
-                                                <span>📍</span>
-                                                {businessConfig.address.district}, {businessConfig.address.city}
+                                            <div className="p-4">
+                                                <h3 className="font-semibold text-neutral-800 group-hover:text-primary-600 transition-colors line-clamp-2">
+                                                    {p.title}
+                                                </h3>
+                                                <time dateTime={p.date} className="block text-xs text-neutral-500 mt-1">
+                                                    {formatDate(p.date)}
+                                                </time>
                                             </div>
-                                            <Link
-                                                href="/iletisim"
-                                                className="flex items-center gap-3 text-primary-400 hover:text-primary-300 transition-colors font-semibold"
-                                            >
-                                                <span>📧</span>
-                                                İletişim Sayfası
-                                            </Link>
-                                        </div>
-                                    </div>
+                                        </Link>
+                                    ))}
                                 </div>
                             </aside>
-                        </div>
+                        )}
                     </div>
-                </section>
-
-                {/* More Posts */}
-                <section className="py-16 bg-neutral-50">
-                    <div className="container-custom">
-                        <div className="flex justify-between items-center mb-12">
-                            <h2 className="text-2xl font-bold text-neutral-900">Diğer Yazılar</h2>
-                            <Link
-                                href="/blog"
-                                className="text-primary-600 font-medium hover:underline"
-                            >
-                                Tüm Yazılar →
-                            </Link>
-                        </div>
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {blogPosts
-                                .filter((p) => p.slug !== slug)
-                                .slice(0, 3)
-                                .map((otherPost) => (
-                                    <Link
-                                        key={otherPost.id}
-                                        href={`/blog/${otherPost.slug}`}
-                                        className="group bg-white rounded-xl overflow-hidden border border-neutral-100 hover:shadow-lg transition-shadow focus:ring-2 focus:ring-primary-400 focus:outline-none"
-                                        aria-label={`${otherPost.title} yazısını oku`}
-                                    >
-                                        <div className="relative aspect-video overflow-hidden">
-                                            <OptimizedImage
-                                                src={otherPost.image}
-                                                alt={`${otherPost.title} - Blog Görseli`}
-                                                fill
-                                                className="object-cover group-hover:scale-110 transition-transform duration-500"
-                                            />
-                                        </div>
-                                        <div className="p-5">
-                                            <p className="text-xs text-neutral-500 mb-2">
-                                                {formatDate(otherPost.date)}
-                                            </p>
-                                            <h3 className="font-bold text-neutral-900 group-hover:text-primary-600 transition-colors line-clamp-2">
-                                                {otherPost.title}
-                                            </h3>
-                                        </div>
-                                    </Link>
-                                ))}
-                        </div>
-                    </div>
-                </section>
+                </article>
             </main>
 
             <Footer />

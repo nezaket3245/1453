@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "@/lib/motion-lite";
+import { motion } from "@/lib/motion-lite";
+import { cn } from "@/lib/utils";
 
 /**
  * FAQAccordion Component
@@ -74,10 +75,11 @@ export function FAQAccordion({ faqs, title, subtitle }: FAQAccordionProps) {
                                 <span className="font-semibold text-neutral-900 pr-4">
                                     {faq.question}
                                 </span>
-                                <motion.span
-                                    animate={{ rotate: openIndex === index ? 180 : 0 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="flex-shrink-0 w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center"
+                                <span
+                                    className={cn(
+                                        "flex-shrink-0 w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center transition-transform duration-200",
+                                        openIndex === index && "rotate-180"
+                                    )}
                                     aria-hidden="true"
                                 >
                                     <svg
@@ -90,27 +92,26 @@ export function FAQAccordion({ faqs, title, subtitle }: FAQAccordionProps) {
                                     >
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                                     </svg>
-                                </motion.span>
+                                </span>
                             </button>
-                            <AnimatePresence>
-                                {openIndex === index && (
-                                    <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: "auto", opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.2 }}
-                                        id={`faq-answer-${index}`}
-                                        role="region"
-                                        aria-labelledby={`faq-question-${index}`}
-                                    >
-                                        <div className="px-5 pb-5 pt-0">
-                                            <div className="border-t border-neutral-100 pt-4 text-neutral-600 leading-relaxed">
-                                                {faq.answer}
-                                            </div>
-                                        </div>
-                                    </motion.div>
+                            {/* Panel always in DOM for aria-controls validity */}
+                            <div
+                                id={`faq-answer-${index}`}
+                                role="region"
+                                aria-labelledby={`faq-question-${index}`}
+                                className={cn(
+                                    "grid transition-[grid-template-rows] duration-200 ease-out",
+                                    openIndex === index ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                                 )}
-                            </AnimatePresence>
+                            >
+                                <div className="overflow-hidden">
+                                    <div className="px-5 pb-5 pt-0">
+                                        <div className="border-t border-neutral-100 pt-4 text-neutral-600 leading-relaxed">
+                                            {faq.answer}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>

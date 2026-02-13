@@ -111,7 +111,7 @@ export function FeaturesSection() {
                         Özellikler
                     </h2>
                     <p className="text-lg text-neutral-600 leading-relaxed">
-                        40 yıllık tecrübemiz ve Egepen&apos;in dünya standartlarındaki ürünleriyle
+                        Egepen Deceuninck&apos;in dünya standartlarındaki ürünleriyle
                         evinize değer katıyoruz.
                     </p>
 
