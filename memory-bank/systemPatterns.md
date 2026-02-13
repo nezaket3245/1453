@@ -19,11 +19,17 @@ src/
 │   │   ├── page.tsx          # Category overview
 │   │   └── [slug]/page.tsx   # Sub-product detail pages
 │   ├── blog/                 # Blog listing + [slug] detail
-│   ├── cozumler/             # Solution Center (NEW — Phase 9)
+│   ├── cozumler/             # Solution Center (Phase 9)
 │   │   ├── page.tsx          # Index: search, category badges, article grid
 │   │   └── [slug]/page.tsx   # Article detail: schema, feedback, tech specs
-│   ├── tamir-bakim/          # Repair & Maintenance SEO hub (NEW — Phase 8)
+│   ├── tamir-bakim/          # Repair & Maintenance SEO hub (Phase 8)
 │   │   └── page.tsx          # 9 how-to guides, 14 FAQ, symptom finder
+│   ├── pvc-sistemleri/
+│   │   ├── page.tsx          # PVC overview
+│   │   ├── [slug]/page.tsx   # PVC product detail
+│   │   └── tamirat-tadilat/  # PVC Repair module (Phase 11)
+│   │       ├── page.tsx      # Server page: SEO, schema, layout
+│   │       └── TamiratPageClient.tsx  # Client wrapper: search + modal state
 │   ├── iletisim/             # Contact page
 │   ├── teklif-al/            # Quote request form
 │   └── ...                   # Other static pages
@@ -31,9 +37,13 @@ src/
 │   ├── layout/               # Header, Footer, ClientUIComponents
 │   ├── sections/             # Homepage & reusable content sections
 │   ├── ui/                   # Reusable UI primitives (Button, Toast, ImageLightbox, etc.)
-│   │   ├── SolutionSearch.tsx    # Client: Fuse.js search + card grid (NEW)
-│   │   ├── FeedbackWidget.tsx    # Client: "Did this help?" + localStorage (NEW)
-│   │   └── TechSpecsTable.tsx    # Server: product spec table (NEW)
+│   │   ├── SolutionSearch.tsx        # Client: Fuse.js search + card grid
+│   │   ├── FeedbackWidget.tsx        # Client: "Did this help?" + localStorage
+│   │   ├── TechSpecsTable.tsx        # Server: product spec table
+│   │   ├── TamiratSearchGrid.tsx     # Client: Fuse.js search + category filter + card grid (Phase 11)
+│   │   ├── RepairDetailModal.tsx     # Client: accessible repair detail modal (Phase 11)
+│   │   ├── RepairRequestForm.tsx     # Client: validated repair request form (Phase 11)
+│   │   └── RepairStatusTracker.tsx   # Server: 5-step repair process timeline (Phase 11)
 │   ├── cta/                  # (mostly cleaned — orphaned files removed)
 │   ├── forms/                # (mostly cleaned — orphaned files removed)
 │   └── providers/            # AnalyticsProvider
@@ -44,8 +54,9 @@ src/
 ├── lib/
 │   ├── data.ts               # Central product database (6 products)
 │   ├── motion-lite.tsx        # Lightweight framer-motion replacement (~2KB)
-│   ├── solutionsData.ts      # Solution Center: 13 articles, 5 categories (NEW)
-│   ├── searchUtils.ts        # Turkish normalization + Fuse.js useSearch hook (NEW)
+│   ├── solutionsData.ts      # Solution Center: 13 articles, 5 categories
+│   ├── searchUtils.ts        # Turkish normalization + Fuse.js useSearch hook
+│   ├── tamiratData.ts        # PVC Repair: 12 records, 6 categories, validation (Phase 11)
 │   ├── pvcData.ts            # PVC sub-products (series)
 │   ├── camBalkonData.ts      # Glass balcony systems
 │   ├── sineklikData.ts       # Insect screen systems

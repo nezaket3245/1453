@@ -4,8 +4,9 @@
 The site is **live and deployed** on Cloudflare Pages at:
 - **Production:** https://akcapen-yeni-84y.pages.dev (project: `akcapen-yeni`)
 - **Custom domain:** https://egepenakcayapi.com
-- **Build:** 88+ static pages generated, zero errors
+- **Build:** 99+ static pages generated, zero errors
 - **Last deploy:** 13 Şubat 2026 via `npx wrangler pages deploy out --project-name=akcapen-yeni`
+- **Last commit:** `d589b14` — TamiratTadilat module
 
 ## Recent Changes (13 Şubat 2026)
 
@@ -50,6 +51,19 @@ The site is **live and deployed** on Cloudflare Pages at:
 - **Fix**: Manual deploy via `npx wrangler pages deploy out --project-name=akcapen-yeni`
 - 945 files uploaded, all new pages verified live
 - Old projects (`akcapen-pvc`, `akcapen-pvc-2lv`) are stale/abandoned
+
+### Phase 11: TamiratTadilat Module (PVC Repair & Renovation)
+- **New page**: `/pvc-sistemleri/tamirat-tadilat` — dedicated PVC repair service hub
+- **Data layer**: `src/lib/tamiratData.ts` — 12 PVC repair records, 6 categories (glass, mechanism, seal, profile, hardware, renovation), TypeScript interfaces, custom validation rules
+- **UI Components** (4 new files):
+  - `TamiratSearchGrid.tsx` — Fuse.js fuzzy search with Turkish normalization, category filter badges, responsive card grid, empty-state
+  - `RepairDetailModal.tsx` — Accessible modal (Escape close, backdrop click, focus trap) with process timeline, common issues, warranty info, phone+WhatsApp CTA
+  - `RepairRequestForm.tsx` — Multi-field validated form (name, phone, district, brand, category, description, urgency, date) with custom TypeScript validation (no Zod)
+  - `RepairStatusTracker.tsx` — 5-step visual timeline (Talep→Keşif→Teklif→Onarım→Teslim)
+- **Page**: Server component with generateMetadata SEO, Service+BreadcrumbList schema.org JSON-LD, dynamic import for form
+- **Integration updates**: Header nav updated (`#tamirat` → `/pvc-sistemleri/tamirat-tadilat`), sitemap.ts updated, PVC page CTA section added
+- **Deploy**: 1059 files uploaded to Cloudflare Pages
+- Committed: `d589b14`
 
 ## Active Decisions
 - **Emoji-free UI policy**: All user-facing icons must be inline SVG
