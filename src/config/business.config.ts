@@ -32,8 +32,8 @@ export const businessConfig = {
     contact: {
         landline: "0212 880 15 07",
         landlineRaw: "+902128801507",
-        mobile: "0536 640 53 11",
-        mobileRaw: "+905366405311",
+        mobile: "0212 880 15 07",
+        mobileRaw: "+902128801507",
         whatsapp: "902128801507", // Landline number for WhatsApp Business
         email: "info@egepenakcayapi.com"
     },

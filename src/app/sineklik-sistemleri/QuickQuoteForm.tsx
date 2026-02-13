@@ -157,7 +157,7 @@ export default function QuickQuoteForm() {
                                 setFormData({ ...formData, phone: e.target.value })
                             }
                             className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-white/50 focus:border-transparent min-h-[48px]"
-                            placeholder="0536 640 53 11"
+                            placeholder="0212 880 15 07"
                         />
                     </div>
 
