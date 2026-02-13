@@ -86,9 +86,12 @@ https://akcapen-pvc-2lv.pages.dev/* https://egepenakcayapi.com/:splat 301
 /zendow-pencereler/index.html /pvc-sistemleri/zendow-pvc-pencere 301
 /zendow-pencereler/ /pvc-sistemleri/zendow-pvc-pencere 301
 /zendow-pencereler /pvc-sistemleri/zendow-pvc-pencere 301
-/pvc-dograma-camlarda-olusan-terleme-nasil-onlenir-cozuldu/index.html /blog/kislik-pencere-yalitimi 301
-/pvc-dograma-camlarda-olusan-terleme-nasil-onlenir-cozuldu/ /blog/kislik-pencere-yalitimi 301
-/pvc-dograma-camlarda-olusan-terleme-nasil-onlenir-cozuldu /blog/kislik-pencere-yalitimi 301
+
+# Terleme blog post → better mapped to solution center article (exact topic match)
+/pvc-dograma-camlarda-olusan-terleme-nasil-onlenir-cozuldu/index.html /cozumler/pencere-terleme-bugulanma-sorunu 301
+/pvc-dograma-camlarda-olusan-terleme-nasil-onlenir-cozuldu/ /cozumler/pencere-terleme-bugulanma-sorunu 301
+/pvc-dograma-camlarda-olusan-terleme-nasil-onlenir-cozuldu /cozumler/pencere-terleme-bugulanma-sorunu 301
+
 /pvc-dogramalarda-aksesuar-nedir-ve-cam-neden-onemlidir/index.html /blog/ispanyolet-nedir-nasil-calisir 301
 /pvc-dogramalarda-aksesuar-nedir-ve-cam-neden-onemlidir/ /blog/ispanyolet-nedir-nasil-calisir 301
 /pvc-dogramalarda-aksesuar-nedir-ve-cam-neden-onemlidir /blog/ispanyolet-nedir-nasil-calisir 301
@@ -117,9 +120,10 @@ https://akcapen-pvc-2lv.pages.dev/* https://egepenakcayapi.com/:splat 301
 /neden-egepen-deceuninck /hakkimizda 301
 
 # Door maintenance post
-/kapi-gicirdamasi-nasil-giderilir-cozuldu/index.html /blog/pvc-pencere-bakimi-kis-aylari 301
-/kapi-gicirdamasi-nasil-giderilir-cozuldu/ /blog/pvc-pencere-bakimi-kis-aylari 301
-/kapi-gicirdamasi-nasil-giderilir-cozuldu /blog/pvc-pencere-bakimi-kis-aylari 301
+# Door creaking post → exact match in Çözüm Merkezi
+/kapi-gicirdamasi-nasil-giderilir-cozuldu/index.html /cozumler/kapi-gicirtisi-nasil-giderilir 301
+/kapi-gicirdamasi-nasil-giderilir-cozuldu/ /cozumler/kapi-gicirtisi-nasil-giderilir 301
+/kapi-gicirdamasi-nasil-giderilir-cozuldu /cozumler/kapi-gicirtisi-nasil-giderilir 301
 
 # ──────────────────────────────────────────────────────────
 # 4. LEGACY WORDPRESS — Post ID Query Strings (?p=)
