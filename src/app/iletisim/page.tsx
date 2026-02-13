@@ -128,16 +128,6 @@ export default function ContactPage() {
                                     </div>
 
                                     <div className="flex gap-3 items-start">
-                                        <span className="mt-0.5 text-primary-600"><MailIcon /></span>
-                                        <div>
-                                            <p className="text-sm text-neutral-500">E-posta</p>
-                                            <a href={`mailto:${businessConfig.contact.email}`} className="text-primary-600 font-medium hover:underline text-sm">
-                                                {businessConfig.contact.email}
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex gap-3 items-start">
                                         <span className="mt-0.5 text-primary-600"><ClockIcon /></span>
                                         <div>
                                             <p className="text-sm text-neutral-500">Çalışma Saatleri</p>

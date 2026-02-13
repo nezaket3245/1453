@@ -189,16 +189,6 @@ export function Footer() {
                             <span className="text-primary-500 font-bold" aria-hidden="true">📱</span>
                             <a href={`tel:${businessConfig.contact.mobileRaw}`} title="Egepen Akçayapı Cep Telefonu" className="hover:text-white transition-colors font-medium">{businessConfig.contact.mobile}</a>
                         </li>
-                        <li className="flex gap-4">
-                            <span className="text-primary-500 font-bold" aria-hidden="true">✉️</span>
-                            <a
-                                href={`mailto:${businessConfig.contact.email}`}
-                                title="E-posta ile İletişime Geçin"
-                                className="hover:text-white transition-colors text-sm"
-                            >
-                                {businessConfig.contact.email}
-                            </a>
-                        </li>
                     </ul>
                     </address>
                 </div>

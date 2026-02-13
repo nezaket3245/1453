@@ -148,7 +148,6 @@ const localBusinessSchema = {
   "logo": "https://akcapen-pvc.pages.dev/images/logo.svg",
   "url": "https://akcapen-pvc.pages.dev",
   "telephone": businessConfig.contact.mobile,
-  "email": businessConfig.contact.email,
   "priceRange": "₺₺",
   "currenciesAccepted": "TRY",
   "paymentAccepted": "Cash, Credit Card, Bank Transfer",

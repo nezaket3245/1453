@@ -18,24 +18,13 @@ interface InstallationStep {
     details: string[];
 }
 
-function StepIcon({ name, className = 'w-5 h-5' }: { name: string; className?: string }) {
-    const icons: Record<string, React.ReactNode> = {
-        ruler: <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zM9 8h1M9 12h1M9 16h1" /></svg>,
-        factory: <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0H5m14 0h2m-2 0v-2M5 21H3m2 0v-2m4-14v4m4-4v4" /></svg>,
-        calendar: <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>,
-        wrench: <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>,
-        book: <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>,
-    };
-    return <>{icons[name] || null}</>;
-}
-
 const installationSteps: InstallationStep[] = [
     {
         id: 1,
         title: 'Ücretsiz Keşif',
         description: 'Uzman ekibimiz evinize gelir ve ölçü alır',
         duration: '30-45 dk',
-        icon: 'ruler',
+        icon: '📐',
         details: [
             'Pencere ve kapı ölçüleri alınır',
             'Kasa tipi ve montaj yöntemi belirlenir',
@@ -48,7 +37,7 @@ const installationSteps: InstallationStep[] = [
         title: 'Üretim',
         description: 'Özel ölçülerinize göre üretim yapılır',
         duration: '3-5 iş günü',
-        icon: 'factory',
+        icon: '🏭',
         details: [
             'Profiller özel ölçüde kesilir',
             'Tül seçiminize göre monte edilir',
@@ -61,7 +50,7 @@ const installationSteps: InstallationStep[] = [
         title: 'Randevu',
         description: 'Size uygun montaj tarihi belirlenir',
         duration: 'Aynı hafta',
-        icon: 'calendar',
+        icon: '📅',
         details: [
             'WhatsApp ile iletişim',
             'Sabah veya öğleden sonra seçeneği',
@@ -74,7 +63,7 @@ const installationSteps: InstallationStep[] = [
         title: 'Profesyonel Montaj',
         description: 'Deneyimli ekibimiz montajı tamamlar',
         duration: '15-30 dk/adet',
-        icon: 'wrench',
+        icon: '🔧',
         details: [
             'Temiz ve düzenli çalışma',
             'Vidasız montaj seçeneği',
@@ -87,11 +76,10 @@ const installationSteps: InstallationStep[] = [
         title: 'Kullanım Eğitimi',
         description: 'Doğru kullanım ve bakım bilgisi verilir',
         duration: '5-10 dk',
-        icon: 'book',
+        icon: '📚',
         details: [
             'Açma-kapama gösterimi',
             'Temizlik tavsiyeleri',
-            'Belge teslimi',
             'Servis hattı bilgisi',
         ],
     },
@@ -103,9 +91,8 @@ export default function InstallationProcess() {
     return (
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
             <div className="p-6 md:p-8 bg-gradient-to-r from-slate-800 to-slate-900 text-white">
-                <h3 className="text-2xl md:text-3xl font-bold mb-2 flex items-center gap-3">
-                    <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                    Profesyonel Montaj Süreci
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                    🔧 Profesyonel Montaj Süreci
                 </h3>
                 <p className="text-slate-300">
                     Keşiften montaja kadar her adımda yanınızdayız
@@ -135,19 +122,19 @@ export default function InstallationProcess() {
                                 className="flex flex-col items-center group"
                             >
                                 <motion.div
-                                    className={`w-12 h-12 rounded-full flex items-center justify-center text-xl z-10 transition-colors ${
+                                    className={`w-12 h-12 rounded-full flex items-center justify-center text-xl z-10 transition-all ${
                                         step.id <= activeStep
                                             ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/30'
-                                            : 'bg-gray-200 text-gray-600'
+                                            : 'bg-gray-200 text-gray-400'
                                     }`}
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}
                                 >
-                                    <StepIcon name={step.icon} />
+                                    {step.icon}
                                 </motion.div>
                                 <span
                                     className={`mt-2 text-xs font-medium hidden md:block ${
-                                        step.id === activeStep ? 'text-emerald-600' : 'text-gray-600'
+                                        step.id === activeStep ? 'text-emerald-600' : 'text-gray-400'
                                     }`}
                                 >
                                     {step.title}
@@ -167,16 +154,15 @@ export default function InstallationProcess() {
                     {/* Left: Info */}
                     <div className="bg-emerald-50 rounded-2xl p-6">
                         <div className="flex items-center gap-3 mb-4">
-                            <span className="text-emerald-600">
-                                <StepIcon name={installationSteps[activeStep - 1].icon} className="w-10 h-10" />
+                            <span className="text-4xl">
+                                {installationSteps[activeStep - 1].icon}
                             </span>
                             <div>
                                 <h4 className="text-xl font-bold text-gray-900">
                                     {activeStep}. {installationSteps[activeStep - 1].title}
                                 </h4>
                                 <p className="text-emerald-600 font-medium">
-                                    <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                    {installationSteps[activeStep - 1].duration}
+                                    ⏱️ {installationSteps[activeStep - 1].duration}
                                 </p>
                             </div>
                         </div>
@@ -214,7 +200,7 @@ export default function InstallationProcess() {
                     >
                         ← Önceki
                     </button>
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-gray-400">
                         Adım {activeStep} / {installationSteps.length}
                     </div>
                     <button

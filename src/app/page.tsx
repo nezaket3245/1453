@@ -146,7 +146,6 @@ const specialtyContractorSchema = {
   description: "Beylikdüzü ve İstanbul genelinde Egepen Deceuninck yetkili bayisi olarak PVC pencere, cam balkon, sineklik, panjur ve duşakabin montaj hizmeti.",
   url: "https://akcapen-pvc.pages.dev",
   telephone: businessConfig.contact.mobile,
-  email: businessConfig.contact.email,
   address: {
     "@type": "PostalAddress",
     streetAddress: businessConfig.address.street,

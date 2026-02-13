@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title:
     "Tamir & Bakım Hizmetleri | Sineklik · PVC Pencere · Cam Balkon Onarımı — Beylikdüzü",
   description:
-    "Beylikdüzü sineklik tamiri, PVC pencere conta değişimi, cam balkon tekerlek onarımı. Aynı gün ücretsiz keşif, orijinal yedek parça, 5 yıl garanti. Egepen yetkili servis ☎ 0212 880 15 07",
+    "Beylikdüzü sineklik tamiri, PVC pencere conta değişimi, cam balkon tekerlek onarımı. Aynı gün ücretsiz keşif, orijinal yedek parça. Egepen yetkili servis ☎ 0212 880 15 07",
   keywords: [
     "Beylikdüzü sineklik tamiri",
     "sineklik tel değişimi",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Tamir & Bakım | Sineklik · PVC Pencere · Cam Balkon — Egepen Akçayapı",
     description:
-      "Sineklik, PVC pencere ve cam balkon tamiri. Orijinal yedek parça, aynı gün ücretsiz keşif, 5 yıl garanti.",
+      "Sineklik, PVC pencere ve cam balkon tamiri. Orijinal yedek parça, aynı gün ücretsiz keşif.",
     type: "website",
     locale: "tr_TR",
     url: `${businessConfig.siteUrl}/tamir-bakim`,
@@ -136,10 +136,6 @@ const faqsData = [
   {
     q: "Tamir için ne kadar süre beklenir?",
     a: "Stokta bulunan parçalar için aynı gün servis sağlanır. Özel sipariş gerektiren parçalarda 2-3 iş günü içinde müdahale edilir.",
-  },
-  {
-    q: "Garanti kapsamı nedir?",
-    a: "Tüm tamir ve bakım hizmetlerimiz 5 yıl işçilik garantisi kapsamındadır. Kullanılan yedek parçalar orijinal üretici garantilidir.",
   },
   {
     q: "Ücretsiz keşif nasıl çalışır?",
@@ -298,7 +294,6 @@ const repairCategories: RepairCategory[] = [
 const highlights = [
   { label: "Aynı Gün Keşif", desc: "Aradığınız gün adresinize geliyoruz." },
   { label: "Orijinal Parça", desc: "Egepen ve üretici orijinal yedek parça." },
-  { label: "5 Yıl Garanti", desc: "İşçilik ve parça garantisi." },
   { label: "Ücretsiz Teklif", desc: "Keşif ve fiyat teklifi tamamen ücretsiz." },
 ];
 

@@ -44,7 +44,7 @@ export const businessConfig = {
         youtube: "https://youtube.com/@egepenakcayapi",
         // linkedin: removed — page doesn't exist
         // twitter: removed — account doesn't exist
-        googleMaps: "https://www.google.com/maps/place/Egepen,+Ak%C3%A7ayap%C4%B1,Sineklik,Cam+balkon,Giyotin,panjur+sistemleri/@40.9942165,28.6054045,17z/data=!3m1!4b1!4m6!3m5!1s0x14b55f98edadb64f:0x2f92fd58ab8cca21!8m2!3d40.9942125!4d28.6079794!16s%2Fg%2F11svqx1d4t?hl=tr&entry=ttu"
+        googleMaps: "https://www.google.com/maps/dir//Egepen,+Ak%C3%A7ayap%C4%B1,Sineklik,Cam+balkon,Giyotin,panjur+sistemleri+G%C3%BCrp%C4%B1nar+Mh+G%C3%BCrp%C4%B1nar+Cd.+No:+26+A+34528+Beylikd%C3%BCz%C3%BC%2F%C4%B0stanbul/@40.9942125,28.6079794,16z/data=!4m5!4m4!1m0!1m2!1m1!1s0x14b55f98edadb64f:0x2f92fd58ab8cca21"
     },
 
     // ═══════════════════════════════════════════════════════════════════════

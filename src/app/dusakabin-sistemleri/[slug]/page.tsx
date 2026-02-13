@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import OptimizedImage from "@/components/ui/OptimizedImage";
+import { ImageLightbox } from "@/components/ui/ImageLightbox";
 import Link from "next/link";
 import { HeaderOptimized } from "@/components/layout/HeaderOptimized";
 import { Footer } from "@/components/layout/Footer";
@@ -52,9 +53,7 @@ export default async function DusakabinProductPage({ params }: DusakabinPageProp
                 <div className="container-custom py-10 md:py-14">
                     <div className="grid lg:grid-cols-5 gap-8">
                         <div className="lg:col-span-3">
-                            <div className="relative aspect-video rounded-2xl overflow-hidden bg-neutral-100 mb-6">
-                                <OptimizedImage src={system.image} alt={system.name} fill sizes="(max-width: 1024px) 100vw, 60vw" className="object-cover" priority />
-                            </div>
+                            <ImageLightbox images={[system.image, ...system.gallery]} alt={system.name} className="mb-6" />
                             <p className="text-neutral-600 leading-relaxed mb-6">{system.description}</p>
 
                             <ExpandableGroup>
@@ -139,7 +138,6 @@ export default async function DusakabinProductPage({ params }: DusakabinPageProp
                                     <h3 className="font-bold text-neutral-900 mb-4">Hızlı Bilgi</h3>
                                     <div className="space-y-3 text-sm">
                                         <div className="flex justify-between"><span className="text-neutral-500">Montaj Süresi</span><span className="font-medium">{system.installationTime}</span></div>
-                                        <div className="flex justify-between"><span className="text-neutral-500">Garanti</span><span className="font-medium">{system.warranty}</span></div>
                                         <div className="flex justify-between"><span className="text-neutral-500">Fiyat Aralığı</span><span className="font-medium">{system.priceRange.min.toLocaleString('tr-TR')}₺ – {system.priceRange.max.toLocaleString('tr-TR')}₺</span></div>
                                     </div>
                                 </div>

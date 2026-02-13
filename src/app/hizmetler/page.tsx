@@ -60,7 +60,7 @@ const services = [
     {
         Icon: WrenchIcon,
         title: "Profesyonel Montaj",
-        desc: "Deneyimli montaj ekibimiz, ürünlerinizi Egepen Deceuninck standartlarına uygun şekilde monte eder. Titiz işçilik ve temiz çalışma alanı garantisi.",
+        desc: "Deneyimli montaj ekibimiz, ürünlerinizi Egepen Deceuninck standartlarına uygun şekilde monte eder. Titiz işçilik ve temiz çalışma alanı.",
         details: [
             "Fabrika eğitimli montaj ekibi",
             "Standartlara uygun uygulama",
