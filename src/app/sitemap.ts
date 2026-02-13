@@ -10,6 +10,7 @@ import { aluminumSystems } from "@/lib/aluminumData";
 import { panjurSystems } from "@/lib/panjurData";
 import { dusakabinSystems } from "@/lib/dusakabinData";
 import { solutions } from "@/lib/solutionsData";
+import { repairRecords } from "@/lib/tamiratData";
 import { businessConfig } from "@/config/business.config";
 
 const baseUrl = businessConfig.siteUrl;
@@ -126,6 +127,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             lastModified: lastMod,
             changeFrequency: "weekly",
             priority: 0.9,
+        },
+        {
+            url: `${baseUrl}/pvc-sistemleri/tamirat-tadilat`,
+            lastModified: lastMod,
+            changeFrequency: "weekly",
+            priority: 0.8,
         },
     ];
 

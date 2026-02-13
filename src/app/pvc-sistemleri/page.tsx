@@ -138,6 +138,29 @@ export default function PVCSystemsPage() {
 
 
 
+                {/* Tamirat & Tadilat CTA */}
+                <section className="py-12 md:py-16 bg-white">
+                    <div className="container-custom max-w-2xl text-center">
+                        <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-3">
+                            PVC Tamirat & Tadilat
+                        </h2>
+                        <p className="text-neutral-600 leading-relaxed mb-6">
+                            Mevcut PVC pencerelerinizde cam değişimi, conta yenileme, mekanizma
+                            tamiri veya komple revizyon mu gerekiyor? 12 farklı tamir hizmetimizi
+                            inceleyin.
+                        </p>
+                        <Link
+                            href="/pvc-sistemleri/tamirat-tadilat"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors"
+                        >
+                            Tamirat Hizmetlerini İncele
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </Link>
+                    </div>
+                </section>
+
                 {/* Subtle text CTA */}
                 <section className="py-14 md:py-16 bg-neutral-50 text-center">
                     <div className="container-custom max-w-xl">

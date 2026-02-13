@@ -17,7 +17,7 @@ const navigationItems = [
             { label: "Legend Serisi", href: "/pvc-sistemleri/legend-pvc-pencere" },
             { label: "Legend Art Serisi", href: "/pvc-sistemleri/legend-art-pvc-pencere" },
             { label: "Sürme Sistemleri", href: "/pvc-sistemleri#surme" },
-            { label: "Tamirat & Tadilat", href: "/pvc-sistemleri#tamirat" },
+            { label: "Tamirat & Tadilat", href: "/pvc-sistemleri/tamirat-tadilat" },
         ],
     },
     {
