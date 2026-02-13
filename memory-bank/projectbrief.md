@@ -8,8 +8,9 @@ Corporate website for **Egepen Akçayapı**, an authorized Egepen Deceuninck dea
 - **Brand:** Egepen Deceuninck (authorized dealer)
 - **Domain:** https://egepenakcayapi.com
 - **Location:** Gürpınar Mah. Gürpınar Cad. No: 26A, 34528 Beylikdüzü/İSTANBUL
-- **Phone:** 0212 880 15 07 (landline) / 0536 640 53 11 (mobile)
-- **Email:** info@egepenakcayapi.com
+- **Phone:** 0212 880 15 07 (landline — primary contact)
+- **WhatsApp:** +90 212 880 15 07
+- **Old mobile (no longer displayed):** 0536 640 53 11
 
 ## Product Categories (6)
 1. **PVC Pencere & Kapı Sistemleri** → `/pvc-sistemleri`

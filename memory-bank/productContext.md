@@ -16,9 +16,12 @@ Egepen Akçayapı needs a modern, high-performance website to:
 ## How It Works
 - **Homepage:** Hero slider → product grid → trust signals → testimonials → CTA
 - **Product Category Pages** (6): Overview of the category with feature highlights, then links to individual sub-product detail pages
-- **Sub-Product Detail Pages** (`/[category]/[slug]`): Full technical specs, images, benefits for each specific product (e.g., Legend PVC window, Tiara Max glass balcony)
+- **Sub-Product Detail Pages** (`/[category]/[slug]`): Full technical specs, images, benefits, ImageLightbox for each specific product
+- **Çözüm Merkezi** (Solution Center — `/cozumler`): 13 articles with Fuse.js fuzzy search, Turkish character normalization, FeedbackWidget, TechSpecsTable for product articles
+- **Tamir-Bakım** (`/tamir-bakim`): SEO content hub with 9 step-by-step how-to repair guides, symptom finder, 14 FAQ, 6 service categories
 - **Blog:** SEO-driven articles about PVC windows, maintenance, energy savings
-- **Contact/Quote Pages:** Forms for quote requests, showroom directions with embedded map
+- **Contact Page:** Showroom directions with embedded map (form removed)
+- **Quote Form** (teklif-al): For lead generation
 - **SSS (FAQ):** 20 common questions with expandable answers
 - **Projects Gallery:** Completed installation photos
 

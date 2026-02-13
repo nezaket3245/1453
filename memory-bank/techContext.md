@@ -9,6 +9,7 @@
 | Tailwind CSS | ^4 | Utility-first styling |
 | Framer Motion | ^12.29.2 | Animations (non-homepage pages only) |
 | **motion-lite** | custom | Lightweight CSS-transition animations (homepage, ~2KB) |
+| **Fuse.js** | ^7 | Client-side fuzzy search (Çözüm Merkezi) |
 | Sharp | ^0.34.5 | Image processing (build-time) |
 | clsx | ^2.1.1 | Conditional classnames |
 
@@ -21,10 +22,15 @@
 
 ## Hosting & Deployment
 - **Platform:** Cloudflare Pages
-- **Project name:** `akcapen-pvc`
-- **Deploy tool:** Wrangler (`npx wrangler pages deploy out`)
+- **Project name:** `akcapen-yeni` (NOT `akcapen-pvc` — that project is stale)
+- **Deploy tool:** Wrangler (`npx wrangler pages deploy out --project-name=akcapen-yeni`)
 - **Build output:** `/out` directory (static HTML/CSS/JS)
-- **Production URL:** https://akcapen-pvc.pages.dev
+- **Production URL:** https://akcapen-yeni-84y.pages.dev
+- **Custom domain:** https://egepenakcayapi.com (CNAME → akcapen-yeni.pages.dev)
+- **Git integration:** None (Git: No) — Cloudflare does NOT auto-deploy from GitHub
+- **GitHub repos:**
+  - `deploy` → https://github.com/nezaket3245/1453.git (code backup, push works)
+  - `origin` → https://github.com/bagkurluibo-dotcom/akcapen-yeni.git (permission denied)
 - **Security headers:** Defined in `public/_headers` (CSP, HSTS, X-Frame-Options, etc.)
 - **Redirects:** Defined in `public/_redirects`
 
@@ -39,8 +45,8 @@ npm run dev
 # Production build
 npm run build
 
-# Deploy
-npx wrangler pages deploy out --project-name=akcapen-pvc --branch=main --commit-dirty=true
+# Deploy to Cloudflare Pages (MANUAL — no auto-deploy)
+npx wrangler pages deploy out --project-name=akcapen-yeni
 ```
 
 There is also a `SİTEYİ_BAŞLAT.bat` file for local dev startup on Windows.
@@ -63,17 +69,25 @@ There is also a `SİTEYİ_BAŞLAT.bat` file for local dev startup on Windows.
 4. **Google Analytics disabled** — GA4 code in layout.tsx is commented out; needs real measurement ID
 5. **Verification codes TODO** — Google, Yandex, Bing webmaster verification codes are placeholder
 6. **No CMS** — Content changes require code edits
+7. **No CI/CD** — Cloudflare Pages is not connected to GitHub; must deploy manually via wrangler
 
 ## Build Characteristics
-- ~75 static pages generated
+- ~88+ static pages generated
 - Build time: ~12 seconds with Turbopack
-- Output size: ~640 files
+- Output size: ~945 files
 - Uses `trailingSlash: true` (all URLs end with `/`)
 - Homepage JS payload: ~674KB (down from ~850KB after framer-motion removal)
 - framer-motion chunk (~111KB) excluded from homepage, only loaded on sub-pages that still use it
+- Fuse.js chunk loaded only on /cozumler page (client component)
 
 ## Font Strategy
 - **Outfit** — Primary font (headings + body text)
 - **Inter** — REMOVED (8 Şubat 2026) to save ~50KB; was only used as fallback
 - Single font loaded via `next/font/google` (self-hosted, not external Google Fonts)
 - Fallback: `system-ui, arial`
+
+## Cloudflare Account Info
+- **Account ID:** `2f8a9910120689f4f86f06fb6637f9b2`
+- **Active project:** `akcapen-yeni` → `akcapen-yeni-84y.pages.dev`
+- **Stale projects:** `akcapen-pvc` (pages.dev), `akcapen-pvc-2lv` (pages.dev) — old/abandoned
+- **OAuth token:** Read from `%APPDATA%/xdg.config/.wrangler/config/default.toml`

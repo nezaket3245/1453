@@ -19,13 +19,21 @@ src/
 │   │   ├── page.tsx          # Category overview
 │   │   └── [slug]/page.tsx   # Sub-product detail pages
 │   ├── blog/                 # Blog listing + [slug] detail
+│   ├── cozumler/             # Solution Center (NEW — Phase 9)
+│   │   ├── page.tsx          # Index: search, category badges, article grid
+│   │   └── [slug]/page.tsx   # Article detail: schema, feedback, tech specs
+│   ├── tamir-bakim/          # Repair & Maintenance SEO hub (NEW — Phase 8)
+│   │   └── page.tsx          # 9 how-to guides, 14 FAQ, symptom finder
 │   ├── iletisim/             # Contact page
 │   ├── teklif-al/            # Quote request form
 │   └── ...                   # Other static pages
 ├── components/
 │   ├── layout/               # Header, Footer, ClientUIComponents
 │   ├── sections/             # Homepage & reusable content sections
-│   ├── ui/                   # Reusable UI primitives (Button, Toast, etc.)
+│   ├── ui/                   # Reusable UI primitives (Button, Toast, ImageLightbox, etc.)
+│   │   ├── SolutionSearch.tsx    # Client: Fuse.js search + card grid (NEW)
+│   │   ├── FeedbackWidget.tsx    # Client: "Did this help?" + localStorage (NEW)
+│   │   └── TechSpecsTable.tsx    # Server: product spec table (NEW)
 │   ├── cta/                  # (mostly cleaned — orphaned files removed)
 │   ├── forms/                # (mostly cleaned — orphaned files removed)
 │   └── providers/            # AnalyticsProvider
@@ -36,6 +44,8 @@ src/
 ├── lib/
 │   ├── data.ts               # Central product database (6 products)
 │   ├── motion-lite.tsx        # Lightweight framer-motion replacement (~2KB)
+│   ├── solutionsData.ts      # Solution Center: 13 articles, 5 categories (NEW)
+│   ├── searchUtils.ts        # Turkish normalization + Fuse.js useSearch hook (NEW)
 │   ├── pvcData.ts            # PVC sub-products (series)
 │   ├── camBalkonData.ts      # Glass balcony systems
 │   ├── sineklikData.ts       # Insect screen systems
@@ -74,6 +84,9 @@ src/
 /aluminyum-sistemleri/           → Aluminum systems
 /blog/                           → Blog listing
 /blog/[slug]/                    → Blog post
+/cozumler/                       → Solution Center (search + category filter)
+/cozumler/[slug]/                → Solution article detail
+/tamir-bakim/                    → Repair & Maintenance SEO hub
 /urunler/                        → Products overview (has own product array)
 /iletisim/                       → Contact page
 /teklif-al/                      → Quote request
@@ -154,11 +167,37 @@ All user-facing UI must use inline SVG icons instead of emoji characters. This e
 ```bash
 npm run build                    # → generates /out directory
 npx wrangler pages deploy out \
-  --project-name=akcapen-pvc \
-  --branch=main \
-  --commit-dirty=true            # → deploys to Cloudflare Pages
+  --project-name=akcapen-yeni    # → deploys to Cloudflare Pages (MANUAL)
 ```
-- Cloudflare project name: `akcapen-pvc`
-- Production URL: https://akcapen-pvc.pages.dev
+- Cloudflare project name: `akcapen-yeni` (Git: No — NOT auto-deployed from GitHub)
+- Production URL: https://akcapen-yeni-84y.pages.dev
+- Custom domain: https://egepenakcayapi.com
 - Custom headers via `public/_headers`
 - Redirects via `public/_redirects`
+- **IMPORTANT:** After every code change, must run `npm run build` then `wrangler pages deploy`
+
+### Solution Center Architecture (Phase 9)
+```
+Data Layer:     src/lib/solutionsData.ts     → 13 articles, 5 categories
+                  exports: solutions[], categoryMeta, getSolutionBySlug()
+Search Layer:   src/lib/searchUtils.ts       → normalizeTurkish() + useSearch() hook (Fuse.js)
+UI Layer:       src/components/ui/
+                  SolutionSearch.tsx          → "use client" — search bar + card grid
+                  FeedbackWidget.tsx          → "use client" — yes/no + localStorage
+                  TechSpecsTable.tsx          → server component — spec table
+Pages:          src/app/cozumler/
+                  page.tsx                    → index (hero + badges + search)
+                  [slug]/page.tsx             → detail (schema + content + feedback + related)
+```
+- **Turkish fuzzy search**: Fuse.js with custom normalization (ı→i, ö→o, ş→s, ğ→g, ç→c, ü→u)
+- **Feedback**: localStorage-based "Bu içerik işinize yaradı mı?" widget
+- **TechSpecs**: Only rendered for `product-info` category articles (Legend/Zendow)
+- **Schema.org**: Article + BreadcrumbList + HowTo (where applicable)
+
+### Tamir-Bakım Architecture (Phase 8)
+- Single page `src/app/tamir-bakim/page.tsx` (~700 lines)
+- 9 `howToGuides[]` with step-by-step instructions, tools, warnings, expert tips
+- 14 `faqsData[]` covering common repair questions
+- 12 `commonSymptoms[]` mapping symptoms → sections
+- 6 `repairCategories[]` for visual service grid
+- HowTo + FAQPage schema markup
