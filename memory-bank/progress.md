@@ -149,6 +149,17 @@
 - **Deploy**: 1059 files (build: 99 pages)
 - Committed: `d589b14`
 
+### Phase 12: WordPress Migration — 301 Redirects (14 Şubat 2026)
+- **Old WP backup explored**: `C:\Benim Web Sitem\yedekk\egepenakcayapi.com\` — 21+ content directories, HTTrack mirror
+- **313+ redirect rules** in `public/_redirects` (Cloudflare Pages format) — 9 sections covering all old URLs
+- **Improved redirect targets**: Old blog posts remapped to Çözüm Merkezi for exact topic matches:
+  - `/kapi-gicirdamasi-nasil-giderilir-cozuldu` → `/cozumler/kapi-gicirtisi-nasil-giderilir`
+  - `/pvc-dograma-camlarda-olusan-terleme-nasil-onlenir-cozuldu` → `/cozumler/pencere-terleme-bugulanma-sorunu`
+- **WP infrastructure catch-alls**: `/wp-content/*`, `/wp-admin/*`, `/wp-json/*`, `/feed`, date archives, author/category/tag pages
+- **Google Maps embed fixed**: iletisim/page.tsx iframe uses real CID from `businessConfig.address.coordinates.cid`
+- **Validated**: All redirect target pages exist in build output
+- Committed: `38e8a6b`
+
 ### Future Considerations
 - Connect Cloudflare Pages to GitHub for auto-deploy
 - CMS integration (if content updates become frequent)
