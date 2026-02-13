@@ -9,6 +9,7 @@ import { sineklikSystems } from "@/lib/sineklikData";
 import { aluminumSystems } from "@/lib/aluminumData";
 import { panjurSystems } from "@/lib/panjurData";
 import { dusakabinSystems } from "@/lib/dusakabinData";
+import { solutions } from "@/lib/solutionsData";
 import { businessConfig } from "@/config/business.config";
 
 const baseUrl = businessConfig.siteUrl;
@@ -76,6 +77,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             lastModified: lastMod,
             changeFrequency: "monthly",
             priority: 0.9,
+        },
+        {
+            url: `${baseUrl}/cozumler`,
+            lastModified: lastMod,
+            changeFrequency: "weekly",
+            priority: 0.8,
         },
         {
             url: `${baseUrl}/gizlilik-politikasi`,
@@ -186,6 +193,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
     }));
 
+    // Çözüm Merkezi Detay Sayfaları
+    const solutionPages: MetadataRoute.Sitemap = solutions.map((sol) => ({
+        url: `${baseUrl}/cozumler/${sol.slug}`,
+        lastModified: new Date(sol.updatedAt),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+    }));
+
     return [
         ...staticPages,
         ...productPages,
@@ -195,6 +210,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ...sineklikPages,
         ...aluminumDetailPages,
         ...panjurDetailPages,
-        ...dusakabinDetailPages
+        ...dusakabinDetailPages,
+        ...solutionPages
     ];
 }

@@ -85,6 +85,7 @@ const navigationItems = [
         label: "Bilgi",
         href: "/blog",
         children: [
+            { label: "Çözüm Merkezi", href: "/cozumler" },
             { label: "Blog & İpuçları", href: "/blog" },
             { label: "SSS", href: "/sss" },
             { label: "Hakkımızda", href: "/hakkimizda" },
