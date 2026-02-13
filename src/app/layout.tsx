@@ -293,11 +293,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/images/icon-192x192.svg" />
         <link rel="manifest" href="/manifest.json" />
 
-        {/* DNS Prefetch & Preconnect for Performance */}
-        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="//www.google-analytics.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
 
         {/* Preload LCP Image - Critical for Performance */}
         <link
@@ -314,24 +310,14 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
 
-        {/* Critical CSS for Above-the-Fold Content */}
+        {/* Critical CSS - Only unique above-the-fold rules not in globals.css */}
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              /* Critical CSS - Minimal above-the-fold styles */
-              *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-              html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-size-adjust:100%}
-              body{min-height:100vh;background:#fff;color:#0f172a;font-family:var(--font-outfit),var(--font-inter),system-ui,-apple-system,sans-serif;line-height:1.5;overflow-x:hidden}
-              img,picture,video,canvas,svg{display:block;max-width:100%;height:auto}
               .container-custom{width:100%;max-width:1280px;margin:0 auto;padding-left:1rem;padding-right:1rem}
               @media(min-width:640px){.container-custom{padding-left:1.5rem;padding-right:1.5rem}}
-              /* Focus visible for accessibility */
-              :focus-visible{outline:2px solid #0055a5;outline-offset:2px}
-              /* Skip link styles */
               .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
               .skip-link:focus{position:fixed;top:0;left:0;width:auto;height:auto;padding:1rem;background:#0055a5;color:#fff;z-index:9999}
-              /* Prevent layout shift */
-              img[loading="lazy"]{content-visibility:auto}
             `,
           }}
         />
@@ -345,35 +331,7 @@ export default function RootLayout({
         {/* Client-side UI Components - All lazy loaded */}
         <ClientUIComponents />
 
-        {/* Deferred Analytics - Loads after user interaction */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // Defer analytics loading until after user interaction
-              (function(){
-                var loaded=false;
-                function loadAnalytics(){
-                  if(loaded)return;
-                  loaded=true;
-                  var s=document.createElement('script');
-                  s.src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
-                  s.async=true;
-                  document.head.appendChild(s);
-                  window.dataLayer=window.dataLayer||[];
-                  function gtag(){dataLayer.push(arguments)}
-                  window.gtag=gtag;
-                  gtag('js',new Date());
-                  gtag('config','G-XXXXXXXXXX',{send_page_view:true,anonymize_ip:true});
-                }
-                ['scroll','click','touchstart'].forEach(function(e){
-                  window.addEventListener(e,loadAnalytics,{once:true,passive:true});
-                });
-                // Fallback: load after 4 seconds if no interaction
-                setTimeout(loadAnalytics,4000);
-              })();
-            `,
-          }}
-        />
+
       </body>
     </html>
   );

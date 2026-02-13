@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { businessConfig } from "@/config/business.config";
 

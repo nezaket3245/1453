@@ -5,7 +5,6 @@ import { Footer } from "@/components/layout/Footer";
 import { HeroSectionOptimized } from "@/components/sections/HeroSectionOptimized";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { CTASection } from "@/components/sections/CTASection";
-import { ClientUIComponents } from "@/components/layout/ClientUIComponents";
 import { businessConfig } from "@/config/business.config";
 
 /**
@@ -285,8 +284,6 @@ export default function HomePage() {
       </main>
 
       <Footer />
-
-      <ClientUIComponents />
     </>
   );
 }
