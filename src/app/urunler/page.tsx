@@ -9,44 +9,44 @@ export const metadata: Metadata = {
     title: "Ürünler - Egepen Akçayapı Beylikdüzü",
     description:
         "PVC pencere, cam balkon, alüminyum, sineklik, panjur ve duşakabin ürünlerimiz. Egepen Deceuninck yetkili bayi.",
-    alternates: { canonical: "https://akcapen-pvc.pages.dev/urunler" },
+    alternates: { canonical: "https://egepenakcayapi.com/urunler" },
 };
 
 const categories = [
     {
         name: "PVC Pencere Sistemleri",
         href: "/pvc-sistemleri",
-        image: "/images/pvc/pvc-pencere-hero.jpg",
+        image: "/images/pvc/pvc-pencere-yemek-odasi.jpg",
         desc: "Egepen Legend, Legend Art, Zendow serileri. Üstün ısı ve ses yalıtımı.",
     },
     {
         name: "Cam Balkon Sistemleri",
         href: "/cam-balkon-sistemleri",
-        image: "/images/cam-balkon/cam-balkon-hero.jpg",
+        image: "/images/cam-balkon/cam-balkon-sehir-manzara.jpg",
         desc: "Isıcamlı, sürme ve katlanır cam balkon modelleri.",
     },
     {
         name: "Alüminyum Sistemleri",
         href: "/aluminyum-sistemleri",
-        image: "/images/aluminyum/aluminyum-hero.jpg",
+        image: "/images/aluminyum/thermal-break-pencere.png",
         desc: "Isı yalıtımlı alüminyum doğrama ve cephe profilleri.",
     },
     {
         name: "Sineklik Sistemleri",
         href: "/sineklik-sistemleri",
-        image: "/images/sineklik/sineklik-hero.jpg",
+        image: "/images/sineklik/duble-plise-sineklik.jpg",
         desc: "Plise, sürgülü ve menteşeli sineklik çözümleri.",
     },
     {
         name: "Panjur & Kepenk",
         href: "/panjur-kepenk-sistemleri",
-        image: "/images/panjur/panjur-hero.jpg",
+        image: "/images/panjur/panjur-modern-villa.jpg",
         desc: "Motorlu ve manuel panjur & kepenk sistemleri.",
     },
     {
         name: "Duşakabin Sistemleri",
         href: "/dusakabin-sistemleri",
-        image: "/images/dusakabin/dusakabin-hero.jpg",
+        image: "/images/dusakabin/hero-black-frameless.jpg",
         desc: "Premium cam duşakabin modelleri ve aksesuarları.",
     },
 ];

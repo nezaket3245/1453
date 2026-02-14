@@ -162,7 +162,7 @@ export const productCategories: ProductCategoryData[] = [
         description:
             "Isı yalıtımlı alüminyum pencere, giydirme cephe, ofis bölme ve sürme sistemleri. Ticari ve endüstriyel projeler için ideal.",
         icon: "🔧",
-        image: "/images/aluminyum/aluminyum-cephe-bina.jpg",
+        image: "/images/aluminyum/curtain-wall-giydirme.png",
         imageAlt:
             "Alüminyum doğrama sistemleri - ısı yalıtımlı pencere ve giydirme cephe İstanbul",
         features: [

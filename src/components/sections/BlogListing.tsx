@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 import { BlogPost, blogCategories, formatDate } from "@/lib/blogData";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/motion-lite";
 
 interface BlogListingProps {
     posts: BlogPost[];

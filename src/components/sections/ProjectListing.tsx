@@ -3,7 +3,7 @@
 import { useState } from "react";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 import { Project } from "@/lib/projectsData";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/motion-lite";
 
 interface ProjectListingProps {
     projects: Project[];

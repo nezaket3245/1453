@@ -7,7 +7,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from '@/lib/motion-lite';
 
 interface InstallationStep {
     id: number;

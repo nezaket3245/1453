@@ -9,7 +9,7 @@
  * - Faster LCP through preloading
  */
 
-const CACHE_VERSION = "v3";
+const CACHE_VERSION = "v4";
 const CACHE_NAME = `egepen-${CACHE_VERSION}`;
 const STATIC_CACHE = `static-${CACHE_VERSION}`;
 const IMAGE_CACHE = `images-${CACHE_VERSION}`;
@@ -34,15 +34,21 @@ self.addEventListener("install", (event) => {
     self.skipWaiting();
 });
 
-// Activate: Clean old caches
+// Activate: Clean ALL old caches aggressively
 self.addEventListener("activate", (event) => {
     event.waitUntil(
         caches.keys().then((keys) => {
             return Promise.all(
                 keys
                     .filter((key) => !key.includes(CACHE_VERSION))
-                    .map((key) => caches.delete(key))
+                    .map((key) => {
+                        console.log('[SW] Deleting old cache:', key);
+                        return caches.delete(key);
+                    })
             );
+        }).then(() => {
+            // Also clear the current cache's root entry to prevent stale homepage
+            return caches.open(CACHE_NAME).then((cache) => cache.delete('/'));
         })
     );
     self.clients.claim();
@@ -56,9 +62,13 @@ self.addEventListener("fetch", (event) => {
     // Skip non-GET and non-http(s) requests
     if (request.method !== "GET" || !url.protocol.startsWith("http")) return;
 
-    // Skip external domains
-    if (!url.hostname.includes("akcapen") && 
-        !url.hostname.includes("localhost")) {
+    // Skip external domains except CDNs
+    if (!url.hostname.includes("egepenakcayapi") && 
+        !url.hostname.includes("akcapen") && 
+        !url.hostname.includes("localhost") &&
+        !url.hostname.includes("pages.dev") &&
+        !url.hostname.includes("fonts.gstatic.com") &&
+        !url.hostname.includes("fonts.googleapis.com")) {
         return;
     }
 

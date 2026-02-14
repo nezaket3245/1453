@@ -46,7 +46,7 @@ export function ServicesSection() {
                                             alt={product.name}
                                             fill
                                             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                            className="object-cover group-hover:scale-110 transition-transform duration-700"
+                                            className="object-cover transition-transform duration-500"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity" />
                                         <div className="absolute bottom-6 left-6 right-6">

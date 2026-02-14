@@ -145,7 +145,7 @@ export function ServiceCards() {
                     {services.map((service) => (
                         <article
                             key={service.id}
-                            className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden hover:border-primary-300 hover:shadow-xl transition-all duration-300"
+                            className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden hover:border-primary-300 hover:shadow-xl transition-[border-color,box-shadow] duration-300"
                         >
                             {/* Image Header */}
                             <div className="relative aspect-[16/10] bg-gradient-to-br from-primary-50 to-accent-50 overflow-hidden">
@@ -154,7 +154,8 @@ export function ServiceCards() {
                                     alt={service.title}
                                     fill
                                     className={cn(
-                                        "object-cover group-hover:scale-110 transition-transform duration-500",
+                                        "object-cover transition-transform duration-500",
+                                        "@media(hover:hover){group-hover:scale-110}",
                                         (service.id === 'panjur' || service.id === 'dusakabin' || service.id === 'aluminyum') && "object-contain p-2"
                                     )}
                                 />
@@ -166,7 +167,7 @@ export function ServiceCards() {
                                 )}
                                 {/* Price Range */}
                                 {service.priceRange && (
-                                    <div className="absolute top-4 right-4 px-2 py-1 bg-white/90 backdrop-blur-sm text-neutral-700 text-xs font-medium rounded">
+                                    <div className="absolute top-4 right-4 px-2 py-1 bg-white/90 text-neutral-700 text-xs font-medium rounded">
                                         {service.priceRange}
                                     </div>
                                 )}

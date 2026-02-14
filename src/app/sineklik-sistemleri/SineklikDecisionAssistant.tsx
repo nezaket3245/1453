@@ -7,7 +7,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from '@/lib/motion-lite';
 import Link from 'next/link';
 import { decisionMatrixCriteria, meshTypes, sineklikSystems } from '@/lib/sineklikData';
 

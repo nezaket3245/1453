@@ -7,7 +7,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from '@/lib/motion-lite';
 
 interface Season {
     id: string;
@@ -24,21 +24,11 @@ interface Season {
     idealSystem: string;
 }
 
-function SeasonIcon({ name, className = 'w-6 h-6' }: { name: string; className?: string }) {
-    const icons: Record<string, React.ReactNode> = {
-        spring: <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>,
-        summer: <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>,
-        autumn: <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>,
-        winter: <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>,
-    };
-    return <>{icons[name] || null}</>;
-}
-
 const seasons: Season[] = [
     {
         id: 'spring',
         name: 'İlkbahar',
-        icon: 'spring',
+        icon: '🌸',
         color: 'text-pink-600',
         bgGradient: 'from-pink-50 to-rose-50',
         recommendations: [
@@ -59,7 +49,7 @@ const seasons: Season[] = [
     {
         id: 'summer',
         name: 'Yaz',
-        icon: 'summer',
+        icon: '☀️',
         color: 'text-amber-600',
         bgGradient: 'from-amber-50 to-yellow-50',
         recommendations: [
@@ -85,7 +75,7 @@ const seasons: Season[] = [
     {
         id: 'autumn',
         name: 'Sonbahar',
-        icon: 'autumn',
+        icon: '🍂',
         color: 'text-orange-600',
         bgGradient: 'from-orange-50 to-amber-50',
         recommendations: [
@@ -106,7 +96,7 @@ const seasons: Season[] = [
     {
         id: 'winter',
         name: 'Kış',
-        icon: 'winter',
+        icon: '❄️',
         color: 'text-blue-600',
         bgGradient: 'from-blue-50 to-cyan-50',
         recommendations: [
@@ -144,13 +134,13 @@ export default function SeasonalGuide() {
                     <button
                         key={season.id}
                         onClick={() => setActiveSeason(season.id)}
-                        className={`flex-1 py-4 px-4 flex flex-col items-center gap-1 transition-colors ${
+                        className={`flex-1 py-4 px-4 flex flex-col items-center gap-1 transition-all ${
                             activeSeason === season.id
                                 ? `bg-gradient-to-b ${season.bgGradient} ${season.color} font-bold`
                                 : 'bg-white text-gray-500 hover:bg-gray-50'
                         }`}
                     >
-                        <span className="text-2xl"><SeasonIcon name={season.id} /></span>
+                        <span className="text-2xl">{season.icon}</span>
                         <span className="text-sm">{season.name}</span>
                     </button>
                 ))}
@@ -168,8 +158,8 @@ export default function SeasonalGuide() {
                     <div className="grid md:grid-cols-2 gap-6">
                         {/* Recommendations */}
                         <div className="space-y-4">
-                            <h3 className={`text-lg font-bold ${currentSeason.color} flex items-center gap-2`}>
-                                <SeasonIcon name={currentSeason.id} className="w-5 h-5" /> {currentSeason.name} Tavsiyeleri
+                            <h3 className={`text-lg font-bold ${currentSeason.color}`}>
+                                {currentSeason.icon} {currentSeason.name} Tavsiyeleri
                             </h3>
                             {currentSeason.recommendations.map((rec, idx) => (
                                 <div
@@ -179,7 +169,7 @@ export default function SeasonalGuide() {
                                     <h4 className="font-semibold text-gray-900 mb-1">{rec.title}</h4>
                                     <p className="text-sm text-gray-600 mb-2">{rec.description}</p>
                                     <div className="flex items-start gap-2 text-sm">
-                                        <svg className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                                        <span className="text-emerald-500">💡</span>
                                         <span className="text-emerald-700 font-medium">{rec.tip}</span>
                                     </div>
                                 </div>
@@ -191,9 +181,8 @@ export default function SeasonalGuide() {
                             {/* Pests */}
                             {currentSeason.pests.length > 0 && (
                                 <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-sm">
-                                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                                        <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" /></svg>
-                                        Bu Mevsim Dikkat Edilecek Böcekler
+                                    <h4 className="font-semibold text-gray-900 mb-3">
+                                        🦟 Bu Mevsim Dikkat Edilecek Böcekler
                                     </h4>
                                     <div className="flex flex-wrap gap-2">
                                         {currentSeason.pests.map((pest, idx) => (
@@ -210,10 +199,7 @@ export default function SeasonalGuide() {
 
                             {/* Ideal System */}
                             <div className="bg-emerald-500 text-white rounded-xl p-4 shadow-lg">
-                                <h4 className="font-semibold mb-2 flex items-center gap-2">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                                    Önerilen Sistem
-                                </h4>
+                                <h4 className="font-semibold mb-2">✅ Önerilen Sistem</h4>
                                 <p className="text-emerald-100 text-lg font-bold">
                                     {currentSeason.idealSystem}
                                 </p>

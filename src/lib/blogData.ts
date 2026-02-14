@@ -505,7 +505,7 @@ Profesyonel montaj genellikle **1-2 gün** sürer:
 *Beylikdüzü'nde ücretsiz keşif için [hemen arayın](/iletisim).*
         `,
         category: "cam-balkon",
-        image: "/images/cam-balkon/cam-balkon-hero.jpg",
+        image: "/images/cam-balkon/cam-balkon-sehir-manzara.jpg",
         author: "Akçayapı Uzman Ekibi",
         date: "2026-01-15",
         readTime: "6 dk",
@@ -579,7 +579,7 @@ Kış soğuğunda profiller hafifçe büzüşebilir:
 *Pencere bakımı için profesyonel destek almak isterseniz [bize ulaşın](/iletisim).*
         `,
         category: "bakim",
-        image: "/images/pvc/pvc-pencere-beyaz.jpg",
+        image: "/images/pvc/pvc-pencere-yemek-odasi.jpg",
         author: "Akçayapı Uzman Ekibi",
         date: "2026-01-25",
         readTime: "5 dk",
@@ -662,7 +662,7 @@ Evcil hayvan sahipleri için güçlendirilmiş örgü.
 *Hangi sineklik size uygun? [Ücretsiz keşif ile yerinde görelim](/teklif-al).*
         `,
         category: "bakim",
-        image: "/images/sineklik/sineklik-plise-genis.jpg",
+        image: "/images/sineklik/duble-plise-sineklik.jpg",
         author: "Akçayapı Uzman Ekibi",
         date: "2026-02-01",
         readTime: "7 dk",

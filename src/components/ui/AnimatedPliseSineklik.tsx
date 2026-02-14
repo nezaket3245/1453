@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/motion-lite";
 
 /**
  * Animated Duble Plise Sineklik Component
@@ -27,11 +27,11 @@ export default function AnimatedPliseSineklik() {
     const pleatsCount = 20;
 
     return (
-        <div className="relative w-full max-w-xs mx-auto">
+        <div className="relative w-full max-w-lg mx-auto">
             {/* Title */}
-            <div className="text-center mb-3">
-                <h3 className="text-base font-bold text-neutral-900">Duble Plise Sineklik</h3>
-                <p className="text-xs text-neutral-500">Ortadan açılıp kapanan çift taraflı sistem</p>
+            <div className="text-center mb-4">
+                <h3 className="text-xl font-bold text-neutral-900">Duble Plise Sineklik</h3>
+                <p className="text-sm text-neutral-500">Ortadan açılıp kapanan çift taraflı sistem</p>
             </div>
 
             {/* Animation Container */}
@@ -247,7 +247,7 @@ export default function AnimatedPliseSineklik() {
                     animate={{ opacity: 1, y: 0 }}
                 >
                     <span className={`px-4 py-1.5 rounded-full text-xs font-bold shadow-lg transition-colors duration-500 ${isOpen
-                            ? "bg-green-700 text-white"
+                            ? "bg-green-500 text-white"
                             : "bg-amber-700 text-white"
                         }`}>
                         {isOpen ? "AÇIK" : "KAPALI"}
@@ -263,7 +263,7 @@ export default function AnimatedPliseSineklik() {
                         setIsAutoPlaying(false);
                         setIsOpen(false);
                     }}
-                    className={`px-5 py-2.5 rounded-lg font-semibold text-sm transition-[background-color,color,box-shadow] ${!isOpen
+                    className={`px-5 py-2.5 rounded-lg font-semibold text-sm transition-all ${!isOpen
                             ? "bg-amber-600 text-white shadow-lg shadow-amber-500/30"
                             : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
                         }`}
@@ -276,7 +276,7 @@ export default function AnimatedPliseSineklik() {
                         setIsAutoPlaying(false);
                         setIsOpen(true);
                     }}
-                    className={`px-5 py-2.5 rounded-lg font-semibold text-sm transition-[background-color,color,box-shadow] ${isOpen
+                    className={`px-5 py-2.5 rounded-lg font-semibold text-sm transition-all ${isOpen
                             ? "bg-green-600 text-white shadow-lg shadow-green-500/30"
                             : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
                         }`}
@@ -288,7 +288,7 @@ export default function AnimatedPliseSineklik() {
                         e.stopPropagation();
                         setIsAutoPlaying(!isAutoPlaying);
                     }}
-                    className={`px-5 py-2.5 rounded-lg font-semibold text-sm transition-[background-color,color,box-shadow] ${isAutoPlaying
+                    className={`px-5 py-2.5 rounded-lg font-semibold text-sm transition-all ${isAutoPlaying
                             ? "bg-primary-600 text-white shadow-lg shadow-primary-500/30"
                             : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
                         }`}

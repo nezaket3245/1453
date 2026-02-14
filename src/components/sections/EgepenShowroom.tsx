@@ -23,7 +23,7 @@ export const egepenProducts = [
     name: "Legend",
     tagline: "Premium Performans",
     description: "6 odalı üstün ısı yalıtım değerleri ile enerji tasarrufunda lider seri. Şık tasarım ve maksimum konfor.",
-    image: "/images/pvc/legend-profile.png",
+    image: "/images/pvc/legend-reklam.jpg",
     catalogUrl: "/catalogs/egepen-legend-katalog.pdf",
     badge: "En Çok Tercih Edilen",
     specs: {
@@ -51,7 +51,7 @@ export const egepenProducts = [
     name: "Legend Art",
     tagline: "Estetik ve Performans",
     description: "Benzersiz kontur tasarımı ile modern mimariye uyum. Yüksek estetik değer ve üstün teknik özellikler.",
-    image: "/images/pvc/legend-art-profile.png",
+    image: "/images/pvc/pvc-surme-salon.jpg",
     catalogUrl: "/catalogs/egepen-legend-art-katalog.pdf",
     badge: "Tasarım Ödüllü",
     specs: {
@@ -79,7 +79,7 @@ export const egepenProducts = [
     name: "Zendow / Zen Spirit",
     tagline: "Minimalist Şıklık",
     description: "Zarif çizgileri ve ince profil görünümü ile minimalist tasarım sevenlerin tercihi.",
-    image: "/images/pvc/zendow-profile.png",
+    image: "/images/pvc/pvc-surme-manzara.jpg",
     catalogUrl: "/catalogs/egepen-zendow-katalog.pdf",
     badge: "Minimalist",
     specs: {
@@ -107,7 +107,7 @@ export const egepenProducts = [
     name: "HS76 Sürme Sistem",
     tagline: "Geniş Açıklıklar",
     description: "Büyük cam yüzeyleri ve ferah yaşam alanları için ideal sürme pencere ve kapı sistemi.",
-    image: "/images/pvc/hs76-profile.png",
+    image: "/images/pvc/pvc-surme-deniz-manzara.jpg",
     catalogUrl: "/catalogs/egepen-hs76-katalog.pdf",
     badge: "Sürme Sistem",
     specs: {

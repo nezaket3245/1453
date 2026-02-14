@@ -59,13 +59,16 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
+    type: "website",
+    locale: "tr_TR",
+    siteName: "Egepen Akçayapı - PVC Pencere & Cam Balkon",
     title: `PVC Pencere Fiyatları 2026 | Egepen Akçayapı Beylikdüzü`,
     description:
       `PVC pencere, cam balkon, sineklik ve panjur fiyatları. Egepen Deceuninck yetkili bayisi. Ücretsiz keşif.`,
-    url: "https://akcapen-pvc.pages.dev",
+    url: "https://egepenakcayapi.com",
     images: [
       {
-        url: "https://akcapen-pvc.pages.dev/images/og-home.jpg",
+        url: "https://egepenakcayapi.com/images/og-home.jpg",
         width: 1200,
         height: 630,
         alt: `Egepen Akçayapı - PVC Pencere ve Cam Balkon Fiyatları 2026`,
@@ -78,10 +81,10 @@ export const metadata: Metadata = {
     creator: "@egepenakcayapi",
     title: `PVC Pencere Fiyatları 2026 | Egepen Akçayapı`,
     description: `PVC pencere, cam balkon fiyatları. Egepen yetkili bayisi. Profesyonel montaj.`,
-    images: ["https://akcapen-pvc.pages.dev/images/og-home.jpg"],
+    images: ["https://egepenakcayapi.com/images/og-home.jpg"],
   },
   alternates: {
-    canonical: "https://akcapen-pvc.pages.dev",
+    canonical: "https://egepenakcayapi.com",
   },
 };
 
@@ -92,16 +95,16 @@ export const metadata: Metadata = {
 const homePageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "@id": "https://akcapen-pvc.pages.dev/#webpage",
-  url: "https://akcapen-pvc.pages.dev",
+  "@id": "https://egepenakcayapi.com/#webpage",
+  url: "https://egepenakcayapi.com",
   name: `${businessConfig.name} | Beylikdüzü Egepen Deceuninck Yetkili Bayi`,
   description:
     `${businessConfig.address.district} Egepen yetkili bayisi. PVC pencere, kapı, cam balkon ve profesyonel montaj hizmeti.`,
   isPartOf: {
-    "@id": "https://akcapen-pvc.pages.dev/#website",
+    "@id": "https://egepenakcayapi.com/#website",
   },
   about: {
-    "@id": "https://akcapen-pvc.pages.dev/#organization",
+    "@id": "https://egepenakcayapi.com/#organization",
   },
   breadcrumb: {
     "@type": "BreadcrumbList",
@@ -110,7 +113,7 @@ const homePageSchema = {
         "@type": "ListItem",
         position: 1,
         name: "Ana Sayfa",
-        item: "https://akcapen-pvc.pages.dev",
+        item: "https://egepenakcayapi.com",
       },
     ],
   },
@@ -119,16 +122,16 @@ const homePageSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://akcapen-pvc.pages.dev/#website",
-  url: "https://akcapen-pvc.pages.dev",
+  "@id": "https://egepenakcayapi.com/#website",
+  url: "https://egepenakcayapi.com",
   name: businessConfig.name,
   description: `${businessConfig.brand} yetkili bayisi - Beylikdüzü`,
   publisher: {
-    "@id": "https://akcapen-pvc.pages.dev/#organization",
+    "@id": "https://egepenakcayapi.com/#organization",
   },
   potentialAction: {
     "@type": "SearchAction",
-    target: "https://akcapen-pvc.pages.dev/ara?q={search_term_string}",
+    target: "https://egepenakcayapi.com/ara?q={search_term_string}",
     "query-input": "required name=search_term_string",
   },
 };
@@ -140,11 +143,11 @@ const websiteSchema = {
 const specialtyContractorSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
-  "@id": "https://akcapen-pvc.pages.dev/#contractor",
+  "@id": "https://egepenakcayapi.com/#contractor",
   name: businessConfig.name,
   alternateName: "Egepen Akçayapı Beylikdüzü",
   description: "Beylikdüzü ve İstanbul genelinde Egepen Deceuninck yetkili bayisi olarak PVC pencere, cam balkon, sineklik, panjur ve duşakabin montaj hizmeti.",
-  url: "https://akcapen-pvc.pages.dev",
+  url: "https://egepenakcayapi.com",
   telephone: businessConfig.contact.mobile,
   address: {
     "@type": "PostalAddress",
@@ -262,7 +265,7 @@ export default function HomePage() {
 
       <HeaderOptimized />
 
-      <main id="main-content" role="main">
+      <main id="main-content">
         {/* Hero - Ana Banner */}
         <HeroSectionOptimized />
 

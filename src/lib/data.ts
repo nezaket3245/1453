@@ -142,7 +142,7 @@ export const products: Product[] = [
         category: "aluminyum",
         description: "Isı yalıtımlı alüminyum pencere, giydirme cephe, ofis bölme ve sürme sistemleri. Ticari ve endüstriyel projeler için ideal.",
         longDescription: "Thermal break teknolojisiyle ısı yalıtımlı alüminyum pencere, kapı ve cephe sistemleri. Geniş açıklıklar, yüksek katlı binalar ve ticari projeler için hafif ama dayanıklı alüminyum çözümler sunuyoruz.",
-        image: "/images/aluminyum/aluminyum-cephe-bina.jpg",
+        image: "/images/aluminyum/curtain-wall-giydirme.png",
         features: [
             "Thermal Break Isı Yalıtımlı Profil",
             "Giydirme Cephe & Yapısal Silikon",

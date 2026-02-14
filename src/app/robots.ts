@@ -1,5 +1,4 @@
 import { MetadataRoute } from "next";
-import { businessConfig } from "@/config/business.config";
 
 export const dynamic = "force-static";
 
@@ -8,7 +7,7 @@ export const dynamic = "force-static";
  * Optimized for SEO crawling and indexing
  */
 export default function robots(): MetadataRoute.Robots {
-    const baseUrl = businessConfig.siteUrl;
+    const baseUrl = "https://egepenakcayapi.com";
 
     return {
         rules: [
@@ -20,6 +19,7 @@ export default function robots(): MetadataRoute.Robots {
                     "/_next/",
                     "/admin/",
                     "/private/",
+                    "/*.json$",
                     "/404",
                     "/500",
                 ],

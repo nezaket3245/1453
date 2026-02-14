@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "İletişim - Egepen Akçayapı Beylikdüzü",
     description:
         "Egepen Akçayapı Beylikdüzü iletişim bilgileri. WhatsApp, telefon, adres ve harita.",
-    alternates: { canonical: "https://akcapen-pvc.pages.dev/iletisim" },
+    alternates: { canonical: "https://egepenakcayapi.com/iletisim" },
 };
 
 /* ── Small re-usable icon components ───────────────────────────── */

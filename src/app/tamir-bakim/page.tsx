@@ -621,7 +621,7 @@ const repairCategories: RepairCategory[] = [
     id: "sineklik", title: "Sineklik Tamiri",
     subtitle: "Plise, kedi sinekliği ve renkli sineklik onarımı",
     intro: "Yırtılmış sineklik teli, bozulmuş plise mekanizması veya hasar görmüş kedi sinekliği çerçevesi mi var? Orijinal malzeme ve profesyonel işçilikle sinekliklerinizi yeniliyoruz.",
-    image: "/images/sineklik/sineklik-tamiri.jpg",
+    image: "/images/sineklik/menteseli-sineklik.png",
     imageAlt: "Plise sineklik tel değişimi — Beylikdüzü sineklik tamiri hizmeti",
     problems: ["Tel yırtılması veya delinmesi", "Plise sineklik katlama mekanizması arızası", "Kedi sinekliği çerçeve deformasyonu", "Ray ve kılavuz kanal hasarı", "Tül gevşemesi veya sarkması", "Mıknatıs ve klips kopması"],
     steps: [
@@ -636,7 +636,7 @@ const repairCategories: RepairCategory[] = [
     id: "pvc-pencere", title: "PVC Pencere Onarımı",
     subtitle: "Egepen Legend / Zendow conta, kol ve kilit tamiri",
     intro: "Pencerelerinizden rüzgâr mı giriyor, kol mu gevşedi ya da kilit mekanizması mı arızalandı? Egepen orijinal yedek parça ile pencerelerinizi ilk günkü performansına kavuşturuyoruz.",
-    image: "/images/pvc/pvc-pencere-tamiri.jpg",
+    image: "/images/pvc/pvc-servis-egepen.jpg",
     imageAlt: "PVC pencere conta ve kilit değişimi — Egepen Legend servis",
     problems: ["Pencereden hava ve su sızıntısı", "Conta sertleşmesi veya çatlama", "Pencere kolu gevşemesi veya kırılması", "Kilit mekanizması arızası", "Menteşe yıpranması — pencere düşmesi", "Çift cam buğulanması (cam arası nem)"],
     steps: [
@@ -651,7 +651,7 @@ const repairCategories: RepairCategory[] = [
     id: "cam-balkon", title: "Cam Balkon Servisi",
     subtitle: "Isıcamlı cam balkon tekerlek, fitil ve ray değişimi",
     intro: "Cam balkon panelleriniz zorlanarak mı kayıyor, rüzgâr sesi mi geliyor? Tekerlek, fitil ve ray onarımı ile cam balkonunuzu yeniden sorunsuz kullanın.",
-    image: "/images/cam-balkon/cam-balkon-bakim.jpg",
+    image: "/images/cam-balkon/cam-balkon-kose.jpg",
     imageAlt: "Cam balkon tekerlek ve fitil değişimi — ısıcamlı sistem bakımı",
     problems: ["Tekerlek aşınması — paneller sürülemiyor", "Fitil yıpranması — hava ve su geçişi", "Ray deformasyonu", "Kilit mekanizması arızası", "Cam panel çatlağı veya kırılması", "Alt ray su biriktirmesi / drenaj tıkanıklığı"],
     steps: [
@@ -666,7 +666,7 @@ const repairCategories: RepairCategory[] = [
     id: "aluminyum", title: "Alüminyum Doğrama Tamiri",
     subtitle: "Alüminyum pencere, kapı ve doğrama sistemleri bakımı",
     intro: "Alüminyum doğramalarınız zorlanıyor, sızdırıyor veya kilitleri çalışmıyor mu? Profesyonel ekibimizle alüminyum pencere, kapı ve sürme sistemlerinizi onarıyoruz.",
-    image: "/images/aluminyum/aluminyum-surme-sistem.jpg",
+    image: "/images/aluminyum/surme-sistem-kapi.png",
     imageAlt: "Alüminyum doğrama pencere ve kapı tamiri — sürme sistem bakımı",
     problems: ["Alüminyum sürme sistem zorlanması", "Doğrama fitil yıpranması — hava/su sızıntısı", "Kilit ve kol mekanizması arızası", "Ray ve tekerlek aşınması", "Profil birleşim noktalarında gevşeme", "Termal köprü bozulması — enerji kaybı"],
     steps: [
@@ -681,7 +681,7 @@ const repairCategories: RepairCategory[] = [
     id: "panjur-kepenk", title: "Panjur & Kepenk Servisi",
     subtitle: "Stor panjur, alüminyum kepenk ve motorlu sistem tamiri",
     intro: "Panjurunuz açılmıyor mu, motorlu sistem kumandaya tepki vermiyor mu? Manuel ve motorlu panjur/kepenk sistemlerinin onarım, bakım ve motor değişimi hizmetini sunuyoruz.",
-    image: "/images/panjur/panjur-kepenk-tamiri.jpg",
+    image: "/images/panjur/panjur-montaj.jpg",
     imageAlt: "Panjur ve kepenk motor değişimi — stor panjur tamiri",
     problems: ["Motor arızası — panjur açılmıyor/kapanmıyor", "Kumanda veya şalter tepki vermemesi", "Lamel kırılması veya eğilmesi", "Kayış / şerit kopması", "Kutu içi mekanizma sıkışması", "Alt ve üst limit ayarı bozulması"],
     steps: [
@@ -696,7 +696,7 @@ const repairCategories: RepairCategory[] = [
     id: "dusakabin", title: "Duşakabin Onarımı",
     subtitle: "Duşakabin cam, profil, menteşe ve conta bakımı",
     intro: "Duşakabin camınız çatlak mı, kapı menteşesi mi gevşedi ya da su mu sızıyor? Temperli cam değişiminden conta ve profil onarımına kadar komple duşakabin servisi veriyoruz.",
-    image: "/images/dusakabin/dusakabin-onarim.jpg",
+    image: "/images/dusakabin/dusakabin-krom-surme.jpg",
     imageAlt: "Duşakabin cam ve profil tamiri — menteşe değişimi",
     problems: ["Duşakabin camı kırılması / çatlağı", "Menteşe gevşemesi — kapı sarkması", "Conta / fitil yıpranması — su sızıntısı", "Profil paslanması veya oksidasyonu", "Silikon çürümesi — küf oluşumu", "Tekerlek arızası (sürgülü model)"],
     steps: [

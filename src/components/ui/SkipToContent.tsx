@@ -1,10 +1,6 @@
-"use client";
-
 /**
- * SkipToContent Component
- * 
- * Accessibility feature for keyboard users.
- * Allows skipping directly to main content.
+ * SkipToContent — Server Component (no client JS needed).
+ * Provides keyboard users a shortcut to main content (WCAG 2.4.1).
  */
 export function SkipToContent() {
     return (

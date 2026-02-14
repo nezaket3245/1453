@@ -7,7 +7,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from '@/lib/motion-lite';
 import { showerShapes, glassTypes, profileColors, hygieneCoatings } from '@/lib/dusakabinData';
 import { businessConfig } from '@/config/business.config';
 

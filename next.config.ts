@@ -22,7 +22,6 @@ const nextConfig: NextConfig = {
   experimental: {
     // Enable optimized package imports for faster builds
     optimizePackageImports: [
-      "framer-motion",
       "clsx",
     ],
   },

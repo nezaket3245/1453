@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Hizmetlerimiz - Egepen Akçayapı Beylikdüzü",
     description:
         "Ücretsiz keşif, profesyonel montaj, bakım & onarım ve ısı yalıtım danışmanlığı. Beylikdüzü PVC pencere hizmetleri.",
-    alternates: { canonical: "https://akcapen-pvc.pages.dev/hizmetler" },
+    alternates: { canonical: "https://egepenakcayapi.com/hizmetler" },
 };
 
 /* ── SVG icon components ───────────────────────────────────── */
@@ -54,7 +54,7 @@ const services = [
             "Ürün ve renk danışmanlığı",
             "Detaylı fiyat teklifi hazırlama",
         ],
-        image: "/images/services/kesif.jpg",
+        image: "/images/projeler/pvc-pencere-apartman.png",
         imageAlt: "Ücretsiz keşif — uzman ekip yerinde ölçü alıyor",
     },
     {
@@ -66,7 +66,7 @@ const services = [
             "Standartlara uygun uygulama",
             "Montaj sonrası temizlik",
         ],
-        image: "/images/services/montaj.jpg",
+        image: "/images/projeler/panjur-villa-montaj.png",
         imageAlt: "Profesyonel PVC pencere montajı — Egepen standartlarında uygulama",
     },
     {
@@ -78,7 +78,7 @@ const services = [
             "Cam değişimi ve ayar",
             "Mekanizma bakımı ve yağlama",
         ],
-        image: "/images/services/bakim.jpg",
+        image: "/images/pvc/pvc-servis-egepen.jpg",
         imageAlt: "PVC pencere bakım ve onarım hizmeti",
     },
     {
@@ -90,7 +90,7 @@ const services = [
             "Enerji tasarrufu hesaplaması",
             "Cam ve profil seçim danışmanlığı",
         ],
-        image: "/images/services/yalitim.jpg",
+        image: "/images/pvc/pvc-kis-bahcesi.jpg",
         imageAlt: "Isı yalıtım danışmanlığı — enerji verimli çözümler",
     },
 ] as const;
@@ -117,8 +117,8 @@ export default function ServicesPage() {
 
                 {/* ====================================================
                     ZIG-ZAG SERVICE SECTIONS
-                    Even index → text left / image right
-                    Odd  index → image left / text right
+                    Even index â†’ text left / image right
+                    Odd  index â†’ image left / text right
                     ==================================================== */}
                 {services.map((service, i) => {
                     const isEven = i % 2 === 0;

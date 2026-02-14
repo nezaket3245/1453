@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/motion-lite";
 import { cn } from "@/lib/utils";
 import { businessConfig } from "@/config/business.config";
 import { getCategoryOptions } from "@/data/categories";

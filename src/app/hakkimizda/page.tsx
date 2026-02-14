@@ -11,10 +11,10 @@ export const metadata: Metadata = {
     title: "Hakkımızda - Egepen Akçayapı Beylikdüzü",
     description:
         "Beylikdüzü Egepen Deceuninck yetkili bayisi Akçayapı hakkında. PVC pencere, cam balkon, sineklik ve panjur sistemleri.",
-    alternates: { canonical: "https://akcapen-pvc.pages.dev/hakkimizda" },
+    alternates: { canonical: "https://egepenakcayapi.com/hakkimizda" },
 };
 
-/* ── Service regions for the map section ─────────────────────── */
+/* â”€â”€ Service regions for the map section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const regions = [
     "Beylikdüzü", "Büyükçekmece", "Esenyurt", "Avcılar",
     "Küçükçekmece", "Başakşehir", "Silivri", "Çatalca",
@@ -73,7 +73,7 @@ export default function AboutPage() {
                             {/* Right — Image */}
                             <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3]">
                                 <OptimizedImage
-                                    src="/images/projeler/showroom.jpg"
+                                    src="/images/showroom-main.webp"
                                     alt="Egepen Akçayapı Gürpınar showroom — PVC pencere ve cam balkon numuneleri"
                                     fill
                                     className="object-cover"
@@ -97,7 +97,7 @@ export default function AboutPage() {
                             {/* Left — Image */}
                             <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3] order-2 lg:order-1">
                                 <OptimizedImage
-                                    src="/images/projeler/montaj.jpg"
+                                    src="/images/projeler/pvc-pencere-apartman.png"
                                     alt="Profesyonel PVC pencere montaj ekibi — Egepen Akçayapı"
                                     fill
                                     className="object-cover"

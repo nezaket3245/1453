@@ -29,8 +29,8 @@ export interface LeadData {
   name?: string;
 }
 
-// GA4 Configuration — Set NEXT_PUBLIC_GA4_ID env variable to enable
-const GA4_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA4_ID || '';
+// GA4 Configuration
+const GA4_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA4_ID || 'G-MJTK34FD1Y';
 
 // Meta Pixel Configuration — Set NEXT_PUBLIC_META_PIXEL_ID env variable to enable
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || '';

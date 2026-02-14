@@ -6,11 +6,42 @@
 
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useCallback, useRef } from 'react';
 
 export default function MeshVisibilitySlider() {
     const [sliderValue, setSliderValue] = useState(50);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const isDragging = useRef(false);
+
+    /** Compute slider % from a pointer (mouse / touch) X coordinate */
+    const updateSlider = useCallback((clientX: number) => {
+        const el = containerRef.current;
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const pct = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
+        setSliderValue(pct);
+    }, []);
+
+    const onPointerDown = useCallback(
+        (e: React.PointerEvent) => {
+            isDragging.current = true;
+            (e.target as HTMLElement).setPointerCapture(e.pointerId);
+            updateSlider(e.clientX);
+        },
+        [updateSlider]
+    );
+
+    const onPointerMove = useCallback(
+        (e: React.PointerEvent) => {
+            if (!isDragging.current) return;
+            updateSlider(e.clientX);
+        },
+        [updateSlider]
+    );
+
+    const onPointerUp = useCallback(() => {
+        isDragging.current = false;
+    }, []);
 
     return (
         <div className="bg-white rounded-2xl p-6 shadow-lg">
@@ -26,7 +57,18 @@ export default function MeshVisibilitySlider() {
             </div>
 
             {/* Comparison Container */}
-            <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-gray-100" id="mesh-slider-container">
+            <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-gray-100 touch-none select-none"
+                id="mesh-slider-container"
+                ref={containerRef}
+                onPointerDown={onPointerDown}
+                onPointerMove={onPointerMove}
+                onPointerUp={onPointerUp}
+                role="slider"
+                aria-label="Tül görünürlük karşılaştırma kaydırıcısı"
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={Math.round(sliderValue)}
+            >
                 {/* Background Image (View) */}
                 <div
                     className="absolute inset-0 bg-cover bg-center"
@@ -93,24 +135,10 @@ export default function MeshVisibilitySlider() {
                     </div>
                 </div>
 
-                {/* Slider Handle */}
-                <motion.div
-                    className="absolute top-0 bottom-0 w-1 bg-white shadow-lg cursor-ew-resize"
+                {/* Slider Handle — uses pointer events on container */}
+                <div
+                    className="absolute top-0 bottom-0 w-1 bg-white shadow-lg cursor-ew-resize pointer-events-none"
                     style={{ left: `${sliderValue}%` }}
-                    drag="x"
-                    dragConstraints={{ left: 0, right: 0 }}
-                    dragElastic={0}
-                    onDrag={(_, info) => {
-                        const container = document.getElementById('mesh-slider-container');
-                        if (container) {
-                            const rect = container.getBoundingClientRect();
-                            const newValue = Math.max(
-                                0,
-                                Math.min(100, ((info.point.x - rect.left) / rect.width) * 100)
-                            );
-                            setSliderValue(newValue);
-                        }
-                    }}
                 >
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center">
                         <svg
@@ -127,7 +155,7 @@ export default function MeshVisibilitySlider() {
                             />
                         </svg>
                     </div>
-                </motion.div>
+                </div>
             </div>
 
             {/* Range Input for better mobile support */}

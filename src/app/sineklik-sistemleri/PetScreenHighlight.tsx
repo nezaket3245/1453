@@ -9,7 +9,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import OptimizedImage from '@/components/ui/OptimizedImage';
-import { motion } from 'framer-motion';
+import { motion } from '@/lib/motion-lite';
 import type { SineklikSystem } from '@/lib/sineklikData';
 
 interface PetScreenHighlightProps {

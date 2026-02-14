@@ -181,9 +181,9 @@ export const HeaderOptimized = memo(function HeaderOptimized() {
             {/* Main Header */}
             <header
                 className={cn(
-                    "sticky top-0 z-50 w-full transition-all duration-200",
+                    "sticky top-0 z-50 w-full transition-[background-color,box-shadow] duration-200",
                     isScrolled
-                        ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-neutral-100"
+                        ? "bg-white shadow-lg border-b border-neutral-100"
                         : "bg-white"
                 )}
                 role="banner"

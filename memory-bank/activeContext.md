@@ -1,69 +1,55 @@
 # Active Context — Egepen Akçayapı
 
-## Current State (13 Şubat 2026)
+## Current State (14 Şubat 2026)
 The site is **live and deployed** on Cloudflare Pages at:
-- **Production:** https://akcapen-yeni-84y.pages.dev (project: `akcapen-yeni`)
-- **Custom domain:** https://egepenakcayapi.com
-- **Build:** 99+ static pages generated, zero errors
-- **Last deploy:** 13 Şubat 2026 via `npx wrangler pages deploy out --project-name=akcapen-yeni`
-- **Last commit:** `d589b14` — TamiratTadilat module
+- **Production:** https://egepenakcayap--com2.pages.dev (project: `egepenakcayap--com2`)
+- **Custom domain:** https://egepenakcayapi.com (DNS on Cloudflare, SSL active)
+- **Build:** 99 static pages generated, zero errors
+- **Last deploy:** 14 Şubat 2026 via `npx wrangler pages deploy out --project-name egepenakcayap--com2 --commit-dirty=true`
+- **GA4 Analytics:** ACTIVE — `G-MJTK34FD1Y`
+- **Google Search Console:** Verified, sitemap.xml submitted (94 URLs)
+- **IndexNow:** 18 URLs submitted to Bing/Yandex (200 OK)
 
-## Recent Changes (13 Şubat 2026)
+## Recent Changes (14 Şubat 2026)
 
-### Phase 7: Performance & Content Enrichment
-- **Performance optimization pass** — 9 fixes: duplicate ClientUI removed, Footer→server component, font fix, dead CSS/config cleanup, GA placeholder removed
-- **Email removed** from all public-facing pages
-- **Warranty text removed** site-wide
-- **Google Maps location updated** to correct business coordinates
-- **ImageLightbox component** created and integrated into all 6 category slug pages
-- **Phone number updated** to 0212 880 15 07 (old 0536 640 53 11 removed from display)
-- **Tamir-bakim page** enriched from 3→6 service categories
+### Phase 13: Domain & DNS Migration
+- **Domain:** egepenakcayapi.com migrated to Cloudflare DNS
+- **Zone ID:** `c584fe27d80aaa8a9237ca2fb857cd9c`
+- **Account ID:** `1fb4ac9a140c6e18cf7c8d3c5854aaa9`
+- **DNS API Token:** `2AU43Q3CQIyxY_dBaOVKBpRr6JolJeqaxNQVKL_c` (DNS edit only, no analytics/cache purge)
+- **Project changed:** `akcapen-yeni` → `egepenakcayap--com2` (new project with custom domain)
+- **301 Redirects:** 295 lines in `public/_redirects` covering all WordPress legacy URLs (9 sections)
+- **Homepage redirect bug fixed:** `/?p=*` query string rules removed from _redirects
+- **DNS cache fix:** Old IP `185.216.114.15` flushed → Cloudflare IPs `172.67.222.56` / `104.21.43.71`
 
-### Phase 8: Tamir-Bakım SEO Content Hub
-- Page **deleted and recreated** with comprehensive content (~700 lines)
-- **9 "Nasıl Yapılır?" guides**: mekanizma, kilit, karşılık ayarı, WC kilidi, menteşe, pencere kolu, cam çıtası, cam söküm, conta değişimi
-- **HowTo schema markup** for all 9 guides
-- **14 FAQs** with FAQPage schema
-- **50+ long-tail keywords** targeting repair searches
-- **Symptom finder** with 12 arıza doğrudan yönlendirme (click → relevant guide)
-- **6 service categories**: PVC pencere, sineklik, cam balkon, alüminyum, panjur, duşakabin
-- Committed: `e66061b`
+### Phase 14: Lighthouse & Mobile Performance Optimization
+- **framer-motion ENTIRELY REMOVED** from package.json dependencies (saves ~150KB)
+- **motion-lite** (~2KB custom) used across all files that previously imported framer-motion
+- **Mobile performance fixes (8 files, 7 components):**
+  - HeaderOptimized: `backdrop-blur-md` removed → solid `bg-white`, scoped transitions
+  - Button.tsx: `"use client"` removed, motion elements → plain HTML with CSS hover
+  - TestimonialsSection: 2x `blur-3xl` blobs + SVG pattern removed, 6x motion.div → CSS transitions
+  - FAQAccordion: 4x motion elements → CSS `animate-fade-in-up`
+  - CTASection: 2x `blur-3xl` + `backdrop-blur-md` removed
+  - ServiceCards: `transition-all` → scoped to specific properties
+  - ServicesSection: hover scale animation removed from product images
+  - globals.css: Mobile `@media (hover: none)` query disables hover transforms + backdrop-filter
 
-### Phase 9: Çözüm Merkezi (Solution Center)
-- **13 SEO articles** across 5 categories:
-  - Sorun/Çözüm (3): pencere terleme, sürme sistemleri, kapı gıcırtısı
-  - Ürün Bilgisi (2): Egepen Legend, Egepen Zendow (with TechSpecs tables)
-  - Bakım Rehberi (3): PVC-Alüminyum karşılaştırma, pencere contası, cam balkon bakımı
-  - Karşılaştırma (1): PVC vs Alüminyum
-  - Rehber (4): ısı yalıtımı, ses yalıtımı, panjur motor arızası, sineklik seçimi, bakım takvimi
-- **Fuse.js fuzzy search** with Turkish character normalization (ı→i, ö→o, ş→s, ğ→g, ç→c, ü→u)
-- **FeedbackWidget** — "Bu içerik işinize yaradı mı?" with localStorage
-- **TechSpecsTable** — Product spec tables for Legend/Zendow articles
-- **Dynamic routing** `/cozumler/[slug]` with generateStaticParams
-- **Schema.org**: Article + Breadcrumb + HowTo (where applicable)
-- **Header updated**: "Çözüm Merkezi" added to Bilgi dropdown
-- **Sitemap updated**: /cozumler + 13 solution slugs added
-- Committed: `7f70932`
-
-### Phase 10: Deployment Fix
-- **Root cause found**: Cloudflare Pages project `akcapen-yeni` has Git: No — NOT connected to GitHub repo
-- `git push deploy main` pushes code to `nezaket3245/1453` but NO auto-deploy trigger
-- **Fix**: Manual deploy via `npx wrangler pages deploy out --project-name=akcapen-yeni`
-- 945 files uploaded, all new pages verified live
-- Old projects (`akcapen-pvc`, `akcapen-pvc-2lv`) are stale/abandoned
-
-### Phase 11: TamiratTadilat Module (PVC Repair & Renovation)
-- **New page**: `/pvc-sistemleri/tamirat-tadilat` — dedicated PVC repair service hub
-- **Data layer**: `src/lib/tamiratData.ts` — 12 PVC repair records, 6 categories (glass, mechanism, seal, profile, hardware, renovation), TypeScript interfaces, custom validation rules
-- **UI Components** (4 new files):
-  - `TamiratSearchGrid.tsx` — Fuse.js fuzzy search with Turkish normalization, category filter badges, responsive card grid, empty-state
-  - `RepairDetailModal.tsx` — Accessible modal (Escape close, backdrop click, focus trap) with process timeline, common issues, warranty info, phone+WhatsApp CTA
-  - `RepairRequestForm.tsx` — Multi-field validated form (name, phone, district, brand, category, description, urgency, date) with custom TypeScript validation (no Zod)
-  - `RepairStatusTracker.tsx` — 5-step visual timeline (Talep→Keşif→Teklif→Onarım→Teslim)
-- **Page**: Server component with generateMetadata SEO, Service+BreadcrumbList schema.org JSON-LD, dynamic import for form
-- **Integration updates**: Header nav updated (`#tamirat` → `/pvc-sistemleri/tamirat-tadilat`), sitemap.ts updated, PVC page CTA section added
-- **Deploy**: 1059 files uploaded to Cloudflare Pages
-- Committed: `d589b14`
+### Phase 15: SEO & Analytics Setup
+- **Cache-buster cleanup:** Removed temporary redirect-fix script from layout.tsx
+- **_headers cleanup:** Removed `Clear-Site-Data` and `no-store` temporary rules for blog page
+- **Homepage caching:** Changed from `no-cache, no-store` to `public, max-age=0, must-revalidate`
+- **GA4 Analytics ACTIVATED:** `G-MJTK34FD1Y`
+  - gtag.js async script + inline config added to layout.tsx `<head>`
+  - `src/lib/analytics.ts` updated with hardcoded measurement ID
+  - CSP already includes `googletagmanager.com` and `google-analytics.com`
+- **Google Search Console:** Site verified (was already verified from old WordPress era)
+  - New `sitemap.xml` submitted (94 URLs covering all pages)
+  - Old WordPress sitemaps still listed but will 404 naturally
+- **IndexNow protocol:** Key file `b8e4f2a1c9d74e5f8a3b6c0d1e2f7a4b.txt` deployed to root
+  - 18 critical URLs submitted to api.indexnow.org → 200 OK (Bing, Yandex, DuckDuckGo notified)
+- **robots.txt verified live:** Sitemap reference present, Googlebot/Bingbot allowed, GPTBot/CCBot blocked
+- **Live redirect verification:** 10/10 old WordPress URLs confirmed returning 301 to correct targets
 
 ## Active Decisions
 - **Emoji-free UI policy**: All user-facing icons must be inline SVG
@@ -71,18 +57,21 @@ The site is **live and deployed** on Cloudflare Pages at:
 - **Email hidden**: Not displayed anywhere on the site
 - **Stor sineklik out of stock**: Warning displayed, product still shown
 - **Campaign active**: Sineklik colored profiles at white price
-- **motion-lite vs framer-motion split**: Homepage uses motion-lite; other pages use framer-motion
-- **Single font (Outfit)**: System-ui fallback
-- **Analytics disabled** — GA4 needs real measurement ID
-- **Manual deploy required**: No CI/CD — must run `npx wrangler pages deploy out --project-name=akcapen-yeni` after every build
-- **Phone: 0212 880 15 07** — single phone number displayed (old mobile removed)
+- **framer-motion FULLY REMOVED** — motion-lite used everywhere (17 files migrated)
+- **Fonts: Outfit + Inter** (both loaded via next/font/google with swap + preload)
+- **GA4 ACTIVE** — `G-MJTK34FD1Y` (hardcoded in analytics.ts + layout.tsx)
+- **Manual deploy**: `npx wrangler pages deploy out --project-name egepenakcayap--com2 --commit-dirty=true`
+- **One-click deploy:** `SİTEYİ_YAYINLA.bat` runs build + deploy
+- **Phone: 0212 880 15 07** — single phone number displayed
 
 ## Next Steps
-- [ ] Run Lighthouse audit on deployed URL
-- [ ] Set up real Google Analytics (GA4 measurement ID needed)
-- [ ] Add real webmaster verification codes
-- [ ] Image audit — ensure all referenced images exist
-- [ ] Consider connecting Cloudflare Pages to GitHub for auto-deploy
+- [ ] **Google Business Profile** — claim/update for local SEO map pack
+- [ ] **Lighthouse audit** — run mobile Lighthouse to benchmark scores
+- [ ] **Image audit** — verify all referenced images exist and are WebP optimized
+- [ ] **Blog content expansion** — new articles targeting high-volume keywords (cam balkon fiyatları 2026, PVC pencere nasıl seçilir)
+- [ ] **Backlink building** — local directories, business partner sites
+- [ ] **Connect Cloudflare Pages to GitHub** for auto-deploy (currently manual)
+- [ ] **Remove unused UI components** — InteractiveCatalog, GoogleReviewsWidget, SearchModal, StickyQuoteCTA
 
 ## Important Patterns & Preferences
 - **Code and comments in English; explanations to user in Turkish**
@@ -92,6 +81,7 @@ The site is **live and deployed** on Cloudflare Pages at:
 - All data updates require rebuild + redeploy (no CMS)
 - Slugs in data files **must** match filesystem route directories exactly
 - `business.config.ts` is the single source of truth for contact info
-- Homepage components use `@/lib/motion-lite` instead of `framer-motion`
+- All components use `@/lib/motion-lite` (framer-motion dependency is gone)
 - Testimonial avatars use initials (e.g., "AK", "MA") not emoji faces
 - **Memory bank must be updated** after every operation (user request)
+- **One-click deploy:** `SİTEYİ_YAYINLA.bat` builds and deploys in one step

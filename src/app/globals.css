@@ -279,7 +279,6 @@ nav {
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-size-adjust: 100%;
@@ -431,7 +430,7 @@ select,
   font-size: var(--font-base);
   line-height: 1;
   border-radius: var(--radius-lg);
-  transition: all var(--transition-base);
+  transition: background var(--transition-base), box-shadow var(--transition-base), color var(--transition-base), transform var(--transition-base), border-color var(--transition-base);
   cursor: pointer;
   border: none;
   text-decoration: none;
@@ -508,7 +507,7 @@ select,
   box-shadow: var(--shadow-md);
   border: 1px solid var(--border);
   overflow: hidden;
-  transition: all var(--transition-base);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
 }
 
 .card:hover {
@@ -734,6 +733,33 @@ select,
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ===============================================
+   MOBILE PERFORMANCE - Disable heavy transforms
+   =============================================== */
+@media (hover: none) and (pointer: coarse) {
+  /* Disable hover transforms that create composite layers on mobile */
+  .group:hover .group-hover\:scale-110,
+  .card:hover {
+    transform: none !important;
+  }
+
+  /* Disable all backdrop-filter on mobile (expensive GPU op) */
+  .glass,
+  .glass-dark,
+  .card-glass,
+  [class*="backdrop-blur"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Simplify btn hover on mobile */
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .btn-outline:hover {
+    transform: none;
   }
 }
 

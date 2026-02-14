@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "@/lib/motion-lite";
 import { cn } from "@/lib/utils";
 
 /**
@@ -148,43 +147,30 @@ export function HomepageFAQSection() {
     return (
         <section id="sss" className="section bg-neutral-50">
             <div className="container-custom">
-                <div className="text-center mb-12">
-                    <motion.span
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                <div className="text-center mb-12 animate-fade-in-up">
+                    <span
                         className="inline-block px-4 py-1.5 rounded-full bg-primary-50 text-primary-600 text-sm font-bold uppercase tracking-widest mb-4"
                     >
                         Sık Sorulan Sorular
-                    </motion.span>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
+                    </span>
+                    <h2
                         className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4"
                     >
                         Merak Edilenler
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
+                    </h2>
+                    <p
                         className="text-lg text-neutral-600 max-w-2xl mx-auto"
                     >
                         En sık sorulan soruların cevaplarını buradan bulabilirsiniz.
                         Başka sorularınız için bizimle iletişime geçin.
-                    </motion.p>
+                    </p>
                 </div>
 
                 <FAQAccordion faqs={homepageFAQs} />
 
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mt-10"
+                <div
+                    className="text-center mt-10 animate-fade-in-up"
+                    style={{ animationDelay: '200ms' }}
                 >
                     <a
                         href="/sss"
@@ -196,7 +182,7 @@ export function HomepageFAQSection() {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                     </a>
-                </motion.div>
+                </div>
             </div>
         </section>
     );

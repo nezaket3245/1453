@@ -127,33 +127,12 @@ https://akcapen-pvc-2lv.pages.dev/* https://egepenakcayapi.com/:splat 301
 
 # ──────────────────────────────────────────────────────────
 # 4. LEGACY WORDPRESS — Post ID Query Strings (?p=)
-# WordPress uses ?p=ID format for draft/short links
+# NOTE: Cloudflare Pages _redirects does NOT support query string matching.
+# Query string redirects (/?p=123) are removed because they incorrectly
+# match the root path "/" and break the homepage.
+# Query string-based redirects should be handled via Cloudflare Workers
+# or Page Rules if needed in the future.
 # ──────────────────────────────────────────────────────────
-/?p=3602 /blog/kislik-pencere-yalitimi 301
-/?p=1181 /blog/ispanyolet-nedir-nasil-calisir 301
-/?p=4990 /pvc-sistemleri/legend-surme-sistem 301
-/?p=4741 /pvc-sistemleri/legend-surme-plus-sistem 301
-/?p=1150 /hakkimizda 301
-/?p=3193 /pvc-sistemleri 301
-/?p=2827 /aluminyum-sistemleri 301
-/?p=3098 /cam-balkon-sistemleri 301
-/?p=3190 /dusakabin-sistemleri 301
-/?p=3196 /panjur-kepenk-sistemleri 301
-/?p=3067 /projeler 301
-/?p=5203 /sss 301
-/?p=4935 /iletisim 301
-/?p=3 /gizlilik-politikasi 301
-/?p=5239 /blog/sineklik-cesitleri-hangisi-secilmeli 301
-/?p=5189 /hakkimizda 301
-/?p=4732 /pvc-sistemleri/legend-art-pvc-pencere 301
-/?p=3752 /blog/pvc-pencere-secimi-rehberi 301
-/?p=938 /pvc-sistemleri/zendow-pvc-pencere 301
-/?p=883 /blog/pvc-pencere-bakimi-kis-aylari 301
-/?p=2904 / 301
-/?page_id=2827 /aluminyum-sistemleri 301
-/?page_id=3190 /dusakabin-sistemleri 301
-/?page_id=* / 301
-/?p=* /blog 301
 
 # ──────────────────────────────────────────────────────────
 # 5. LEGACY — Product Color Sample Pages (Egepen Color Codes)
@@ -219,7 +198,6 @@ https://akcapen-pvc-2lv.pages.dev/* https://egepenakcayapi.com/:splat 301
 /wp-sitemap-taxonomies-category-1.xml /sitemap.xml 301
 
 # WordPress search & misc PHP
-/?s=* / 301
 /wp-signup.php / 301
 /wp-register.php / 301
 /wp-trackback.php / 301

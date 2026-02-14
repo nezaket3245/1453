@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 
 
-import { motion, useInView, AnimatePresence } from "@/lib/motion-lite";
+import { useInView } from "@/lib/motion-lite";
 import { cn } from "@/lib/utils";
 
 /**
@@ -19,7 +19,7 @@ const testimonials = [
             "3 yıl önce tüm evimizin pencerelerini Akçayapı&apos;ya yaptırdık. Kış aylarında ısı yalıtımının farkını çok net hissettik. Doğalgaz faturamız %35 düştü. Montaj ekibi son derece profesyoneldi.",
         date: "2024-01-15",
         product: "PVC Pencere",
-        avatar: "/images/testimonials/avatar-1.jpg",
+        avatar: "/images/testimonials/avatar-placeholder.svg",
     },
     {
         id: "2",
@@ -30,7 +30,7 @@ const testimonials = [
             "Cam balkon yaptırdık ve balkonumuz artık 4 mevsim kullanılabilir durumda. Panoramik sistemi tercih ettik, manzaramız hiç kapanmıyor. Çok memnunuz!",
         date: "2024-02-20",
         product: "Cam Balkon",
-        avatar: "/images/testimonials/avatar-2.jpg",
+        avatar: "/images/testimonials/avatar-placeholder.svg",
     },
     {
         id: "3",
@@ -41,7 +41,7 @@ const testimonials = [
             "Dükkanımın tüm doğramalarını alüminyum yaptırdım. Hem modern görünüm kazandı hem de çok dayanıklı. 2 yıldır hiç problem yaşamadık. Tavsiye ederim.",
         date: "2024-03-10",
         product: "Alüminyum Doğrama",
-        avatar: "/images/testimonials/avatar-3.jpg",
+        avatar: "/images/testimonials/avatar-placeholder.svg",
     },
     {
         id: "4",
@@ -52,7 +52,7 @@ const testimonials = [
             "Sineklik sistemlerini tüm eve yaptırdık. Pileli modeli çok kullanışlı, istediğimiz zaman kaldırabiliyoruz. Yazın böcek sorunu yaşamadık.",
         date: "2024-04-05",
         product: "Sineklik",
-        avatar: "/images/testimonials/avatar-4.jpg",
+        avatar: "/images/testimonials/avatar-placeholder.svg",
     },
     {
         id: "5",
@@ -63,7 +63,7 @@ const testimonials = [
             "Motorlu panjur sistemi hayatımızı çok kolaylaştırdı. Uzaktan kumandayla kontrol edebiliyoruz. Özellikle yaz aylarında güneş kontrolü mükemmel.",
         date: "2024-05-12",
         product: "Panjur",
-        avatar: "/images/testimonials/avatar-5.jpg",
+        avatar: "/images/testimonials/avatar-placeholder.svg",
     },
 
 ];
@@ -82,26 +82,16 @@ export function TestimonialsSection() {
             className="section bg-gradient-to-b from-primary-900 via-primary-800 to-primary-900 relative overflow-hidden"
             aria-labelledby="testimonials-heading"
         >
-            {/* Background Decorations */}
-            <div className="absolute inset-0 -z-10">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl" />
-                {/* Grid Pattern */}
-                <div
-                    className="absolute inset-0 opacity-5"
-                    style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-                    }}
-                />
-            </div>
+            {/* Background Decoration - lightweight */}
+            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_25%_0%,rgba(255,163,26,0.08)_0%,transparent_50%),radial-gradient(circle_at_75%_100%,rgba(0,184,156,0.08)_0%,transparent_50%)]" />
 
             <div className="container-custom">
                 {/* Section Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6 }}
-                    className="text-center max-w-3xl mx-auto mb-16"
+                <div
+                    className={cn(
+                        "text-center max-w-3xl mx-auto mb-16 transition-[opacity,transform] duration-500",
+                        isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                    )}
                 >
                     <span className="inline-block px-4 py-2 mb-4 text-sm font-semibold text-secondary-400 bg-secondary-400/10 rounded-full">
                         Müşteri Yorumları
@@ -117,25 +107,20 @@ export function TestimonialsSection() {
                         Müşterilerimizin deneyimlerini ve memnuniyetlerini dinleyin.
                     </p>
 
-                </motion.div>
+                </div>
 
                 {/* Testimonials Carousel - Mobile */}
                 <div className="lg:hidden" role="region" aria-roledescription="carousel" aria-label="Müşteri yorumları">
                     <div aria-live="polite" aria-atomic="true">
-                    <AnimatePresence mode="wait">
-                        <motion.div
+                        <div
                             key={activeIndex}
-                            initial={{ opacity: 0, x: 50 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -50 }}
-                            transition={{ duration: 0.3 }}
+                            className="animate-fade-in"
                             role="group"
                             aria-roledescription="slide"
                             aria-label={`Yorum ${activeIndex + 1} / ${testimonials.length}`}
                         >
                             <TestimonialCard testimonial={testimonials[activeIndex]} />
-                        </motion.div>
-                    </AnimatePresence>
+                        </div>
                     </div>
 
                     {/* Dots Navigation */}
@@ -160,23 +145,26 @@ export function TestimonialsSection() {
                 {/* Testimonials Grid - Desktop */}
                 <div className="hidden lg:grid grid-cols-3 gap-6">
                     {testimonials.slice(0, 3).map((testimonial, index) => (
-                        <motion.div
+                        <div
                             key={testimonial.id}
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            className={cn(
+                                "transition-[opacity,transform] duration-500",
+                                isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                            )}
+                            style={{ transitionDelay: isInView ? `${index * 100}ms` : '0ms' }}
                         >
                             <TestimonialCard testimonial={testimonial} />
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
 
                 {/* Stats Row */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-6"
+                <div
+                    className={cn(
+                        "mt-16 grid grid-cols-2 lg:grid-cols-4 gap-6 transition-[opacity,transform] duration-500",
+                        isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                    )}
+                    style={{ transitionDelay: isInView ? '400ms' : '0ms' }}
                 >
                     {[
                         { value: "4.9/5", label: "Müşteri Memnuniyeti" },
@@ -194,7 +182,7 @@ export function TestimonialsSection() {
                             <div className="text-sm text-white/60">{stat.label}</div>
                         </div>
                     ))}
-                </motion.div>
+                </div>
             </div>
         </section>
     );
@@ -209,7 +197,7 @@ function TestimonialCard({
     testimonial: (typeof testimonials)[0];
 }) {
     return (
-        <article className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-white/10 h-full flex flex-col">
+        <article className="bg-white/10 rounded-2xl p-6 lg:p-8 border border-white/10 h-full flex flex-col">
             {/* Rating */}
             <div className="flex items-center gap-1 mb-4" role="img" aria-label={`${testimonial.rating} üzerinden 5 yıldız`}>
                 {[...Array(5)].map((_, i) => (

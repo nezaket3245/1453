@@ -32,7 +32,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://akcapen-pvc.pages.dev"),
+  metadataBase: new URL("https://egepenakcayapi.com"),
   title: {
     default: `PVC Pencere Fiyatları 2026 | Egepen Akçayapı Beylikdüzü - Resmi Yetkili Bayi`,
     template: `%s | Egepen Akçayapı - PVC Pencere & Cam Balkon Beylikdüzü`,
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     "cam balkon kapatma fiyatları",
   ],
   applicationName: "Egepen Akçayapı",
-  authors: [{ name: businessConfig.name, url: "https://akcapen-pvc.pages.dev" }],
+  authors: [{ name: businessConfig.name, url: "https://egepenakcayapi.com" }],
   creator: businessConfig.name,
   publisher: businessConfig.name,
   generator: "Next.js",
@@ -88,13 +88,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "tr_TR",
-    url: "https://akcapen-pvc.pages.dev",
+    url: "https://egepenakcayapi.com",
     siteName: "Egepen Akçayapı - PVC Pencere & Cam Balkon",
     title: "PVC Pencere Fiyatları 2026 | Egepen Akçayapı Beylikdüzü",
     description: `Beylikdüzü Egepen Deceuninck yetkili bayisi. PVC pencere, cam balkon, sineklik ve panjur fiyatları. Ücretsiz keşif, profesyonel montaj.`,
     images: [
       {
-        url: "https://akcapen-pvc.pages.dev/images/og-home.jpg",
+        url: "https://egepenakcayapi.com/images/og-home.jpg",
         width: 1200,
         height: 630,
         alt: "Egepen Akçayapı - PVC Pencere ve Cam Balkon Sistemleri Beylikdüzü",
@@ -109,26 +109,21 @@ export const metadata: Metadata = {
     title: `PVC Pencere Fiyatları 2026 | Egepen Akçayapı Beylikdüzü`,
     description: `Beylikdüzü Egepen yetkili bayisi. PVC pencere, cam balkon, sineklik ve panjur. Ücretsiz keşif, profesyonel montaj.`,
     images: {
-      url: "https://akcapen-pvc.pages.dev/images/og-home.jpg",
+      url: "https://egepenakcayapi.com/images/og-home.jpg",
       alt: "Egepen Akçayapı PVC Pencere ve Cam Balkon",
     },
   },
   alternates: {
-    canonical: "https://akcapen-pvc.pages.dev",
+    canonical: "https://egepenakcayapi.com",
     languages: {
-      "tr-TR": "https://akcapen-pvc.pages.dev",
+      "tr-TR": "https://egepenakcayapi.com",
     },
   },
-  verification: {
-    google: "google-site-verification-code",
-    yandex: "yandex-verification-code",
-  },
+  verification: {},
   category: "Home Improvement",
   classification: "Business",
   other: {
-    "msvalidate.01": "bing-verification-code",
     "apple-mobile-web-app-title": "Egepen Akçayapı",
-    "mobile-web-app-capable": "yes",
   },
 };
 
@@ -139,14 +134,14 @@ export const metadata: Metadata = {
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
-  "@id": "https://akcapen-pvc.pages.dev/#organization",
+  "@id": "https://egepenakcayapi.com/#organization",
   "name": businessConfig.name,
   "legalName": businessConfig.legalName,
   "alternateName": ["Egepen Akçayapı", "Akçayapı PVC", "Egepen Beylikdüzü"],
   "description": "Beylikdüzü ve İstanbul Avrupa yakasında Egepen Deceuninck yetkili bayisi. PVC pencere, cam balkon, sineklik, panjur ve duşakabin sistemleri satış ve montaj hizmeti.",
-  "image": "https://akcapen-pvc.pages.dev/images/hero-bg.jpg",
-  "logo": "https://akcapen-pvc.pages.dev/images/logo.svg",
-  "url": "https://akcapen-pvc.pages.dev",
+  "image": "https://egepenakcayapi.com/images/og-home.jpg",
+  "logo": "https://egepenakcayapi.com/images/akcay-yapi-logo.webp",
+  "url": "https://egepenakcayapi.com",
   "telephone": businessConfig.contact.mobile,
   "priceRange": "₺₺",
   "currenciesAccepted": "TRY",
@@ -263,8 +258,6 @@ export default function RootLayout({
   return (
     <html lang="tr" dir="ltr" className={`${outfit.variable} ${inter.variable}`}>
       <head>
-        <meta charSet="utf-8" />
-        
         {/* PWA & Mobile App Meta */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -282,17 +275,23 @@ export default function RootLayout({
         
         {/* Content Classification */}
         <meta name="rating" content="general" />
-        <meta name="revisit-after" content="3 days" />
         <meta name="language" content="Turkish" />
-        <meta httpEquiv="content-language" content="tr" />
 
-        {/* Favicon Links - Optimized */}
+        {/* Favicon & PWA */}
         <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
         <link rel="icon" type="image/svg+xml" href="/images/icon-192x192.svg" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/images/icon-192x192.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
 
 
+
+        {/* Google Analytics 4 */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJTK34FD1Y" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MJTK34FD1Y');`,
+          }}
+        />
 
         {/* Preload LCP Image - Critical for Performance */}
         <link
@@ -303,23 +302,21 @@ export default function RootLayout({
           fetchPriority="high"
         />
 
+        {/* Register Service Worker on homepage */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+if('serviceWorker' in navigator && location.pathname==='/'){navigator.serviceWorker.register('/sw.js',{updateViaCache:'none'});}
+`,
+          }}
+        />
+
         {/* Structured Data - Critical for SEO */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
 
-        {/* Critical CSS - Only unique above-the-fold rules not in globals.css */}
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-              .container-custom{width:100%;max-width:1280px;margin:0 auto;padding-left:1rem;padding-right:1rem}
-              @media(min-width:640px){.container-custom{padding-left:1.5rem;padding-right:1.5rem}}
-              .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
-              .skip-link:focus{position:fixed;top:0;left:0;width:auto;height:auto;padding:1rem;background:#0055a5;color:#fff;z-index:9999}
-            `,
-          }}
-        />
       </head>
       <body className="antialiased selection:bg-primary-500 selection:text-white">
         {/* Skip to Content - Accessibility */}
